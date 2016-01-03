@@ -1,0 +1,86 @@
+.gender.female {
+    color: deeppink;
+}
+
+.gender.male {
+    color: deepskyblue;
+}
+
+.gender > span {
+    display: inline-block;
+    margin-right: 0.2em;
+    font-size: 1.5em;
+    vertical-align: middle;
+}
+
+/* List of members */
+
+.app_member_index table > tbody > tr > td.photo {
+    width: 5em;
+    padding: 0.4em 1em 0.4em 0;
+    text-align: center;
+}
+
+.app_member_index table > tbody > tr > td.photo > img {
+    display: block;
+    width: 100%;
+}
+
+/* Show member */
+
+.app_member_show > .sheet {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 1.5em;
+}
+
+.app_member_show > .sheet > .information {
+    flex: 1;
+    margin-left: 2em;
+}
+
+.app_member_show > .sheet > .information > div {
+    margin-bottom: 0.5em;
+}
+
+.app_member_show > .sheet > .information > div > small {
+    margin-left: 2em;
+    color: gray;
+}
+
+.app_member_show > .sheet > .information > div.action {
+    margin-top: 2em;
+}
+
+.app_member_show > .sheet > .photo {
+    width: 12em;
+    height: 15em;
+    text-align: center;
+}
+
+.app_member_show > .sheet > .photo > img {
+    border-radius: 0.1em;
+}
+
+/* Edit member */
+
+.app_member_edit .container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.app_member_edit .container > .edit0 {
+    flex: 1;
+}
+
+.app_member_edit .container > .photo {
+    margin-left: 5em;
+    margin-top: 2em;
+    text-align: center;
+}
+
+.app_member_edit .container > .photo > img {
+    max-width: 10em;
+}

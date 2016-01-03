@@ -1,0 +1,98 @@
+{% extends ':member:layout.html.twig' %}
+
+{% trans_default_domain 'member' %}
+
+{% block body %}
+
+    <div class="app_member_index">
+
+        <div id="menu-secondary">
+            <h1>{{ 'index.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_member_add') }}" class="button secondary">
+                    <span class="fi-plus"></span>
+                    {{ 'action.add'|trans({},'messages') }}
+                </a>
+            </nav>
+        </div>
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        {{ form_start(formSearch) }}
+        <div class="search0">
+            {{ form_row(formSearch.firstname) }}
+            {{ form_row(formSearch.lastname) }}
+            <div>
+                <button type="submit" class="button secondary">
+                    <span class="fi-filter"></span>
+                    {{ 'action.search'|trans({},'messages') }}
+                </button>
+            </div>
+        </div>
+        {{ form_end(formSearch) }}
+
+        <table class="result0">
+            <thead>
+            <tr>
+                <th></th>
+                <th>
+                    {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'firstname',title:'field.firstname'|trans} only -%}
+                </th>
+                <th>
+                    {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'lastname',title:'field.lastname'|trans} only -%}
+                </th>
+                <th>
+                    {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'gender',title:'field.gender'|trans} only -%}
+                </th>
+                <th>
+                    {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'age',title:'field.age'|trans} only -%}
+                </th>
+                <th>
+                    {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'city',title:'field.city'|trans} only -%}
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for member in members %}
+                <tr>
+                    <td class="photo">
+                        <img src="{{ path('app_member_photo',{member:member.id}) }}" alt="Photo"/>
+                    </td>
+                    <td>{{ member.firstname }}</td>
+                    <td>{{ member.lastname }}</td>
+                    {% if member.gender=='m' %}
+                        <td class="gender male">
+                            <span class="fi-male"></span>
+                            {{ 'gender.male'|trans }}
+                        </td>
+                    {% elseif member.gender=='f' %}
+                        <td class="gender female">
+                            <span class="fi-female"></span>
+                            {{ 'gender.female'|trans }}
+                        </td>
+                    {% else %}
+                        <td></td>
+                    {% endif %}
+                    <td>{{ member.age }}</td>
+                    <td>{{ member.city }}</td>
+                    <td class="action">
+                        <a href="{{ path('app_member_show',{member:member.id}) }}" class="button primary">
+                            <span class="fi-magnifying-glass"></span>
+                            {{ 'action.show'|trans({},'messages') }}
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% include 'default/_pagination.html.twig' with {results:members,route:route} only %}
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% set countPages=results.countPages %}
+{% set countResults=results|length %}
+{% set currentPage=results.page %}
+
+<div class="pagination">
+    {% if countPages > 1 %}
+        {% for p in range(0,countPages-1) %}
+            <a href="{{ path(route,{pagenum:p}) }}"{% if currentPage==p %} class="active"{% endif %}>{{ p+1 }}</a>
+        {% endfor %}
+    {% endif %}
+    <span>
+        {{- 'search.count.results'|transchoice(countResults,{},'messages') -}}
+        {%- if countPages>1 %}/ {{ 'search.count.pages'|transchoice(countPages,{},'messages') }}{% endif -%}
+    </span>
+</div>

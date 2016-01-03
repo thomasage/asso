@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}APPLICATION_NAME{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    {% block stylesheets %}
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/default.css') }}"/>
+        <link type="text/css" rel="stylesheet" href="{{ asset('libs/foundation-icons/foundation-icons.css') }}"/>
+        <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,600"/>
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+{% if app.user %}
+    <div id="menu-primary">
+        <nav>
+            <a href="{{ path('app_index') }}"{% if menuActive=='dashboard' %} class="active"{% endif %}>
+                <span class="fi-home"></span>
+                Dashboard
+            </a>
+            <a href="{{ path('app_member_index') }}"{% if menuActive=='member' %} class="active"{% endif %}>
+                <span class="fi-torsos"></span>
+                Members
+            </a>
+            <a href="#"{% if menuActive=='param' %} class="active"{% endif %}>
+                <span class="fi-wrench"></span>
+                Params
+            </a>
+            <a href="{{ path('app_security_logout') }}">
+                <span class="fi-power"></span>
+                Logout
+            </a>
+        </nav>
+    </div>
+{% endif %}
+<div id="content">
+    {% block body %}{% endblock %}
+</div>
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('libs/jquery-2.1.4.min.js') }}"></script>
+{% endblock %}
+</body>
 </html>

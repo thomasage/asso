@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="2efac63ce0f9b1bd223a4cfff021b8b2" resname="field.firstname">
+        <source>field.firstname</source>
+        <target>Firstname</target>
+      </trans-unit>
+      <trans-unit id="448c304722d7a9c7082e582c061cbe6b" resname="field.lastname">
+        <source>field.lastname</source>
+        <target>Lastname</target>
+      </trans-unit>
+      <trans-unit id="89e568f8bb96f9eebb1af165de42c4ce" resname="field.gender">
+        <source>field.gender</source>
+        <target>Gender</target>
+      </trans-unit>
+      <trans-unit id="d4f7fea053c7ebcb82bd149fbcf40c82" resname="field.age">
+        <source>field.age</source>
+        <target>Age</target>
+      </trans-unit>
+      <trans-unit id="1f2d5ac43b4eab4fc84af7848c7d7e7c" resname="field.city">
+        <source>field.city</source>
+        <target>City</target>
+      </trans-unit>
+      <trans-unit id="ccd54da92520f9fadccee8d528b6c838" resname="field.birthday">
+        <source>field.birthday</source>
+        <target>Birthday</target>
+      </trans-unit>
+      <trans-unit id="096a683875689f91ea3734e9197bc667" resname="field.birthplace">
+        <source>field.birthplace</source>
+        <target>Birthplace</target>
+      </trans-unit>
+      <trans-unit id="b7906649aee95ac19747e27e2b6a127f" resname="field.address">
+        <source>field.address</source>
+        <target>Address</target>
+      </trans-unit>
+      <trans-unit id="8e35ef2b3113eccf8e223947f2616d16" resname="field.zip">
+        <source>field.zip</source>
+        <target>Zip</target>
+      </trans-unit>
+      <trans-unit id="88182720066394c572a526ed4f0675e4" resname="field.photo">
+        <source>field.photo</source>
+        <target>Photo</target>
+      </trans-unit>
+      <trans-unit id="84a76a5c4bb228381e9e2cada8bf5a23" resname="gender.male">
+        <source>gender.male</source>
+        <target>Male</target>
+      </trans-unit>
+      <trans-unit id="6a271b283ddfc94bea8cc0b0239bbd02" resname="gender.female">
+        <source>gender.female</source>
+        <target>Female</target>
+      </trans-unit>
+      <trans-unit id="1ea7ccc01954ba1388047005183427ed" resname="index.title">
+        <source>index.title</source>
+        <target>List of members</target>
+      </trans-unit>
+      <trans-unit id="7d637d275668ed6d41a9b97e6ad3a556" resname="age">
+        <source>age</source>
+        <target>years old</target>
+      </trans-unit>
+      <trans-unit id="72884b7978fdba0e8321c1b2c5db3460" resname="edit.action.confirm_delete_photo">
+        <source>edit.action.confirm_delete_photo</source>
+        <target>Do you really want to delete photo ?</target>
+      </trans-unit>
+      <trans-unit id="2871ff7c25eeacd1ef94fb5c714eec4f" resname="edit.action.delete_photo">
+        <source>edit.action.delete_photo</source>
+        <target>Delete photo</target>
+      </trans-unit>
+      <trans-unit id="73dae1724aa3c5672be9920646eb6544" resname="edit.success.photo_deleted">
+        <source>edit.success.photo_deleted</source>
+        <target>Photo deleted.</target>
+      </trans-unit>
+      <trans-unit id="1b35bb4e03482bb91ecca6788932b38f" resname="edit.success.updated">
+        <source>edit.success.updated</source>
+        <target>Member updated.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

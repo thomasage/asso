@@ -1,0 +1,12 @@
+{% spaceless %}
+    <a href="{{ path(route,{orderby:orderby}) }}">
+        {%- if sets|keys|first==orderby -%}
+            {%- if sets[orderby] -%}
+                <span class="fi-arrow-down"></span>
+            {%- else -%}
+                <span class="fi-arrow-up"></span>
+            {%- endif -%}
+        {%- endif -%}
+        {{- title -}}
+    </a>
+{% endspaceless %}

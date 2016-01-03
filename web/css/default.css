@@ -1,0 +1,402 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: rgb(50, 50, 50);
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    background-color: white;
+}
+
+img {
+    display: inline-block;
+    max-width: 100%;
+}
+
+div#menu-primary {
+    font-size: 1.1em;
+    background-color: rgb(240, 240, 240);
+}
+
+div#menu-primary > nav {
+    display: flex;
+    flex-direction: row;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+div#menu-primary > nav > a {
+    padding: 1rem;
+    color: rgb(100, 100, 100);
+    font-size: 0.9em;
+    text-align: center;
+    text-decoration: none;
+    transition-duration: 0.5s;
+    transition-property: all;
+}
+
+div#menu-primary > nav > a > span {
+    display: inline-block;
+}
+
+div#menu-primary > nav > a:hover {
+    background-color: rgb(220, 220, 220);
+}
+
+div#menu-primary > nav > a.active {
+    color: inherit;
+    font-size: 1em;
+    background-color: white;
+}
+
+div#menu-secondary {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+div#menu-secondary > h1 {
+    flex: 1;
+}
+
+#content {
+    width: 1000px;
+    margin: 2em auto;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    color: darkviolet;
+    font-size: 1.7em;
+    font-weight: normal;
+}
+
+h1 > span {
+    margin-right: 0.2em;
+}
+
+.button {
+    display: inline-block;
+    margin: 0;
+    padding: 0.6em 0.7em 0.7em 0.7em;
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-size: 1em;
+    line-height: 1em;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    vertical-align: baseline;
+    white-space: nowrap;
+    background-color: rgb(170, 170, 170);
+    border: 0;
+    border-radius: 0.1em;
+    cursor: pointer;
+    zoom: 1;
+    user-select: none;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+.button:focus {
+    outline: 0;
+}
+
+.button:hover {
+    background-color: rgb(160, 160, 160);
+}
+
+.button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+.button.error {
+    background-color: rgb(202, 60, 60);
+}
+
+.button.primary {
+    background-color: rgb(0, 120, 231);
+}
+
+.button.secondary {
+    background-color: rgb(66, 184, 221);
+}
+
+.button.success {
+    background-color: rgb(28, 184, 65);
+}
+
+.button.warning {
+    background-color: rgb(223, 117, 20);
+}
+
+.button.error:hover {
+    background-color: rgb(192, 50, 50);
+}
+
+.button.primary:hover {
+    background-color: rgb(0, 110, 221);
+}
+
+.button.secondary:hover {
+    background-color: rgb(56, 174, 211);
+}
+
+.button.success:hover {
+    background-color: rgb(18, 174, 55);
+}
+
+.button.warning:hover {
+    background-color: rgb(213, 107, 10);
+}
+
+input[type=date],
+input[type=password],
+input[type=text] {
+    padding: 0.5em;
+    color: inherit;
+    font-family: "Roboto", sans-serif;
+    font-size: 1em;
+    background-color: white;
+    border: 0.1rem silver solid;
+    border-radius: 0.2rem;
+}
+
+select {
+    padding: 0.4em;
+    color: inherit;
+    font-family: "Roboto", sans-serif;
+    font-size: 1em;
+    background-color: white;
+    border: 0.1rem silver solid;
+    border-radius: 0.2rem;
+}
+
+.search0 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-top: 0.5em;
+}
+
+.search0 > div {
+    margin-right: 2em;
+    margin-top: 1em;
+}
+
+.search0 > div > label {
+    display: block;
+    padding-bottom: 0.2rem;
+}
+
+table.result0 {
+    width: 100%;
+    margin-top: 1.5em;
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.result0 > tbody > tr {
+    border-bottom: 1px rgb(240, 240, 240) dashed;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+table.result0 > tbody > tr > td {
+    padding: 1em 0.33em;
+    border: 0;
+}
+
+table.result0 > thead {
+    border-bottom: 1px rgb(152, 152, 152) solid;
+}
+
+table.result0 > thead > tr > th {
+    padding: 0;
+    font-weight: normal;
+    text-align: left;
+    border: 0;
+}
+
+table.result0 > thead > tr > th > a {
+    display: block;
+    padding: 1em 0.33em;
+    color: inherit;
+    text-decoration: none;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+table.result0 > thead > tr > th > a > span {
+    margin-right: 0.2em;
+}
+
+table.result0 > tbody > tr > td.action {
+    width: 1%;
+    padding: 0;
+    white-space: nowrap;
+}
+
+table.result0 > tbody > tr > td.noresult {
+    padding: 2em;
+    color: silver;
+    font-style: italic;
+    text-align: center;
+}
+
+table.result0 > thead > tr > th > a:hover {
+    background-color: rgb(250, 250, 250);
+}
+
+.aligncenter {
+    text-align: center;
+}
+
+.alignright {
+    text-align: right;
+}
+
+.edit0 {
+    margin-top: 1.5em;
+}
+
+.edit0 > div:nth-of-type(n+2) {
+    margin-top: 1.5em;
+}
+
+.edit0 > div input[type=date] {
+    width: 8em;
+    padding: 0.3em 0;
+    background-image: url('/libs/foundation-icons/svgs/fi-calendar.svg');
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 0;
+    border-bottom: 1px silver solid;
+    border-radius: 0;
+}
+
+.edit0 > div input[type=file] {
+    width: 100%;
+    padding: 0.3em 0;
+    border: 0;
+    border-bottom: 1px silver solid;
+    border-radius: 0;
+}
+
+.edit0 > div input[type=password],
+.edit0 > div input[type=text] {
+    width: 100%;
+    padding: 0.3em 0;
+    border: 0;
+    border-bottom: 1px silver solid;
+    border-radius: 0;
+}
+
+.edit0 > div select {
+    padding: 0.3em 0;
+    border: 0;
+    border-bottom: 1px silver solid;
+    border-radius: 0;
+}
+
+.edit0 > div > label {
+    display: block;
+    margin-bottom: 0.1em;
+    color: rgb(100, 100, 100);
+    font-size: 0.8em;
+}
+
+.edit0 > div > input[type=text]:focus {
+    border-bottom-color: darkviolet;
+}
+
+.edit0 > div.action > span {
+    margin: 0 1em;
+}
+
+.flash {
+    margin-top: 1.5em;
+    padding: 1em;
+    background-color: rgb(250, 250, 250);
+}
+
+.flash.error {
+    background-color: rgb(255, 200, 200);
+}
+
+.flash.success {
+    background-color: rgb(200, 255, 200);
+}
+
+.form-login {
+    width: 25em;
+    margin: 5em auto;
+    padding: 2em;
+    border: 0.2em silver solid;
+    border-radius: 0.5em;
+    box-shadow: 0 0 3em rgb(240, 240, 240);
+}
+
+.form-login .action {
+    text-align: center;
+}
+
+div.pagination {
+    margin-top: 1.5rem;
+}
+
+div.pagination > a {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    color: gray;
+    text-decoration: none;
+    background-color: rgb(240, 240, 240);
+}
+
+div.pagination > a:hover {
+    color: black;
+    background-color: #eef;
+}
+
+div.pagination > a.active {
+    color: white;
+    font-weight: bold;
+    background-color: rgb(150, 150, 150);
+}
+
+div.pagination > a:first-of-type {
+    border-bottom-left-radius: 0.2rem;
+    border-top-left-radius: 0.2rem;
+}
+
+div.pagination > a:last-of-type {
+    margin-right: 20px;
+    border-bottom-right-radius: 0.2rem;
+    border-top-right-radius: 0.2rem;
+}
+
+div.pagination > a:nth-of-type(n+2) {
+    margin-left: -1px;
+}
+
+div.pagination > span {
+    display: inline-block;
+    padding: 5px 0;
+    color: gray;
+    font-size: 0.9rem;
+}

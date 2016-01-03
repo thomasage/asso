@@ -1,0 +1,20 @@
+{% extends ':member:layout.html.twig' %}
+
+{% block body %}
+
+    <div id="menu-secondary">
+        <h1>Add member</h1>
+        <nav>
+            <a href="{{ path('app_member_index') }}" class="button">
+                <span class="fi-arrow-left"></span>
+                Back
+            </a>
+        </nav>
+    </div>
+
+    {{ include('default/_flash_messages.html.twig') }}
+
+    <div class="app_member_add">
+    </div>
+
+{% endblock %}
