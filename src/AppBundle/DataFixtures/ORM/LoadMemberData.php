@@ -22,7 +22,19 @@ class LoadMemberData implements FixtureInterface
             ->setAddress('1 main street')
             ->setZip('F-123')
             ->setCity('Washington D.C.');
+        $manager->persist($member);
+        $manager->flush();
 
+        $member = new Member();
+        $member
+            ->setFirstname('Jane')
+            ->setLastname('Smith')
+            ->setGender('f')
+            ->setBirthday(new \DateTime('1981-02-03'))
+            ->setBirthplace('Passadena')
+            ->setAddress('86th street')
+            ->setZip('ABCDEF')
+            ->setCity('Miami');
         $manager->persist($member);
         $manager->flush();
     }

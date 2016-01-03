@@ -18,18 +18,75 @@ class MemberType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', TextType::class, array('label' => 'field.firstname', 'required' => true))
-            ->add('lastname', TextType::class, array('label' => 'field.lastname', 'required' => true))
-            ->add('gender', ChoiceType::class, array('label' => 'field.gender', 'required' => true))
+            ->add(
+                'firstname',
+                TextType::class,
+                array(
+                    'label' => 'field.firstname',
+                    'required' => true,
+                )
+            )
+            ->add(
+                'lastname',
+                TextType::class,
+                array(
+                    'label' => 'field.lastname',
+                    'required' => true,
+                )
+            )
+            ->add(
+                'gender',
+                ChoiceType::class,
+                array(
+                    'label' => 'field.gender',
+                    'required' => true,
+                    'choices' => array(
+                        'gender.female' => 'f',
+                        'gender.male' => 'm',
+                    ),
+                )
+            )
             ->add(
                 'birthday',
                 DateType::class,
-                array('widget' => 'single_text', 'label' => 'field.birthday', 'required' => true)
+                array(
+                    'widget' => 'single_text',
+                    'label' => 'field.birthday',
+                    'required' => true,
+                )
             )
-            ->add('birthplace', TextType::class, array('label' => 'field.birthplace', 'required' => true))
-            ->add('address', TextType::class, array('label' => 'field.address', 'required' => true))
-            ->add('zip', TextType::class, array('label' => 'field.zip', 'required' => true))
-            ->add('city', TextType::class, array('label' => 'field.city', 'required' => true))
+            ->add(
+                'birthplace',
+                TextType::class,
+                array(
+                    'label' => 'field.birthplace',
+                    'required' => true,
+                )
+            )
+            ->add(
+                'address',
+                TextType::class,
+                array(
+                    'label' => 'field.address',
+                    'required' => true,
+                )
+            )
+            ->add(
+                'zip',
+                TextType::class,
+                array(
+                    'label' => 'field.zip',
+                    'required' => true,
+                )
+            )
+            ->add(
+                'city',
+                TextType::class,
+                array(
+                    'label' => 'field.city',
+                    'required' => true,
+                )
+            )
             ->add(
                 'photo',
                 FileType::class,

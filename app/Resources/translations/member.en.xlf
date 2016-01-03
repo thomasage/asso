@@ -77,6 +77,14 @@
         <source>edit.success.updated</source>
         <target>Member updated.</target>
       </trans-unit>
+      <trans-unit id="9855af5eaf7586a054b6e8d65035e349" resname="add.success.added">
+        <source>add.success.added</source>
+        <target>Member added.</target>
+      </trans-unit>
+      <trans-unit id="eeac20873fd3718f4f0489dfcebf4047" resname="add.title">
+        <source>add.title</source>
+        <target>Add member</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

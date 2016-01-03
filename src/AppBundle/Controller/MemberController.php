@@ -14,15 +14,42 @@ use Symfony\Component\HttpFoundation\Response;
 class MemberController extends Controller
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
      * @Route("/member/add",
      *        name="app_member_add")
      */
-    public function addAction()
+    public function addAction(Request $request)
     {
+        // Member manager
+        $mm = $this->get('app.member_manager');
+
+        $member = new Member();
+        $formEdit = $this->createForm(MemberType::class, $member);
+        $formEdit->handleRequest($request);
+
+        if ($formEdit->isSubmitted() && $formEdit->isValid()) {
+
+            // Save data
+            $mm->update($member);
+
+            // Save photo
+            $photo = $formEdit->get('photo')->getData();
+            if ($photo instanceof UploadedFile) {
+                $mm->updatePhoto($member, $photo);
+            }
+
+            // Flash message
+            $this->addFlash('success', $this->get('translator')->trans('add.success.added', array(), 'member'));
+
+            // Redirect
+            return $this->redirectToRoute('app_member_edit', array('member' => $member->getId()));
+
+        }
+
         // Render
-        return $this->render('member/add.html.twig');
+        return $this->render('member/add.html.twig', array('formEdit' => $formEdit->createView()));
     }
 
     /**
@@ -54,7 +81,7 @@ class MemberController extends Controller
             }
 
             // Flash message
-            $this->addFlash('success', $this->get('translator')->trans('edit.success.updated',array(),'member'));
+            $this->addFlash('success', $this->get('translator')->trans('edit.success.updated', array(), 'member'));
 
             // Redirect
             if ($request->request->has('update_close')) {
@@ -71,7 +98,10 @@ class MemberController extends Controller
             $mm->deletePhoto($member);
 
             // Flash message
-            $this->addFlash('success', $this->get('translator')->trans('edit.success.photo_deleted', array(), 'member'));
+            $this->addFlash(
+                'success',
+                $this->get('translator')->trans('edit.success.photo_deleted', array(), 'member')
+            );
 
             // Redirect
             return $this->redirectToRoute('app_member_edit', array('member' => $member->getId()));
