@@ -325,6 +325,19 @@ table.result0 > thead > tr > th > a:hover {
     border-bottom-color: darkviolet;
 }
 
+.edit0 > div > ul.errors {
+    margin: 0;
+    padding: 0;
+    color: red;
+    list-style: none;
+}
+
+.edit0 > div > ul.errors > li {
+    margin: 0.2em 0;
+    padding: 0.3em;
+    background-color: rgb(255, 250, 250);
+}
+
 .edit0 > div.action > span {
     margin: 0 1em;
 }
