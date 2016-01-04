@@ -1,0 +1,30 @@
+{% extends ':param:layout.html.twig' %}
+
+{% trans_default_domain 'param' %}
+
+{% block body %}
+
+    <div class="app_param_index">
+
+        <div id="menu-secondary">
+            <h1>{{ 'index.title'|trans }}</h1>
+        </div>
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        {{ form_start(formParam) }}
+        <div class="edit0">
+            {{ form_row(formParam.password_current) }}
+            {{ form_row(formParam.password) }}
+            <div class="action">
+                <button type="submit" class="button success">
+                    <span class="fi-check"></span>
+                    {{ 'index.action.update_password'|trans }}
+                </button>
+            </div>
+        </div>
+        {{ form_end(formParam) }}
+
+    </div>
+
+{% endblock %}

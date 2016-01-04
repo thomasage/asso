@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="1ea7ccc01954ba1388047005183427ed" resname="index.title">
+        <source>index.title</source>
+        <target>Params</target>
+      </trans-unit>
+      <trans-unit id="04e501b3b147d89d027b1d81827140cd" resname="index.action.update_password">
+        <source>index.action.update_password</source>
+        <target>Update password</target>
+      </trans-unit>
+      <trans-unit id="22cd011da67591275af53157ce006833" resname="field.password_new">
+        <source>field.password_new</source>
+        <target>New password</target>
+      </trans-unit>
+      <trans-unit id="757d1add46e831568e990b7050f7ac1f" resname="field.password_confirmation">
+        <source>field.password_confirmation</source>
+        <target>Confirm password</target>
+      </trans-unit>
+      <trans-unit id="0f831abd986a32c493cd5d0119cd3151" resname="index.success.password_updated">
+        <source>index.success.password_updated</source>
+        <target>Password updated.</target>
+      </trans-unit>
+      <trans-unit id="09ee82750140bd7fe44b3536210e77f4" resname="field.password_current">
+        <source>field.password_current</source>
+        <target>Current password</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
