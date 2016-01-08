@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Search
  *
  * @ORM\Table(name="search")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SearchRepository")
+ * @ORM\Entity()
  */
 class Search
 {

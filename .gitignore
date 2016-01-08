@@ -1,4 +1,4 @@
-.idea/
+/.idea/
 /app/config/parameters.yml
 /build/
 /phpunit.xml
@@ -15,4 +15,7 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-document/
+/document/
+!/document/member/photo/female.png
+!/document/member/photo/male.png
+/coverage/
