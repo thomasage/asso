@@ -45,12 +45,12 @@
         <source>field.photo</source>
         <target>Photo</target>
       </trans-unit>
-      <trans-unit id="84a76a5c4bb228381e9e2cada8bf5a23" resname="gender.male">
-        <source>gender.male</source>
+      <trans-unit id="b79ed8df5dfd6275868662bee957ba42" resname="gender.m">
+        <source>gender.m</source>
         <target>Male</target>
       </trans-unit>
-      <trans-unit id="6a271b283ddfc94bea8cc0b0239bbd02" resname="gender.female">
-        <source>gender.female</source>
+      <trans-unit id="2861d48fda0639edf3e305cfc2ee541d" resname="gender.f">
+        <source>gender.f</source>
         <target>Female</target>
       </trans-unit>
       <trans-unit id="1ea7ccc01954ba1388047005183427ed" resname="index.title">

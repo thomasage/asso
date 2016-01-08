@@ -25,6 +25,7 @@
             <div class="information">
                 <div>{{ member }}</div>
                 <div>
+                    {{ ('gender.'~member.gender)|trans }},
                     {{ member.age }} {{ 'age'|trans }}
                     <small>{{ member.birthday|localizeddate('full','none') }}</small>
                 </div>

@@ -41,8 +41,8 @@ class MemberType extends AbstractType
                     'label' => 'field.gender',
                     'required' => true,
                     'choices' => array(
-                        'gender.female' => 'f',
-                        'gender.male' => 'm',
+                        'gender.f' => 'f',
+                        'gender.m' => 'm',
                     ),
                 )
             )
