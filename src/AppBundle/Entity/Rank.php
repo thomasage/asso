@@ -49,6 +49,11 @@ class Rank
      */
     private $position;
 
+    public function __construct()
+    {
+        $this->position = 0;
+    }
+
     /**
      * @return string
      */
