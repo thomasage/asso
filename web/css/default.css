@@ -18,54 +18,52 @@ img {
 }
 
 div#menu-primary {
-    font-size: 1.1em;
-    background-color: rgb(240, 240, 240);
+    background-color: darkviolet;
 }
 
 div#menu-primary > nav {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
     width: 1000px;
     margin: 0 auto;
 }
 
 div#menu-primary > nav > a {
-    padding: 1rem;
-    color: rgb(100, 100, 100);
-    font-size: 0.9em;
-    text-align: center;
+    padding: 1em;
+    color: white;
     text-decoration: none;
-    transition-duration: 0.5s;
-    transition-property: all;
-}
-
-div#menu-primary > nav > a > span {
-    display: inline-block;
-}
-
-div#menu-primary > nav > a:hover {
-    background-color: rgb(220, 220, 220);
+    text-transform: uppercase;
 }
 
 div#menu-primary > nav > a.active {
-    color: inherit;
-    font-size: 1em;
-    background-color: white;
+    background-color: indigo;
 }
 
 div#menu-secondary {
-    width: 100%;
     display: flex;
     flex-direction: row;
+    margin-top: 2em;
+    align-items: center;
 }
 
 div#menu-secondary > h1 {
     flex: 1;
 }
 
+div#menu-secondary > nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+div#menu-secondary > nav > a {
+    margin-left: 0.5em;
+}
+
 #content {
     width: 1000px;
-    margin: 2em auto;
+    margin: 1em auto;
 }
 
 h1 {
@@ -159,6 +157,7 @@ h1 > span {
 }
 
 input[type=date],
+input[type=number],
 input[type=password],
 input[type=text] {
     padding: 0.5em;
@@ -298,6 +297,7 @@ table.result0 > thead > tr > th > a:hover {
     border-radius: 0;
 }
 
+.edit0 > div input[type=number],
 .edit0 > div input[type=password],
 .edit0 > div input[type=text] {
     width: 100%;
@@ -319,6 +319,11 @@ table.result0 > thead > tr > th > a:hover {
     margin-bottom: 0.1em;
     color: rgb(100, 100, 100);
     font-size: 0.8em;
+}
+
+.edit0 > div > label.required:after {
+    content: ' *';
+    color: red;
 }
 
 .edit0 > div > input[type=text]:focus {
@@ -412,4 +417,75 @@ div.pagination > span {
     padding: 5px 0;
     color: gray;
     font-size: 0.9rem;
+}
+
+nav.tabs0 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 1.5em;
+}
+
+nav.tabs0 > a {
+    margin-right: 0.5em;
+    padding: 0.5em 0.7em;
+    color: rgb(100, 100, 100);
+    text-decoration: none;
+    background-color: rgb(250, 250, 250);
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+nav.tabs0 > a:hover {
+    color: white;
+    background-color: rgb(150, 150, 150);
+}
+
+nav.tabs0 > a.active {
+    color: white;
+    background-color: rgb(50, 50, 50);
+}
+
+table.result1 {
+    width: 100%;
+    margin-top: 1.5em;
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.result1 > tbody > tr {
+    border-bottom: 1px rgb(240, 240, 240) dashed;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+table.result1 > tbody > tr > td {
+    padding: 1em 0.33em;
+}
+
+table.result1 > tbody > tr > td.action {
+    width: 1%;
+    padding: 0;
+    text-align: center;
+    white-space: nowrap;
+}
+
+table.result1 > thead {
+    border-bottom: 1px rgb(152, 152, 152) solid;
+}
+
+table.result1 > thead > tr > th {
+    padding: 1em 0.33em;
+    font-weight: normal;
+    text-align: left;
+    border: 0;
 }

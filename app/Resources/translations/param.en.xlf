@@ -29,6 +29,38 @@
         <source>field.password_current</source>
         <target>Current password</target>
       </trans-unit>
+      <trans-unit id="7e91fc8d4d091cd965b7cd5755b87731" resname="rank_add.title">
+        <source>rank_add.title</source>
+        <target>Add rank</target>
+      </trans-unit>
+      <trans-unit id="86e916a85cbf15d068d89cb7a4365008" resname="rank.title">
+        <source>rank.title</source>
+        <target>Ranks</target>
+      </trans-unit>
+      <trans-unit id="45402a6ecba30b95b86f3b0c8cb26266" resname="rank_edit.title">
+        <source>rank_edit.title</source>
+        <target>Edit rank</target>
+      </trans-unit>
+      <trans-unit id="226301a9e72910b7f7df691e1576c554" resname="field.name">
+        <source>field.name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="d30d462cddf1398a1cac303d48d04ceb" resname="field.description">
+        <source>field.description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="97f95ae558d14815bee0f7aade6fc31d" resname="rank_edit.success.updated">
+        <source>rank_edit.success.updated</source>
+        <target>Rank updated.</target>
+      </trans-unit>
+      <trans-unit id="b43cec92ca5e79fc6a276938218749df" resname="rank_add.success.added">
+        <source>rank_add.success.added</source>
+        <target>Rank added.</target>
+      </trans-unit>
+      <trans-unit id="fc8f1179767057fd235c71b88231c4fc" resname="field.position">
+        <source>field.position</source>
+        <target>Position</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

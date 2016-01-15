@@ -8,6 +8,12 @@
 
         <div id="menu-secondary">
             <h1>{{ 'index.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_param_rank') }}" class="button secondary">
+                    <span class="fi-lock"></span>
+                    {{ 'rank.title'|trans }}
+                </a>
+            </nav>
         </div>
 
         {{ include('default/_flash_messages.html.twig') }}

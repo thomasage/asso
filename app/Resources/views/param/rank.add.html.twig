@@ -1,0 +1,46 @@
+{% extends ':param:layout.html.twig' %}
+
+{% trans_default_domain 'param' %}
+
+{% block body %}
+
+    <div class="app_param_rank_add">
+
+        <div id="menu-secondary">
+            <h1>{{ 'rank_add.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_param_rank') }}" class="button">
+                    <span class="fi-arrow-left"></span>
+                    {{ 'action.back'|trans({},'messages') }}
+                </a>
+                <a href="{{ path('app_param_index') }}" class="button secondary">
+                    <span class="fi-lock"></span>
+                    {{ 'index.title'|trans }}
+                </a>
+            </nav>
+        </div>
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        {{ form_start(formEdit) }}
+        <div class="edit0">
+            {{ form_row(formEdit.name) }}
+            {{ form_row(formEdit.description) }}
+            {{ form_row(formEdit.position) }}
+            <div class="action">
+                <button type="submit" class="button success" name="add">
+                    <span class="fi-check"></span>
+                    {{ 'action.add'|trans({},'messages') }}
+                </button>
+                <span>{{ 'or'|trans({},'messages') }}</span>
+                <a href="{{ path('app_param_rank') }}" class="button">
+                    <span class="fi-x"></span>
+                    {{ 'action.cancel'|trans({},'messages') }}
+                </a>
+            </div>
+        </div>
+        {{ form_end(formEdit) }}
+
+    </div>
+
+{% endblock %}

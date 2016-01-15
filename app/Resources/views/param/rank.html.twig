@@ -1,0 +1,55 @@
+{% extends ':param:layout.html.twig' %}
+
+{% trans_default_domain 'param' %}
+
+{% block body %}
+
+    <div class="app_param_rank">
+
+        <div id="menu-secondary">
+            <h1>{{ 'rank.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_param_index') }}" class="button secondary">
+                    <span class="fi-lock"></span>
+                    {{ 'index.title'|trans }}
+                </a>
+                <a href="{{ path('app_param_rank_add') }}" class="button primary">
+                    <span class="fi-plus"></span>
+                    {{ 'action.add'|trans({},'messages') }}
+                </a>
+            </nav>
+        </div>
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        <table class="result1">
+            <thead>
+            <tr>
+                <th></th>
+                <th>{{ 'field.name'|trans }}</th>
+                <th>{{ 'field.description'|trans }}</th>
+                <th>{{ 'field.position'|trans }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for rank in ranks %}
+                <tr>
+                    <td></td>
+                    <td>{{ rank.name }}</td>
+                    <td>{{ rank.description }}</td>
+                    <td>{{ rank.position }}</td>
+                    <td class="action">
+                        <a href="{{ path('app_param_rank_edit',{rank:rank.id}) }}" class="button primary">
+                            <span class="fi-pencil"></span>
+                            {{ 'action.edit'|trans({},'messages') }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}

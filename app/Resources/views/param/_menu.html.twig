@@ -1,0 +1,10 @@
+<nav class="tabs0">
+    <a href="{{ path('app_param_index') }}"{% if active=='password' %} class="active"{% endif %}>
+        <span class="fi-lock"></span>
+        Password
+    </a>
+    <a href="{{ path('app_param_rank') }}"{% if active=='rank' %} class="active"{% endif %}>
+        <span class="fi-sheriff-badge"></span>
+        Ranks
+    </a>
+</nav>

@@ -49,6 +49,10 @@
         <source>action.cancel</source>
         <target>Cancel</target>
       </trans-unit>
+      <trans-unit id="e81c4e4f2b7b93b481e13a8553c2ae1b" resname="or">
+        <source>or</source>
+        <target>or</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
