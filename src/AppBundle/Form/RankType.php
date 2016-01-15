@@ -2,6 +2,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -38,6 +39,16 @@ class RankType extends AbstractType
                 array(
                     'label' => 'field.position',
                     'required' => true,
+                )
+            )
+            ->add(
+                'image',
+                FileType::class,
+                array(
+                    'label' => 'field.image',
+                    'required' => false,
+                    'mapped' => false,
+                    'attr' => array('accept' => 'image/jpeg'),
                 )
             );
     }

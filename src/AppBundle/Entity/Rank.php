@@ -49,6 +49,13 @@ class Rank
      */
     private $position;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image_extension", type="string", length=20, nullable=true)
+     */
+    private $imageExtension;
+
     public function __construct()
     {
         $this->position = 0;
@@ -142,5 +149,29 @@ class Rank
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Set imageExtension
+     *
+     * @param string $imageExtension
+     *
+     * @return Rank
+     */
+    public function setImageExtension($imageExtension)
+    {
+        $this->imageExtension = $imageExtension;
+
+        return $this;
+    }
+
+    /**
+     * Get imageExtension
+     *
+     * @return string
+     */
+    public function getImageExtension()
+    {
+        return $this->imageExtension;
     }
 }

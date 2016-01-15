@@ -19,3 +19,4 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     member_photo_directory: "%kernel.root_dir%/../document/member/photo"
+    rank_image_directory: "%kernel.root_dir%/../document/rank/image"

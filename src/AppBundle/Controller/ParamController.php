@@ -6,6 +6,8 @@ use AppBundle\Form\ParamType;
 use AppBundle\Form\RankType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,7 +18,8 @@ class ParamController extends Controller
      * @return Response
      *
      * @Route("/param",
-     *        name="app_param_index")
+     *        name="app_param_index",
+     *        methods={"GET","POST"})
      */
     public function indexAction(Request $request)
     {
@@ -56,7 +59,8 @@ class ParamController extends Controller
      * @return Response
      *
      * @Route("/param/rank",
-     *        name="app_param_rank")
+     *        name="app_param_rank",
+     *        methods={"GET","POST"})
      */
     public function rankAction()
     {
@@ -80,7 +84,8 @@ class ParamController extends Controller
      * @return Response
      *
      * @Route("/param/rank/add",
-     *        name="app_param_rank_add")
+     *        name="app_param_rank_add",
+     *        methods={"GET","POST"})
      */
     public function rankAddAction(Request $request)
     {
@@ -92,19 +97,18 @@ class ParamController extends Controller
         if ($formEdit->isSubmitted() && $formEdit->isValid()) {
 
             // Save data
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($rank);
-            $em->flush();
+            $rm = $this->get('app.rank_manager');
+            $rm->updateRank($rank);
+            $image = $formEdit->get('image')->getData();
+            if ($image instanceof UploadedFile) {
+                $rm->updateImage($rank, $image);
+            }
 
             // Flash message
             $this->addFlash('success', $this->get('translator')->trans('rank_add.success.added', array(), 'param'));
 
             // Redirect
-            if ($request->request->has('update_close')) {
-                return $this->redirectToRoute('app_param_rank');
-            } else {
-                return $this->redirectToRoute('app_param_rank_edit', array('rank' => $rank->getId()));
-            }
+            return $this->redirectToRoute('app_param_rank_edit', array('rank' => $rank->getId()));
 
         }
 
@@ -124,6 +128,7 @@ class ParamController extends Controller
      *
      * @Route("/param/rank/{rank}",
      *        name="app_param_rank_edit",
+     *        methods={"GET","POST"},
      *        requirements={"rank"="\d+"})
      */
     public function rankEditAction(Request $request, Rank $rank)
@@ -134,7 +139,12 @@ class ParamController extends Controller
         if ($formEdit->isSubmitted() && $formEdit->isValid()) {
 
             // Save data
-            $this->getDoctrine()->getManager()->flush();
+            $rm = $this->get('app.rank_manager');
+            $rm->updateRank($rank);
+            $image = $formEdit->get('image')->getData();
+            if ($image instanceof UploadedFile) {
+                $rm->updateImage($rank, $image);
+            }
 
             // Flash message
             $this->addFlash('success', $this->get('translator')->trans('rank_edit.success.updated', array(), 'param'));
@@ -148,12 +158,51 @@ class ParamController extends Controller
 
         }
 
+        if ($request->query->get('delete') == 'image') {
+
+            // Delete image
+            $rm = $this->get('app.rank_manager');
+            $rm->deleteImage($rank);
+
+            // Flash message
+            $this->addFlash('success', $this->get('translator')->trans('edit.success.image_deleted', array(), 'param'));
+
+            // Redirect
+            return $this->redirectToRoute('app_param_rank_edit', array('rank' => $rank->getId()));
+
+        }
+
         // Render
         return $this->render(
             'param/rank.edit.html.twig',
             array(
                 'formEdit' => $formEdit->createView(),
+                'rank' => $rank,
             )
         );
+    }
+
+    /**
+     * @param Rank $rank
+     * @return BinaryFileResponse|Response
+     *
+     * @Route("/param/rank/image/{rank}",
+     *        name="app_param_rank_image",
+     *        methods={"GET","POST"},
+     *        requirements={"rank"="\d+"})
+     */
+    public function rankImageAction(Rank $rank)
+    {
+        // Member manager
+        $rm = $this->get('app.rank_manager');
+
+        // Image
+        $image = $rm->getImage($rank);
+
+        if (!is_null($image)) {
+            return new BinaryFileResponse($image);
+        }
+
+        return new Response('', 404);
     }
 }

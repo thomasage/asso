@@ -63,7 +63,7 @@
       </trans-unit>
       <trans-unit id="72884b7978fdba0e8321c1b2c5db3460" resname="edit.action.confirm_delete_photo">
         <source>edit.action.confirm_delete_photo</source>
-        <target>Do you really want to delete photo ?</target>
+        <target>Do you really want to delete the photo ?</target>
       </trans-unit>
       <trans-unit id="2871ff7c25eeacd1ef94fb5c714eec4f" resname="edit.action.delete_photo">
         <source>edit.action.delete_photo</source>

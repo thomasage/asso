@@ -49,6 +49,10 @@
         <source>field.description</source>
         <target>Description</target>
       </trans-unit>
+      <trans-unit id="2dd41ad7d1dc7b1b2f86a4dd7fef365b" resname="field.image">
+        <source>field.image</source>
+        <target>Image</target>
+      </trans-unit>
       <trans-unit id="97f95ae558d14815bee0f7aade6fc31d" resname="rank_edit.success.updated">
         <source>rank_edit.success.updated</source>
         <target>Rank updated.</target>
@@ -60,6 +64,18 @@
       <trans-unit id="fc8f1179767057fd235c71b88231c4fc" resname="field.position">
         <source>field.position</source>
         <target>Position</target>
+      </trans-unit>
+      <trans-unit id="b261f139b7fe6a345823189b12e86c34" resname="edit.action.delete_image">
+        <source>edit.action.delete_image</source>
+        <target>Delete image</target>
+      </trans-unit>
+      <trans-unit id="6a8cf8ff6634a4fd85f2fd04da343901" resname="edit.action.confirm_delete_image">
+        <source>edit.action.confirm_delete_image</source>
+        <target>Do you really want to delete the image ?</target>
+      </trans-unit>
+      <trans-unit id="623efacecfd8c39e5007473f60b52906" resname="edit.success.image_deleted">
+        <source>edit.success.image_deleted</source>
+        <target>Image deleted.</target>
       </trans-unit>
     </body>
   </file>

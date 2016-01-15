@@ -4,47 +4,79 @@
 
 {% block body %}
 
+    <div id="menu-secondary">
+        <h1>{{ 'rank_edit.title'|trans }}</h1>
+        <nav>
+            <a href="{{ path('app_param_rank') }}" class="button">
+                <span class="fi-arrow-left"></span>
+                {{ 'action.back'|trans({},'messages') }}
+            </a>
+            <a href="{{ path('app_param_index') }}" class="button secondary">
+                <span class="fi-lock"></span>
+                {{ 'index.title'|trans }}
+            </a>
+        </nav>
+    </div>
+
+    {{ include('default/_flash_messages.html.twig') }}
+
     <div class="app_param_rank_edit">
 
-        <div id="menu-secondary">
-            <h1>{{ 'rank_edit.title'|trans }}</h1>
-            <nav>
-                <a href="{{ path('app_param_rank') }}" class="button">
-                    <span class="fi-arrow-left"></span>
-                    {{ 'action.back'|trans({},'messages') }}
-                </a>
-                <a href="{{ path('app_param_index') }}" class="button secondary">
-                    <span class="fi-lock"></span>
-                    {{ 'index.title'|trans }}
-                </a>
-            </nav>
-        </div>
-
-        {{ include('default/_flash_messages.html.twig') }}
-
         {{ form_start(formEdit) }}
-        <div class="edit0">
-            {{ form_row(formEdit.name) }}
-            {{ form_row(formEdit.description) }}
-            {{ form_row(formEdit.position) }}
-            <div class="action">
-                <button type="submit" class="button success" name="update">
-                    <span class="fi-check"></span>
-                    {{ 'action.update'|trans({},'messages') }}
-                </button>
-                <button type="submit" class="button success" name="update_close">
-                    <span class="fi-check"></span>
-                    {{ 'action.update_and_close'|trans({},'messages') }}
-                </button>
-                <span>{{ 'or'|trans({},'messages') }}</span>
-                <a href="{{ path('app_param_rank') }}" class="button">
-                    <span class="fi-x"></span>
-                    {{ 'action.cancel'|trans({},'messages') }}
-                </a>
+
+        <div class="container">
+
+            <div class="edit0">
+                {{ form_row(formEdit.name) }}
+                {{ form_row(formEdit.description) }}
+                {{ form_row(formEdit.position) }}
+                {{ form_row(formEdit.image) }}
+                <div class="action">
+                    <button type="submit" class="button success" name="update">
+                        <span class="fi-check"></span>
+                        {{ 'action.update'|trans({},'messages') }}
+                    </button>
+                    <button type="submit" class="button success" name="update_close">
+                        <span class="fi-check"></span>
+                        {{ 'action.update_and_close'|trans({},'messages') }}
+                    </button>
+                    <span>{{ 'or'|trans({},'messages') }}</span>
+                    <a href="{{ path('app_param_rank') }}" class="button">
+                        <span class="fi-x"></span>
+                        {{ 'action.cancel'|trans({},'messages') }}
+                    </a>
+                </div>
             </div>
+
+            {% if rank.imageExtension %}
+                <div class="image">
+                    <img src="{{ path('app_param_rank_image',{rank:rank.id}) }}" alt="Image"/><br/>
+                    <a href="#" class="button warning image-delete">
+                        <span class="fi-trash"></span>
+                        {{ 'edit.action.delete_image'|trans }}
+                    </a>
+                </div>
+            {% endif %}
+
         </div>
+
         {{ form_end(formEdit) }}
 
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.image-delete').click(function (e) {
+                if (window.confirm('{{ 'edit.action.confirm_delete_image'|trans }}')) {
+                    window.location.href = '{{ path('app_param_rank_edit',{rank:rank.id,delete:'image'}) }}';
+                }
+            });
+        });
+    </script>
 
 {% endblock %}

@@ -2,6 +2,9 @@ services:
     app.member_manager:
         class: AppBundle\Utils\MemberManager
         arguments: [ "@doctrine.orm.entity_manager", "%member_photo_directory%" ]
+    app.rank_manager:
+        class: AppBundle\Utils\RankManager
+        arguments: [ "@doctrine.orm.entity_manager", "%rank_image_directory%" ]
     app.search_manager:
         class: AppBundle\Utils\SearchManager
         arguments: [ "@doctrine.orm.entity_manager" ]

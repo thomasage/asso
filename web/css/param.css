@@ -1,0 +1,35 @@
+/* List of ranks */
+
+.app_param_rank table > tbody > tr > td.image {
+    width: 1%;
+    padding: 0.4em 1em 0.4em 0;
+    text-align: center;
+}
+
+.app_param_rank table > tbody > tr > td.image > img {
+    display: block;
+    height: 2em;
+    margin: auto;
+}
+
+/* Edit rank */
+
+.app_param_rank_edit .container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.app_param_rank_edit .container > .edit0 {
+    flex: 1;
+}
+
+.app_param_rank_edit .container > .image {
+    margin-left: 5em;
+    margin-top: 2em;
+    text-align: center;
+}
+
+.app_param_rank_edit .container > .image > img {
+    max-width: 10em;
+}
