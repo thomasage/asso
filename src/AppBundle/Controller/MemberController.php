@@ -179,7 +179,11 @@ class MemberController extends Controller
             return new BinaryFileResponse($photo);
         }
 
-        return new BinaryFileResponse($this->container->getParameter('member_photo_directory').'/male.png');
+        if ($member->getGender() == 'f') {
+            return new BinaryFileResponse($this->container->getParameter('member_photo_directory').'/female.png');
+        } else {
+            return new BinaryFileResponse($this->container->getParameter('member_photo_directory').'/male.png');
+        }
     }
 
     /**
