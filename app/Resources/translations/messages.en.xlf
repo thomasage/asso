@@ -81,6 +81,10 @@
         <source>menu.logout</source>
         <target>Logout</target>
       </trans-unit>
+      <trans-unit id="d62880a2ce8b87a47177e63d69fa8306" resname="action.delete">
+        <source>action.delete</source>
+        <target>Delete</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

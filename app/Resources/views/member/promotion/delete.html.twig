@@ -5,7 +5,7 @@
 {% block body %}
 
     <div id="menu-secondary">
-        <h1>{{ 'edit_promotion.title'|trans }}</h1>
+        <h1>{{ 'delete_promotion.title'|trans }}</h1>
         <nav>
             <a href="{{ path('app_member_show',{member:member.id}) }}" class="button">
                 <span class="fi-arrow-left"></span>
@@ -16,7 +16,7 @@
 
     {{ include('default/_flash_messages.html.twig') }}
 
-    <div class="app_member_promotion_edit">
+    <div class="app_member_promotion_delete">
 
         <div class="card0">
             <div class="image">
@@ -29,23 +29,18 @@
             </div>
         </div>
 
-        {{ form_start(formEdit) }}
+        {{ form_start(formDelete) }}
 
         <div class="edit1">
-            {{ form_errors(formEdit) }}
-            {{ form_row(formEdit.date) }}
-            {{ form_row(formEdit.rank) }}
-            {{ form_row(formEdit.comment) }}
+            {{ form_errors(formDelete) }}
+            <div class="notification">
+                {{ 'delete_promotion.confirmation'|trans({'%member%':member,'%rank%':promotion.rank,'%date%':promotion.date|localizeddate('full','none')}) }}
+            </div>
             <div class="action">
-                <button type="submit" class="button success" name="update">
-                    <span class="fi-check"></span>
-                    {{ 'action.update'|trans({},'messages') }}
-                </button>
-                <span>or</span>
-                <a href="{{ path('app_member_promotion_delete',{promotion:promotion.id}) }}" class="button warning">
+                <button type="submit" class="button error" name="delete">
                     <span class="fi-trash"></span>
                     {{ 'action.delete'|trans({},'messages') }}
-                </a>
+                </button>
                 <span>or</span>
                 <a href="{{ path('app_member_show',{member:member.id}) }}" class="button">
                     <span class="fi-x"></span>
@@ -54,7 +49,7 @@
             </div>
         </div>
 
-        {{ form_end(formEdit) }}
+        {{ form_end(formDelete) }}
 
     </div>
 

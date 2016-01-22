@@ -99,4 +99,13 @@ class MemberManager
         $this->em->persist($promotion);
         $this->em->flush();
     }
+
+    /**
+     * @param Promotion $promotion
+     */
+    public function deletePromotion(Promotion $promotion)
+    {
+        $this->em->remove($promotion);
+        $this->em->flush();
+    }
 }

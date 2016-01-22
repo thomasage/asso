@@ -637,3 +637,10 @@ table.result2 + div.actions {
     padding: 0.5em;
     background-color: rgb(255, 245, 245);
 }
+
+.edit1 > div.notification {
+    display: block;
+    padding: 1em;
+    background-color: rgb(252, 252, 252);
+    border: 1px rgb(220, 220, 220) solid;
+}

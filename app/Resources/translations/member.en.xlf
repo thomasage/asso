@@ -125,6 +125,18 @@
         <source>promotion_add.success.added</source>
         <target>Promotion added.</target>
       </trans-unit>
+      <trans-unit id="184d0f01d8470b390efb7441075e2e42" resname="delete_promotion.title">
+        <source>delete_promotion.title</source>
+        <target>Delete promotion</target>
+      </trans-unit>
+      <trans-unit id="2a5c4af6efab97a56d7709756c089f78" resname="promotion_delete.success.deleted">
+        <source>promotion_delete.success.deleted</source>
+        <target>Promotion deleted.</target>
+      </trans-unit>
+      <trans-unit id="f6e4c02d2c2ef985d783ff648ed95f96" resname="delete_promotion.confirmation">
+        <source>delete_promotion.confirmation</source>
+        <target>Delete promotion of %member% to %rank% (the %date%) ?</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

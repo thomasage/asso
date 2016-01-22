@@ -5,6 +5,7 @@ use AppBundle\Entity\Member;
 use AppBundle\Entity\Promotion;
 use AppBundle\Form\MemberSearchType;
 use AppBundle\Form\MemberType;
+use AppBundle\Form\PromotionDeleteType;
 use AppBundle\Form\PromotionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,7 +13,6 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class MemberController extends Controller
 {
@@ -241,6 +241,51 @@ class MemberController extends Controller
      * @param Promotion $promotion
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
+     * @Route("/member/promotion/delete/{promotion}",
+     *        name="app_member_promotion_delete",
+     *        methods={"GET","POST"},
+     *        requirements={"promotion"="\d+"})
+     */
+    public function promotionDeleteAction(Request $request, Promotion $promotion)
+    {
+        // Member manager
+        $mm = $this->get('app.member_manager');
+
+        $formDelete = $this->createForm(PromotionDeleteType::class, $promotion);
+        $formDelete->handleRequest($request);
+
+        if ($formDelete->isSubmitted() && $formDelete->isValid()) {
+
+            // Save data
+            $mm->deletePromotion($promotion);
+
+            // Flash message
+            $this->addFlash(
+                'success',
+                $this->get('translator')->trans('promotion_delete.success.deleted', array(), 'member')
+            );
+
+            // Redirect
+            return $this->redirectToRoute('app_member_show', array('member' => $promotion->getMember()->getId()));
+
+        }
+
+        // Render
+        return $this->render(
+            'member/promotion/delete.html.twig',
+            array(
+                'formDelete' => $formDelete->createView(),
+                'member' => $promotion->getMember(),
+                'promotion' => $promotion,
+            )
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @param Promotion $promotion
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     *
      * @Route("/member/promotion/edit/{promotion}",
      *        name="app_member_promotion_edit",
      *        methods={"GET","POST"},
@@ -276,6 +321,7 @@ class MemberController extends Controller
             array(
                 'formEdit' => $formEdit->createView(),
                 'member' => $promotion->getMember(),
+                'promotion' => $promotion,
             )
         );
     }
