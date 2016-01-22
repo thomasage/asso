@@ -128,6 +128,16 @@ class Rank
     }
 
     /**
+     * Get position
+     *
+     * @return integer
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
      * Set position
      *
      * @param integer $position
@@ -142,13 +152,13 @@ class Rank
     }
 
     /**
-     * Get position
+     * Get imageExtension
      *
-     * @return integer
+     * @return string
      */
-    public function getPosition()
+    public function getImageExtension()
     {
-        return $this->position;
+        return $this->imageExtension;
     }
 
     /**
@@ -166,12 +176,14 @@ class Rank
     }
 
     /**
-     * Get imageExtension
-     *
      * @return string
      */
-    public function getImageExtension()
+    public function getFullName()
     {
-        return $this->imageExtension;
+        if (strlen($this->description) > 0) {
+            return $this->name.' - '.$this->description;
+        }
+
+        return $this->name;
     }
 }

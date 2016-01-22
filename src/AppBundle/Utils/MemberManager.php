@@ -2,6 +2,7 @@
 namespace AppBundle\Utils;
 
 use AppBundle\Entity\Member;
+use AppBundle\Entity\Promotion;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -77,5 +78,25 @@ class MemberManager
         }
 
         return null;
+    }
+
+    /**
+     * @param Member $member
+     * @return \AppBundle\Entity\Promotion[]|array
+     */
+    public function getPromotions(Member $member)
+    {
+        return $this->em
+            ->getRepository('AppBundle:Promotion')
+            ->findBy(array('member' => $member), array('date' => 'ASC'));
+    }
+
+    /**
+     * @param Promotion $promotion
+     */
+    public function updatePromotion(Promotion $promotion)
+    {
+        $this->em->persist($promotion);
+        $this->em->flush();
     }
 }

@@ -45,12 +45,12 @@
         <source>field.photo</source>
         <target>Photo</target>
       </trans-unit>
-      <trans-unit id="84a76a5c4bb228381e9e2cada8bf5a23" resname="gender.male">
-        <source>gender.male</source>
+      <trans-unit id="b79ed8df5dfd6275868662bee957ba42" resname="gender.m">
+        <source>gender.m</source>
         <target>Male</target>
       </trans-unit>
-      <trans-unit id="6a271b283ddfc94bea8cc0b0239bbd02" resname="gender.female">
-        <source>gender.female</source>
+      <trans-unit id="2861d48fda0639edf3e305cfc2ee541d" resname="gender.f">
+        <source>gender.f</source>
         <target>Female</target>
       </trans-unit>
       <trans-unit id="1ea7ccc01954ba1388047005183427ed" resname="index.title">
@@ -63,7 +63,7 @@
       </trans-unit>
       <trans-unit id="72884b7978fdba0e8321c1b2c5db3460" resname="edit.action.confirm_delete_photo">
         <source>edit.action.confirm_delete_photo</source>
-        <target>Do you really want to delete photo ?</target>
+        <target>Do you really want to delete the photo ?</target>
       </trans-unit>
       <trans-unit id="2871ff7c25eeacd1ef94fb5c714eec4f" resname="edit.action.delete_photo">
         <source>edit.action.delete_photo</source>
@@ -84,6 +84,46 @@
       <trans-unit id="eeac20873fd3718f4f0489dfcebf4047" resname="add.title">
         <source>add.title</source>
         <target>Add member</target>
+      </trans-unit>
+      <trans-unit id="c64c354bac13149a25e2c24d61fbe74f" resname="show.title.promotions">
+        <source>show.title.promotions</source>
+        <target>Promotions</target>
+      </trans-unit>
+      <trans-unit id="58b356fc24871a5ee296315a1dadc957" resname="field.date">
+        <source>field.date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="1a332ea46d736a447114d9eb03907b3a" resname="field.rank">
+        <source>field.rank</source>
+        <target>Rank</target>
+      </trans-unit>
+      <trans-unit id="d30d462cddf1398a1cac303d48d04ceb" resname="field.description">
+        <source>field.description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="85af8e71173921c2c9cf4ff1d66899b4" resname="edit_promotion.title">
+        <source>edit_promotion.title</source>
+        <target>Edit promotion</target>
+      </trans-unit>
+      <trans-unit id="85af8e71173921c2c9cf4ff1d66899b5" resname="add_promotion.title">
+        <source>add_promotion.title</source>
+        <target>Add promotion</target>
+      </trans-unit>
+      <trans-unit id="b839723b47597133748d23aeaf74d48a" resname="field.member">
+        <source>field.member</source>
+        <target>Member</target>
+      </trans-unit>
+      <trans-unit id="e7065d3a4390ccdb2443be982792d69c" resname="field.comment">
+        <source>field.comment</source>
+        <target>Comment</target>
+      </trans-unit>
+      <trans-unit id="aa11b90ec7c3e179627fc848e83a0e63" resname="promotion_edit.success.updated">
+        <source>promotion_edit.success.updated</source>
+        <target>Promotion updated.</target>
+      </trans-unit>
+      <trans-unit id="6919db8fde87dadb1ad3df91c1c430cb" resname="promotion_add.success.added">
+        <source>promotion_add.success.added</source>
+        <target>Promotion added.</target>
       </trans-unit>
     </body>
   </file>

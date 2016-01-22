@@ -16,8 +16,6 @@
             </nav>
         </div>
 
-        {{ include('default/_flash_messages.html.twig') }}
-
         {{ form_start(formSearch) }}
         <div class="search0">
             {{ form_row(formSearch.firstname) }}
@@ -30,6 +28,8 @@
             </div>
         </div>
         {{ form_end(formSearch) }}
+
+        {{ include('default/_flash_messages.html.twig') }}
 
         <table class="result0">
             <thead>

@@ -18,26 +18,44 @@ img {
 }
 
 div#menu-primary {
-    background-color: darkviolet;
+    background-color: rgb(252, 252, 252);
+    border-bottom: 1px rgb(240, 240, 240) solid;
 }
 
 div#menu-primary > nav {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
     width: 1000px;
     margin: 0 auto;
 }
 
 div#menu-primary > nav > a {
+    flex: 1;
     padding: 1em;
-    color: white;
+    color: rgb(130, 130, 130);
+    text-align: center;
     text-decoration: none;
-    text-transform: uppercase;
+    border-left: 1px rgb(240, 240, 240) solid;
+    transition-property: all;
+    transition-duration: 0.3s;
+}
+
+div#menu-primary > nav > a:last-of-type {
+    border-right: 1px rgb(240, 240, 240) solid;
+}
+
+div#menu-primary > nav > a > span {
+    display: block;
+    font-size: 2em;
+}
+
+div#menu-primary > nav > a:hover {
+    background-color: rgb(245, 245, 245);
 }
 
 div#menu-primary > nav > a.active {
-    background-color: indigo;
+    color: white;
+    background-color: darkviolet;
 }
 
 div#menu-secondary {
@@ -63,7 +81,7 @@ div#menu-secondary > nav > a {
 
 #content {
     width: 1000px;
-    margin: 1em auto;
+    margin: 2em auto;
 }
 
 h1 {
@@ -76,6 +94,13 @@ h1 {
 
 h1 > span {
     margin-right: 0.2em;
+}
+
+h2 {
+    margin: 1.5em 0 0 0;
+    padding: 0;
+    font-size: 1.4em;
+    font-weight: normal;
 }
 
 .button {
@@ -159,7 +184,8 @@ h1 > span {
 input[type=date],
 input[type=number],
 input[type=password],
-input[type=text] {
+input[type=text],
+textarea {
     padding: 0.5em;
     color: inherit;
     font-family: "Roboto", sans-serif;
@@ -167,6 +193,11 @@ input[type=text] {
     background-color: white;
     border: 0.1rem silver solid;
     border-radius: 0.2rem;
+}
+
+input[type=date] {
+    width: 9em;
+    text-align: center;
 }
 
 select {
@@ -299,7 +330,8 @@ table.result0 > thead > tr > th > a:hover {
 
 .edit0 > div input[type=number],
 .edit0 > div input[type=password],
-.edit0 > div input[type=text] {
+.edit0 > div input[type=text],
+.edit0 > div textarea {
     width: 100%;
     padding: 0.3em 0;
     border: 0;
@@ -488,4 +520,120 @@ table.result1 > thead > tr > th {
     font-weight: normal;
     text-align: left;
     border: 0;
+}
+
+table.result2 {
+    width: 100%;
+    margin-top: 1.5em;
+    border: 1px rgba(34, 36, 38, 0.1) solid;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.result2 > tbody > tr > td {
+    padding: 0.9em;
+    border-color: rgba(34, 36, 38, 0.1);
+    border-style: solid;
+    border-width: 1px 0;
+}
+
+table.result2 > tbody > tr > td.action {
+    width: 1%;
+    padding: 0.4em;
+}
+
+table.result2 > tbody > tr > td.noresult {
+    padding: 2em;
+    color: silver;
+    font-style: italic;
+    text-align: center;
+}
+
+table.result2 > thead > tr > th {
+    padding: 0.9em;
+    font-weight: normal;
+    text-align: left;
+    background-color: rgb(249, 250, 251);
+    border-color: rgba(34, 36, 38, 0.1);
+    border-style: solid;
+    border-width: 1px 0;
+}
+
+table.result2 + div.actions {
+    margin-top: 0.5em;
+}
+
+.card0 {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1.5em;
+    border: 1px rgb(220, 220, 220) solid;
+    border-radius: 0.5em;
+}
+
+.card0 > div.image {
+    padding: 0.5em;
+    text-align: center;
+    background-color: rgb(250, 250, 250);
+    border-bottom-left-radius: 0.5em;
+    border-top-left-radius: 0.5em;
+}
+
+.card0 > div.image > img {
+    display: block;
+    max-width: 8em;
+    border-radius: 0.1em;
+}
+
+.card0 > div.information {
+    flex: 1;
+    padding: 1em;
+}
+
+.card0 > div.information > div {
+    margin-bottom: 0.5em;
+}
+
+.edit1 {
+    margin-top: 1.5em;
+}
+
+.edit1 > div {
+    display: flex;
+    margin-top: 0.5em;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.edit1 > div > input[type=text],
+.edit1 > div > textarea {
+    flex: 1;
+}
+
+.edit1 > div > label {
+    width: 10em;
+    padding-top: 0.5em;
+}
+
+.edit1 > div.action {
+    display: block;
+    margin-left: 10em;
+    margin-top: 1em;
+}
+
+.edit1 > div.action > span {
+    margin: 0 1em;
+}
+
+.edit1 ul.errors {
+    margin: 0;
+    padding: 0;
+    color: red;
+    list-style: none;
+}
+
+.edit1 ul.errors > li {
+    margin: 0.2em 0;
+    padding: 0.5em;
+    background-color: rgb(255, 245, 245);
 }

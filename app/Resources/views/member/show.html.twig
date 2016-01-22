@@ -31,12 +31,51 @@
                 </div>
                 <div>{{ member.address }} - {{ member.zip }} {{ member.city }}</div>
                 <div class="action">
-                    <a href="{{ path('app_member_edit',{member:member.id}) }}" class="button secondary">
+                    <a href="{{ path('app_member_edit',{member:member.id}) }}" class="button primary">
                         <span class="fi-pencil"></span>
                         {{ 'action.edit'|trans({},'messages') }}
                     </a>
                 </div>
             </div>
+        </div>
+
+        <h2>{{ 'show.title.promotions'|trans }}</h2>
+
+        <table class="result2">
+            <thead>
+            <tr>
+                <th>{{ 'field.date'|trans }}</th>
+                <th>{{ 'field.rank'|trans }}</th>
+                <th>{{ 'field.description'|trans }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for promotion in promotions %}
+                <tr>
+                    <td>{{ promotion.date|localizeddate('full','none') }}</td>
+                    <td>{{ promotion.rank.name }}</td>
+                    <td>{{ promotion.rank.description }}</td>
+                    <td class="action">
+                        <a href="{{ path('app_member_promotion_edit',{promotion:promotion.id}) }}"
+                           class="button secondary">
+                            <span class="fi-pencil"></span>
+                            {{ 'action.edit'|trans({},'messages') }}
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="actions">
+            <a href="{{ path('app_member_promotion_add',{member:member.id}) }}" class="button secondary">
+                <span class="fi-plus"></span>
+                {{ 'action.add'|trans({},'messages') }}
+            </a>
         </div>
 
     </div>

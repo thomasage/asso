@@ -17,19 +17,31 @@
         <nav>
             <a href="{{ path('app_index') }}"{% if menuActive=='dashboard' %} class="active"{% endif %}>
                 <span class="fi-home"></span>
-                Dashboard
+                {{ 'menu.dashboard'|trans }}
             </a>
             <a href="{{ path('app_member_index') }}"{% if menuActive=='member' %} class="active"{% endif %}>
                 <span class="fi-torsos"></span>
-                Members
+                {{ 'menu.member'|trans }}
+            </a>
+            <a href="#"{% if menuActive=='lesson' %} class="active"{% endif %}>
+                <span class="fi-calendar"></span>
+                {{ 'menu.lesson'|trans }}
+            </a>
+            <a href="#"{% if menuActive=='accounting' %} class="active"{% endif %}>
+                <span class="fi-euro"></span>
+                {{ 'menu.accounting'|trans }}
+            </a>
+            <a href="#"{% if menuActive=='stat' %} class="active"{% endif %}>
+                <span class="fi-graph-trend"></span>
+                {{ 'menu.stat'|trans }}
             </a>
             <a href="{{ path('app_param_index') }}"{% if menuActive=='param' %} class="active"{% endif %}>
                 <span class="fi-wrench"></span>
-                Params
+                {{ 'menu.param'|trans }}
             </a>
             <a href="{{ path('app_security_logout') }}">
                 <span class="fi-power"></span>
-                Logout
+                {{ 'menu.logout'|trans }}
             </a>
         </nav>
     </div>

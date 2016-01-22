@@ -85,6 +85,46 @@
         <source>add.title</source>
         <target>Add member</target>
       </trans-unit>
+      <trans-unit id="c64c354bac13149a25e2c24d61fbe74f" resname="show.title.promotions">
+        <source>show.title.promotions</source>
+        <target>Promotions</target>
+      </trans-unit>
+      <trans-unit id="58b356fc24871a5ee296315a1dadc957" resname="field.date">
+        <source>field.date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="1a332ea46d736a447114d9eb03907b3a" resname="field.rank">
+        <source>field.rank</source>
+        <target>Rank</target>
+      </trans-unit>
+      <trans-unit id="d30d462cddf1398a1cac303d48d04ceb" resname="field.description">
+        <source>field.description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="85af8e71173921c2c9cf4ff1d66899b4" resname="edit_promotion.title">
+        <source>edit_promotion.title</source>
+        <target>Edit promotion</target>
+      </trans-unit>
+      <trans-unit id="1668424eecfb2dec5d6a73aad0480450" resname="add_promotion.title">
+        <source>add_promotion.title</source>
+        <target>Add promotion</target>
+      </trans-unit>
+      <trans-unit id="b839723b47597133748d23aeaf74d48a" resname="field.member">
+        <source>field.member</source>
+        <target>Member</target>
+      </trans-unit>
+      <trans-unit id="e7065d3a4390ccdb2443be982792d69c" resname="field.comment">
+        <source>field.comment</source>
+        <target>Comment</target>
+      </trans-unit>
+      <trans-unit id="aa11b90ec7c3e179627fc848e83a0e63" resname="promotion_edit.success.updated">
+        <source>promotion_edit.success.updated</source>
+        <target>Promotion updated.</target>
+      </trans-unit>
+      <trans-unit id="6919db8fde87dadb1ad3df91c1c430cb" resname="promotion_add.success.added">
+        <source>promotion_add.success.added</source>
+        <target>Promotion added.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

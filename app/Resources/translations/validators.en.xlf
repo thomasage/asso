@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="cb61b202f4f60f6f2c7baf15c89fddcf" resname="promotion.member_rank.duplicate">
+        <source>promotion.member_rank.duplicate</source>
+        <target>This member already has this promotion.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

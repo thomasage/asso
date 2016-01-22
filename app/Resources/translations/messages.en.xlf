@@ -53,6 +53,34 @@
         <source>or</source>
         <target>or</target>
       </trans-unit>
+      <trans-unit id="da540e628f689a4665e8367ab78a520c" resname="menu.dashboard">
+        <source>menu.dashboard</source>
+        <target>Dashboard</target>
+      </trans-unit>
+      <trans-unit id="c4845f5f1ad88c0626167e96ea0f4239" resname="menu.member">
+        <source>menu.member</source>
+        <target>Members</target>
+      </trans-unit>
+      <trans-unit id="994ef9c3e090fe668e52a333e2bf8bc3" resname="menu.lesson">
+        <source>menu.lesson</source>
+        <target>Lessons</target>
+      </trans-unit>
+      <trans-unit id="0109773c111a2b8a6008d3bc0369f013" resname="menu.accounting">
+        <source>menu.accounting</source>
+        <target>Accounting</target>
+      </trans-unit>
+      <trans-unit id="0462076d2a955e780fd9db45546fa16e" resname="menu.stat">
+        <source>menu.stat</source>
+        <target>Statistics</target>
+      </trans-unit>
+      <trans-unit id="57d123990334d304c0167ebb452a2876" resname="menu.param">
+        <source>menu.param</source>
+        <target>Parameters</target>
+      </trans-unit>
+      <trans-unit id="797a9670e2732097498906b9e515da2d" resname="menu.logout">
+        <source>menu.logout</source>
+        <target>Logout</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -2,14 +2,17 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Member;
+use AppBundle\Entity\Promotion;
 use AppBundle\Form\MemberSearchType;
 use AppBundle\Form\MemberType;
+use AppBundle\Form\PromotionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class MemberController extends Controller
 {
@@ -187,6 +190,97 @@ class MemberController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param Member $member
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     *
+     * @Route("/member/promotion/add/{member}",
+     *        name="app_member_promotion_add",
+     *        methods={"GET","POST"},
+     *        requirements={"member"="\d+"})
+     */
+    public function promotionAddAction(Request $request, Member $member)
+    {
+        // Member manager
+        $mm = $this->get('app.member_manager');
+
+        $promotion = new Promotion();
+        $promotion->setMember($member);
+        $promotion->setDate(new \DateTime());
+        $formEdit = $this->createForm(PromotionType::class, $promotion);
+        $formEdit->handleRequest($request);
+
+        if ($formEdit->isSubmitted() && $formEdit->isValid()) {
+
+            // Save data
+            $mm->updatePromotion($promotion);
+
+            // Flash message
+            $this->addFlash(
+                'success',
+                $this->get('translator')->trans('promotion_add.success.added', array(), 'member')
+            );
+
+            // Redirect
+            return $this->redirectToRoute('app_member_show', array('member' => $member->getId()));
+
+        }
+
+        // Render
+        return $this->render(
+            'member/promotion/add.html.twig',
+            array(
+                'formEdit' => $formEdit->createView(),
+                'member' => $member,
+            )
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @param Promotion $promotion
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     *
+     * @Route("/member/promotion/edit/{promotion}",
+     *        name="app_member_promotion_edit",
+     *        methods={"GET","POST"},
+     *        requirements={"promotion"="\d+"})
+     */
+    public function promotionEditAction(Request $request, Promotion $promotion)
+    {
+        // Member manager
+        $mm = $this->get('app.member_manager');
+
+        $formEdit = $this->createForm(PromotionType::class, $promotion);
+        $formEdit->handleRequest($request);
+
+        if ($formEdit->isSubmitted() && $formEdit->isValid()) {
+
+            // Save data
+            $mm->updatePromotion($promotion);
+
+            // Flash message
+            $this->addFlash(
+                'success',
+                $this->get('translator')->trans('promotion_edit.success.updated', array(), 'member')
+            );
+
+            // Redirect
+            return $this->redirectToRoute('app_member_show', array('member' => $promotion->getMember()->getId()));
+
+        }
+
+        // Render
+        return $this->render(
+            'member/promotion/edit.html.twig',
+            array(
+                'formEdit' => $formEdit->createView(),
+                'member' => $promotion->getMember(),
+            )
+        );
+    }
+
+    /**
      * @param Member $member
      * @return \Symfony\Component\HttpFoundation\Response
      *
@@ -196,7 +290,17 @@ class MemberController extends Controller
      */
     public function showAction(Member $member)
     {
+        $mm = $this->get('app.member_manager');
+
+        $promotions = $mm->getPromotions($member);
+
         // Render
-        return $this->render('member/show.html.twig', array('member' => $member));
+        return $this->render(
+            'member/show.html.twig',
+            array(
+                'member' => $member,
+                'promotions' => $promotions,
+            )
+        );
     }
 }
