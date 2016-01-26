@@ -644,3 +644,27 @@ table.result2 + div.actions {
     background-color: rgb(252, 252, 252);
     border: 1px rgb(220, 220, 220) solid;
 }
+
+.widget-next-birthdays > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+.widget-next-birthdays > div > div {
+    width: 15em;
+    border: 1px rgb(235, 235, 235) solid;
+}
+
+.widget-next-birthdays > div > div > div.info {
+    padding: 0 1em 1em 1em;
+    line-height: 1.5em;
+}
+
+.widget-next-birthdays > div > div > div.photo > img {
+    display: block;
+    width: 90%;
+    margin: 5% auto;
+}

@@ -108,4 +108,9 @@ class MemberManager
         $this->em->remove($promotion);
         $this->em->flush();
     }
+
+    public function getNextBirthdays()
+    {
+        return $this->em->getRepository('AppBundle:Member')->findNextBirthdays();
+    }
 }

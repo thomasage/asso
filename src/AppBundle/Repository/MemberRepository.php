@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Member;
 use AppBundle\Entity\Search;
 use AppBundle\Utils\SearchResult;
 use Doctrine\ORM\EntityRepository;
@@ -13,6 +14,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class MemberRepository extends EntityRepository
 {
+    /**
+     * @param Search $search
+     * @return SearchResult
+     */
     public function findBySearch(Search $search)
     {
         $builder = $this->createQueryBuilder('m');
@@ -53,5 +58,45 @@ class MemberRepository extends EntityRepository
         $builder->setFirstResult($search->getPage() * 20);
 
         return new SearchResult($builder, $search);
+    }
+
+    /**
+     * @return \AppBundle\Entity\Member[]
+     */
+    public function findNextBirthdays()
+    {
+        // Period to scan
+        $start = new \DateTime('-1 week');
+        $stop = new \DateTime('+3 weeks');
+
+        $builder = $this->createQueryBuilder('m')
+            ->setParameter('start', $start->format('m-d'))
+            ->setParameter('stop', $stop->format('m-d'));
+        if ($start->format('m') > $stop->format('m')) {
+            $builder->andWhere('SUBSTRING( m.birthday, 6 ) >= :start OR SUBSTRING( m.birthday, 6 ) <= :stop');
+        } else {
+            $builder->andWhere('SUBSTRING( m.birthday, 6 ) BETWEEN :start AND :stop');
+        }
+
+        $members = $builder->getQuery()->getResult();
+
+        // Sort by next birthday
+        usort(
+            $members,
+            function (Member $a, Member $b) use ($stop) {
+                $nextA = $a->getNextBirthday();
+                $nextB = $b->getNextBirthday();
+                if ($nextA->getTimestamp() > $stop->getTimestamp()) {
+                    $nextA->modify('-1 year');
+                }
+                if ($nextB->getTimestamp() > $stop->getTimestamp()) {
+                    $nextB->modify('-1 year');
+                }
+
+                return $nextA > $nextB;
+            }
+        );
+
+        return $members;
     }
 }

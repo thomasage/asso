@@ -1,0 +1,28 @@
+{% trans_default_domain 'member' %}
+
+{% if members|length>0 %}
+
+    <div class="widget-next-birthdays">
+        <h2>Next birthdays</h2>
+        <div>
+            {% for member in members %}
+                <div>
+                    <div class="photo">
+                        <img src="{{ path('app_member_photo',{member:member.id}) }}" alt="Photo"/>
+                    </div>
+                    <div class="info">
+                        <strong>{{ member }}</strong><br/>
+                        {{ member.nextBirthday|localizeddate('full','none') }}<br/>
+                        <span class="fi-crown"></span>
+                        {% if member.nextBirthday>now %}
+                            {{ member.age }} {{ 'age'|trans }}
+                        {% else %}
+                            {{ member.age-1 }} {{ 'age'|trans }}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endif %}

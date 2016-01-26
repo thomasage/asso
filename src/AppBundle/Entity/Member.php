@@ -281,6 +281,16 @@ class Member
     }
 
     /**
+     * Get photoExtension
+     *
+     * @return string
+     */
+    public function getPhotoExtension()
+    {
+        return $this->photoExtension;
+    }
+
+    /**
      * Set photoExtension
      *
      * @param string $photoExtension
@@ -295,13 +305,13 @@ class Member
     }
 
     /**
-     * Get photoExtension
+     * Get gender
      *
      * @return string
      */
-    public function getPhotoExtension()
+    public function getGender()
     {
-        return $this->photoExtension;
+        return $this->gender;
     }
 
     /**
@@ -319,12 +329,15 @@ class Member
     }
 
     /**
-     * Get gender
-     *
-     * @return string
+     * @return \DateTime
      */
-    public function getGender()
+    public function getNextBirthday()
     {
-        return $this->gender;
+        $birthday = new \DateTime(date('Y').$this->birthday->format('-m-d'));
+        if ($birthday < new \DateTime()) {
+            $birthday->modify('+1 year');
+        }
+
+        return $birthday;
     }
 }
