@@ -81,6 +81,43 @@
             </a>
         </div>
 
+        <h2>{{ 'show.title.memberships'|trans }}</h2>
+
+        <table class="result2 memberships">
+            <thead>
+            <tr>
+                <th>{{ 'field.season'|trans }}</th>
+                <th>{{ 'field.number'|trans }}</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for membership in memberships %}
+                <tr>
+                    <td>{{ membership.season }}</td>
+                    <td>{{ membership.number }}</td>
+                    <td class="action">
+                        <a href="{{ path('app_member_membership_edit',{membership:membership.id}) }}"
+                           class="button secondary">
+                            <span class="fi-pencil"></span>
+                            {{ 'action.edit'|trans({},'messages') }}
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="actions">
+            <a href="{{ path('app_member_membership_add',{member:member.id}) }}" class="button secondary">
+                <span class="fi-plus"></span>
+                {{ 'action.add'|trans({},'messages') }}
+            </a>
+        </div>
+
     </div>
 
 {% endblock %}

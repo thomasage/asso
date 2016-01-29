@@ -92,10 +92,18 @@ class Member
     private $promotions;
 
     /**
+     * @var Membership[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Membership", mappedBy="member")
+     */
+    private $memberships;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
+        $this->memberships = new ArrayCollection();
         $this->promotions = new ArrayCollection();
     }
 
@@ -389,5 +397,39 @@ class Member
     public function getPromotions()
     {
         return $this->promotions;
+    }
+
+    /**
+     * Add membership
+     *
+     * @param \AppBundle\Entity\Membership $membership
+     *
+     * @return Member
+     */
+    public function addMembership(\AppBundle\Entity\Membership $membership)
+    {
+        $this->memberships[] = $membership;
+
+        return $this;
+    }
+
+    /**
+     * Remove membership
+     *
+     * @param \AppBundle\Entity\Membership $membership
+     */
+    public function removeMembership(\AppBundle\Entity\Membership $membership)
+    {
+        $this->memberships->removeElement($membership);
+    }
+
+    /**
+     * Get memberships
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMemberships()
+    {
+        return $this->memberships;
     }
 }

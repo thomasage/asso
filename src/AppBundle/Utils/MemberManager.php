@@ -2,6 +2,7 @@
 namespace AppBundle\Utils;
 
 use AppBundle\Entity\Member;
+use AppBundle\Entity\Membership;
 use AppBundle\Entity\Promotion;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -82,7 +83,7 @@ class MemberManager
 
     /**
      * @param Member $member
-     * @return \AppBundle\Entity\Promotion[]|array
+     * @return \AppBundle\Entity\Promotion[]
      */
     public function getPromotions(Member $member)
     {
@@ -112,5 +113,34 @@ class MemberManager
     public function getNextBirthdays()
     {
         return $this->em->getRepository('AppBundle:Member')->findNextBirthdays();
+    }
+
+    /**
+     * @param Member $member
+     * @return \AppBundle\Entity\Membership[]
+     */
+    public function getMemberships(Member $member)
+    {
+        return $this->em
+            ->getRepository('AppBundle:Membership')
+            ->findBy(array('member' => $member), array('season' => 'DESC'));
+    }
+
+    /**
+     * @param Membership $membership
+     */
+    public function updateMembership(Membership $membership)
+    {
+        $this->em->persist($membership);
+        $this->em->flush();
+    }
+
+    /**
+     * @param Membership $membership
+     */
+    public function deleteMembership(Membership $membership)
+    {
+        $this->em->remove($membership);
+        $this->em->flush();
     }
 }

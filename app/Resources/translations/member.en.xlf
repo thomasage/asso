@@ -63,7 +63,7 @@
       </trans-unit>
       <trans-unit id="72884b7978fdba0e8321c1b2c5db3460" resname="edit.action.confirm_delete_photo">
         <source>edit.action.confirm_delete_photo</source>
-        <target>Do you really want to delete the photo ?</target>
+        <target>Do you really want to delete the photo?</target>
       </trans-unit>
       <trans-unit id="2871ff7c25eeacd1ef94fb5c714eec4f" resname="edit.action.delete_photo">
         <source>edit.action.delete_photo</source>
@@ -135,7 +135,47 @@
       </trans-unit>
       <trans-unit id="f6e4c02d2c2ef985d783ff648ed95f96" resname="delete_promotion.confirmation">
         <source>delete_promotion.confirmation</source>
-        <target>Delete promotion of %member% to %rank% (the %date%) ?</target>
+        <target>Delete promotion of %member% to %rank% (the %date%)?</target>
+      </trans-unit>
+      <trans-unit id="64c59b7ed9aef70804051ae348548f2d" resname="show.title.memberships">
+        <source>show.title.memberships</source>
+        <target>Memberships</target>
+      </trans-unit>
+      <trans-unit id="ab2b449aeea772a109b786c22a48dbf8" resname="field.season">
+        <source>field.season</source>
+        <target>Season</target>
+      </trans-unit>
+      <trans-unit id="831ebd604db83001ba2ad861c9ed7f59" resname="field.number">
+        <source>field.number</source>
+        <target>Number</target>
+      </trans-unit>
+      <trans-unit id="7df1b5e7a567deda7d014da6949b4619" resname="add_membership.title">
+        <source>add_membership.title</source>
+        <target>Add a membership</target>
+      </trans-unit>
+      <trans-unit id="e8bb9e3ef7f392770087be9f056faa87" resname="membership_add.success.added">
+        <source>membership_add.success.added</source>
+        <target>Membership added.</target>
+      </trans-unit>
+      <trans-unit id="7f766415fb6bdf858b161ed6a8a241ee" resname="membership_edit.success.updated">
+        <source>membership_edit.success.updated</source>
+        <target>Membership updated.</target>
+      </trans-unit>
+      <trans-unit id="622f4e9962ffb10105b28f04541ccb74" resname="membership_delete.success.deleted">
+        <source>membership_delete.success.deleted</source>
+        <target>Membership deleted.</target>
+      </trans-unit>
+      <trans-unit id="4fc4a4f57caa944cea235edb142ab8ce" resname="delete_membership.title">
+        <source>delete_membership.title</source>
+        <target>Delete a membershiptitle</target>
+      </trans-unit>
+      <trans-unit id="7f00d71e83a8d4570ae01361c1900226" resname="delete_membership.confirmation">
+        <source>delete_membership.confirmation</source>
+        <target>Delete membership of %member% for season %season%?</target>
+      </trans-unit>
+      <trans-unit id="2d383489de831361f60881b98396fcae" resname="edit_membership.title">
+        <source>edit_membership.title</source>
+        <target>Edit a membership</target>
       </trans-unit>
     </body>
   </file>

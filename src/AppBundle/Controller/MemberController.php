@@ -340,11 +340,14 @@ class MemberController extends Controller
 
         $promotions = $mm->getPromotions($member);
 
+        $memberships = $mm->getMemberships($member);
+
         // Render
         return $this->render(
             'member/show.html.twig',
             array(
                 'member' => $member,
+                'memberships' => $memberships,
                 'promotions' => $promotions,
             )
         );

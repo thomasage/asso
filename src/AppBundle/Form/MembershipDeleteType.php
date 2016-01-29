@@ -4,7 +4,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PromotionDeleteType extends AbstractType
+class MembershipDeleteType extends AbstractType
 {
     /**
      * @param OptionsResolver $resolver
@@ -13,7 +13,7 @@ class PromotionDeleteType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'AppBundle\Entity\Promotion',
+                'data_class' => 'AppBundle\Entity\Membership',
                 'translation_domain' => 'member',
             )
         );

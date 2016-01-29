@@ -42,6 +42,14 @@ class Season
     private $stop;
 
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->start->format('Y').'-'.$this->stop->format('Y');
+    }
+
+    /**
      * Get id
      *
      * @return int
@@ -99,4 +107,3 @@ class Season
         return $this;
     }
 }
-
