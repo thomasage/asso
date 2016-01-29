@@ -1,10 +1,14 @@
 <nav class="tabs0">
-    <a href="{{ path('app_param_index') }}"{% if active=='password' %} class="active"{% endif %}>
-        <span class="fi-lock"></span>
-        Password
+    <a href="{{ path('app_param_season') }}"{% if active=='season' %} class="active"{% endif %}>
+        <span class="fi-calendar"></span>
+        {{ 'season.title'|trans({},'param') }}
     </a>
     <a href="{{ path('app_param_rank') }}"{% if active=='rank' %} class="active"{% endif %}>
         <span class="fi-sheriff-badge"></span>
-        Ranks
+        {{ 'rank.title'|trans({},'param') }}
+    </a>
+    <a href="{{ path('app_param_password') }}"{% if active=='password' %} class="active"{% endif %}>
+        <span class="fi-lock"></span>
+        {{ 'password.title'|trans({},'param') }}
     </a>
 </nav>

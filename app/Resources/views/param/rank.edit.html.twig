@@ -4,19 +4,7 @@
 
 {% block body %}
 
-    <div id="menu-secondary">
-        <h1>{{ 'rank_edit.title'|trans }}</h1>
-        <nav>
-            <a href="{{ path('app_param_rank') }}" class="button">
-                <span class="fi-arrow-left"></span>
-                {{ 'action.back'|trans({},'messages') }}
-            </a>
-            <a href="{{ path('app_param_index') }}" class="button secondary">
-                <span class="fi-lock"></span>
-                {{ 'index.title'|trans }}
-            </a>
-        </nav>
-    </div>
+    {% include('param/_menu.html.twig') with {active:'rank'} only %}
 
     {{ include('default/_flash_messages.html.twig') }}
 
@@ -72,6 +60,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('.image-delete').click(function (e) {
+                e.preventDefault();
                 if (window.confirm('{{ 'edit.action.confirm_delete_image'|trans }}')) {
                     window.location.href = '{{ path('app_param_rank_edit',{rank:rank.id,delete:'image'}) }}';
                 }

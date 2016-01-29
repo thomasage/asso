@@ -14,14 +14,27 @@ use Symfony\Component\HttpFoundation\Response;
 class ParamController extends Controller
 {
     /**
-     * @param Request $request
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      *
      * @Route("/param",
      *        name="app_param_index",
+     *        methods={"GET"})
+     */
+    public function indexAction()
+    {
+        // Redirect
+        return $this->redirectToRoute('app_param_rank');
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     *
+     * @Route("/param/password",
+     *        name="app_param_password",
      *        methods={"GET","POST"})
      */
-    public function indexAction(Request $request)
+    public function passwordAction(Request $request)
     {
         $formParam = $this->createForm(ParamType::class);
         $formParam->handleRequest($request);
@@ -38,17 +51,17 @@ class ParamController extends Controller
             // Flash message
             $this->addFlash(
                 'success',
-                $this->get('translator')->trans('index.success.password_updated', array(), 'param')
+                $this->get('translator')->trans('password.success.password_updated', array(), 'param')
             );
 
             // Redirect
-            return $this->redirectToRoute('app_param_index');
+            return $this->redirectToRoute('app_param_password');
 
         }
 
         // Render
         return $this->render(
-            'param/index.html.twig',
+            'param/password.html.twig',
             array(
                 'formParam' => $formParam->createView(),
             )

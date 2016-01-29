@@ -6,19 +6,7 @@
 
     <div class="app_param_rank">
 
-        <div id="menu-secondary">
-            <h1>{{ 'rank.title'|trans }}</h1>
-            <nav>
-                <a href="{{ path('app_param_index') }}" class="button secondary">
-                    <span class="fi-lock"></span>
-                    {{ 'index.title'|trans }}
-                </a>
-                <a href="{{ path('app_param_rank_add') }}" class="button primary">
-                    <span class="fi-plus"></span>
-                    {{ 'action.add'|trans({},'messages') }}
-                </a>
-            </nav>
-        </div>
+        {% include('param/_menu.html.twig') with {active:'rank'} only %}
 
         {{ include('default/_flash_messages.html.twig') }}
 
@@ -36,7 +24,9 @@
             {% for rank in ranks %}
                 <tr>
                     <td class="image">
-                        <img src="{{ path('app_param_rank_image',{rank:rank.id}) }}" alt="Image"/>
+                        {% if rank.imageExtension %}
+                            <img src="{{ path('app_param_rank_image',{rank:rank.id}) }}" alt="Image"/>
+                        {% endif %}
                     </td>
                     <td>{{ rank.name }}</td>
                     <td>{{ rank.description }}</td>

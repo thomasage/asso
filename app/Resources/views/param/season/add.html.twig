@@ -4,25 +4,23 @@
 
 {% block body %}
 
-    <div class="app_param_rank_add">
+    <div class="app_param_season_add">
 
-        {% include('param/_menu.html.twig') with {active:'rank'} only %}
+        {% include('param/_menu.html.twig') with {active:'season'} only %}
 
         {{ include('default/_flash_messages.html.twig') }}
 
         {{ form_start(formEdit) }}
-        <div class="edit0">
-            {{ form_row(formEdit.name) }}
-            {{ form_row(formEdit.description) }}
-            {{ form_row(formEdit.position) }}
-            {{ form_row(formEdit.image) }}
+        <div class="edit1">
+            {{ form_row(formEdit.start) }}
+            {{ form_row(formEdit.stop) }}
             <div class="action">
-                <button type="submit" class="button success" name="add">
+                <button type="submit" class="button success">
                     <span class="fi-check"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </button>
                 <span>{{ 'or'|trans({},'messages') }}</span>
-                <a href="{{ path('app_param_rank') }}" class="button">
+                <a href="{{ path('app_param_season') }}" class="button">
                     <span class="fi-x"></span>
                     {{ 'action.cancel'|trans({},'messages') }}
                 </a>

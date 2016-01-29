@@ -1,0 +1,44 @@
+{% extends ':param:layout.html.twig' %}
+
+{% trans_default_domain 'param' %}
+
+{% block body %}
+
+    <div class="app_param_season">
+
+        {% include('param/_menu.html.twig') with {active:'season'} only %}
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        <table class="result2">
+            <thead>
+            <tr>
+                <th>{{ 'field.start'|trans }}</th>
+                <th>{{ 'field.stop'|trans }}</th>
+                <th class="action">
+                    <a href="{{ path('app_param_season_add') }}" class="button primary">
+                        <span class="fi-plus"></span>
+                        {{ 'action.add'|trans({},'messages') }}
+                    </a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for season in seasons %}
+                <tr>
+                    <td>{{ season.start|localizeddate('full','none') }}</td>
+                    <td>{{ season.stop|localizeddate('full','none') }}</td>
+                    <td class="action">
+                        <a href="{{ path('app_param_season_edit',{season:season.id}) }}" class="button primary">
+                            <span class="fi-pencil"></span>
+                            {{ 'action.edit'|trans({},'messages') }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}
