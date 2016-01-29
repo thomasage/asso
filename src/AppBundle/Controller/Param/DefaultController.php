@@ -19,7 +19,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         // Redirect
-        return $this->redirectToRoute('app_param_rank');
+        return $this->redirectToRoute('app_param_season');
     }
 
     /**
