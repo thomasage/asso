@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Form;
 
+use AppBundle\Form\Type\ChoiceSeasonType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,8 +16,30 @@ class MemberSearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname', TextType::class, array('label' => 'field.firstname', 'required' => false))
-            ->add('lastname', TextType::class, array('label' => 'field.lastname', 'required' => false));
+            ->add(
+                'firstname',
+                TextType::class,
+                array(
+                    'label' => 'field.firstname',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'lastname',
+                TextType::class,
+                array(
+                    'label' => 'field.lastname',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'season',
+                ChoiceSeasonType::class,
+                array(
+                    'label' => 'field.season',
+                    'required' => false,
+                )
+            );
     }
 
     /**

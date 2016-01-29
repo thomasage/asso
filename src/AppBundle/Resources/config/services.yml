@@ -13,3 +13,8 @@ services:
         arguments: ['@logger']
         tags:
             - { name: kernel.event_subscriber }
+    app.form.type.choice_season:
+        class: AppBundle\Form\Type\ChoiceSeasonType
+        arguments: [ "@doctrine.orm.entity_manager" ]
+        tags:
+            - { name: form.type }

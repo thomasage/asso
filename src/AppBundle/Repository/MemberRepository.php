@@ -25,7 +25,8 @@ class MemberRepository extends EntityRepository
             ->leftJoin('m.promotions', 'p')
             ->addSelect('p')
             ->leftJoin('p.rank', 'r')
-            ->addSelect('r');
+            ->addSelect('r')
+            ->leftJoin('m.memberships', 'ms');
 
         // Filter
         if (!is_null($city = $search->getFilter('city'))) {
@@ -36,6 +37,9 @@ class MemberRepository extends EntityRepository
         }
         if (!is_null($lastname = $search->getFilter('lastname'))) {
             $builder->andWhere('m.lastname LIKE :lastname')->setParameter(':lastname', '%'.$lastname.'%');
+        }
+        if (!is_null($season = $search->getFilter('season'))) {
+            $builder->andWhere('ms.season = :season')->setParameter(':season', $season);
         }
 
         // Orderby
