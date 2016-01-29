@@ -41,7 +41,7 @@
 
         <h2>{{ 'show.title.promotions'|trans }}</h2>
 
-        <table class="result2">
+        <table class="result2 promotions">
             <thead>
             <tr>
                 <th>{{ 'field.date'|trans }}</th>
@@ -55,7 +55,10 @@
                 <tr>
                     <td>{{ promotion.date|localizeddate('full','none') }}</td>
                     <td>{{ promotion.rank.name }}</td>
-                    <td>{{ promotion.rank.description }}</td>
+                    <td class="description">
+                        <img src="{{ path('app_param_rank_image',{rank:promotion.rank.id}) }}"
+                             alt="{{ promotion.rank.description }}"/>
+                    </td>
                     <td class="action">
                         <a href="{{ path('app_member_promotion_edit',{promotion:promotion.id}) }}"
                            class="button secondary">

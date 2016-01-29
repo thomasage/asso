@@ -69,6 +69,15 @@
     border-radius: 0.1em;
 }
 
+.app_member_show .promotions .description {
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.app_member_show .promotions .description > img {
+    max-height: 2em;
+}
+
 /* Edit member */
 
 .app_member_edit .container {
