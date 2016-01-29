@@ -10,14 +10,19 @@
 
         {{ include('default/_flash_messages.html.twig') }}
 
-        <table class="result1">
+        <table class="result2">
             <thead>
             <tr>
                 <th></th>
                 <th>{{ 'field.name'|trans }}</th>
                 <th>{{ 'field.description'|trans }}</th>
                 <th>{{ 'field.position'|trans }}</th>
-                <th></th>
+                <th class="action">
+                    <a href="{{ path('app_param_rank_add') }}" class="button primary">
+                        <span class="fi-plus"></span>
+                        {{ 'action.add'|trans({},'messages') }}
+                    </a>
+                </th>
             </tr>
             </thead>
             <tbody>

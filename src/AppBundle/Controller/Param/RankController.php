@@ -1,8 +1,7 @@
 <?php
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Param;
 
 use AppBundle\Entity\Rank;
-use AppBundle\Form\ParamType;
 use AppBundle\Form\RankType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,96 +10,17 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ParamController extends Controller
+class RankController extends Controller
 {
     /**
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     *
-     * @Route("/param",
-     *        name="app_param_index",
-     *        methods={"GET"})
-     */
-    public function indexAction()
-    {
-        // Redirect
-        return $this->redirectToRoute('app_param_rank');
-    }
-
-    /**
      * @param Request $request
-     * @return Response
-     *
-     * @Route("/param/password",
-     *        name="app_param_password",
-     *        methods={"GET","POST"})
-     */
-    public function passwordAction(Request $request)
-    {
-        $formParam = $this->createForm(ParamType::class);
-        $formParam->handleRequest($request);
-
-        if ($formParam->isSubmitted() && $formParam->isValid()) {
-
-            // Update password
-            $data = $formParam->getData();
-            $user = $this->getUser();
-            $encoder = $this->get('security.password_encoder');
-            $user->setPassword($encoder->encodePassword($user, $data['password']));
-            $this->getDoctrine()->getManager()->flush();
-
-            // Flash message
-            $this->addFlash(
-                'success',
-                $this->get('translator')->trans('password.success.password_updated', array(), 'param')
-            );
-
-            // Redirect
-            return $this->redirectToRoute('app_param_password');
-
-        }
-
-        // Render
-        return $this->render(
-            'param/password.html.twig',
-            array(
-                'formParam' => $formParam->createView(),
-            )
-        );
-    }
-
-    /**
-     * @return Response
-     *
-     * @Route("/param/rank",
-     *        name="app_param_rank",
-     *        methods={"GET","POST"})
-     */
-    public function rankAction()
-    {
-        // Entity manager
-        $em = $this->getDoctrine()->getManager();
-
-        // Ranks
-        $ranks = $em->getRepository('AppBundle:Rank')->findBy(array(), array('position' => 'ASC', 'name' => 'ASC'));
-
-        // Render
-        return $this->render(
-            'param/rank.html.twig',
-            array(
-                'ranks' => $ranks,
-            )
-        );
-    }
-
-    /**
-     * @param Request $request
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
      * @Route("/param/rank/add",
      *        name="app_param_rank_add",
      *        methods={"GET","POST"})
      */
-    public function rankAddAction(Request $request)
+    public function addAction(Request $request)
     {
         $rank = new Rank();
 
@@ -127,7 +47,7 @@ class ParamController extends Controller
 
         // Render
         return $this->render(
-            'param/rank.add.html.twig',
+            'param/rank/add.html.twig',
             array(
                 'formEdit' => $formEdit->createView(),
             )
@@ -137,14 +57,14 @@ class ParamController extends Controller
     /**
      * @param Request $request
      * @param Rank $rank
-     * @return Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
-     * @Route("/param/rank/{rank}",
+     * @Route("/param/rank/edit/{rank}",
      *        name="app_param_rank_edit",
      *        methods={"GET","POST"},
      *        requirements={"rank"="\d+"})
      */
-    public function rankEditAction(Request $request, Rank $rank)
+    public function editAction(Request $request, Rank $rank)
     {
         $formEdit = $this->createForm(RankType::class, $rank);
         $formEdit->handleRequest($request);
@@ -187,7 +107,7 @@ class ParamController extends Controller
 
         // Render
         return $this->render(
-            'param/rank.edit.html.twig',
+            'param/rank/edit.html.twig',
             array(
                 'formEdit' => $formEdit->createView(),
                 'rank' => $rank,
@@ -204,7 +124,7 @@ class ParamController extends Controller
      *        methods={"GET","POST"},
      *        requirements={"rank"="\d+"})
      */
-    public function rankImageAction(Rank $rank)
+    public function imageAction(Rank $rank)
     {
         // Member manager
         $rm = $this->get('app.rank_manager');
@@ -217,5 +137,29 @@ class ParamController extends Controller
         }
 
         return new Response('', 404);
+    }
+
+    /**
+     * @return Response
+     *
+     * @Route("/param/rank",
+     *        name="app_param_rank",
+     *        methods={"GET","POST"})
+     */
+    public function indexAction()
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Ranks
+        $ranks = $em->getRepository('AppBundle:Rank')->findBy(array(), array('position' => 'ASC', 'name' => 'ASC'));
+
+        // Render
+        return $this->render(
+            'param/rank/index.html.twig',
+            array(
+                'ranks' => $ranks,
+            )
+        );
     }
 }
