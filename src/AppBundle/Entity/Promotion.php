@@ -25,7 +25,7 @@ class Promotion
     /**
      * @var Member
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Member", inversedBy="promotions")
      * @ORM\JoinColumn(nullable=false)
      */
     private $member;

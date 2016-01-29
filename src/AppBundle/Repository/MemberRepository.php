@@ -20,7 +20,12 @@ class MemberRepository extends EntityRepository
      */
     public function findBySearch(Search $search)
     {
-        $builder = $this->createQueryBuilder('m');
+        $builder = $this
+            ->createQueryBuilder('m')
+            ->leftJoin('m.promotions', 'p')
+            ->addSelect('p')
+            ->leftJoin('p.rank', 'r')
+            ->addSelect('r');
 
         // Filter
         if (!is_null($city = $search->getFilter('city'))) {

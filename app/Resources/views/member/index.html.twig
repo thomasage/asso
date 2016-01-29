@@ -50,6 +50,9 @@
                 <th>
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'city',title:'field.city'|trans} only -%}
                 </th>
+                <th>
+                    {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'rank',title:'field.rank'|trans} only -%}
+                </th>
                 <th></th>
             </tr>
             </thead>
@@ -76,6 +79,12 @@
                     {% endif %}
                     <td>{{ member.age }}</td>
                     <td>{{ member.city }}</td>
+                    <td>
+                        {% if member.promotions.last %}
+                            <img src="{{ path('app_param_rank_image',{rank:member.promotions.last.rank.id}) }}"
+                                 alt="{{ member.promotions.last.rank.description }}"/>
+                        {% endif %}
+                    </td>
                     <td class="action">
                         <a href="{{ path('app_member_show',{member:member.id}) }}" class="button primary">
                             <span class="fi-magnifying-glass"></span>
@@ -85,7 +94,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="7" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
+                    <td colspan="8" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
                 </tr>
             {% endfor %}
             </tbody>

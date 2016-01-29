@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -82,6 +83,21 @@ class Member
      * @ORM\Column(name="photo_extension", type="string", length=10, nullable=true)
      */
     private $photoExtension;
+
+    /**
+     * @var Promotion[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Promotion", mappedBy="member")
+     */
+    private $promotions;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->promotions = new ArrayCollection();
+    }
 
     /**
      * @return string
@@ -339,5 +355,39 @@ class Member
         }
 
         return $birthday;
+    }
+
+    /**
+     * Add promotion
+     *
+     * @param Promotion $promotion
+     *
+     * @return Member
+     */
+    public function addPromotion(Promotion $promotion)
+    {
+        $this->promotions[] = $promotion;
+
+        return $this;
+    }
+
+    /**
+     * Remove promotion
+     *
+     * @param Promotion $promotion
+     */
+    public function removePromotion(Promotion $promotion)
+    {
+        $this->promotions->removeElement($promotion);
+    }
+
+    /**
+     * Get promotions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPromotions()
+    {
+        return $this->promotions;
     }
 }
