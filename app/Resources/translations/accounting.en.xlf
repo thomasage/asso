@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="e1e444bab1adf8b260db3036dc4d7893" resname="category.title">
+        <source>category.title</source>
+        <target>Categories</target>
+      </trans-unit>
+      <trans-unit id="1ea7ccc01954ba1388047005183427ed" resname="index.title">
+        <source>index.title</source>
+        <target>Accounting</target>
+      </trans-unit>
+      <trans-unit id="01173daa528c56f77c41f0b9bc77918f" resname="category.success.updated">
+        <source>category.success.updated</source>
+        <target>Categories updated.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

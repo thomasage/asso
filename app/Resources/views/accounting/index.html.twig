@@ -1,0 +1,25 @@
+{% extends ':accounting:layout.html.twig' %}
+
+{% trans_default_domain 'accounting' %}
+
+{% block body %}
+
+    <div class="app_member_index">
+
+        <div id="menu-secondary">
+            <h1>{{ 'index.title'|trans }}</h1>
+            <nav>
+                <a href="#" class="button secondary">
+                    <span class="fi-plus"></span>
+                    {{ 'action.add'|trans({},'messages') }}
+                </a>
+                <a href="{{ path('app_accounting_category') }}" class="button">
+                    <span class="fi-puzzle"></span>
+                    {{ 'category.title'|trans }}
+                </a>
+            </nav>
+        </div>
+
+    </div>
+
+{% endblock %}
