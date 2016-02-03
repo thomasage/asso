@@ -179,25 +179,4 @@ class PromotionController extends Controller
             )
         );
     }
-
-    /**
-     * @return Response
-     */
-    public function widgetNextBirthdaysAction()
-    {
-        // Member manager
-        $mm = $this->get('app.member_manager');
-
-        // Next birthdays
-        $members = $mm->getNextBirthdays();
-
-        // Render
-        return $this->render(
-            'member/widget/_next_birthdays.html.twig',
-            array(
-                'members' => $members,
-                'now' => new \DateTime(),
-            )
-        );
-    }
 }
