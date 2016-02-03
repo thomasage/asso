@@ -57,9 +57,11 @@
         var count ={{ formEdit.categories|length }};
         $(document).ready(function () {
             $('.category-add').click(function (e) {
+                e.preventDefault();
                 CategoryAdd();
             });
             $('.category-del').click(function (e) {
+                e.preventDefault();
                 CategoryDel($(this).parent());
             });
         });
