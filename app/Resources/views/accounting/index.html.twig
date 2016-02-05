@@ -4,12 +4,12 @@
 
 {% block body %}
 
-    <div class="app_member_index">
+    <div class="app_accounting_index">
 
         <div id="menu-secondary">
             <h1>{{ 'index.title'|trans }}</h1>
             <nav>
-                <a href="#" class="button secondary">
+                <a href="{{ path('app_accounting_add') }}" class="button secondary">
                     <span class="fi-plus"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </a>
@@ -19,6 +19,62 @@
                 </a>
             </nav>
         </div>
+
+        {{ form_start(formSearch) }}
+        <div class="search0">
+            {{ form_row(formSearch.date) }}
+            <div>
+                <button type="submit" class="button secondary" name="search">
+                    <span class="fi-filter"></span>
+                    {{ 'action.search'|trans({},'messages') }}
+                </button>
+            </div>
+        </div>
+        {{ form_end(formSearch) }}
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        <table class="result0">
+            <thead>
+            <tr>
+                <th>
+                    {%- include 'default/_table_orderby.html.twig' with {route:route,sets:transactions.orderby,orderby:'date',title:'field.date'|trans} only -%}
+                </th>
+                <th>
+                    {%- include 'default/_table_orderby.html.twig' with {route:route,sets:transactions.orderby,orderby:'paymentMethod',title:'field.paymentMethod'|trans} only -%}
+                </th>
+                <th>
+                    {%- include 'default/_table_orderby.html.twig' with {route:route,sets:transactions.orderby,orderby:'thirdName',title:'field.thirdName'|trans} only -%}
+                </th>
+                <th>
+                    {%- include 'default/_table_orderby.html.twig' with {route:route,sets:transactions.orderby,orderby:'amount',title:'field.amount'|trans} only -%}
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.date|localizeddate('full','none') }}</td>
+                    <td>{{ transaction.paymentMethod }}</td>
+                    <td>{{ transaction.thirdName }}</td>
+                    <td>{{ transaction.amount|localizedcurrency('EUR') }}</td>
+                    <td class="action">
+                        <a href="{{ path('app_accounting_edit',{transaction:transaction.id}) }}" class="button primary">
+                            <span class="fi-magnifying-glass"></span>
+                            {{ 'action.edit'|trans({},'messages') }}
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% include 'default/_pagination.html.twig' with {results:transactions,route:route} only %}
 
     </div>
 

@@ -5,12 +5,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Category
+ * PaymentMethod
  *
- * @ORM\Table(name="category")
+ * @ORM\Table(name="payment_method")
  * @ORM\Entity()
  */
-class Category
+class PaymentMethod
 {
     /**
      * @var int
@@ -24,10 +24,10 @@ class Category
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=100)
+     * @ORM\Column(name="name", type="string", length=50)
      *
      * @Assert\NotBlank()
-     * @Assert\Length(max=100)
+     * @Assert\Length(min=1,max=50)
      */
     private $name;
 
@@ -64,7 +64,7 @@ class Category
      *
      * @param string $name
      *
-     * @return Category
+     * @return PaymentMethod
      */
     public function setName($name)
     {

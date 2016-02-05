@@ -17,6 +17,50 @@
         <source>category.success.updated</source>
         <target>Categories updated.</target>
       </trans-unit>
+      <trans-unit id="58b356fc24871a5ee296315a1dadc957" resname="field.date">
+        <source>field.date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="5e303b302e35f909576b4c80ed02f69a" resname="field.paymentMethod">
+        <source>field.paymentMethod</source>
+        <target>Payment method</target>
+      </trans-unit>
+      <trans-unit id="864ac7c27a89799511852c395284e8bc" resname="field.thirdName">
+        <source>field.thirdName</source>
+        <target>Third name</target>
+      </trans-unit>
+      <trans-unit id="91bc6d3c76aae9bc4000f64cbd7a49be" resname="field.amount">
+        <source>field.amount</source>
+        <target>Amount</target>
+      </trans-unit>
+      <trans-unit id="eeac20873fd3718f4f0489dfcebf4047" resname="add.title">
+        <source>add.title</source>
+        <target>Add transaction</target>
+      </trans-unit>
+      <trans-unit id="2b8e61c71a1653a7b76bc5d3e69b2eae" resname="field.bankName">
+        <source>field.bankName</source>
+        <target>Bank name</target>
+      </trans-unit>
+      <trans-unit id="d04706b0f4f315afb9f006c94aa6ec2e" resname="field.operationNumber">
+        <source>field.operationNumber</source>
+        <target>Operation number</target>
+      </trans-unit>
+      <trans-unit id="51e6e759826f3706d4b6ad86c36cbf0e" resname="field.information">
+        <source>field.information</source>
+        <target>Information</target>
+      </trans-unit>
+      <trans-unit id="9855af5eaf7586a054b6e8d65035e349" resname="add.success.added">
+        <source>add.success.added</source>
+        <target>Transaction added.</target>
+      </trans-unit>
+      <trans-unit id="1b35bb4e03482bb91ecca6788932b38f" resname="edit.success.updated">
+        <source>edit.success.updated</source>
+        <target>Transaction updated.</target>
+      </trans-unit>
+      <trans-unit id="3cffdbb8528a93e6dc87e19c007734af" resname="edit.title">
+        <source>edit.title</source>
+        <target>Edit a transaction</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -1,0 +1,52 @@
+{% extends ':accounting:layout.html.twig' %}
+
+{% trans_default_domain 'accounting' %}
+
+{% block body %}
+
+    <div id="menu-secondary">
+        <h1>{{ 'add.title'|trans }}</h1>
+        <nav>
+            <a href="{{ path('app_accounting_homepage') }}" class="button">
+                <span class="fi-arrow-left"></span>
+                {{ 'action.back'|trans({},'messages') }}
+            </a>
+        </nav>
+    </div>
+
+    {{ include('default/_flash_messages.html.twig') }}
+
+    <div class="app_accounting_add">
+
+        {{ form_start(formEdit) }}
+
+        <div class="container">
+
+            <div class="edit1">
+                {{ form_row(formEdit.date) }}
+                {{ form_row(formEdit.amount) }}
+                {{ form_row(formEdit.thirdName) }}
+                {{ form_row(formEdit.paymentMethod) }}
+                {{ form_row(formEdit.bankName) }}
+                {{ form_row(formEdit.operationNumber) }}
+                {{ form_row(formEdit.information) }}
+                <div class="action">
+                    <button type="submit" class="button success" name="add">
+                        <span class="fi-check"></span>
+                        {{ 'action.add'|trans({},'messages') }}
+                    </button>
+                    <span>or</span>
+                    <a href="{{ path('app_accounting_homepage') }}" class="button">
+                        <span class="fi-x"></span>
+                        {{ 'action.cancel'|trans({},'messages') }}
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        {{ form_end(formEdit) }}
+
+    </div>
+
+{% endblock %}
