@@ -2,6 +2,7 @@
 namespace AppBundle\Controller\Accounting;
 
 use AppBundle\Entity\Transaction;
+use AppBundle\Form\TransactionDeleteType;
 use AppBundle\Form\TransactionSearchType;
 use AppBundle\Form\TransactionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -55,6 +56,50 @@ class DefaultController extends Controller
      * @param Transaction $transaction
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
+     * @Route("/accounting/delete/{transaction}",
+     *        name="app_accounting_delete",
+     *        methods={"GET","POST"},
+     *        requirements={"transaction"="\d+"})
+     */
+    public function deleteAction(Request $request, Transaction $transaction)
+    {
+        // Delete form
+        $formDelete = $this->createForm(TransactionDeleteType::class, $transaction);
+        $formDelete->handleRequest($request);
+
+        if ($formDelete->isSubmitted() && $formDelete->isValid()) {
+
+            // Delete data
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($transaction);
+            $em->flush();
+
+            // Flash message
+            $this->addFlash(
+                'success',
+                $this->get('translator')->trans('delete.success.deleted', array(), 'accounting')
+            );
+
+            // Redirect
+            return $this->redirectToRoute('app_accounting_homepage');
+
+        }
+
+        // Render
+        return $this->render(
+            'accounting/delete.html.twig',
+            array(
+                'formDelete' => $formDelete->createView(),
+                'transaction' => $transaction,
+            )
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @param Transaction $transaction
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
      * @Route("/accounting/edit/{transaction}",
      *        name="app_accounting_edit",
      *        methods={"GET","POST"},
@@ -89,6 +134,7 @@ class DefaultController extends Controller
             'accounting/edit.html.twig',
             array(
                 'formEdit' => $formEdit->createView(),
+                'transaction' => $transaction,
             )
         );
     }

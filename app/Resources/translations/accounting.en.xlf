@@ -61,6 +61,18 @@
         <source>edit.title</source>
         <target>Edit a transaction</target>
       </trans-unit>
+      <trans-unit id="e9155b8ef2820db5f64f9314005ea321" resname="delete.success.deleted">
+        <source>delete.success.deleted</source>
+        <target>Transaction deleted</target>
+      </trans-unit>
+      <trans-unit id="534b32f3f6b013926a9645a052f585a9" resname="delete.title">
+        <source>delete.title</source>
+        <target>Delete a transaction</target>
+      </trans-unit>
+      <trans-unit id="b2016338ca25da973f04988d1d35dc44" resname="delete.confirmation">
+        <source>delete.confirmation</source>
+        <target>Delete transaction of %amount% at the %date%?</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

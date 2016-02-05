@@ -41,7 +41,7 @@
                         {{ 'action.update_and_close'|trans({},'messages') }}
                     </button>
                     <span>or</span>
-                    <a href="#" class="button warning">
+                    <a href="{{ path('app_accounting_delete',{transaction:transaction.id}) }}" class="button warning">
                         <span class="fi-trash"></span>
                         {{ 'action.delete'|trans({},'messages') }}
                     </a>
