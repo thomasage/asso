@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -26,6 +27,9 @@ class Transaction
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PaymentMethod")
      * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Valid()
      */
     private $paymentMethod;
 
@@ -86,6 +90,23 @@ class Transaction
     private $information;
 
     /**
+     * @var TransactionDetail[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TransactionDetail", mappedBy="transaction",cascade={"persist","remove"})
+     *
+     * @Assert\Valid()
+     */
+    private $details;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->details = new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer
@@ -93,6 +114,16 @@ class Transaction
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 
     /**
@@ -110,13 +141,13 @@ class Transaction
     }
 
     /**
-     * Get date
+     * Get amount
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getDate()
+    public function getAmount()
     {
-        return $this->date;
+        return $this->amount;
     }
 
     /**
@@ -134,13 +165,13 @@ class Transaction
     }
 
     /**
-     * Get amount
+     * Get thirdName
      *
      * @return string
      */
-    public function getAmount()
+    public function getThirdName()
     {
-        return $this->amount;
+        return $this->thirdName;
     }
 
     /**
@@ -158,13 +189,13 @@ class Transaction
     }
 
     /**
-     * Get thirdName
+     * Get bankName
      *
      * @return string
      */
-    public function getThirdName()
+    public function getBankName()
     {
-        return $this->thirdName;
+        return $this->bankName;
     }
 
     /**
@@ -182,13 +213,13 @@ class Transaction
     }
 
     /**
-     * Get bankName
+     * Get operationNumber
      *
      * @return string
      */
-    public function getBankName()
+    public function getOperationNumber()
     {
-        return $this->bankName;
+        return $this->operationNumber;
     }
 
     /**
@@ -206,13 +237,13 @@ class Transaction
     }
 
     /**
-     * Get operationNumber
+     * Get information
      *
      * @return string
      */
-    public function getOperationNumber()
+    public function getInformation()
     {
-        return $this->operationNumber;
+        return $this->information;
     }
 
     /**
@@ -230,23 +261,23 @@ class Transaction
     }
 
     /**
-     * Get information
+     * Get paymentMethod
      *
-     * @return string
+     * @return PaymentMethod
      */
-    public function getInformation()
+    public function getPaymentMethod()
     {
-        return $this->information;
+        return $this->paymentMethod;
     }
 
     /**
      * Set paymentMethod
      *
-     * @param \AppBundle\Entity\PaymentMethod $paymentMethod
+     * @param PaymentMethod $paymentMethod
      *
      * @return Transaction
      */
-    public function setPaymentMethod(\AppBundle\Entity\PaymentMethod $paymentMethod)
+    public function setPaymentMethod(PaymentMethod $paymentMethod)
     {
         $this->paymentMethod = $paymentMethod;
 
@@ -254,12 +285,50 @@ class Transaction
     }
 
     /**
-     * Get paymentMethod
+     * Add detail
      *
-     * @return \AppBundle\Entity\PaymentMethod
+     * @param TransactionDetail $detail
+     *
+     * @return Transaction
      */
-    public function getPaymentMethod()
+    public function addDetail(TransactionDetail $detail)
     {
-        return $this->paymentMethod;
+        $detail->setTransaction($this);
+        $this->details[] = $detail;
+
+        return $this;
+    }
+
+    /**
+     * Remove detail
+     *
+     * @param TransactionDetail $detail
+     */
+    public function removeDetail(TransactionDetail $detail)
+    {
+        $this->details->removeElement($detail);
+    }
+
+    /**
+     * @return float
+     */
+    public function getDetailsAmount()
+    {
+        $amount = 0.0;
+        foreach ($this->getDetails() as $detail) {
+            $amount += $detail->getAmount();
+        }
+
+        return $amount;
+    }
+
+    /**
+     * Get details
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDetails()
+    {
+        return $this->details;
     }
 }

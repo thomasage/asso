@@ -19,3 +19,83 @@
 .app_accounting_category .edit > .categories > li > input[type=text] {
     width: 30em;
 }
+
+/* Add a transaction */
+
+.app_accounting_add #transaction_amount {
+    width: 10em;
+}
+
+.app_accounting_add #transaction_date {
+    width: 10em;
+}
+
+.app_accounting_add table.details > tbody > tr > td.amount {
+    width: 10em;
+    white-space: nowrap;
+}
+
+.app_accounting_add table.details > tbody > tr > td.amount > input[type=text] {
+    width: 90%;
+    text-align: right;
+}
+
+.app_accounting_add table.details > tbody > tr > td.action {
+    width: 1%;
+}
+
+.app_accounting_add table.details > tbody > tr > td.category {
+    width: 15em;
+}
+
+.app_accounting_add table.details > tbody > tr > td.category > select {
+    width: 100%;
+}
+
+.app_accounting_add table.details > tbody > tr > td.information > input[type=text] {
+    width: 100%;
+}
+
+.app_accounting_add table.details + div.action {
+    margin-top: 0.5em;
+}
+
+/* Edit a transaction */
+
+.app_accounting_edit #transaction_amount {
+    width: 10em;
+}
+
+.app_accounting_edit #transaction_date {
+    width: 10em;
+}
+
+.app_accounting_edit table.details > tbody > tr > td.amount {
+    width: 10em;
+    white-space: nowrap;
+}
+
+.app_accounting_edit table.details > tbody > tr > td.amount > input[type=text] {
+    width: 90%;
+    text-align: right;
+}
+
+.app_accounting_edit table.details > tbody > tr > td.action {
+    width: 1%;
+}
+
+.app_accounting_edit table.details > tbody > tr > td.category {
+    width: 15em;
+}
+
+.app_accounting_edit table.details > tbody > tr > td.category > select {
+    width: 100%;
+}
+
+.app_accounting_edit table.details > tbody > tr > td.information > input[type=text] {
+    width: 100%;
+}
+
+.app_accounting_edit table.details + div.action {
+    margin-top: 0.5em;
+}

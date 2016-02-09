@@ -2,6 +2,7 @@
 namespace AppBundle\Controller\Accounting;
 
 use AppBundle\Entity\Transaction;
+use AppBundle\Entity\TransactionDetail;
 use AppBundle\Form\TransactionDeleteType;
 use AppBundle\Form\TransactionSearchType;
 use AppBundle\Form\TransactionType;
@@ -24,15 +25,15 @@ class DefaultController extends Controller
         // Edit form
         $transaction = new Transaction();
         $transaction->setDate(new \DateTime());
+        $transaction->addDetail(new TransactionDetail());
         $formEdit = $this->createForm(TransactionType::class, $transaction);
         $formEdit->handleRequest($request);
 
         if ($formEdit->isSubmitted() && $formEdit->isValid()) {
 
             // Save data
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($transaction);
-            $em->flush();
+            $tm = $this->get('app.transaction_manager');
+            $tm->update($transaction);
 
             // Flash message
             $this->addFlash('success', $this->get('translator')->trans('add.success.added', array(), 'accounting'));
@@ -70,9 +71,8 @@ class DefaultController extends Controller
         if ($formDelete->isSubmitted() && $formDelete->isValid()) {
 
             // Delete data
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($transaction);
-            $em->flush();
+            $tm = $this->get('app.transaction_manager');
+            $tm->delete($transaction);
 
             // Flash message
             $this->addFlash(
@@ -114,19 +114,34 @@ class DefaultController extends Controller
         if ($formEdit->isSubmitted() && $formEdit->isValid()) {
 
             // Save data
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
+            $tm = $this->get('app.transaction_manager');
+            $tm->update($transaction);
 
             // Flash message
             $this->addFlash('success', $this->get('translator')->trans('edit.success.updated', array(), 'accounting'));
 
             // Redirect
-            if ($request->request->get('update')) {
+            if (!is_null($request->request->get('update'))) {
                 return $this->redirectToRoute('app_accounting_edit', array('transaction' => $transaction->getId()));
             } else {
                 return $this->redirectToRoute('app_accounting_homepage');
             }
 
+        }
+
+        // Difference between transaction and breakdown
+        if ($transaction->getAmount() != $transaction->getDetailsAmount()) {
+            $this->addFlash(
+                'error',
+                $this->get('translator')->trans(
+                    'edit.warning.breakdown_amount',
+                    array(
+                        '%amount%' => number_format($transaction->getAmount(), 2, '.', ' '),
+                        '%breakdown%' => number_format($transaction->getDetailsAmount(), 2, '.', ' '),
+                    ),
+                    'accounting'
+                )
+            );
         }
 
         // Render

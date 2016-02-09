@@ -1,4 +1,9 @@
 services:
+    app.form.type.choice_season:
+        class: AppBundle\Form\Type\ChoiceSeasonType
+        arguments: [ "@doctrine.orm.entity_manager" ]
+        tags:
+            - { name: form.type }
     app.member_manager:
         class: AppBundle\Utils\MemberManager
         arguments: [ "@doctrine.orm.entity_manager", "%member_photo_directory%" ]
@@ -13,8 +18,6 @@ services:
         arguments: ['@logger']
         tags:
             - { name: kernel.event_subscriber }
-    app.form.type.choice_season:
-        class: AppBundle\Form\Type\ChoiceSeasonType
+    app.transaction_manager:
+        class: AppBundle\Utils\TransactionManager
         arguments: [ "@doctrine.orm.entity_manager" ]
-        tags:
-            - { name: form.type }

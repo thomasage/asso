@@ -2,6 +2,8 @@
 
 {% trans_default_domain 'accounting' %}
 
+{% form_theme formEdit ':accounting:_fields.html.twig' %}
+
 {% block body %}
 
     <div id="menu-secondary">
@@ -18,29 +20,54 @@
 
     <div class="app_accounting_add">
 
+        {{ form_errors(formEdit) }}
+
         {{ form_start(formEdit) }}
 
         <div class="container">
 
             <div class="edit1">
                 {{ form_row(formEdit.date) }}
-                {{ form_row(formEdit.amount) }}
-                {{ form_row(formEdit.thirdName) }}
-                {{ form_row(formEdit.paymentMethod) }}
-                {{ form_row(formEdit.bankName) }}
-                {{ form_row(formEdit.operationNumber) }}
-                {{ form_row(formEdit.information) }}
-                <div class="action">
-                    <button type="submit" class="button success" name="add">
-                        <span class="fi-check"></span>
-                        {{ 'action.add'|trans({},'messages') }}
-                    </button>
-                    <span>or</span>
-                    <a href="{{ path('app_accounting_homepage') }}" class="button">
-                        <span class="fi-x"></span>
-                        {{ 'action.cancel'|trans({},'messages') }}
-                    </a>
-                </div>
+                {{ form_row(formEdit.amount,{attr:{class:'number'}}) }}
+                {{ form_row(formEdit.thirdName,{attr:{class:'full'}}) }}
+                {{ form_row(formEdit.paymentMethod,{attr:{class:'full'}}) }}
+                {{ form_row(formEdit.bankName,{attr:{class:'full'}}) }}
+                {{ form_row(formEdit.operationNumber,{attr:{class:'full'}}) }}
+                {{ form_row(formEdit.information,{attr:{class:'full'}}) }}
+            </div>
+
+            <h2>{{ form_label(formEdit.details) }}</h2>
+
+            <table class="result2 details">
+                <thead>
+                <tr>
+                    <th>{{ 'field.category'|trans }}</th>
+                    <th>{{ 'field.amount'|trans }}</th>
+                    <th>{{ 'field.information'|trans }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody id="transaction_details" data-prototype="{{ form_widget(formEdit.details.vars.prototype)|e }}">
+                {{ form_widget(formEdit.details) }}
+                </tbody>
+            </table>
+            <div class="action">
+                <a href="#" class="button secondary transaction-add">
+                    <span class="fi-plus"></span>
+                    {{ 'action.add'|trans({},'messages') }}
+                </a>
+            </div>
+
+            <div class="actions">
+                <button type="submit" class="button success" name="add">
+                    <span class="fi-check"></span>
+                    {{ 'action.add'|trans({},'messages') }}
+                </button>
+                <span>or</span>
+                <a href="{{ path('app_accounting_homepage') }}" class="button">
+                    <span class="fi-x"></span>
+                    {{ 'action.cancel'|trans({},'messages') }}
+                </a>
             </div>
 
         </div>
@@ -48,5 +75,24 @@
         {{ form_end(formEdit) }}
 
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        var count ={{ formEdit.details|length }};
+        $(document).ready(function () {
+            $('.transaction-add').click(function (e) {
+                e.preventDefault();
+                TransactionAdd();
+            });
+            $('.transaction-del').click(function (e) {
+                e.preventDefault();
+                TransactionDel($(this).parent().parent());
+            });
+        });
+    </script>
 
 {% endblock %}

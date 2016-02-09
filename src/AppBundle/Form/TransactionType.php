@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -34,6 +35,8 @@ class TransactionType extends AbstractType
                 array(
                     'required' => true,
                     'label' => 'field.amount',
+                    'scale' => 2,
+                    'grouping' => true,
                 )
             )
             ->add(
@@ -78,6 +81,18 @@ class TransactionType extends AbstractType
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('pm')->addOrderBy('pm.name', 'ASC');
                     },
+                )
+            )
+            ->add(
+                'details',
+                CollectionType::class,
+                array(
+                    'required' => false,
+                    'label' => 'field.details',
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false,
+                    'entry_type' => TransactionDetailType::class,
                 )
             );
     }

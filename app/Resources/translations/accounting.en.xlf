@@ -73,6 +73,18 @@
         <source>delete.confirmation</source>
         <target>Delete transaction of %amount% at the %date%?</target>
       </trans-unit>
+      <trans-unit id="e0a33e60e862edc56cba265d4872019d" resname="field.details">
+        <source>field.details</source>
+        <target>Breakdown</target>
+      </trans-unit>
+      <trans-unit id="7c35ad98d8c5c13c2e30ffdd4a6231e3" resname="field.category">
+        <source>field.category</source>
+        <target>Category</target>
+      </trans-unit>
+      <trans-unit id="a4b4f3e40fab97f1f1fb150009cbc229" resname="edit.warning.breakdown_amount">
+        <source>edit.warning.breakdown_amount</source>
+        <target>Warning : the transaction amount (%amount%) isn't equal to the sum of the breakdown (%breakdown%).</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

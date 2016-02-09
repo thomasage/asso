@@ -1,0 +1,20 @@
+{% block _transaction_details_widget %}
+    {% for child in form %}
+        {{ form_widget(child) }}
+    {% endfor %}
+{% endblock %}
+
+{% block _transaction_details_entry_widget %}
+    {{ form_errors(form) }}
+    <tr>
+        <td class="category">{{ form_widget(form.category) }}</td>
+        <td class="amount">{{ form_widget(form.amount) }}{{ form_errors(form.amount) }}</td>
+        <td class="information">{{ form_widget(form.information) }}</td>
+        <td class="action">
+            <a href="#" class="button warning transaction-del">
+                <span class="fi-trash"></span>
+                {{ 'action.delete'|trans({},'messages') }}
+            </a>
+        </td>
+    </tr>
+{% endblock %}

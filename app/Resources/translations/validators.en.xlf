@@ -13,6 +13,10 @@
         <source>membership.member_season.duplicate</source>
         <target>This membership already exists.</target>
       </trans-unit>
+      <trans-unit id="89ed4907a44f4a9e2c769b5952833a46" resname="transaction_detail.amount.blank">
+        <source>transaction_detail.amount.blank</source>
+        <target>All details need an amount.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
