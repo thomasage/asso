@@ -33,3 +33,11 @@
 .app_param_rank_edit .container > .image > img {
     max-width: 10em;
 }
+
+/* Password */
+
+.app_param_password #param_password_current,
+.app_param_password #param_password_first,
+.app_param_password #param_password_second {
+    flex: 1;
+}
