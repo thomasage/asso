@@ -703,7 +703,7 @@ table.result2 + div.actions {
     margin: 5% auto;
 }
 
-div.actions {
+div.actions_full {
     margin-top: 2em;
     padding: 1em 0;
     text-align: center;
@@ -711,6 +711,6 @@ div.actions {
     border-top: 1px silver solid;
 }
 
-div.actions > span {
+div.actions_full > span {
     margin: 0 1em;
 }

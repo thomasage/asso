@@ -60,11 +60,12 @@
 
             <h2>{{ form_label(formEdit.copies) }}</h2>
 
+            {{ form_widget(formEdit.copies) }}
             <div class="copies-action">
                 {{ form_row(formEdit.copy_add) }}
             </div>
 
-            <div class="actions">
+            <div class="actions_full">
                 <button type="submit" class="button success" name="add">
                     <span class="fi-check"></span>
                     {{ 'action.add'|trans({},'messages') }}
