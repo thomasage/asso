@@ -26,6 +26,18 @@
     width: 100%;
 }
 
+/* Add member */
+
+.app_member_add #member_address,
+.app_member_add #member_birthplace,
+.app_member_add #member_city,
+.app_member_add #member_firstname,
+.app_member_add #member_gender,
+.app_member_add #member_lastname,
+.app_member_add #member_zip {
+    flex: 1;
+}
+
 /* Show member */
 
 .app_member_show > .sheet {
