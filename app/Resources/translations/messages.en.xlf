@@ -85,6 +85,10 @@
         <source>action.delete</source>
         <target>Delete</target>
       </trans-unit>
+      <trans-unit id="befca582a867c6e414bfd52847afd448" resname="action.download">
+        <source>action.download</source>
+        <target>Download</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

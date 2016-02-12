@@ -41,3 +41,24 @@ function TransactionDel(element) {
     });
 
 }
+
+function TransactionCopyAdd() {
+
+    var list = $('#transaction_copies');
+    var element = $(list.data('prototype').replace(/__name__/g, count));
+    element.find('a.copy-del').click(function (e) {
+        e.preventDefault();
+        TransactionCopyDel($(this).parent().parent());
+    });
+    list.append(element);
+    count++;
+
+}
+
+function TransactionCopyDel(element) {
+
+    element.slideUp('fast', function () {
+        $(this).remove();
+    });
+
+}

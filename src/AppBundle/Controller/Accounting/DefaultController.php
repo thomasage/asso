@@ -2,13 +2,17 @@
 namespace AppBundle\Controller\Accounting;
 
 use AppBundle\Entity\Transaction;
+use AppBundle\Entity\TransactionCopy;
 use AppBundle\Entity\TransactionDetail;
 use AppBundle\Form\TransactionDeleteType;
 use AppBundle\Form\TransactionSearchType;
 use AppBundle\Form\TransactionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
@@ -33,7 +37,7 @@ class DefaultController extends Controller
 
             // Save data
             $tm = $this->get('app.transaction_manager');
-            $tm->update($transaction);
+            $tm->update($transaction, $formEdit);
 
             // Flash message
             $this->addFlash('success', $this->get('translator')->trans('add.success.added', array(), 'accounting'));
@@ -50,6 +54,31 @@ class DefaultController extends Controller
                 'formEdit' => $formEdit->createView(),
             )
         );
+    }
+
+    /**
+     * @param TransactionCopy $copy
+     * @return BinaryFileResponse|NotFoundHttpException
+     *
+     * @Route("/accounting/copy/download/{copy}",
+     *        name="app_accounting_copy_download",
+     *        methods={"GET"},
+     *        requirements={"copy"="\d+"})
+     */
+    public function copyDownloadAction(TransactionCopy $copy)
+    {
+        $tm = $this->get('app.transaction_manager');
+
+        if (!is_null($filename = $tm->getCopyFilename($copy))) {
+            $response = new BinaryFileResponse($filename);
+            $response
+                ->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $copy->getName())
+                ->headers->set('Content-Type', $copy->getMime());
+
+            return $response;
+        }
+
+        return new NotFoundHttpException();
     }
 
     /**
@@ -115,7 +144,7 @@ class DefaultController extends Controller
 
             // Save data
             $tm = $this->get('app.transaction_manager');
-            $tm->update($transaction);
+            $tm->update($transaction, $formEdit);
 
             // Flash message
             $this->addFlash('success', $this->get('translator')->trans('edit.success.updated', array(), 'accounting'));

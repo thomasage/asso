@@ -99,10 +99,20 @@ class Transaction
     private $details;
 
     /**
+     * @var TransactionCopy[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\TransactionCopy", mappedBy="transaction",cascade={"persist","remove"})
+     *
+     * @Assert\Valid()
+     */
+    private $copies;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
+        $this->copies = new ArrayCollection();
         $this->details = new ArrayCollection();
     }
 
@@ -330,5 +340,40 @@ class Transaction
     public function getDetails()
     {
         return $this->details;
+    }
+
+    /**
+     * Add copy
+     *
+     * @param TransactionCopy $copy
+     *
+     * @return Transaction
+     */
+    public function addCopy(TransactionCopy $copy)
+    {
+        $copy->setTransaction($this);
+        $this->copies[] = $copy;
+
+        return $this;
+    }
+
+    /**
+     * Remove copy
+     *
+     * @param TransactionCopy $copy
+     */
+    public function removeCopy(TransactionCopy $copy)
+    {
+        $this->copies->removeElement($copy);
+    }
+
+    /**
+     * Get copies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCopies()
+    {
+        return $this->copies;
     }
 }

@@ -20,4 +20,4 @@ services:
             - { name: kernel.event_subscriber }
     app.transaction_manager:
         class: AppBundle\Utils\TransactionManager
-        arguments: [ "@doctrine.orm.entity_manager" ]
+        arguments: [ "@doctrine.orm.entity_manager", "%transaction_copy_directory%" ]

@@ -6,6 +6,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -93,6 +94,27 @@ class TransactionType extends AbstractType
                     'allow_delete' => true,
                     'by_reference' => false,
                     'entry_type' => TransactionDetailType::class,
+                )
+            )
+            ->add(
+                'copies',
+                CollectionType::class,
+                array(
+                    'required' => false,
+                    'label' => 'field.copies',
+                    'allow_add' => false,
+                    'allow_delete' => true,
+                    'entry_type' => TransactionCopyType::class,
+                )
+            )
+            ->add(
+                'copy_add',
+                FileType::class,
+                array(
+                    'required' => false,
+                    'mapped' => false,
+                    'multiple' => true,
+                    'label' => 'field.copy.add',
                 )
             );
     }

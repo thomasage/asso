@@ -60,6 +60,30 @@
     margin-top: 0.5em;
 }
 
+.app_accounting_add table.copies > tbody > tr > td.action {
+    width: 1%;
+}
+
+.app_accounting_add div.copies-action {
+    margin-bottom: 3em;
+    margin-top: 1em;
+}
+
+.app_accounting_add div.copies-action > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.app_accounting_add div.copies-action > div > input[type=file] {
+    flex: 1;
+}
+
+.app_accounting_add div.copies-action > div > label {
+    padding-right: 1em;
+}
+
 /* Edit a transaction */
 
 .app_accounting_edit #transaction_amount {
@@ -68,6 +92,30 @@
 
 .app_accounting_edit #transaction_date {
     width: 10em;
+}
+
+.app_accounting_edit table.copies > tbody > tr > td.action {
+    width: 1%;
+}
+
+.app_accounting_edit div.copies-action {
+    margin-bottom: 3em;
+    margin-top: 1em;
+}
+
+.app_accounting_edit div.copies-action > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.app_accounting_edit div.copies-action > div > input[type=file] {
+    flex: 1;
+}
+
+.app_accounting_edit div.copies-action > div > label {
+    padding-right: 1em;
 }
 
 .app_accounting_edit table.details > tbody > tr > td.amount {

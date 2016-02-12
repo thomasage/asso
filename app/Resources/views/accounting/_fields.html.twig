@@ -1,3 +1,33 @@
+{% block _transaction_copies_widget %}
+    {% for child in form %}
+        {{ form_widget(child) }}
+    {% endfor %}
+{% endblock %}
+
+{% block _transaction_copies_entry_widget %}
+    {{ form_errors(form) }}
+    <tr>
+        <td>
+            {{ form_widget(form.name) }}
+            {{ form.vars.value.name }}
+        </td>
+        <td>{{ (form.vars.value.size/1024)|number_format(2,'.','') }} kb</td>
+        <td>{{ form.vars.value.date|localizeddate('long','short') }}</td>
+        <td class="action">
+            <a href="{{ path('app_accounting_copy_download',{copy:form.vars.value.id}) }}" class="button secondary">
+                <span class="fi-download"></span>
+                {{ 'action.download'|trans({},'messages') }}
+            </a>
+        </td>
+        <td class="action">
+            <a href="#" class="button warning copy-del">
+                <span class="fi-trash"></span>
+                {{ 'action.delete'|trans({},'messages') }}
+            </a>
+        </td>
+    </tr>
+{% endblock %}
+
 {% block _transaction_details_widget %}
     {% for child in form %}
         {{ form_widget(child) }}

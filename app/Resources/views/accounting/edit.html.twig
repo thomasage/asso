@@ -58,6 +58,26 @@
                 </a>
             </div>
 
+            <h2>{{ form_label(formEdit.copies) }}</h2>
+
+            <table class="result2 copies">
+                <thead>
+                <tr>
+                    <th>{{ 'field.name'|trans }}</th>
+                    <th>{{ 'field.size'|trans }}</th>
+                    <th>{{ 'field.date'|trans }}</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody id="transaction_copies">
+                {{ form_widget(formEdit.copies) }}
+                </tbody>
+            </table>
+            <div class="copies-action">
+                {{ form_row(formEdit.copy_add) }}
+            </div>
+
             <div class="actions">
                 <button type="submit" class="button success" name="update">
                     <span class="fi-check"></span>
@@ -93,7 +113,16 @@
     {{ parent() }}
     <script type="text/javascript">
         var count ={{ formEdit.details|length }};
+        var countCopies ={{ formEdit.copies|length }};
         $(document).ready(function () {
+            $('.copy-add').click(function (e) {
+                e.preventDefault();
+                TransactionCopyAdd();
+            });
+            $('.copy-del').click(function (e) {
+                e.preventDefault();
+                TransactionCopyDel($(this).parent().parent());
+            });
             $('.transaction-add').click(function (e) {
                 e.preventDefault();
                 TransactionAdd();

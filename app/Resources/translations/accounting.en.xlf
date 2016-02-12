@@ -85,6 +85,22 @@
         <source>edit.warning.breakdown_amount</source>
         <target>Warning : the transaction amount (%amount%) isn't equal to the sum of the breakdown (%breakdown%).</target>
       </trans-unit>
+      <trans-unit id="226301a9e72910b7f7df691e1576c554" resname="field.name">
+        <source>field.name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="3b27f96cdc1e7bb7fc14b3a9944ca8a6" resname="field.size">
+        <source>field.size</source>
+        <target>Size</target>
+      </trans-unit>
+      <trans-unit id="c4b6e256e556cafaa9c31ff189a3dbae" resname="field.copies">
+        <source>field.copies</source>
+        <target>Copies</target>
+      </trans-unit>
+      <trans-unit id="4463088218aba23ec546588ae5fdb603" resname="field.copy.add">
+        <source>field.copy.add</source>
+        <target>Add copies</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
