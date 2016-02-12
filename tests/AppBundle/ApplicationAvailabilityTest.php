@@ -2,6 +2,7 @@
 namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Response;
 
 class ApplicationAvailabilityTest extends WebTestCase
 {
@@ -30,7 +31,7 @@ class ApplicationAvailabilityTest extends WebTestCase
     public function testPageIsSuccessful($url)
     {
         $this->clientAuth->request('GET', $url);
-        $this->assertTrue($this->clientAuth->getResponse()->isSuccessful());
+        $this->assertEquals(Response::HTTP_OK,$this->clientAuth->getResponse()->getStatusCode());
     }
 
     /**
@@ -49,9 +50,14 @@ class ApplicationAvailabilityTest extends WebTestCase
     {
         return array(
             array('/'),
+            array('/accounting'),
+            array('/accounting/add'),
+            array('/accounting/category'),
             array('/member'),
             array('/member/add'),
-            array('/param'),
+            array('/param/password'),
+            array('/param/rank'),
+            array('/param/season'),
         );
     }
 }
