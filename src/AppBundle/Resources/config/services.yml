@@ -4,6 +4,9 @@ services:
         arguments: [ "@doctrine.orm.entity_manager" ]
         tags:
             - { name: form.type }
+    app.lesson_manager:
+        class: AppBundle\Utils\LessonManager
+        arguments: [ "@doctrine.orm.entity_manager" ]
     app.member_manager:
         class: AppBundle\Utils\MemberManager
         arguments: [ "@doctrine.orm.entity_manager", "%member_photo_directory%" ]

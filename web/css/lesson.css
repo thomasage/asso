@@ -34,7 +34,11 @@
     background-color: white;
 }
 
-.app_lesson_index .calendar > div > table > tbody > tr > td.now {
+.app_lesson_index .calendar > div > table > tbody > tr > td.day.active {
+    background-color: rgb(230, 255, 230);
+}
+
+.app_lesson_index .calendar > div > table > tbody > tr > td.day.now {
     font-weight: bold;
     background-color: yellow;
 }

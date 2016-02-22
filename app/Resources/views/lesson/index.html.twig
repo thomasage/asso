@@ -16,6 +16,8 @@
             </nav>
         </div>
 
+        {{ include('default/_flash_messages.html.twig') }}
+
         <div class="calendar">
 
             {% for month in months %}
@@ -42,7 +44,7 @@
                                 <td colspan="{{ firstWeekday-1 }}"></td>
                             {% endif %}
                             {% set date=month|date('Y-m-')~'%02d'|format(d) %}
-                            <td class="day{% if date==now|date('Y-m-d') %} now{% endif %}">
+                            <td class="day{% if date==now|date('Y-m-d') %} now{% endif %}{% if lessons.contains(date) %} active{% endif %}">
                                 <a href="{{ path('app_lesson_day',{day:date}) }}">
                                     {{ d }}
                                 </a>

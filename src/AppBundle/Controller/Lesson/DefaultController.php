@@ -3,6 +3,7 @@ namespace AppBundle\Controller\Lesson;
 
 use AppBundle\Entity\Planning;
 use AppBundle\Form\PlanningCollectionType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,19 +41,33 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Season to display
+        $season = $this->getUser()->getCurrentSeason();
+
         // Calendar of season
-        $start = new \DateTime($this->getUser()->getCurrentSeason()->getStart()->format('Y-m-01'));
-        $stop = new \DateTime($this->getUser()->getCurrentSeason()->getStop()->format('Y-m-01'));
+        $start = new \DateTime($season->getStart()->format('Y-m-01'));
+        $stop = new \DateTime($season->getStop()->format('Y-m-01'));
         $stop->modify('+1 month');
         $months = array();
         foreach (new \DatePeriod($start, new \DateInterval('P1M'), $stop) as $v) {
             $months[] = $v;
         }
 
+        // Days with lessons
+        $lessons = array();
+        foreach ($em->getRepository('AppBundle:Lesson')->findBySeason($season) as $lesson) {
+            $lessons[] = $lesson->getDate()->format('Y-m-d');
+        }
+        $lessons = new ArrayCollection(array_unique($lessons));
+
         // Render
         return $this->render(
             'lesson/index.html.twig',
             array(
+                'lessons' => $lessons,
                 'months' => $months,
                 'now' => new \DateTime(),
             )
@@ -69,9 +84,13 @@ class DefaultController extends Controller
      */
     public function planningAction(Request $request)
     {
-        $elements = array(
-            new Planning(),
-            new Planning(),
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Planning defined
+        $elements = $em->getRepository('AppBundle:Planning')->findBy(
+            array(),
+            array('weekday' => 'ASC', 'start' => 'ASC')
         );
 
         // Edit form
@@ -81,8 +100,46 @@ class DefaultController extends Controller
         // Save data
         if ($formEdit->isSubmitted() && $formEdit->isValid()) {
 
-            // TODO : save data
-            // TODO : build lessons
+            // Save data
+            $data = new ArrayCollection($formEdit->getData()['elements']);
+            foreach ($data as $element) {
+                $em->persist($element);
+            }
+            foreach ($elements as $element) {
+                if (!$data->contains($element)) {
+                    $em->remove($element);
+                }
+            }
+            $em->flush();
+
+            // Redirect
+            if ($request->request->has('update_and_build')) {
+
+                // Build lessons
+                $lm = $this->get('app.lesson_manager');
+                $lm->buildFromPlanning($this->getUser()->getCurrentSeason());
+
+                // Flash message
+                $this->addFlash(
+                    'success',
+                    $this->get('translator')->trans('planning.success.built', array(), 'lesson')
+                );
+
+                // Redirect
+                return $this->redirectToRoute('app_lesson_index');
+
+            } else {
+
+                // Flash message
+                $this->addFlash(
+                    'success',
+                    $this->get('translator')->trans('planning.success.updated', array(), 'lesson')
+                );
+
+                // Redirect
+                return $this->redirectToRoute('app_lesson_planning');
+
+            }
 
         }
 

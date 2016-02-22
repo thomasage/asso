@@ -18,6 +18,8 @@
             </nav>
         </div>
 
+        {{ include('default/_flash_messages.html.twig') }}
+
         {{ form_start(formEdit) }}
 
         {{ form_row(formEdit.elements) }}
@@ -30,12 +32,12 @@
         </div>
 
         <div class="actions">
-            <button type="submit" class="button success" name="save">
+            <button type="submit" class="button success" name="update">
                 <span class="fi-check"></span>
                 {{ 'action.update'|trans({},'messages') }}
             </button>
             <span>{{ 'or'|trans({},'messages') }}</span>
-            <button type="submit" class="button primary" name="save_and_build">
+            <button type="submit" class="button primary" name="update_and_build">
                 <span class="fi-widget"></span>
                 {{ 'planning.action.save_and_build'|trans }}
             </button>
