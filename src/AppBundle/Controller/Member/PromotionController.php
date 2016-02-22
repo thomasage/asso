@@ -3,14 +3,10 @@ namespace AppBundle\Controller\Member;
 
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Promotion;
-use AppBundle\Form\MemberSearchType;
-use AppBundle\Form\MemberType;
 use AppBundle\Form\PromotionDeleteType;
 use AppBundle\Form\PromotionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -26,7 +22,7 @@ class PromotionController extends Controller
      *        methods={"GET","POST"},
      *        requirements={"member"="\d+"})
      */
-    public function AddAction(Request $request, Member $member)
+    public function addAction(Request $request, Member $member)
     {
         // Member manager
         $mm = $this->get('app.member_manager');
