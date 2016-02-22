@@ -2,12 +2,13 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\User;
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadUserData implements FixtureInterface, ContainerAwareInterface
+class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
      * @var ContainerInterface
@@ -34,6 +35,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user->setPassword($encoder->encodePassword($user, 'admin'));
         $user->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
         $user->setRoles(array('ROLE_USER'));
+        $user->setCurrentSeason($this->getReference('season1'));
 
         $manager->persist($user);
         $manager->flush();

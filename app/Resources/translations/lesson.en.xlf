@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="1ea7ccc01954ba1388047005183427ed" resname="index.title">
+        <source>index.title</source>
+        <target>Lessons (%season%)</target>
+      </trans-unit>
+      <trans-unit id="944ba223a5c1b5f4b495708e7cd5ee37" resname="monday">
+        <source>monday</source>
+        <target>Monday</target>
+      </trans-unit>
+      <trans-unit id="1a31a6f65cc993ff6bd9a5b85f0520b0" resname="tuesday">
+        <source>tuesday</source>
+        <target>Tuesday</target>
+      </trans-unit>
+      <trans-unit id="aae446086f8e81194ed115b566bf2e3d" resname="wednesday">
+        <source>wednesday</source>
+        <target>Wednesday</target>
+      </trans-unit>
+      <trans-unit id="c395246f710b0e2c86b7ed82f7f56ce3" resname="thursday">
+        <source>thursday</source>
+        <target>Thursday</target>
+      </trans-unit>
+      <trans-unit id="f6f7fec07f372b7bd5eb196bbca0f3f4" resname="friday">
+        <source>friday</source>
+        <target>Friday</target>
+      </trans-unit>
+      <trans-unit id="6036c3d913f49f28f35d734589840310" resname="saturday">
+        <source>saturday</source>
+        <target>Saturday</target>
+      </trans-unit>
+      <trans-unit id="787c74a2e618a696e34e025adda33ad3" resname="sunday">
+        <source>sunday</source>
+        <target>Sunday</target>
+      </trans-unit>
+      <trans-unit id="86f5978d9b80124f509bdb71786e929e" resname="January">
+        <source>January</source>
+        <target>January</target>
+      </trans-unit>
+      <trans-unit id="659e59f062c75f81259d22786d6c44aa" resname="February">
+        <source>February</source>
+        <target>February</target>
+      </trans-unit>
+      <trans-unit id="fa3e5edac607a88d8fd7ecb9d6d67424" resname="March">
+        <source>March</source>
+        <target>March</target>
+      </trans-unit>
+      <trans-unit id="3fcf026bbfffb63fb24b8de9d0446949" resname="April">
+        <source>April</source>
+        <target>April</target>
+      </trans-unit>
+      <trans-unit id="195fbb57ffe7449796d23466085ce6d8" resname="May">
+        <source>May</source>
+        <target>May</target>
+      </trans-unit>
+      <trans-unit id="688937ccaf2a2b0c45a1c9bbba09698d" resname="June">
+        <source>June</source>
+        <target>June</target>
+      </trans-unit>
+      <trans-unit id="1b539f6f34e8503c97f6d3421346b63c" resname="July">
+        <source>July</source>
+        <target>July</target>
+      </trans-unit>
+      <trans-unit id="41ba70891fb6f39327d8ccb9b1dafb84" resname="August">
+        <source>August</source>
+        <target>August</target>
+      </trans-unit>
+      <trans-unit id="cc5d90569e1c8313c2b1c2aab1401174" resname="September">
+        <source>September</source>
+        <target>September</target>
+      </trans-unit>
+      <trans-unit id="eca60ae8611369fe28a02e2ab8c5d12e" resname="October">
+        <source>October</source>
+        <target>October</target>
+      </trans-unit>
+      <trans-unit id="7e823b37564da492ca1629b4732289a8" resname="November">
+        <source>November</source>
+        <target>November</target>
+      </trans-unit>
+      <trans-unit id="82331503174acbae012b2004f6431fa5" resname="December">
+        <source>December</source>
+        <target>December</target>
+      </trans-unit>
+      <trans-unit id="145fece604f7e1e9de61b85b985cb917" resname="day.title">
+        <source>day.title</source>
+        <target>Lessons of %day%</target>
+      </trans-unit>
+      <trans-unit id="e304b5b2db4ffb2b1c9b28f9a845dd7a" resname="planning.title">
+        <source>planning.title</source>
+        <target>Planning (%season%)</target>
+      </trans-unit>
+      <trans-unit id="62b5216c362a20e84216dc6aa8dc8c4c" resname="field.weekday">
+        <source>field.weekday</source>
+        <target>Weekday</target>
+      </trans-unit>
+      <trans-unit id="6b65dd5bd47485d303b8f6501b661a6f" resname="field.start">
+        <source>field.start</source>
+        <target>Start at</target>
+      </trans-unit>
+      <trans-unit id="7bc9c54e9b9b1229f04d10a6aefdd443" resname="field.duration">
+        <source>field.duration</source>
+        <target>Duration</target>
+      </trans-unit>
+      <trans-unit id="6f12d6d6d619165083a612d262197973" resname="planning.action.save_and_build">
+        <source>planning.action.save_and_build</source>
+        <target>Update and build</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,108 @@
+/* Calendar */
+
+.app_lesson_index .calendar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.app_lesson_index .calendar > div {
+    margin-top: 1.5em;
+}
+
+.app_lesson_index .calendar > div > div {
+    padding: 0.3em;
+    text-align: center;
+}
+
+.app_lesson_index .calendar > div > table {
+    border: 1px black solid;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.app_lesson_index .calendar > div > table > tbody > tr > td {
+    padding: 0;
+    text-align: center;
+    background-color: rgb(250, 250, 250);
+    border: 1px black solid;
+}
+
+.app_lesson_index .calendar > div > table > tbody > tr > td.day {
+    background-color: white;
+}
+
+.app_lesson_index .calendar > div > table > tbody > tr > td.now {
+    font-weight: bold;
+    background-color: yellow;
+}
+
+.app_lesson_index .calendar > div > table > tbody > tr > td > a {
+    display: block;
+    padding: 0.5em;
+    color: inherit;
+    text-decoration: none;
+}
+
+.app_lesson_index .calendar > div > table > tbody > tr > td > a:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+}
+
+.app_lesson_index .calendar > div > table > thead > tr > th {
+    width: 2.5em;
+    padding: 0.5em;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgb(230, 230, 230);
+    border: 1px black solid;
+}
+
+/* Planning */
+
+.app_lesson_planning #planning_collection_elements {
+    margin-bottom: 1em;
+    margin-top: 1.5em;
+}
+
+.app_lesson_planning #planning_collection_elements > div > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0.5em;
+}
+
+.app_lesson_planning #planning_collection_elements > div > div > div > div {
+    display: inline-block;
+}
+
+.app_lesson_planning #planning_collection_elements > div > div > div label {
+    margin-right: 0.5em;
+}
+
+.app_lesson_planning #planning_collection_elements > div > div > div input[id$="_duration"] {
+    width: 6em;
+    text-align: right;
+}
+
+.app_lesson_planning #planning_collection_elements > div > div > div select[id$="_start_hour"] {
+    margin-right: 0.3em;
+}
+
+.app_lesson_planning #planning_collection_elements > div > div > div select[id$="_start_minute"] {
+    margin-left: 0.3em;
+}
+
+.app_lesson_planning #planning_collection_elements > div > div > div:nth-of-type(n+2) {
+    margin-left: 3em;
+}
+
+.app_lesson_planning .actions {
+    margin-top: 2em;
+}
+
+.app_lesson_planning .actions > span {
+    margin: 0 1em;
+}

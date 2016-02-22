@@ -1,0 +1,68 @@
+{% extends 'lesson/layout.html.twig' %}
+
+{% trans_default_domain 'lesson' %}
+
+{% block body %}
+
+    <div class="app_lesson_index">
+
+        <div id="menu-secondary">
+            <h1>{{ 'index.title'|trans({'%season%':app.user.currentSeason}) }}</h1>
+            <nav>
+                <a href="{{ path('app_lesson_planning') }}" class="button secondary">
+                    <span class="fi-wrench"></span>
+                    Planning
+                </a>
+            </nav>
+        </div>
+
+        <div class="calendar">
+
+            {% for month in months %}
+                {% set daysInMonth=month|date('t') %}
+                {% set firstWeekday=month|date('N') %}
+                <div>
+                    <div>{{ month|date('F')|trans }} {{ month|date('Y') }}</div>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>{{ 'monday'|trans|slice(0,2)|capitalize }}</th>
+                            <th>{{ 'tuesday'|trans|slice(0,2)|capitalize }}</th>
+                            <th>{{ 'wednesday'|trans|slice(0,2)|capitalize }}</th>
+                            <th>{{ 'thursday'|trans|slice(0,2)|capitalize }}</th>
+                            <th>{{ 'friday'|trans|slice(0,2)|capitalize }}</th>
+                            <th>{{ 'saturday'|trans|slice(0,2)|capitalize }}</th>
+                            <th>{{ 'sunday'|trans|slice(0,2)|capitalize }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            {% for d in 1..daysInMonth %}
+                            {% if loop.first and firstWeekday!=1 %}
+                                <td colspan="{{ firstWeekday-1 }}"></td>
+                            {% endif %}
+                            {% set date=month|date('Y-m-')~'%02d'|format(d) %}
+                            <td class="day{% if date==now|date('Y-m-d') %} now{% endif %}">
+                                <a href="{{ path('app_lesson_day',{day:date}) }}">
+                                    {{ d }}
+                                </a>
+                            </td>
+                            {% if loop.last and date|date('N')!=7 %}
+                                <td colspan="{{ 7-(date|date('N')) }}"></td>
+                            {% endif %}
+                            {% if date|date('N')==7 %}
+                        </tr>
+                        <tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+{% endblock %}

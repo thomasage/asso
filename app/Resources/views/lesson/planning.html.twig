@@ -1,0 +1,72 @@
+{% extends 'lesson/layout.html.twig' %}
+
+{% trans_default_domain 'lesson' %}
+
+{% form_theme formEdit ':lesson:_fields.html.twig' %}
+
+{% block body %}
+
+    <div class="app_lesson_planning">
+
+        <div id="menu-secondary">
+            <h1>{{ 'planning.title'|trans({'%season%':app.user.currentSeason}) }}</h1>
+            <nav>
+                <a href="{{ path('app_lesson_index') }}" class="button">
+                    <span class="fi-arrow-left"></span>
+                    Back
+                </a>
+            </nav>
+        </div>
+
+        {{ form_start(formEdit) }}
+
+        {{ form_row(formEdit.elements) }}
+
+        <div class="action">
+            <a href="#" class="button secondary element-add">
+                <span class="fi-plus"></span>
+                {{ 'action.add'|trans({},'messages') }}
+            </a>
+        </div>
+
+        <div class="actions">
+            <button type="submit" class="button success" name="save">
+                <span class="fi-check"></span>
+                {{ 'action.update'|trans({},'messages') }}
+            </button>
+            <span>{{ 'or'|trans({},'messages') }}</span>
+            <button type="submit" class="button primary" name="save_and_build">
+                <span class="fi-widget"></span>
+                {{ 'planning.action.save_and_build'|trans }}
+            </button>
+            <span>{{ 'or'|trans({},'messages') }}</span>
+            <a href="{{ path('app_lesson_index') }}" class="button">
+                <span class="fi-x"></span>
+                {{ 'action.cancel'|trans({},'messages') }}
+            </a>
+        </div>
+
+        {{ form_end(formEdit) }}
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        var count ={{ formEdit.elements|length }};
+        $(document).ready(function () {
+            $('.element-add').click(function (e) {
+                e.preventDefault();
+                PlanningAdd();
+            });
+            $('.element-del').click(function (e) {
+                e.preventDefault();
+                PlanningDel($(this).parent().parent());
+            });
+        });
+    </script>
+
+{% endblock %}

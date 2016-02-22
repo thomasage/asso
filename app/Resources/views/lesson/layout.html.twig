@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% set menuActive='lesson' %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/lesson.css') }}"/>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/lesson.js') }}"></script>
+
+{% endblock %}

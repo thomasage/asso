@@ -2,10 +2,11 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Member;
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadMemberData implements FixtureInterface
+class LoadMemberData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * @param ObjectManager $manager

@@ -2,10 +2,11 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Season;
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadSeasonData implements FixtureInterface
+class LoadSeasonData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * @param ObjectManager $manager
@@ -17,13 +18,15 @@ class LoadSeasonData implements FixtureInterface
             ->setStart(new \DateTime('2013-09-10'))
             ->setStop(new \DateTime('2014-07-01'));
         $manager->persist($season);
-        $manager->flush();
+
+        $this->setReference('season1', $season);
 
         $season = new Season();
         $season
             ->setStart(new \DateTime('2014-09-09'))
             ->setStop(new \DateTime('2015-06-30'));
         $manager->persist($season);
+
         $manager->flush();
     }
 

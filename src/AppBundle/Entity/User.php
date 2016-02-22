@@ -1,8 +1,10 @@
 <?php
 namespace AppBundle\Entity;
 
+use AppBundle\Validator\Constraints\StrongPassword;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -25,6 +27,9 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="username", type="string", length=255)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min=6,max=255)
      */
     private $username;
 
@@ -32,6 +37,10 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255)
+     * @StrongPassword()
      */
     private $password;
 
@@ -39,6 +48,9 @@ class User implements UserInterface, \Serializable
      * @var string
      *
      * @ORM\Column(name="salt", type="string", length=255)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Length(max=255)
      */
     private $salt;
 
@@ -46,6 +58,9 @@ class User implements UserInterface, \Serializable
      * @var boolean
      *
      * @ORM\Column(name="active", type="boolean")
+     *
+     * @Assert\NotBlank()
+     * @Assert\Type(type="boolean")
      */
     private $active;
 
@@ -55,6 +70,17 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(name="roles", type="array")
      */
     private $roles;
+
+    /**
+     * @var Season
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Season")
+     * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Valid()
+     */
+    private $currentSeason;
 
     public function __construct()
     {
@@ -74,6 +100,7 @@ class User implements UserInterface, \Serializable
 
     public function eraseCredentials()
     {
+        // Nothing to do here
     }
 
     /**
@@ -202,5 +229,29 @@ class User implements UserInterface, \Serializable
     public function unserialize($serialized)
     {
         list($this->id, $this->username, $this->password, $this->salt) = unserialize($serialized);
+    }
+
+    /**
+     * Set currentSeason
+     *
+     * @param \AppBundle\Entity\Season $currentSeason
+     *
+     * @return User
+     */
+    public function setCurrentSeason(\AppBundle\Entity\Season $currentSeason)
+    {
+        $this->currentSeason = $currentSeason;
+
+        return $this;
+    }
+
+    /**
+     * Get currentSeason
+     *
+     * @return \AppBundle\Entity\Season
+     */
+    public function getCurrentSeason()
+    {
+        return $this->currentSeason;
     }
 }

@@ -2,10 +2,11 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Category;
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadCategoryData implements FixtureInterface
+class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * @param ObjectManager $manager

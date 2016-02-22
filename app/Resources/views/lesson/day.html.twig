@@ -1,0 +1,21 @@
+{% extends 'lesson/layout.html.twig' %}
+
+{% trans_default_domain 'lesson' %}
+
+{% block body %}
+
+    <div class="app_lesson_day">
+
+        <div id="menu-secondary">
+            <h1>{{ 'day.title'|trans({'%day%':day|localizeddate('full','none')}) }}</h1>
+            <nav>
+                <a href="{{ path('app_lesson_index') }}" class="button">
+                    <span class="fi-arrow-left"></span>
+                    Back
+                </a>
+            </nav>
+        </div>
+
+    </div>
+
+{% endblock %}
