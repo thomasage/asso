@@ -410,16 +410,30 @@ table.result0 > thead > tr > th > a:hover {
 }
 
 .form-login {
-    width: 25em;
+    width: 30em;
     margin: 5em auto;
     padding: 2em;
-    border: 0.2em silver solid;
-    border-radius: 0.5em;
-    box-shadow: 0 0 3em rgb(240, 240, 240);
 }
 
-.form-login .action {
-    text-align: center;
+.form-login > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0.5em 0;
+}
+
+.form-login > div > input {
+    flex: 1;
+}
+
+.form-login > div > label {
+    width: 8em;
+}
+
+.form-login > div.action {
+    display: block;
+    margin-top: 2em;
+    text-align: right;
 }
 
 div.pagination {
