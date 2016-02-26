@@ -22,7 +22,7 @@
 
         <div class="container">
 
-            <div class="edit0">
+            <div class="edit1">
                 {{ form_row(formEdit.firstname) }}
                 {{ form_row(formEdit.lastname) }}
                 {{ form_row(formEdit.gender) }}
@@ -73,6 +73,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('.photo-delete').click(function (e) {
+                e.preventDefault();
                 if (window.confirm('{{ 'edit.action.confirm_delete_photo'|trans }}')) {
                     window.location.href = '{{ path('app_member_edit',{member:member.id,delete:'photo'}) }}';
                 }

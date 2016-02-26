@@ -88,6 +88,7 @@
             <tr>
                 <th>{{ 'field.season'|trans }}</th>
                 <th>{{ 'field.number'|trans }}</th>
+                <th>{{ 'field.level'|trans }}</th>
                 <th></th>
             </tr>
             </thead>
@@ -96,6 +97,7 @@
                 <tr>
                     <td>{{ membership.season }}</td>
                     <td>{{ membership.number }}</td>
+                    <td>{{ membership.level }}</td>
                     <td class="action">
                         <a href="{{ path('app_member_membership_edit',{membership:membership.id}) }}"
                            class="button secondary">
@@ -106,7 +108,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="3" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
+                    <td colspan="4" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
                 </tr>
             {% endfor %}
             </tbody>

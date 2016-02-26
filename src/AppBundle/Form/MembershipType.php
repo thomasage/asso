@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Form;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -31,6 +32,18 @@ class MembershipType extends AbstractType
                     'required' => true,
                     'label' => 'field.season',
                     'class' => 'AppBundle\Entity\Season',
+                )
+            )
+            ->add(
+                'level',
+                EntityType::class,
+                array(
+                    'required' => false,
+                    'label' => 'field.level',
+                    'class' => 'AppBundle\Entity\Level',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('l')->addOrderBy('l.name', 'ASC');
+                    },
                 )
             );
     }

@@ -98,7 +98,18 @@
     align-items: flex-start;
 }
 
-.app_member_edit .container > .edit0 {
+.app_member_edit .container > .edit1 {
+    flex: 1;
+}
+
+.app_member_edit .container > .edit1 #member_address,
+.app_member_edit .container > .edit1 #member_birthplace,
+.app_member_edit .container > .edit1 #member_city,
+.app_member_edit .container > .edit1 #member_firstname,
+.app_member_edit .container > .edit1 #member_gender,
+.app_member_edit .container > .edit1 #member_lastname,
+.app_member_edit .container > .edit1 #member_photo,
+.app_member_edit .container > .edit1 #member_zip {
     flex: 1;
 }
 

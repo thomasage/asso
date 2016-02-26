@@ -53,6 +53,14 @@ class Membership
     private $number;
 
     /**
+     * @var Level
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Level")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $level;
+
+    /**
      * Get id
      *
      * @return integer
@@ -132,5 +140,29 @@ class Membership
         $this->season = $season;
 
         return $this;
+    }
+
+    /**
+     * Set level
+     *
+     * @param \AppBundle\Entity\Level $level
+     *
+     * @return Membership
+     */
+    public function setLevel(\AppBundle\Entity\Level $level = null)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return \AppBundle\Entity\Level
+     */
+    public function getLevel()
+    {
+        return $this->level;
     }
 }
