@@ -69,16 +69,6 @@ class Lesson
      */
     private $comment;
 
-    /**
-     * @var Planning
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Planning")
-     * @ORM\JoinColumn(nullable=true)
-     *
-     * @Assert\Valid()
-     */
-    private $planning;
-
     public function __construct()
     {
         $this->active = true;
@@ -210,30 +200,6 @@ class Lesson
     public function setComment($comment)
     {
         $this->comment = $comment;
-
-        return $this;
-    }
-
-    /**
-     * Get planning
-     *
-     * @return \AppBundle\Entity\Planning
-     */
-    public function getPlanning()
-    {
-        return $this->planning;
-    }
-
-    /**
-     * Set planning
-     *
-     * @param \AppBundle\Entity\Planning $planning
-     *
-     * @return Lesson
-     */
-    public function setPlanning(\AppBundle\Entity\Planning $planning = null)
-    {
-        $this->planning = $planning;
 
         return $this;
     }

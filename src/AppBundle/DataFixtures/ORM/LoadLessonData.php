@@ -18,7 +18,6 @@ class LoadLessonData extends AbstractFixture implements OrderedFixtureInterface
             ->setActive(true)
             ->setDate(new \DateTime('2015-09-08'))
             ->setDuration(60)
-            ->setPlanning($this->getReference('planning1'))
             ->setStart(new \DateTime('18:15:00'));
         $manager->persist($lesson);
 
@@ -27,7 +26,6 @@ class LoadLessonData extends AbstractFixture implements OrderedFixtureInterface
             ->setActive(true)
             ->setDate(new \DateTime('2015-09-15'))
             ->setDuration(60)
-            ->setPlanning($this->getReference('planning1'))
             ->setStart(new \DateTime('18:15:00'));
         $manager->persist($lesson);
 
@@ -36,7 +34,6 @@ class LoadLessonData extends AbstractFixture implements OrderedFixtureInterface
             ->setActive(true)
             ->setDate(new \DateTime('2015-09-29'))
             ->setDuration(60)
-            ->setPlanning($this->getReference('planning1'))
             ->setStart(new \DateTime('18:15:00'));
         $manager->persist($lesson);
 

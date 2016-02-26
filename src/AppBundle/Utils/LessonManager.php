@@ -29,7 +29,7 @@ class LessonManager
         // Existing lessons
         $lessons = new ArrayCollection();
         foreach ($this->em->getRepository('AppBundle:Lesson')->findBySeason($season) as $l) {
-            $lessons->add($l->getPlanning()->getId().'|'.$l->getDate()->format('Y-m-d'));
+            $lessons->add($l->getDate()->format('Y-m-d').'-'.$l->getStart()->format('H-i'));
         }
 
         // Planning
@@ -43,13 +43,12 @@ class LessonManager
 
             foreach (new \DatePeriod($start, new \DateInterval('P1W'), $stop) as $date) {
 
-                if ($lessons->contains($p->getId().'|'.$date->format('Y-m-d'))) {
+                if ($lessons->contains($date->format('Y-m-d').'-'.$p->getStart()->format('H-i'))) {
                     continue;
                 }
 
                 $l = new Lesson();
-                $l->setPlanning($p)
-                    ->setDate($date)
+                $l->setDate($date)
                     ->setDuration($p->getDuration())
                     ->setStart($p->getStart());
                 $this->em->persist($l);

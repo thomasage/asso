@@ -109,6 +109,10 @@
         <source>planning.action.save_and_build</source>
         <target>Update and build</target>
       </trans-unit>
+      <trans-unit id="36cff2afd7aa3ca9671304cd916d4a64" resname="planning.success.built">
+        <source>planning.success.built</source>
+        <target>Planning built.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
