@@ -25,6 +25,13 @@
                         <span class="fi-check"></span>
                         {{ 'action.update_and_close'|trans({},'messages') }}
                     </button>
+                    {% if deletable %}
+                        <span>{{ 'or'|trans({},'messages') }}</span>
+                        <a href="{{ path('app_param_level_delete',{level:level.id}) }}" class="button warning">
+                            <span class="fi-trash"></span>
+                            {{ 'action.delete'|trans({},'messages') }}
+                        </a>
+                    {% endif %}
                     <span>{{ 'or'|trans({},'messages') }}</span>
                     <a href="{{ path('app_param_level') }}" class="button">
                         <span class="fi-x"></span>

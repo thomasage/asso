@@ -145,7 +145,7 @@
         <source>field.season</source>
         <target>Season</target>
       </trans-unit>
-      <trans-unit id="ab2b449aeea772a109b786c22a48dbf9" resname="field.level">
+      <trans-unit id="829c7663d7b62ff34bf4d8b31ceb47a2" resname="field.level">
         <source>field.level</source>
         <target>Level</target>
       </trans-unit>

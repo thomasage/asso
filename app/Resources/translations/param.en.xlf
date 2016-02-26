@@ -109,6 +109,14 @@
         <source>level_add.success.added</source>
         <target>Level added.</target>
       </trans-unit>
+      <trans-unit id="8fa8900bf86b0422eb7c1345e85db56b" resname="delete_level.confirmation">
+        <source>delete_level.confirmation</source>
+        <target>Delete level "%level%"?</target>
+      </trans-unit>
+      <trans-unit id="8fa8900bf86b0422eb7c1345e85db56c" resname="level_delete.success.deleted">
+        <source>level_delete.success.deleted</source>
+        <target>Level deleted.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -33,6 +33,10 @@
                         </a>
                     </td>
                 </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
+                </tr>
             {% endfor %}
             </tbody>
         </table>

@@ -27,4 +27,26 @@ class LevelManager
         $this->em->persist($level);
         $this->em->flush();
     }
+
+    /**
+     * @param Level $level
+     */
+    public function deleteLevel(Level $level)
+    {
+        $this->em->remove($level);
+        $this->em->flush();
+    }
+
+    /**
+     * @param Level $level
+     * @return bool
+     */
+    public function isLevelDeletable(Level $level)
+    {
+        if (count($this->em->getRepository('AppBundle:Membership')->findOneByLevel($level)) > 0) {
+            return false;
+        }
+
+        return true;
+    }
 }
