@@ -1,0 +1,42 @@
+{% extends ':param:layout.html.twig' %}
+
+{% trans_default_domain 'param' %}
+
+{% block body %}
+
+    {% include('param/_menu.html.twig') with {active:'level'} only %}
+
+    {{ include('default/_flash_messages.html.twig') }}
+
+    <div class="app_param_level_edit">
+
+        {{ form_start(formEdit) }}
+
+        <div class="container">
+
+            <div class="edit1">
+                {{ form_row(formEdit.name) }}
+                <div class="action">
+                    <button type="submit" class="button success" name="update">
+                        <span class="fi-check"></span>
+                        {{ 'action.update'|trans({},'messages') }}
+                    </button>
+                    <button type="submit" class="button success" name="update_close">
+                        <span class="fi-check"></span>
+                        {{ 'action.update_and_close'|trans({},'messages') }}
+                    </button>
+                    <span>{{ 'or'|trans({},'messages') }}</span>
+                    <a href="{{ path('app_param_level') }}" class="button">
+                        <span class="fi-x"></span>
+                        {{ 'action.cancel'|trans({},'messages') }}
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        {{ form_end(formEdit) }}
+
+    </div>
+
+{% endblock %}

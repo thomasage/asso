@@ -97,6 +97,18 @@
         <source>season_add.success.added</source>
         <target>Season added.</target>
       </trans-unit>
+      <trans-unit id="6777da9acfb306a0ff2b7f511c5e41c4" resname="level.title">
+        <source>level.title</source>
+        <target>Levels</target>
+      </trans-unit>
+      <trans-unit id="b8938314cb224fb251055814d4b6f3c0" resname="level_edit.success.updated">
+        <source>level_edit.success.updated</source>
+        <target>Level updated.</target>
+      </trans-unit>
+      <trans-unit id="aed8af9b1419aadaef170f86b3f273a3" resname="level_add.success.added">
+        <source>level_add.success.added</source>
+        <target>Level added.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -7,6 +7,10 @@
         <span class="fi-sheriff-badge"></span>
         {{ 'rank.title'|trans({},'param') }}
     </a>
+    <a href="{{ path('app_param_level') }}"{% if active=='level' %} class="active"{% endif %}>
+        <span class="fi-graph-bar"></span>
+        {{ 'level.title'|trans({},'param') }}
+    </a>
     <a href="{{ path('app_param_password') }}"{% if active=='password' %} class="active"{% endif %}>
         <span class="fi-lock"></span>
         {{ 'password.title'|trans({},'param') }}

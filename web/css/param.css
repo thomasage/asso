@@ -41,3 +41,13 @@
 .app_param_password #param_password_second {
     flex: 1;
 }
+
+/* Levels */
+
+.app_param_level_add #level_name {
+    flex: 1;
+}
+
+.app_param_level_edit #level_name {
+    flex: 1;
+}
