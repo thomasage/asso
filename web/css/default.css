@@ -636,11 +636,11 @@ table.result2 + div.actions {
     margin-bottom: 0.5em;
 }
 
-.edit1 {
+div.edit1 {
     margin-top: 1.5em;
 }
 
-.edit1 > div {
+div.edit1 > div {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -648,31 +648,31 @@ table.result2 + div.actions {
     margin-top: 0.5em;
 }
 
-.edit1 > div > input[type=text].full,
-.edit1 > div > select.full {
+div.edit1 > div > input[type=text].full,
+div.edit1 > div > select.full {
     flex: 1;
 }
 
-.edit1 > div > label {
+div.edit1 > div > label {
     width: 10em;
 }
 
-.edit1 > div > label.required:after {
+div.edit1 > div > label.required:after {
     content: ' *';
     color: red;
 }
 
-.edit1 > div.action {
+div.edit1 > div.action {
     display: block;
     margin-left: 10em;
     margin-top: 1em;
 }
 
-.edit1 > div.action > span {
+div.edit1 > div.action > span {
     margin: 0 1em;
 }
 
-.edit1 ul.errors {
+div.edit1 ul.errors {
     flex: 1;
     margin: 0 0 0 1em;
     padding: 0;
@@ -680,13 +680,13 @@ table.result2 + div.actions {
     list-style: none;
 }
 
-.edit1 ul.errors > li {
+div.edit1 ul.errors > li {
     margin: 0.2em 0;
     padding: 0.5em;
     background-color: rgb(255, 245, 245);
 }
 
-.edit1 > div.notification {
+div.edit1 > div.notification {
     display: block;
     padding: 1em;
     background-color: rgb(252, 252, 252);

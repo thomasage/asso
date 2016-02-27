@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -69,9 +70,32 @@ class Lesson
      */
     private $comment;
 
+    /**
+     * @var Level[]
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Level")
+     * @ORM\JoinColumn(nullable=false)
+     *
+     * @Assert\NotBlank()
+     * @Assert\Valid()
+     */
+    private $levels;
+
+    /**
+     * @var Member[]
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Member")
+     * @ORM\JoinColumn(nullable=true)
+     *
+     * @Assert\Valid()
+     */
+    private $members;
+
     public function __construct()
     {
         $this->active = true;
+        $this->levels = new ArrayCollection();
+        $this->members = new ArrayCollection();
     }
 
     /**
@@ -202,5 +226,73 @@ class Lesson
         $this->comment = $comment;
 
         return $this;
+    }
+
+    /**
+     * Add level
+     *
+     * @param Level $level
+     *
+     * @return Lesson
+     */
+    public function addLevel(Level $level)
+    {
+        $this->levels[] = $level;
+
+        return $this;
+    }
+
+    /**
+     * Remove level
+     *
+     * @param Level $level
+     */
+    public function removeLevel(Level $level)
+    {
+        $this->levels->removeElement($level);
+    }
+
+    /**
+     * Get levels
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLevels()
+    {
+        return $this->levels;
+    }
+
+    /**
+     * Add member
+     *
+     * @param Member $member
+     *
+     * @return Lesson
+     */
+    public function addMember(Member $member)
+    {
+        $this->members[] = $member;
+
+        return $this;
+    }
+
+    /**
+     * Remove member
+     *
+     * @param Member $member
+     */
+    public function removeMember(Member $member)
+    {
+        $this->members->removeElement($member);
+    }
+
+    /**
+     * Get members
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMembers()
+    {
+        return $this->members;
     }
 }

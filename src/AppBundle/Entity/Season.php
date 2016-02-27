@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Season
  *
  * @ORM\Table(name="season")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SeasonRepository")
  */
 class Season
 {

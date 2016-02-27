@@ -20,3 +20,25 @@ function PlanningDel(element) {
     });
 
 }
+
+function LessonAttendance(lesson, member, active) {
+
+    $.ajax(
+        {
+            url: Routing.generate('app_lesson_set_attendance', {
+                lesson: lesson,
+                member: member,
+                active: active ? 0 : 1
+            }),
+            method: 'POST',
+            success: function (data) {
+                if (data.status == 1) {
+                    $('[data-lesson=' + lesson + '] [data-member=' + member + ']').addClass('active');
+                } else {
+                    $('[data-lesson=' + lesson + '] [data-member=' + member + ']').removeClass('active');
+                }
+            }
+        }
+    );
+
+}

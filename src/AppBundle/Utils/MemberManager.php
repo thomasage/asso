@@ -4,6 +4,7 @@ namespace AppBundle\Utils;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Membership;
 use AppBundle\Entity\Promotion;
+use AppBundle\Entity\Season;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -142,5 +143,27 @@ class MemberManager
     {
         $this->em->remove($membership);
         $this->em->flush();
+    }
+
+    /**
+     * @param \DateTime $date
+     * @return Member[]
+     */
+    public function findByDateGroupByLevel(\DateTime $date)
+    {
+        $season = $this->em->getRepository('AppBundle:Season')->findByDate($date);
+
+        if (!$season instanceof Season) {
+            return array();
+        }
+
+        $members = array();
+        foreach ($this->em->getRepository('AppBundle:Level')->findAll() as $level) {
+            $members[$level->getId()] = $this->em
+                ->getRepository('AppBundle:Member')
+                ->findByLevelAndSeason($level, $season);
+        }
+
+        return $members;
     }
 }

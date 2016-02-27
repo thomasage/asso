@@ -1,11 +1,15 @@
 <?php
 namespace AppBundle\Controller\Lesson;
 
-use AppBundle\Entity\Planning;
+use AppBundle\Entity\Lesson;
+use AppBundle\Entity\Member;
+use AppBundle\Form\LessonDeleteType;
+use AppBundle\Form\LessonType;
 use AppBundle\Form\PlanningCollectionType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -14,6 +18,52 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @param \DateTime $day
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     *
+     * @Route("/lesson/add/{day}",
+     *        name="app_lesson_add",
+     *        methods={"GET","POST"},
+     *        requirements={"day"="[0-9]{4}-[0-9]{2}-[0-9]{2}"})
+     */
+    public function addAction(Request $request, \DateTime $day)
+    {
+        // Lesson manager
+        $lm = $this->get('app.lesson_manager');
+
+        // Edit form
+        $lesson = new Lesson();
+        $lesson->setDate($day);
+        $formEdit = $this->createForm(LessonType::class, $lesson);
+        $formEdit->handleRequest($request);
+
+        if ($formEdit->isSubmitted() && $formEdit->isValid()) {
+
+            // Save data
+            $lm->updateLesson($lesson);
+
+            // Flash message
+            $this->addFlash(
+                'success',
+                $this->get('translator')->trans('lesson_add.success.added', array(), 'lesson')
+            );
+
+            // Redirect
+            return $this->redirectToRoute('app_lesson_day', array('day' => $lesson->getDate()->format('Y-m-d')));
+
+        }
+
+        // Render
+        return $this->render(
+            'lesson/add.html.twig',
+            array(
+                'day' => $day,
+                'formEdit' => $formEdit->createView(),
+            )
+        );
+    }
+
+    /**
+     * @param \DateTime $day
      * @return Response
      *
      * @Route("/lesson/day/{day}",
@@ -21,13 +71,110 @@ class DefaultController extends Controller
      *        methods={"GET","POST"},
      *        requirements={"day"="[0-9]{4}-[0-9]{2}-[0-9]{2}"})
      */
-    public function dayAction(Request $request, \DateTime $day)
+    public function dayAction(\DateTime $day)
     {
+        // Lessons of the day
+        $lm = $this->get('app.lesson_manager');
+        $lessons = $lm->findByDate($day);
+
+        // Members by level
+        $mm = $this->get('app.member_manager');
+        $members = $mm->findByDateGroupByLevel($day);
+
         // Render
         return $this->render(
             'lesson/day.html.twig',
             array(
                 'day' => $day,
+                'lessons' => $lessons,
+                'members' => $members,
+            )
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @param Lesson $lesson
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     *
+     * @Route("/lesson/delete/{lesson}",
+     *        name="app_lesson_delete",
+     *        methods={"GET","POST"},
+     *        requirements={"lesson"="\d+"})
+     */
+    public function deleteAction(Request $request, Lesson $lesson)
+    {
+        // Delete form
+        $formDelete = $this->createForm(LessonDeleteType::class, $lesson);
+        $formDelete->handleRequest($request);
+
+        if ($formDelete->isSubmitted() && $formDelete->isValid()) {
+
+            // Save data
+            $day = $lesson->getDate();
+            $lm = $this->get('app.lesson_manager');
+            $lm->deleteLesson($lesson);
+
+            // Flash message
+            $this->addFlash(
+                'success',
+                $this->get('translator')->trans('delete.success.deleted', array(), 'lesson')
+            );
+
+            // Redirect
+            return $this->redirectToRoute('app_lesson_day', array('day' => $day->format('Y-m-d')));
+
+        }
+
+        // Render
+        return $this->render(
+            'lesson/delete.html.twig',
+            array(
+                'formDelete' => $formDelete->createView(),
+                'lesson' => $lesson,
+            )
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @param Lesson $lesson
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     *
+     * @Route("/lesson/edit/{lesson}",
+     *        name="app_lesson_edit",
+     *        methods={"GET","POST"},
+     *        requirements={"lesson"="\d+"})
+     */
+    public function editAction(Request $request, Lesson $lesson)
+    {
+        // Edit form
+        $formEdit = $this->createForm(LessonType::class, $lesson);
+        $formEdit->handleRequest($request);
+
+        if ($formEdit->isSubmitted() && $formEdit->isValid()) {
+
+            // Save data
+            $lm = $this->get('app.lesson_manager');
+            $lm->updateLesson($lesson);
+
+            // Flash message
+            $this->addFlash(
+                'success',
+                $this->get('translator')->trans('edit.success.updated', array(), 'lesson')
+            );
+
+            // Redirect
+            return $this->redirectToRoute('app_lesson_day', array('day' => $lesson->getDate()->format('Y-m-d')));
+
+        }
+
+        // Render
+        return $this->render(
+            'lesson/edit.html.twig',
+            array(
+                'formEdit' => $formEdit->createView(),
+                'lesson' => $lesson,
             )
         );
     }
@@ -150,5 +297,34 @@ class DefaultController extends Controller
                 'formEdit' => $formEdit->createView(),
             )
         );
+    }
+
+    /**
+     * @param Lesson $lesson
+     * @param Member $member
+     * @param bool $active
+     * @return JsonResponse
+     *
+     * @Route("/lesson/attendance/{lesson}/{member}/{active}",
+     *        name="app_lesson_set_attendance",
+     *        methods={"POST"},
+     *        requirements={"lesson"="\d+","member"="\d+","active"="0|1"},
+     *        options={"expose"="true"})
+     */
+    public function setAttendanceAction(Lesson $lesson, Member $member, $active)
+    {
+        file_put_contents(__DIR__.'/../../../../thomas.log', date('Y-m-d H:i:s')."\t".$active."\n", FILE_APPEND);
+
+        if ($active) {
+            if (!$lesson->getMembers()->contains($member)) {
+                $lesson->addMember($member);
+            }
+        } else {
+            $lesson->removeMember($member);
+        }
+        $lm = $this->get('app.lesson_manager');
+        $lm->updateLesson($lesson);
+
+        return new JsonResponse(array('status' => $lesson->getMembers()->contains($member) ? 1 : 0));
     }
 }

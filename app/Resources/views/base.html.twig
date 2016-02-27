@@ -50,6 +50,8 @@
 </div>
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset('libs/jquery-2.1.4.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script type="text/javascript" src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
 {% endblock %}
 </body>
 </html>

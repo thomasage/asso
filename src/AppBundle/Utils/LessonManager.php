@@ -22,6 +22,15 @@ class LessonManager
     }
 
     /**
+     * @param \DateTime $date
+     * @return Lesson[]
+     */
+    public function findByDate(\DateTime $date)
+    {
+        return $this->em->getRepository('AppBundle:Lesson')->findByDate($date);
+    }
+
+    /**
      * @param Season $season
      */
     public function buildFromPlanning(Season $season)
@@ -127,5 +136,23 @@ class LessonManager
 
         return true;
          */
+    }
+
+    /**
+     * @param Lesson $lesson
+     */
+    public function updateLesson(Lesson $lesson)
+    {
+        $this->em->persist($lesson);
+        $this->em->flush();
+    }
+
+    /**
+     * @param Lesson $lesson
+     */
+    public function deleteLesson(Lesson $lesson)
+    {
+        $this->em->remove($lesson);
+        $this->em->flush();
     }
 }

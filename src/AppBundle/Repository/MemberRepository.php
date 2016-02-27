@@ -1,8 +1,10 @@
 <?php
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Level;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Search;
+use AppBundle\Entity\Season;
 use AppBundle\Utils\SearchResult;
 use Doctrine\ORM\EntityRepository;
 
@@ -107,5 +109,22 @@ class MemberRepository extends EntityRepository
         );
 
         return $members;
+    }
+
+    /**
+     * @param Level $level
+     * @param Season $season
+     * @return Member[]
+     */
+    public function findByLevelAndSeason(Level $level, Season $season)
+    {
+        return $this->createQueryBuilder('m')
+            ->innerJoin('m.memberships', 'ms')
+            ->andWhere('ms.level = :level')
+            ->andWhere('ms.season = :season')
+            ->setParameter('level', $level)
+            ->setParameter('season', $season)
+            ->getQuery()
+            ->getResult();
     }
 }

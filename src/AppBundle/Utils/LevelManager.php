@@ -43,7 +43,11 @@ class LevelManager
      */
     public function isLevelDeletable(Level $level)
     {
-        if (count($this->em->getRepository('AppBundle:Membership')->findOneByLevel($level)) > 0) {
+        if (is_object($this->em->getRepository('AppBundle:Membership')->findOneBy(array('level' => $level)))) {
+            return false;
+        }
+
+        if (is_object($this->em->getRepository('AppBundle:Lesson')->findOneByLevel($level))) {
             return false;
         }
 

@@ -11,11 +11,75 @@
             <nav>
                 <a href="{{ path('app_lesson_index') }}" class="button">
                     <span class="fi-arrow-left"></span>
-                    Back
+                    {{ 'action.back'|trans({},'messages') }}
+                </a>
+                <a href="{{ path('app_lesson_add',{day:day|date('Y-m-d')}) }}" class="button secondary">
+                    <span class="fi-plus"></span>
+                    {{ 'action.add'|trans({},'messages') }}
                 </a>
             </nav>
         </div>
 
+        {{ include('default/_flash_messages.html.twig') }}
+
+        <div class="lessons">
+
+            {% for lesson in lessons %}
+
+                <div data-lesson="{{ lesson.id }}">
+                    <div class="title">
+                        <span>{{ lesson.start|localizeddate('none','short') }}</span>
+                        <span>{{ lesson.duration }} {{ 'minutes'|trans }}</span>
+                    </div>
+                    {% for level in lesson.levels %}
+                        {% if members[level.id]|length>0 %}
+                            <div class="level">
+                                <div class="title">{{ level }}</div>
+                                <div class="members">
+                                    {% for member in members[level.id] %}
+                                        <a href="#"
+                                           class="{% if member in lesson.members %}active{% endif %}"
+                                           data-member="{{ member.id }}">
+                                            {{ member }}
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {#<div class="information">#}
+                    {#<textarea placeholder="{{ 'field.comment.placeholder'|trans }}"></textarea>#}
+                    {#</div>#}
+                    <div class="action">
+                        <a href="{{ path('app_lesson_edit',{lesson:lesson.id}) }}" class="button primary">
+                            <span class="fi-pencil"></span>
+                            {{ 'action.edit'|trans({},'messages') }}
+                        </a>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('a[data-member]').click(function (e) {
+                e.preventDefault();
+                LessonAttendance(
+                        $(this).parents('[data-lesson]').data('lesson'),
+                        $(this).data('member'),
+                        $(this).hasClass('active')
+                );
+            });
+        });
+    </script>
 
 {% endblock %}
