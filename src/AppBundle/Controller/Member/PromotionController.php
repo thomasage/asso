@@ -148,31 +148,4 @@ class PromotionController extends Controller
             )
         );
     }
-
-    /**
-     * @param Member $member
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @Route("/member/show/{member}",
-     *        name="app_member_show",
-     *        requirements={"member"="\d+"})
-     */
-    public function showAction(Member $member)
-    {
-        $mm = $this->get('app.member_manager');
-
-        $promotions = $mm->getPromotions($member);
-
-        $memberships = $mm->getMemberships($member);
-
-        // Render
-        return $this->render(
-            'member/show.html.twig',
-            array(
-                'member' => $member,
-                'memberships' => $memberships,
-                'promotions' => $promotions,
-            )
-        );
-    }
 }
