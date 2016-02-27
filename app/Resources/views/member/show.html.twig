@@ -39,6 +39,21 @@
             </div>
         </div>
 
+        <h2>{{ 'show.title.attendance'|trans }}</h2>
+
+        <div class="attendance">
+            {% for k,lesson in lessons %}
+                {% if loop.first or lessons[k-1].date|date('n')!=lesson.date|date('n') %}
+                    <div>
+                    <div class="month">{{ lesson.date|date('M y') }}</div>
+                {% endif %}
+                <div class="day{% if member in lesson.members %} active{% endif %}">{{ lesson.date|date('D j') }}</div>
+                {% if loop.last or lessons[k+1].date|date('n')!=lesson.date|date('n') %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
         <h2>{{ 'show.title.promotions'|trans }}</h2>
 
         <table class="result2 promotions">

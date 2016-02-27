@@ -2,6 +2,7 @@
 namespace AppBundle\Controller\Member;
 
 use AppBundle\Entity\Member;
+use AppBundle\Entity\Membership;
 use AppBundle\Form\MemberSearchType;
 use AppBundle\Form\MemberType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -196,16 +197,39 @@ class DefaultController extends Controller
      */
     public function showAction(Member $member)
     {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Member manager
         $mm = $this->get('app.member_manager');
 
         $promotions = $mm->getPromotions($member);
 
         $memberships = $mm->getMemberships($member);
 
+        // Season to display
+        $season = $this->getUser()->getCurrentSeason();
+
+        // Membership for the season
+        $currentMembership = $em->getRepository('AppBundle:Membership')->findOneBy(
+            array('member' => $member, 'season' => $season)
+        );
+
+        // Lessons for the season and level
+        if ($currentMembership instanceof Membership) {
+            $lessons = $em->getRepository('AppBundle:Lesson')->findByLevelAndSeason(
+                $currentMembership->getLevel(),
+                $season
+            );
+        } else {
+            $lessons = array();
+        }
+
         // Render
         return $this->render(
             'member/show.html.twig',
             array(
+                'lessons' => $lessons,
                 'member' => $member,
                 'memberships' => $memberships,
                 'promotions' => $promotions,

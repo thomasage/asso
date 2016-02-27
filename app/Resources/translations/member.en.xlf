@@ -181,6 +181,10 @@
         <source>edit_membership.title</source>
         <target>Edit a membership</target>
       </trans-unit>
+      <trans-unit id="afd10337f630aa20048b7887aa60ec84" resname="show.title.attendance">
+        <source>show.title.attendance</source>
+        <target>Attendance</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

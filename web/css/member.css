@@ -90,6 +90,40 @@
     max-height: 2em;
 }
 
+.app_member_show .attendance {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1.5em;
+    font-size: 0.9em;
+}
+
+.app_member_show .attendance > div {
+    width: 8.8%;
+    text-align: center;
+}
+
+.app_member_show .attendance > div > div {
+    margin-bottom: 0.1em;
+    padding: 0.5em;
+}
+
+.app_member_show .attendance > div > div.day {
+    color: rgb(180, 180, 180);
+}
+
+.app_member_show .attendance > div > div.day.active {
+    color: inherit;
+    background-color: rgb(50, 255, 50);
+}
+
+.app_member_show .attendance > div > div.month {
+    margin-bottom: 0.3em;
+    text-transform: uppercase;
+    background-color: white;
+    border-bottom: 2px silver solid;
+}
+
 /* Edit member */
 
 .app_member_edit .container {

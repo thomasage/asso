@@ -155,4 +155,13 @@ class LessonManager
         $this->em->remove($lesson);
         $this->em->flush();
     }
+
+    /**
+     * @param Season $season
+     * @return \AppBundle\Entity\Lesson[]
+     */
+    public function findBySeason(Season $season)
+    {
+        return $this->em->getRepository('AppBundle:Lesson')->findBySeason($season);
+    }
 }

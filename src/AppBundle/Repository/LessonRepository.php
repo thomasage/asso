@@ -54,10 +54,34 @@ class LessonRepository extends EntityRepository
     public function findOneByLevel(Level $level)
     {
         return $this->createQueryBuilder('lesson')
-            ->innerJoin('lesson.levels','level')
+            ->innerJoin('lesson.levels', 'level')
             ->andWhere('level = :level')
             ->setParameter('level', $level)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    /**
+     * @param Level $level
+     * @param Season $season
+     * @return Lesson[]
+     */
+    public function findByLevelAndSeason(Level $level, Season $season)
+    {
+        return $this
+            ->createQueryBuilder('lesson')
+            ->innerJoin('lesson.levels', 'level')
+            ->leftJoin('lesson.members', 'members')
+            ->addSelect('members')
+            ->andWhere('lesson.date >= :start')
+            ->andWhere('lesson.date <= :stop')
+            ->andWhere('level = :level')
+            ->setParameter('start', $season->getStart()->format('Y-m-d'))
+            ->setParameter('stop', $season->getStop()->format('Y-m-d'))
+            ->setParameter('level', $level)
+            ->addOrderBy('lesson.date', 'ASC')
+            ->addOrderBy('lesson.start', 'ASC')
+            ->getQuery()
+            ->getResult();
     }
 }
