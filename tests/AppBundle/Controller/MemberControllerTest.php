@@ -100,7 +100,7 @@ class MemberControllerTest extends WebTestCase
         $crawler = $this->client->click($crawler->selectLink('Show')->first()->link());
         $this->assertEquals(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
         $this->assertEquals(1, $crawler->filter('div.app_member_show')->count());
-        $this->assertEquals(1, $crawler->selectLink('Edit')->count());
+        $this->assertGreaterThanOrEqual(1, $crawler->selectLink('Edit')->count());
 
         $crawler = $this->client->click($crawler->selectLink('Edit')->first()->link());
         $this->assertEquals(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
