@@ -313,8 +313,6 @@ class DefaultController extends Controller
      */
     public function setAttendanceAction(Lesson $lesson, Member $member, $active)
     {
-        file_put_contents(__DIR__.'/../../../../thomas.log', date('Y-m-d H:i:s')."\t".$active."\n", FILE_APPEND);
-
         if ($active) {
             if (!$lesson->getMembers()->contains($member)) {
                 $lesson->addMember($member);
