@@ -117,6 +117,22 @@
         <source>level_delete.success.deleted</source>
         <target>Level deleted.</target>
       </trans-unit>
+      <trans-unit id="5590f53ce23f8e351149db5689467dc2" resname="field.lessons">
+        <source>field.lessons</source>
+        <target>Lessons</target>
+      </trans-unit>
+      <trans-unit id="5f72bf79717a32b5c5c94b68ee77c3ad" resname="field.age_min">
+        <source>field.age_min</source>
+        <target>Age min</target>
+      </trans-unit>
+      <trans-unit id="4597e0aff747ed6019ee40f90c074718" resname="field.age_max">
+        <source>field.age_max</source>
+        <target>Age max</target>
+      </trans-unit>
+      <trans-unit id="d4f7fea053c7ebcb82bd149fbcf40c82" resname="field.age">
+        <source>field.age</source>
+        <target>Age</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

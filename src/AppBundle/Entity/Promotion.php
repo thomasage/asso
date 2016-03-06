@@ -111,23 +111,9 @@ class Promotion
     }
 
     /**
-     * Set member
-     *
-     * @param \AppBundle\Entity\Member $member
-     *
-     * @return Promotion
-     */
-    public function setMember(\AppBundle\Entity\Member $member)
-    {
-        $this->member = $member;
-
-        return $this;
-    }
-
-    /**
      * Get member
      *
-     * @return \AppBundle\Entity\Member
+     * @return Member
      */
     public function getMember()
     {
@@ -135,15 +121,15 @@ class Promotion
     }
 
     /**
-     * Set rank
+     * Set member
      *
-     * @param \AppBundle\Entity\Rank $rank
+     * @param Member $member
      *
      * @return Promotion
      */
-    public function setRank(\AppBundle\Entity\Rank $rank)
+    public function setMember(Member $member)
     {
-        $this->rank = $rank;
+        $this->member = $member;
 
         return $this;
     }
@@ -151,10 +137,24 @@ class Promotion
     /**
      * Get rank
      *
-     * @return \AppBundle\Entity\Rank
+     * @return Rank
      */
     public function getRank()
     {
         return $this->rank;
+    }
+
+    /**
+     * Set rank
+     *
+     * @param Rank $rank
+     *
+     * @return Promotion
+     */
+    public function setRank(Rank $rank)
+    {
+        $this->rank = $rank;
+
+        return $this;
     }
 }

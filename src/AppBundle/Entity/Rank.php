@@ -56,6 +56,27 @@ class Rank
      */
     private $imageExtension;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="lessons", type="integer", nullable=true)
+     */
+    private $lessons;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="age_min", type="integer", nullable=true)
+     */
+    private $ageMin;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="age_max", type="integer", nullable=true)
+     */
+    private $ageMax;
+
     public function __construct()
     {
         $this->position = 0;
@@ -185,5 +206,77 @@ class Rank
         }
 
         return $this->name;
+    }
+
+    /**
+     * Get lessons
+     *
+     * @return integer
+     */
+    public function getLessons()
+    {
+        return $this->lessons;
+    }
+
+    /**
+     * Set lessons
+     *
+     * @param integer $lessons
+     *
+     * @return Rank
+     */
+    public function setLessons($lessons)
+    {
+        $this->lessons = $lessons;
+
+        return $this;
+    }
+
+    /**
+     * Set ageMin
+     *
+     * @param integer $ageMin
+     *
+     * @return Rank
+     */
+    public function setAgeMin($ageMin)
+    {
+        $this->ageMin = $ageMin;
+
+        return $this;
+    }
+
+    /**
+     * Get ageMin
+     *
+     * @return integer
+     */
+    public function getAgeMin()
+    {
+        return $this->ageMin;
+    }
+
+    /**
+     * Set ageMax
+     *
+     * @param integer $ageMax
+     *
+     * @return Rank
+     */
+    public function setAgeMax($ageMax)
+    {
+        $this->ageMax = $ageMax;
+
+        return $this;
+    }
+
+    /**
+     * Get ageMax
+     *
+     * @return integer
+     */
+    public function getAgeMax()
+    {
+        return $this->ageMax;
     }
 }

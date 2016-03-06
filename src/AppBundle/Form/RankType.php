@@ -50,6 +50,30 @@ class RankType extends AbstractType
                     'mapped' => false,
                     'attr' => array('accept' => 'image/jpeg'),
                 )
+            )
+            ->add(
+                'lessons',
+                IntegerType::class,
+                array(
+                    'label' => 'field.lessons',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'ageMin',
+                IntegerType::class,
+                array(
+                    'label' => 'field.age_min',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'ageMax',
+                IntegerType::class,
+                array(
+                    'label' => 'field.age_max',
+                    'required' => false,
+                )
             );
     }
 

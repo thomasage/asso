@@ -31,7 +31,7 @@
                 <span class="fi-euro"></span>
                 {{ 'menu.accounting'|trans }}
             </a>
-            <a href="#"{% if menuActive=='stat' %} class="active"{% endif %}>
+            <a href="{{ path('app_stat_index') }}"{% if menuActive=='stat' %} class="active"{% endif %}>
                 <span class="fi-graph-trend"></span>
                 {{ 'menu.stat'|trans }}
             </a>

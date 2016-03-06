@@ -1,0 +1,82 @@
+{% extends 'stat/layout.html.twig' %}
+
+{% trans_default_domain 'stat' %}
+
+{% block body %}
+
+    <div class="app_stat_rank_progress">
+
+        <div id="menu-secondary">
+            <h1>{{ 'rank_progress.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_stat_index') }}" class="button">
+                    <span class="fi-arrow-left"></span>
+                    {{ 'action.back'|trans({},'messages') }}
+                </a>
+            </nav>
+        </div>
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        {{ form_start(formSearch) }}
+        <div class="search0">
+            {{ form_row(formSearch.season) }}
+            <div>
+                <button type="submit" class="button primary">
+                    <span class="fi-filter"></span>
+                    {{ 'action.search'|trans({},'messages') }}
+                </button>
+            </div>
+        </div>
+        {{ form_end(formSearch) }}
+
+        <table class="result2">
+            <thead>
+            <tr>
+                <th>{{ 'field.member'|trans }}</th>
+                <th>{{ 'field.age'|trans }}</th>
+                <th>{{ 'field.level'|trans }}</th>
+                <th>{{ 'field.rank'|trans }}</th>
+                <th>{{ 'field.next_rank'|trans }}</th>
+                <th>{{ 'field.progress'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for result in results %}
+                <tr>
+                    <td>{{ result.member_name }}</td>
+                    <td>{{ result.member_age }}</td>
+                    <td>{{ result.level_name }}</td>
+                    <td>
+                        <img src="{{ path('app_param_rank_image',{rank:result.rank_id}) }}"
+                             alt="{{ result.rank_description }}"/>
+                        <small>{{ result.rank_name }}</small>
+                    </td>
+                    <td>
+                        <img src="{{ path('app_param_rank_image',{rank:result.next_rank_id}) }}"
+                             alt="{{ result.next_rank_description }}"/>
+                        <small>{{ result.next_rank_name }}</small>
+                    </td>
+                    <td>
+                        {% if result.lessons_min>0 %}
+                            <meter min="0"
+                                   max="1"
+                                   value="{{ result.lessons_count/result.lessons_min }}"
+                                   title="{{ result.lessons_count }} / {{ result.lessons_min }} {{ 'lessons'|trans }}"></meter>
+                            <small>{{ result.lessons_count/result.lessons_min*100|number_format(2,'.','') }}%</small>
+                        {% else %}
+                            {{ result.lessons_count }} {{ 'lessons' }}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}

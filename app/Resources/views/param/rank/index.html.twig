@@ -16,6 +16,8 @@
                 <th></th>
                 <th>{{ 'field.name'|trans }}</th>
                 <th>{{ 'field.description'|trans }}</th>
+                <th>{{ 'field.lessons'|trans }}</th>
+                <th>{{ 'field.age'|trans }}</th>
                 <th>{{ 'field.position'|trans }}</th>
                 <th class="action">
                     <a href="{{ path('app_param_rank_add') }}" class="button primary">
@@ -35,6 +37,20 @@
                     </td>
                     <td>{{ rank.name }}</td>
                     <td>{{ rank.description }}</td>
+                    <td>{{ rank.lessons }}</td>
+                    <td>
+                        {% if rank.ageMin %}
+                            {% if rank.ageMax %}
+                                [ {{ rank.ageMin }} - {{ rank.ageMax }} ]
+                            {% else %}
+                                &ge; {{ rank.ageMin }}
+                            {% endif %}
+                        {% else %}
+                            {% if rank.ageMax %}
+                                &le; {{ rank.ageMax }}
+                            {% endif %}
+                        {% endif %}
+                    </td>
                     <td>{{ rank.position }}</td>
                     <td class="action">
                         <a href="{{ path('app_param_rank_edit',{rank:rank.id}) }}" class="button primary">
@@ -42,6 +58,10 @@
                             {{ 'action.edit'|trans({},'messages') }}
                         </a>
                     </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
                 </tr>
             {% endfor %}
             </tbody>

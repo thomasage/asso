@@ -1,0 +1,21 @@
+{% extends 'stat/layout.html.twig' %}
+
+{% trans_default_domain 'stat' %}
+
+{% block body %}
+
+    <div class="app_stat_index">
+
+        <h1>{{ 'index.title'|trans }}</h1>
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        <ul>
+            <li>
+                <a href="{{ path('app_stat_rank_progress') }}">{{ 'rank_progress.title'|trans }}</a>
+            </li>
+        </ul>
+
+    </div>
+
+{% endblock %}
