@@ -18,7 +18,6 @@
                 <th>{{ 'field.description'|trans }}</th>
                 <th>{{ 'field.lessons'|trans }}</th>
                 <th>{{ 'field.age'|trans }}</th>
-                <th>{{ 'field.position'|trans }}</th>
                 <th class="action">
                     <a href="{{ path('app_param_rank_add') }}" class="button primary">
                         <span class="fi-plus"></span>
@@ -27,16 +26,17 @@
                 </th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="ranks">
             {% for rank in ranks %}
-                <tr>
-                    <td class="image">
+                <tr data-reference="{{ rank.id }}">
+                    <td>#{{ rank.position+1 }}</td>
+                    <td>{{ rank.name }}</td>
+                    <td>
                         {% if rank.imageExtension %}
                             <img src="{{ path('app_param_rank_image',{rank:rank.id}) }}" alt="Image"/>
                         {% endif %}
+                        <small>{{ rank.description }}</small>
                     </td>
-                    <td>{{ rank.name }}</td>
-                    <td>{{ rank.description }}</td>
                     <td>{{ rank.lessons }}</td>
                     <td>
                         {% if rank.ageMin %}
@@ -51,7 +51,6 @@
                             {% endif %}
                         {% endif %}
                     </td>
-                    <td>{{ rank.position }}</td>
                     <td class="action">
                         <a href="{{ path('app_param_rank_edit',{rank:rank.id}) }}" class="button primary">
                             <span class="fi-pencil"></span>
@@ -61,12 +60,43 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="7" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
+                    <td colspan="6" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
 
     </div>
+
+{% endblock %}
+
+{# TODO : allow re-order rank with drag and drop. See jQueryUI ? #}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+    <link type="text/css"
+          rel="stylesheet"
+          href="{{ asset('/libs/jquery-ui-1.10.3/css/ui-lightness/jquery-ui-1.10.3.custom.min.css') }}"/>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript"
+            src="{{ asset('/libs/jquery-ui-1.10.3/js/jquery-ui-1.10.3.custom.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.ranks').sortable(
+                    {
+                        containment: 'parent',
+                        update: function (event, ui) {
+                            ParamRankSort();
+                        }
+                    }
+            ).disableSelection();
+        });
+    </script>
 
 {% endblock %}

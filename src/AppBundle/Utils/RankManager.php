@@ -61,6 +61,15 @@ class RankManager
      */
     public function updateRank(Rank $rank)
     {
+        if ($rank->getPosition() == 99999) {
+            $last = $this->em->getRepository('AppBundle:Rank')->findOneBy(array(), array('position' => 'DESC'));
+            if ($last instanceof Rank) {
+                $rank->setPosition($last->getPosition() + 1);
+            } else {
+                $rank->setPosition(0);
+            }
+        }
+
         $this->em->persist($rank);
         $this->em->flush();
     }

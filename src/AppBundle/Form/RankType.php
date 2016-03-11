@@ -34,14 +34,6 @@ class RankType extends AbstractType
                 )
             )
             ->add(
-                'position',
-                IntegerType::class,
-                array(
-                    'label' => 'field.position',
-                    'required' => true,
-                )
-            )
-            ->add(
                 'image',
                 FileType::class,
                 array(

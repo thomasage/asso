@@ -162,4 +162,27 @@ class RankController extends Controller
             )
         );
     }
+
+    /**
+     * @param string $ranks
+     * @return Response
+     *
+     * @Route("/param/rank/sort/{ranks}",
+     *        name="app_param_rank_sort",
+     *        methods={"POST"},
+     *        options={"expose"="true"})
+     */
+    public function sortAction($ranks)
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        $n = 0;
+        foreach (explode(',', $ranks) as $r) {
+            $em->getRepository('AppBundle:Rank')->find($r)->setPosition($n++);
+        }
+        $em->flush();
+
+        return new Response();
+    }
 }

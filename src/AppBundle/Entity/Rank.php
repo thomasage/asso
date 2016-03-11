@@ -79,7 +79,7 @@ class Rank
 
     public function __construct()
     {
-        $this->position = 0;
+        $this->position = 99999;
     }
 
     /**
