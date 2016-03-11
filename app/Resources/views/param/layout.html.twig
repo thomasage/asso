@@ -8,3 +8,10 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('css/param.css') }}"/>
 
 {% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/param.js') }}"></script>
+
+{% endblock %}

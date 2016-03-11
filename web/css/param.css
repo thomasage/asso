@@ -51,3 +51,37 @@
 .app_param_level_edit #level_name {
     flex: 1;
 }
+
+/* List of seasons */
+
+.app_param_season .current-season > input[type=radio] {
+    display: none;
+}
+
+.app_param_season .current-season > label {
+    width: 3em;
+    padding: 0.3em 0.5em;
+    color: white;
+    font-size: 0.9em;
+    text-align: center;
+    border-radius: 0.2em;
+    cursor: pointer;
+}
+
+.app_param_season .current-season > label.no {
+    display: inline-block;
+    background-color: silver;
+}
+
+.app_param_season .current-season > label.yes {
+    display: none;
+    background-color: green;
+}
+
+.app_param_season .current-season > input[type=radio]:checked ~ label.no {
+    display: none;
+}
+
+.app_param_season .current-season > input[type=radio]:checked ~ label.yes {
+    display: inline-block;
+}

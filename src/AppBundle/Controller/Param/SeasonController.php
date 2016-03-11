@@ -6,6 +6,7 @@ use AppBundle\Form\SeasonType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class SeasonController extends Controller
 {
@@ -48,6 +49,24 @@ class SeasonController extends Controller
                 'formEdit' => $formEdit->createView(),
             )
         );
+    }
+
+    /**
+     * @param Season $season
+     * @return Response
+     *
+     * @Route("/param/season/active/{season}",
+     *        name="app_param_season_active",
+     *        methods={"POST"},
+     *        requirements={"season"="\d+"},
+     *        options={"expose"="true"})
+     */
+    public function activeAction(Season $season)
+    {
+        $this->getUser()->setCurrentSeason($season);
+        $this->getDoctrine()->getManager()->flush();
+
+        return new Response();
     }
 
     /**

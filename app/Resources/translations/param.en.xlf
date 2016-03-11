@@ -133,6 +133,10 @@
         <source>field.age</source>
         <target>Age</target>
       </trans-unit>
+      <trans-unit id="d62c937b0ba76d0436e8ea6c54eb84e9" resname="field.current">
+        <source>field.current</source>
+        <target>Current</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

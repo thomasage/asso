@@ -15,6 +15,7 @@
             <tr>
                 <th>{{ 'field.start'|trans }}</th>
                 <th>{{ 'field.stop'|trans }}</th>
+                <th>{{ 'field.current'|trans }}</th>
                 <th class="action">
                     <a href="{{ path('app_param_season_add') }}" class="button primary">
                         <span class="fi-plus"></span>
@@ -28,6 +29,15 @@
                 <tr>
                     <td>{{ season.start|localizeddate('full','none') }}</td>
                     <td>{{ season.stop|localizeddate('full','none') }}</td>
+                    <td class="current-season">
+                        <input type="radio"
+                               name="current"
+                               value="{{ season.id }}"
+                               {% if season==app.user.currentSeason %}checked="checked"{% endif %}
+                               id="season{{ season.id }}"/>
+                        <label for="season{{ season.id }}" class="yes">{{ 'yes'|trans({},'messages') }}</label>
+                        <label for="season{{ season.id }}" class="no">{{ 'no'|trans({},'messages') }}</label>
+                    </td>
                     <td class="action">
                         <a href="{{ path('app_param_season_edit',{season:season.id}) }}" class="button primary">
                             <span class="fi-pencil"></span>
@@ -40,5 +50,18 @@
         </table>
 
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.current-season > input[type=radio]').change(function () {
+                ParamSeasonActive($(this).val());
+            });
+        });
+    </script>
 
 {% endblock %}

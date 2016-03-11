@@ -89,6 +89,14 @@
         <source>action.download</source>
         <target>Download</target>
       </trans-unit>
+      <trans-unit id="a6105c0a611b41b08f1209506350279e" resname="yes">
+        <source>yes</source>
+        <target>yes</target>
+      </trans-unit>
+      <trans-unit id="7fa3b767c460b54a2be4d49030b349c7" resname="no">
+        <source>no</source>
+        <target>no</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
