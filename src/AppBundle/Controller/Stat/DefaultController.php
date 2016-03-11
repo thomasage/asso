@@ -41,15 +41,12 @@ class DefaultController extends Controller
         // Search form
         $formSearch = $this->createForm(
             StatRankProgressType::class,
-            array('season' => $this->getUser()->getCurrentSeason())
+            array('season' => $this->getUser()->getCurrentSeason()->getId())
         );
         $formSearch->handleRequest($request);
 
-        if ($formSearch->isSubmitted() && $formSearch->isValid()) {
-
-        }
-
-        $results = $em->getRepository('AppBundle:Member')->statRankProgress($formSearch->getData()['season']);
+        $season = $em->getRepository('AppBundle:Season')->find($formSearch->getData()['season']);
+        $results = $em->getRepository('AppBundle:Member')->statRankProgress($season);
 
         // Render
         return $this->render(

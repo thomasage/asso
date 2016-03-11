@@ -19,7 +19,7 @@ class StatRankProgressType extends AbstractType
                 'AppBundle\Form\Type\ChoiceSeasonType',
                 array(
                     'label' => 'field.season',
-                    'required' => false,
+                    'required' => true,
                 )
             );
     }
