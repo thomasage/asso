@@ -45,7 +45,11 @@ class DefaultController extends Controller
             $this->addFlash('success', $this->get('translator')->trans('add.success.added', array(), 'member'));
 
             // Redirect
-            return $this->redirectToRoute('app_member_edit', array('member' => $member->getId()));
+            if ($request->request->has('add_and_new')) {
+                return $this->redirectToRoute('app_member_add');
+            } else {
+                return $this->redirectToRoute('app_member_edit', array('member' => $member->getId()));
+            }
 
         }
 

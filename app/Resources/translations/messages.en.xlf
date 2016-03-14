@@ -97,6 +97,10 @@
         <source>no</source>
         <target>no</target>
       </trans-unit>
+      <trans-unit id="74d0b7024adec56a85cbe8aa35bd2c04" resname="action.add_and_new">
+        <source>action.add_and_new</source>
+        <target>Add and New</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
