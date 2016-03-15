@@ -185,6 +185,38 @@
         <source>show.title.attendance</source>
         <target>Présence</target>
       </trans-unit>
+      <trans-unit id="54aac079fafc5adb79820e419e94be1f" resname="field.nationality">
+        <source>field.nationality</source>
+        <target>Nationalité</target>
+      </trans-unit>
+      <trans-unit id="022cbcfc70b4c7b0e34b4a7ac34a1fd2" resname="field.profession">
+        <source>field.profession</source>
+        <target>Profession</target>
+      </trans-unit>
+      <trans-unit id="81ed45ba5eb8abcd544098f9ce059d43" resname="field.phone0">
+        <source>field.phone0</source>
+        <target>Téléphone (1)</target>
+      </trans-unit>
+      <trans-unit id="d41d3220641025470e2d859998e204df" resname="field.phone1">
+        <source>field.phone1</source>
+        <target>Téléphone (2)</target>
+      </trans-unit>
+      <trans-unit id="75d5b43d758e72c2b93d70f7539a2ce9" resname="field.phone2">
+        <source>field.phone2</source>
+        <target>Téléphone (3)</target>
+      </trans-unit>
+      <trans-unit id="ca3cbb61e0e87fd0477ab3a07b4bac64" resname="field.phone3">
+        <source>field.phone3</source>
+        <target>Téléphone (4)</target>
+      </trans-unit>
+      <trans-unit id="dcadbc858213f14b15ea5feded91b2e5" resname="field.email0">
+        <source>field.email0</source>
+        <target>E-mail (1)</target>
+      </trans-unit>
+      <trans-unit id="f3b1d06f01c169724c2e1fa0e4874957" resname="field.email1">
+        <source>field.email1</source>
+        <target>E-mail (2)</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
