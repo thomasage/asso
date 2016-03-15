@@ -15,8 +15,12 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
-/document/
+!/document
+/document/*
+!/document/member
+/document/member/*
+!/document/member/photo
+/document/member/photo/*
 !/document/member/photo/female.png
 !/document/member/photo/male.png
-/coverage/
 *~
