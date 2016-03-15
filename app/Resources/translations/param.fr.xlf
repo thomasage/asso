@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="687159e92d16345ecf8684dd6cf8c692" resname="password.title">
+        <source>password.title</source>
+        <target>Mot de passe</target>
+      </trans-unit>
+      <trans-unit id="10b7d541cf9bad9c1cfc42a79dc0c42a" resname="password.action.update_password">
+        <source>password.action.update_password</source>
+        <target>Modifier le mot de passe</target>
+      </trans-unit>
+      <trans-unit id="22cd011da67591275af53157ce006833" resname="field.password_new">
+        <source>field.password_new</source>
+        <target>Nouveau mot de passe</target>
+      </trans-unit>
+      <trans-unit id="757d1add46e831568e990b7050f7ac1f" resname="field.password_confirmation">
+        <source>field.password_confirmation</source>
+        <target>Confirmation</target>
+      </trans-unit>
+      <trans-unit id="57229429933844517f9e32d72004d1c4" resname="password.success.password_updated">
+        <source>password.success.password_updated</source>
+        <target>Mot de passe modifié.</target>
+      </trans-unit>
+      <trans-unit id="09ee82750140bd7fe44b3536210e77f4" resname="field.password_current">
+        <source>field.password_current</source>
+        <target>Mot de passe actuel</target>
+      </trans-unit>
+      <trans-unit id="7e91fc8d4d091cd965b7cd5755b87731" resname="rank_add.title">
+        <source>rank_add.title</source>
+        <target>Ajouter un titre</target>
+      </trans-unit>
+      <trans-unit id="86e916a85cbf15d068d89cb7a4365008" resname="rank.title">
+        <source>rank.title</source>
+        <target>Titres</target>
+      </trans-unit>
+      <trans-unit id="45402a6ecba30b95b86f3b0c8cb26266" resname="rank_edit.title">
+        <source>rank_edit.title</source>
+        <target>Modifier un titre</target>
+      </trans-unit>
+      <trans-unit id="226301a9e72910b7f7df691e1576c554" resname="field.name">
+        <source>field.name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="d30d462cddf1398a1cac303d48d04ceb" resname="field.description">
+        <source>field.description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="2dd41ad7d1dc7b1b2f86a4dd7fef365b" resname="field.image">
+        <source>field.image</source>
+        <target>Image</target>
+      </trans-unit>
+      <trans-unit id="97f95ae558d14815bee0f7aade6fc31d" resname="rank_edit.success.updated">
+        <source>rank_edit.success.updated</source>
+        <target>Titre modifié.</target>
+      </trans-unit>
+      <trans-unit id="b43cec92ca5e79fc6a276938218749df" resname="rank_add.success.added">
+        <source>rank_add.success.added</source>
+        <target>Titre ajouté.</target>
+      </trans-unit>
+      <trans-unit id="fc8f1179767057fd235c71b88231c4fc" resname="field.position">
+        <source>field.position</source>
+        <target>Position</target>
+      </trans-unit>
+      <trans-unit id="b261f139b7fe6a345823189b12e86c34" resname="edit.action.delete_image">
+        <source>edit.action.delete_image</source>
+        <target>Supprimer image</target>
+      </trans-unit>
+      <trans-unit id="6a8cf8ff6634a4fd85f2fd04da343901" resname="edit.action.confirm_delete_image">
+        <source>edit.action.confirm_delete_image</source>
+        <target>Supprimer l'image ?</target>
+      </trans-unit>
+      <trans-unit id="623efacecfd8c39e5007473f60b52906" resname="edit.success.image_deleted">
+        <source>edit.success.image_deleted</source>
+        <target>Image supprimée.</target>
+      </trans-unit>
+      <trans-unit id="c21fe770e7d6e9c80985ad1d9c84c361" resname="season.title">
+        <source>season.title</source>
+        <target>Saisons</target>
+      </trans-unit>
+      <trans-unit id="6b65dd5bd47485d303b8f6501b661a6f" resname="field.start">
+        <source>field.start</source>
+        <target>Début</target>
+      </trans-unit>
+      <trans-unit id="6f4f614a9f4b48f8c703bcfde95eeed1" resname="field.stop">
+        <source>field.stop</source>
+        <target>Fin</target>
+      </trans-unit>
+      <trans-unit id="f56bb053824442cf2071b3b48c9d32f5" resname="season_edit.success.updated">
+        <source>season_edit.success.updated</source>
+        <target>Saison modifiée.</target>
+      </trans-unit>
+      <trans-unit id="dd43341d60f73a8c9601dbc289632a9e" resname="season_add.success.added">
+        <source>season_add.success.added</source>
+        <target>Saison ajoutée.</target>
+      </trans-unit>
+      <trans-unit id="6777da9acfb306a0ff2b7f511c5e41c4" resname="level.title">
+        <source>level.title</source>
+        <target>Niveaux</target>
+      </trans-unit>
+      <trans-unit id="b8938314cb224fb251055814d4b6f3c0" resname="level_edit.success.updated">
+        <source>level_edit.success.updated</source>
+        <target>Niveau modifié.</target>
+      </trans-unit>
+      <trans-unit id="aed8af9b1419aadaef170f86b3f273a3" resname="level_add.success.added">
+        <source>level_add.success.added</source>
+        <target>Niveau ajouté.</target>
+      </trans-unit>
+      <trans-unit id="8fa8900bf86b0422eb7c1345e85db56b" resname="delete_level.confirmation">
+        <source>delete_level.confirmation</source>
+        <target>Supprimer le niveau "%level%" ?</target>
+      </trans-unit>
+      <trans-unit id="13b04c066d22b1a8e7c63ba49ca5b460" resname="level_delete.success.deleted">
+        <source>level_delete.success.deleted</source>
+        <target>Niveau supprimé.</target>
+      </trans-unit>
+      <trans-unit id="5590f53ce23f8e351149db5689467dc2" resname="field.lessons">
+        <source>field.lessons</source>
+        <target>Cours</target>
+      </trans-unit>
+      <trans-unit id="5f72bf79717a32b5c5c94b68ee77c3ad" resname="field.age_min">
+        <source>field.age_min</source>
+        <target>Âge minimum</target>
+      </trans-unit>
+      <trans-unit id="4597e0aff747ed6019ee40f90c074718" resname="field.age_max">
+        <source>field.age_max</source>
+        <target>Âge maximum</target>
+      </trans-unit>
+      <trans-unit id="d4f7fea053c7ebcb82bd149fbcf40c82" resname="field.age">
+        <source>field.age</source>
+        <target>Âge</target>
+      </trans-unit>
+      <trans-unit id="d62c937b0ba76d0436e8ea6c54eb84e9" resname="field.current">
+        <source>field.current</source>
+        <target>En cours</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

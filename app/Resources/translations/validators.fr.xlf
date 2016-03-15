@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="cb61b202f4f60f6f2c7baf15c89fddcf" resname="promotion.member_rank.duplicate">
+        <source>promotion.member_rank.duplicate</source>
+        <target>Ce membre est déjà promu à ce titre.</target>
+      </trans-unit>
+      <trans-unit id="ddf20d4cff388b3a5263c85f529aa1e6" resname="membership.member_season.duplicate">
+        <source>membership.member_season.duplicate</source>
+        <target>Cette adhésion existe déjà.</target>
+      </trans-unit>
+      <trans-unit id="89ed4907a44f4a9e2c769b5952833a46" resname="transaction_detail.amount.blank">
+        <source>transaction_detail.amount.blank</source>
+        <target>Toutes les lignes de la répartition doivent avoir un montant.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

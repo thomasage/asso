@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="2efac63ce0f9b1bd223a4cfff021b8b2" resname="field.firstname">
+        <source>field.firstname</source>
+        <target>Prénom</target>
+      </trans-unit>
+      <trans-unit id="448c304722d7a9c7082e582c061cbe6b" resname="field.lastname">
+        <source>field.lastname</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="89e568f8bb96f9eebb1af165de42c4ce" resname="field.gender">
+        <source>field.gender</source>
+        <target>Genre</target>
+      </trans-unit>
+      <trans-unit id="d4f7fea053c7ebcb82bd149fbcf40c82" resname="field.age">
+        <source>field.age</source>
+        <target>Âge</target>
+      </trans-unit>
+      <trans-unit id="1f2d5ac43b4eab4fc84af7848c7d7e7c" resname="field.city">
+        <source>field.city</source>
+        <target>Ville</target>
+      </trans-unit>
+      <trans-unit id="ccd54da92520f9fadccee8d528b6c838" resname="field.birthday">
+        <source>field.birthday</source>
+        <target>Date de naissance</target>
+      </trans-unit>
+      <trans-unit id="096a683875689f91ea3734e9197bc667" resname="field.birthplace">
+        <source>field.birthplace</source>
+        <target>Lieu de naissance</target>
+      </trans-unit>
+      <trans-unit id="b7906649aee95ac19747e27e2b6a127f" resname="field.address">
+        <source>field.address</source>
+        <target>Adresse</target>
+      </trans-unit>
+      <trans-unit id="8e35ef2b3113eccf8e223947f2616d16" resname="field.zip">
+        <source>field.zip</source>
+        <target>Code postal</target>
+      </trans-unit>
+      <trans-unit id="88182720066394c572a526ed4f0675e4" resname="field.photo">
+        <source>field.photo</source>
+        <target>Photo</target>
+      </trans-unit>
+      <trans-unit id="b79ed8df5dfd6275868662bee957ba42" resname="gender.m">
+        <source>gender.m</source>
+        <target>Homme</target>
+      </trans-unit>
+      <trans-unit id="2861d48fda0639edf3e305cfc2ee541d" resname="gender.f">
+        <source>gender.f</source>
+        <target>Femme</target>
+      </trans-unit>
+      <trans-unit id="1ea7ccc01954ba1388047005183427ed" resname="index.title">
+        <source>index.title</source>
+        <target>Liste des membres</target>
+      </trans-unit>
+      <trans-unit id="7d637d275668ed6d41a9b97e6ad3a556" resname="age">
+        <source>age</source>
+        <target>ans</target>
+      </trans-unit>
+      <trans-unit id="72884b7978fdba0e8321c1b2c5db3460" resname="edit.action.confirm_delete_photo">
+        <source>edit.action.confirm_delete_photo</source>
+        <target>Voulez-vous vraiment supprimer la photo ?</target>
+      </trans-unit>
+      <trans-unit id="2871ff7c25eeacd1ef94fb5c714eec4f" resname="edit.action.delete_photo">
+        <source>edit.action.delete_photo</source>
+        <target>Supprimer la photo</target>
+      </trans-unit>
+      <trans-unit id="73dae1724aa3c5672be9920646eb6544" resname="edit.success.photo_deleted">
+        <source>edit.success.photo_deleted</source>
+        <target>Photo supprimée.</target>
+      </trans-unit>
+      <trans-unit id="1b35bb4e03482bb91ecca6788932b38f" resname="edit.success.updated">
+        <source>edit.success.updated</source>
+        <target>Membre modifié.</target>
+      </trans-unit>
+      <trans-unit id="9855af5eaf7586a054b6e8d65035e349" resname="add.success.added">
+        <source>add.success.added</source>
+        <target>Membre ajouté.</target>
+      </trans-unit>
+      <trans-unit id="eeac20873fd3718f4f0489dfcebf4047" resname="add.title">
+        <source>add.title</source>
+        <target>Ajouter un membre</target>
+      </trans-unit>
+      <trans-unit id="c64c354bac13149a25e2c24d61fbe74f" resname="show.title.promotions">
+        <source>show.title.promotions</source>
+        <target>Promotions</target>
+      </trans-unit>
+      <trans-unit id="58b356fc24871a5ee296315a1dadc957" resname="field.date">
+        <source>field.date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="1a332ea46d736a447114d9eb03907b3a" resname="field.rank">
+        <source>field.rank</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="d30d462cddf1398a1cac303d48d04ceb" resname="field.description">
+        <source>field.description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="85af8e71173921c2c9cf4ff1d66899b4" resname="edit_promotion.title">
+        <source>edit_promotion.title</source>
+        <target>Modifier une promotion</target>
+      </trans-unit>
+      <trans-unit id="1668424eecfb2dec5d6a73aad0480450" resname="add_promotion.title">
+        <source>add_promotion.title</source>
+        <target>Ajouter une promotion</target>
+      </trans-unit>
+      <trans-unit id="b839723b47597133748d23aeaf74d48a" resname="field.member">
+        <source>field.member</source>
+        <target>Membre</target>
+      </trans-unit>
+      <trans-unit id="e7065d3a4390ccdb2443be982792d69c" resname="field.comment">
+        <source>field.comment</source>
+        <target>Commentaire</target>
+      </trans-unit>
+      <trans-unit id="aa11b90ec7c3e179627fc848e83a0e63" resname="promotion_edit.success.updated">
+        <source>promotion_edit.success.updated</source>
+        <target>Promotion modifiée.</target>
+      </trans-unit>
+      <trans-unit id="6919db8fde87dadb1ad3df91c1c430cb" resname="promotion_add.success.added">
+        <source>promotion_add.success.added</source>
+        <target>Promotion ajoutée.</target>
+      </trans-unit>
+      <trans-unit id="184d0f01d8470b390efb7441075e2e42" resname="delete_promotion.title">
+        <source>delete_promotion.title</source>
+        <target>Supprimer une promotion</target>
+      </trans-unit>
+      <trans-unit id="2a5c4af6efab97a56d7709756c089f78" resname="promotion_delete.success.deleted">
+        <source>promotion_delete.success.deleted</source>
+        <target>Promotion supprimée.</target>
+      </trans-unit>
+      <trans-unit id="f6e4c02d2c2ef985d783ff648ed95f96" resname="delete_promotion.confirmation">
+        <source>delete_promotion.confirmation</source>
+        <target>Supprimer la promotion de %member% au titre de %rank% (le %date%) ?</target>
+      </trans-unit>
+      <trans-unit id="64c59b7ed9aef70804051ae348548f2d" resname="show.title.memberships">
+        <source>show.title.memberships</source>
+        <target>Adhésions</target>
+      </trans-unit>
+      <trans-unit id="ab2b449aeea772a109b786c22a48dbf8" resname="field.season">
+        <source>field.season</source>
+        <target>Saison</target>
+      </trans-unit>
+      <trans-unit id="829c7663d7b62ff34bf4d8b31ceb47a2" resname="field.level">
+        <source>field.level</source>
+        <target>Niveau</target>
+      </trans-unit>
+      <trans-unit id="831ebd604db83001ba2ad861c9ed7f59" resname="field.number">
+        <source>field.number</source>
+        <target>Numéro</target>
+      </trans-unit>
+      <trans-unit id="7df1b5e7a567deda7d014da6949b4619" resname="add_membership.title">
+        <source>add_membership.title</source>
+        <target>Ajouter une adhésion</target>
+      </trans-unit>
+      <trans-unit id="e8bb9e3ef7f392770087be9f056faa87" resname="membership_add.success.added">
+        <source>membership_add.success.added</source>
+        <target>Adhésion ajoutée.</target>
+      </trans-unit>
+      <trans-unit id="7f766415fb6bdf858b161ed6a8a241ee" resname="membership_edit.success.updated">
+        <source>membership_edit.success.updated</source>
+        <target>Adhésion modifiée.</target>
+      </trans-unit>
+      <trans-unit id="622f4e9962ffb10105b28f04541ccb74" resname="membership_delete.success.deleted">
+        <source>membership_delete.success.deleted</source>
+        <target>Adhésion supprimée.</target>
+      </trans-unit>
+      <trans-unit id="4fc4a4f57caa944cea235edb142ab8ce" resname="delete_membership.title">
+        <source>delete_membership.title</source>
+        <target>Supprimer une adhésion</target>
+      </trans-unit>
+      <trans-unit id="7f00d71e83a8d4570ae01361c1900226" resname="delete_membership.confirmation">
+        <source>delete_membership.confirmation</source>
+        <target>Supprimer l'adhésion de %member% pour la saison %season% ?</target>
+      </trans-unit>
+      <trans-unit id="2d383489de831361f60881b98396fcae" resname="edit_membership.title">
+        <source>edit_membership.title</source>
+        <target>Modifier une adhésion</target>
+      </trans-unit>
+      <trans-unit id="afd10337f630aa20048b7887aa60ec84" resname="show.title.attendance">
+        <source>show.title.attendance</source>
+        <target>Présence</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
