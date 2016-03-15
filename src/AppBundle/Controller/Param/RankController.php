@@ -41,7 +41,7 @@ class RankController extends Controller
             $this->addFlash('success', $this->get('translator')->trans('rank_add.success.added', array(), 'param'));
 
             // Redirect
-            return $this->redirectToRoute('app_param_rank_edit', array('rank' => $rank->getId()));
+            return $this->redirectToRoute('app_param_rank');
 
         }
 
