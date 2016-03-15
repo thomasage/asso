@@ -31,9 +31,18 @@
 .app_member_add #member_address,
 .app_member_add #member_birthplace,
 .app_member_add #member_city,
+.app_member_add #member_comment,
+.app_member_add #member_email0,
+.app_member_add #member_email1,
 .app_member_add #member_firstname,
 .app_member_add #member_gender,
 .app_member_add #member_lastname,
+.app_member_add #member_nationality,
+.app_member_add #member_phone0,
+.app_member_add #member_phone1,
+.app_member_add #member_phone2,
+.app_member_add #member_phone3,
+.app_member_add #member_profession,
 .app_member_add #member_zip {
     flex: 1;
 }
@@ -139,10 +148,18 @@
 .app_member_edit .container > .edit1 #member_address,
 .app_member_edit .container > .edit1 #member_birthplace,
 .app_member_edit .container > .edit1 #member_city,
+.app_member_edit .container > .edit1 #member_comment,
+.app_member_edit .container > .edit1 #member_email0,
+.app_member_edit .container > .edit1 #member_email1,
 .app_member_edit .container > .edit1 #member_firstname,
-.app_member_edit .container > .edit1 #member_gender,
 .app_member_edit .container > .edit1 #member_lastname,
+.app_member_edit .container > .edit1 #member_nationality,
+.app_member_edit .container > .edit1 #member_phone0,
+.app_member_edit .container > .edit1 #member_phone1,
+.app_member_edit .container > .edit1 #member_phone2,
+.app_member_edit .container > .edit1 #member_phone3,
 .app_member_edit .container > .edit1 #member_photo,
+.app_member_edit .container > .edit1 #member_profession,
 .app_member_edit .container > .edit1 #member_zip {
     flex: 1;
 }

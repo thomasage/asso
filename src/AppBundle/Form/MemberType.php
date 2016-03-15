@@ -4,7 +4,9 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -85,6 +87,78 @@ class MemberType extends AbstractType
                 array(
                     'label' => 'field.city',
                     'required' => true,
+                )
+            )
+            ->add(
+                'profession',
+                TextType::class,
+                array(
+                    'label' => 'field.profession',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'nationality',
+                TextType::class,
+                array(
+                    'label' => 'field.nationality',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'phone0',
+                TextType::class,
+                array(
+                    'label' => 'field.phone0',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'phone1',
+                TextType::class,
+                array(
+                    'label' => 'field.phone1',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'phone2',
+                TextType::class,
+                array(
+                    'label' => 'field.phone2',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'phone3',
+                TextType::class,
+                array(
+                    'label' => 'field.phone3',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'email0',
+                EmailType::class,
+                array(
+                    'label' => 'field.email0',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'email1',
+                EmailType::class,
+                array(
+                    'label' => 'field.email1',
+                    'required' => false,
+                )
+            )
+            ->add(
+                'comment',
+                TextareaType::class,
+                array(
+                    'label' => 'field.comment',
+                    'required' => false,
                 )
             )
             ->add(
