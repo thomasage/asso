@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="4a9f3af642d88e371e138d9a627825b8" resname="action.search">
+        <source>action.search</source>
+        <target>Recherche</target>
+      </trans-unit>
+      <trans-unit id="4c2d616bfd10f09cf0764b337fd66c6c" resname="search.count.results">
+        <source>search.count.results</source>
+        <target>{0}Aucun résultat|{1}1 résultat|[2,Inf[%count% résultats</target>
+      </trans-unit>
+      <trans-unit id="ab9243692e4174cf64364f8ebfcf3dc1" resname="search.count.pages">
+        <source>search.count.pages</source>
+        <target>{0}Aucune page|{1}1 page|[2,Inf[%count% pages</target>
+      </trans-unit>
+      <trans-unit id="736815e398630194108e94406a844fc6" resname="action.add">
+        <source>action.add</source>
+        <target>Ajouter</target>
+      </trans-unit>
+      <trans-unit id="0f979b3ce9426b2631a3fe2790fcff66" resname="action.show">
+        <source>action.show</source>
+        <target>Voir</target>
+      </trans-unit>
+      <trans-unit id="2c6a9bd6cf35fa79f5be8afa4fcc9290" resname="no_results">
+        <source>no_results</source>
+        <target>Aucun résultat</target>
+      </trans-unit>
+      <trans-unit id="158d4f5c20f2acf0d1225771470581a3" resname="action.back">
+        <source>action.back</source>
+        <target>Retour</target>
+      </trans-unit>
+      <trans-unit id="78a93d081740517015711367da2007ee" resname="action.edit">
+        <source>action.edit</source>
+        <target>Modifier</target>
+      </trans-unit>
+      <trans-unit id="09ea0ceeb0de1dee5cf0e17986f42df3" resname="action.update">
+        <source>action.update</source>
+        <target>Modifier</target>
+      </trans-unit>
+      <trans-unit id="b6ed278a40235e98a15e0ce5ffa5a0d8" resname="action.update_and_close">
+        <source>action.update_and_close</source>
+        <target>Modifier et fermer</target>
+      </trans-unit>
+      <trans-unit id="593994385dfe395976e4dd8a8029446b" resname="action.cancel">
+        <source>action.cancel</source>
+        <target>Abandonner</target>
+      </trans-unit>
+      <trans-unit id="e81c4e4f2b7b93b481e13a8553c2ae1b" resname="or">
+        <source>or</source>
+        <target>ou</target>
+      </trans-unit>
+      <trans-unit id="da540e628f689a4665e8367ab78a520c" resname="menu.dashboard">
+        <source>menu.dashboard</source>
+        <target>Accueil</target>
+      </trans-unit>
+      <trans-unit id="c4845f5f1ad88c0626167e96ea0f4239" resname="menu.member">
+        <source>menu.member</source>
+        <target>Membres</target>
+      </trans-unit>
+      <trans-unit id="994ef9c3e090fe668e52a333e2bf8bc3" resname="menu.lesson">
+        <source>menu.lesson</source>
+        <target>Cours</target>
+      </trans-unit>
+      <trans-unit id="0109773c111a2b8a6008d3bc0369f013" resname="menu.accounting">
+        <source>menu.accounting</source>
+        <target>Comptabilité</target>
+      </trans-unit>
+      <trans-unit id="0462076d2a955e780fd9db45546fa16e" resname="menu.stat">
+        <source>menu.stat</source>
+        <target>Statistiques</target>
+      </trans-unit>
+      <trans-unit id="57d123990334d304c0167ebb452a2876" resname="menu.param">
+        <source>menu.param</source>
+        <target>Paramètres</target>
+      </trans-unit>
+      <trans-unit id="797a9670e2732097498906b9e515da2d" resname="menu.logout">
+        <source>menu.logout</source>
+        <target>Déconnexion</target>
+      </trans-unit>
+      <trans-unit id="d62880a2ce8b87a47177e63d69fa8306" resname="action.delete">
+        <source>action.delete</source>
+        <target>Supprimer</target>
+      </trans-unit>
+      <trans-unit id="befca582a867c6e414bfd52847afd448" resname="action.download">
+        <source>action.download</source>
+        <target>Télécharger</target>
+      </trans-unit>
+      <trans-unit id="a6105c0a611b41b08f1209506350279e" resname="yes">
+        <source>yes</source>
+        <target>oui</target>
+      </trans-unit>
+      <trans-unit id="7fa3b767c460b54a2be4d49030b349c7" resname="no">
+        <source>no</source>
+        <target>non</target>
+      </trans-unit>
+      <trans-unit id="74d0b7024adec56a85cbe8aa35bd2c04" resname="action.add_and_new">
+        <source>action.add_and_new</source>
+        <target>Ajouter et nouveau</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

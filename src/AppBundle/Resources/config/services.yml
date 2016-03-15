@@ -10,6 +10,14 @@ services:
     app.level_manager:
         class: AppBundle\Utils\LevelManager
         arguments: [ "@doctrine.orm.entity_manager" ]
+    app.locale_listener:
+        class: AppBundle\Listener\LocaleListener
+        arguments:
+            -
+                - en
+                - fr
+        tags:
+            - { name: kernel.event_subscriber }
     app.member_manager:
         class: AppBundle\Utils\MemberManager
         arguments: [ "@doctrine.orm.entity_manager", "%member_photo_directory%" ]

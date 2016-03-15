@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="1ea7ccc01954ba1388047005183427ed" resname="index.title">
+        <source>index.title</source>
+        <target>Statistiques</target>
+      </trans-unit>
+      <trans-unit id="45444fd7daabb364529efd007dcd2ac8" resname="rank_progress.title">
+        <source>rank_progress.title</source>
+        <target>Progression dans le titre</target>
+      </trans-unit>
+      <trans-unit id="851adbefaca9932ef2861a5288d5ceea" resname="lessons">
+        <source>lessons</source>
+        <target>Cours</target>
+      </trans-unit>
+      <trans-unit id="ab2b449aeea772a109b786c22a48dbf8" resname="field.season">
+        <source>field.season</source>
+        <target>Saison</target>
+      </trans-unit>
+      <trans-unit id="b839723b47597133748d23aeaf74d48a" resname="field.member">
+        <source>field.member</source>
+        <target>Membre</target>
+      </trans-unit>
+      <trans-unit id="d4f7fea053c7ebcb82bd149fbcf40c82" resname="field.age">
+        <source>field.age</source>
+        <target>Âge</target>
+      </trans-unit>
+      <trans-unit id="829c7663d7b62ff34bf4d8b31ceb47a2" resname="field.level">
+        <source>field.level</source>
+        <target>Niveau</target>
+      </trans-unit>
+      <trans-unit id="1a332ea46d736a447114d9eb03907b3a" resname="field.rank">
+        <source>field.rank</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit id="91b56e3a207e9f7d41929e4247881e8f" resname="field.progress">
+        <source>field.progress</source>
+        <target>Progression</target>
+      </trans-unit>
+      <trans-unit id="df95296562f14a24bae003593d58c0ef" resname="field.next_rank">
+        <source>field.next_rank</source>
+        <target>Titre suivant</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

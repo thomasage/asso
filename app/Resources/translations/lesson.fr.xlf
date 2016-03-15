@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="1ea7ccc01954ba1388047005183427ed" resname="index.title">
+        <source>index.title</source>
+        <target>Cours (%season%)</target>
+      </trans-unit>
+      <trans-unit id="944ba223a5c1b5f4b495708e7cd5ee37" resname="monday">
+        <source>monday</source>
+        <target>Lundi</target>
+      </trans-unit>
+      <trans-unit id="1a31a6f65cc993ff6bd9a5b85f0520b0" resname="tuesday">
+        <source>tuesday</source>
+        <target>Mardi</target>
+      </trans-unit>
+      <trans-unit id="aae446086f8e81194ed115b566bf2e3d" resname="wednesday">
+        <source>wednesday</source>
+        <target>Mercrdi</target>
+      </trans-unit>
+      <trans-unit id="c395246f710b0e2c86b7ed82f7f56ce3" resname="thursday">
+        <source>thursday</source>
+        <target>Jeudi</target>
+      </trans-unit>
+      <trans-unit id="f6f7fec07f372b7bd5eb196bbca0f3f4" resname="friday">
+        <source>friday</source>
+        <target>Vendredi</target>
+      </trans-unit>
+      <trans-unit id="6036c3d913f49f28f35d734589840310" resname="saturday">
+        <source>saturday</source>
+        <target>Samedi</target>
+      </trans-unit>
+      <trans-unit id="787c74a2e618a696e34e025adda33ad3" resname="sunday">
+        <source>sunday</source>
+        <target>Dimanche</target>
+      </trans-unit>
+      <trans-unit id="86f5978d9b80124f509bdb71786e929e" resname="January">
+        <source>January</source>
+        <target>Janvier</target>
+      </trans-unit>
+      <trans-unit id="659e59f062c75f81259d22786d6c44aa" resname="February">
+        <source>February</source>
+        <target>Février</target>
+      </trans-unit>
+      <trans-unit id="fa3e5edac607a88d8fd7ecb9d6d67424" resname="March">
+        <source>March</source>
+        <target>Mars</target>
+      </trans-unit>
+      <trans-unit id="3fcf026bbfffb63fb24b8de9d0446949" resname="April">
+        <source>April</source>
+        <target>Avril</target>
+      </trans-unit>
+      <trans-unit id="195fbb57ffe7449796d23466085ce6d8" resname="May">
+        <source>May</source>
+        <target>Mai</target>
+      </trans-unit>
+      <trans-unit id="688937ccaf2a2b0c45a1c9bbba09698d" resname="June">
+        <source>June</source>
+        <target>Juin</target>
+      </trans-unit>
+      <trans-unit id="1b539f6f34e8503c97f6d3421346b63c" resname="July">
+        <source>July</source>
+        <target>Juillet</target>
+      </trans-unit>
+      <trans-unit id="41ba70891fb6f39327d8ccb9b1dafb84" resname="August">
+        <source>August</source>
+        <target>Août</target>
+      </trans-unit>
+      <trans-unit id="cc5d90569e1c8313c2b1c2aab1401174" resname="September">
+        <source>September</source>
+        <target>Septembre</target>
+      </trans-unit>
+      <trans-unit id="eca60ae8611369fe28a02e2ab8c5d12e" resname="October">
+        <source>October</source>
+        <target>Octobre</target>
+      </trans-unit>
+      <trans-unit id="7e823b37564da492ca1629b4732289a8" resname="November">
+        <source>November</source>
+        <target>Novembre</target>
+      </trans-unit>
+      <trans-unit id="82331503174acbae012b2004f6431fa5" resname="December">
+        <source>December</source>
+        <target>Décembre</target>
+      </trans-unit>
+      <trans-unit id="145fece604f7e1e9de61b85b985cb917" resname="day.title">
+        <source>day.title</source>
+        <target>Cours du %day%</target>
+      </trans-unit>
+      <trans-unit id="e304b5b2db4ffb2b1c9b28f9a845dd7a" resname="planning.title">
+        <source>planning.title</source>
+        <target>Planning (%season%)</target>
+      </trans-unit>
+      <trans-unit id="62b5216c362a20e84216dc6aa8dc8c4c" resname="field.weekday">
+        <source>field.weekday</source>
+        <target>Jour semaine</target>
+      </trans-unit>
+      <trans-unit id="6b65dd5bd47485d303b8f6501b661a6f" resname="field.start">
+        <source>field.start</source>
+        <target>Commence à</target>
+      </trans-unit>
+      <trans-unit id="7bc9c54e9b9b1229f04d10a6aefdd443" resname="field.duration">
+        <source>field.duration</source>
+        <target>Durée</target>
+      </trans-unit>
+      <trans-unit id="58b356fc24871a5ee296315a1dadc957" resname="field.date">
+        <source>field.date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="648eb5e0eef739843cca97efaa4bcbd7" resname="field.levels">
+        <source>field.levels</source>
+        <target>Niveaux</target>
+      </trans-unit>
+      <trans-unit id="e7065d3a4390ccdb2443be982792d69c" resname="field.comment">
+        <source>field.comment</source>
+        <target>Commentaire</target>
+      </trans-unit>
+      <trans-unit id="6f12d6d6d619165083a612d262197973" resname="planning.action.save_and_build">
+        <source>planning.action.save_and_build</source>
+        <target>Modifier et créer</target>
+      </trans-unit>
+      <trans-unit id="36cff2afd7aa3ca9671304cd916d4a64" resname="planning.success.built">
+        <source>planning.success.built</source>
+        <target>Planning créé.</target>
+      </trans-unit>
+      <trans-unit id="e9155b8ef2820db5f64f9314005ea321" resname="delete.success.deleted">
+        <source>delete.success.deleted</source>
+        <target>Cours supprimé.</target>
+      </trans-unit>
+      <trans-unit id="1b35bb4e03482bb91ecca6788932b38f" resname="edit.success.updated">
+        <source>edit.success.updated</source>
+        <target>Cours modifié.</target>
+      </trans-unit>
+      <trans-unit id="a04ab58d7a77e9eb8744e72c35039298" resname="planning.success.updated">
+        <source>planning.success.updated</source>
+        <target>Planning modifié.</target>
+      </trans-unit>
+      <trans-unit id="eeac20873fd3718f4f0489dfcebf4047" resname="add.title">
+        <source>add.title</source>
+        <target>Ajouter un cours</target>
+      </trans-unit>
+      <trans-unit id="b5c074575eb56bee71d8eee5036f256b" resname="lesson_add.success.added">
+        <source>lesson_add.success.added</source>
+        <target>Cours ajouté.</target>
+      </trans-unit>
+      <trans-unit id="640fd0cc0ffa0316ae087652871f4486" resname="minutes">
+        <source>minutes</source>
+        <target>minutes</target>
+      </trans-unit>
+      <trans-unit id="06115f00a0e622c9d1228ee5dd93014d" resname="field.comment.placeholder">
+        <source>field.comment.placeholder</source>
+        <target>Information sur le cours</target>
+      </trans-unit>
+      <trans-unit id="534b32f3f6b013926a9645a052f585a9" resname="delete.title">
+        <source>delete.title</source>
+        <target>Supprimer un cours</target>
+      </trans-unit>
+      <trans-unit id="b2016338ca25da973f04988d1d35dc44" resname="delete.confirmation">
+        <source>delete.confirmation</source>
+        <target>Supprimer le cours du %date% à %start% ?</target>
+      </trans-unit>
+      <trans-unit id="3cffdbb8528a93e6dc87e19c007734af" resname="edit.title">
+        <source>edit.title</source>
+        <target>Modifier un cours</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

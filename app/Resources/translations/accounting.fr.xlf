@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="e1e444bab1adf8b260db3036dc4d7893" resname="category.title">
+        <source>category.title</source>
+        <target>Catégories</target>
+      </trans-unit>
+      <trans-unit id="1ea7ccc01954ba1388047005183427ed" resname="index.title">
+        <source>index.title</source>
+        <target>Comptabilité</target>
+      </trans-unit>
+      <trans-unit id="01173daa528c56f77c41f0b9bc77918f" resname="category.success.updated">
+        <source>category.success.updated</source>
+        <target>Catégories modifiées.</target>
+      </trans-unit>
+      <trans-unit id="58b356fc24871a5ee296315a1dadc957" resname="field.date">
+        <source>field.date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="5e303b302e35f909576b4c80ed02f69a" resname="field.paymentMethod">
+        <source>field.paymentMethod</source>
+        <target>Mode de règlement</target>
+      </trans-unit>
+      <trans-unit id="864ac7c27a89799511852c395284e8bc" resname="field.thirdName">
+        <source>field.thirdName</source>
+        <target>Tiers</target>
+      </trans-unit>
+      <trans-unit id="91bc6d3c76aae9bc4000f64cbd7a49be" resname="field.amount">
+        <source>field.amount</source>
+        <target>Montant</target>
+      </trans-unit>
+      <trans-unit id="eeac20873fd3718f4f0489dfcebf4047" resname="add.title">
+        <source>add.title</source>
+        <target>Ajouter transaction</target>
+      </trans-unit>
+      <trans-unit id="2b8e61c71a1653a7b76bc5d3e69b2eae" resname="field.bankName">
+        <source>field.bankName</source>
+        <target>Banque</target>
+      </trans-unit>
+      <trans-unit id="d04706b0f4f315afb9f006c94aa6ec2e" resname="field.operationNumber">
+        <source>field.operationNumber</source>
+        <target>N° d'opération</target>
+      </trans-unit>
+      <trans-unit id="51e6e759826f3706d4b6ad86c36cbf0e" resname="field.information">
+        <source>field.information</source>
+        <target>Information</target>
+      </trans-unit>
+      <trans-unit id="9855af5eaf7586a054b6e8d65035e349" resname="add.success.added">
+        <source>add.success.added</source>
+        <target>Transaction ajoutée.</target>
+      </trans-unit>
+      <trans-unit id="1b35bb4e03482bb91ecca6788932b38f" resname="edit.success.updated">
+        <source>edit.success.updated</source>
+        <target>Transaction modifiée.</target>
+      </trans-unit>
+      <trans-unit id="3cffdbb8528a93e6dc87e19c007734af" resname="edit.title">
+        <source>edit.title</source>
+        <target>Modifier une transaction</target>
+      </trans-unit>
+      <trans-unit id="e9155b8ef2820db5f64f9314005ea321" resname="delete.success.deleted">
+        <source>delete.success.deleted</source>
+        <target>Transaction supprimée.</target>
+      </trans-unit>
+      <trans-unit id="534b32f3f6b013926a9645a052f585a9" resname="delete.title">
+        <source>delete.title</source>
+        <target>Supprimer une transaction</target>
+      </trans-unit>
+      <trans-unit id="b2016338ca25da973f04988d1d35dc44" resname="delete.confirmation">
+        <source>delete.confirmation</source>
+        <target>Supprimer la transaction de %amount% à la date du %date% ?</target>
+      </trans-unit>
+      <trans-unit id="e0a33e60e862edc56cba265d4872019d" resname="field.details">
+        <source>field.details</source>
+        <target>Répartition</target>
+      </trans-unit>
+      <trans-unit id="7c35ad98d8c5c13c2e30ffdd4a6231e3" resname="field.category">
+        <source>field.category</source>
+        <target>Catégorie</target>
+      </trans-unit>
+      <trans-unit id="a4b4f3e40fab97f1f1fb150009cbc229" resname="edit.warning.breakdown_amount">
+        <source>edit.warning.breakdown_amount</source>
+        <target>Attention : le montant de la transaction (%amount%) n'est pas égal à la somme des montants de la répartition (%breakdown%).</target>
+      </trans-unit>
+      <trans-unit id="226301a9e72910b7f7df691e1576c554" resname="field.name">
+        <source>field.name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="3b27f96cdc1e7bb7fc14b3a9944ca8a6" resname="field.size">
+        <source>field.size</source>
+        <target>Taille</target>
+      </trans-unit>
+      <trans-unit id="c4b6e256e556cafaa9c31ff189a3dbae" resname="field.copies">
+        <source>field.copies</source>
+        <target>Copies</target>
+      </trans-unit>
+      <trans-unit id="4463088218aba23ec546588ae5fdb603" resname="field.copy.add">
+        <source>field.copy.add</source>
+        <target>Ajouter des copies</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
