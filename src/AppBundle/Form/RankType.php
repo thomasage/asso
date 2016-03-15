@@ -23,6 +23,9 @@ class RankType extends AbstractType
                 array(
                     'label' => 'field.name',
                     'required' => true,
+                    'attr' => array(
+                        'autofocus' => true,
+                    ),
                 )
             )
             ->add(
