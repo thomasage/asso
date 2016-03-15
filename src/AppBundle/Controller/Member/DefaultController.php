@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller\Member;
 
+use AppBundle\Entity\Level;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Membership;
 use AppBundle\Form\MemberSearchType;
@@ -220,7 +221,7 @@ class DefaultController extends Controller
         );
 
         // Lessons for the season and level
-        if ($currentMembership instanceof Membership) {
+        if ($currentMembership instanceof Membership && $currentMembership->getLevel() instanceof Level) {
             $lessons = $em->getRepository('AppBundle:Lesson')->findByLevelAndSeason(
                 $currentMembership->getLevel(),
                 $season
