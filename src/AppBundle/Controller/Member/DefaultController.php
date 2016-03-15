@@ -49,7 +49,7 @@ class DefaultController extends Controller
             if ($request->request->has('add_and_new')) {
                 return $this->redirectToRoute('app_member_add');
             } else {
-                return $this->redirectToRoute('app_member_edit', array('member' => $member->getId()));
+                return $this->redirectToRoute('app_member_show', array('member' => $member->getId()));
             }
 
         }
