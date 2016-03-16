@@ -1,10 +1,10 @@
 <?php
 namespace AppBundle\Form;
 
-use Doctrine\DBAL\Types\FloatType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -57,18 +57,20 @@ class RankType extends AbstractType
             )
             ->add(
                 'ageMin',
-                FloatType::class,
+                NumberType::class,
                 array(
                     'label' => 'field.age_min',
                     'required' => false,
+                    'scale' => 1,
                 )
             )
             ->add(
                 'ageMax',
-                FloatType::class,
+                NumberType::class,
                 array(
                     'label' => 'field.age_max',
                     'required' => false,
+                    'scale' => 1,
                 )
             );
     }
