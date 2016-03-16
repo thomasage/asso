@@ -64,16 +64,16 @@ class Rank
     private $lessons;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="age_min", type="integer", nullable=true)
+     * @ORM\Column(name="age_min", type="float", nullable=true)
      */
     private $ageMin;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="age_max", type="integer", nullable=true)
+     * @ORM\Column(name="age_max", type="float", nullable=true)
      */
     private $ageMax;
 
@@ -233,9 +233,19 @@ class Rank
     }
 
     /**
+     * Get ageMin
+     *
+     * @return float
+     */
+    public function getAgeMin()
+    {
+        return $this->ageMin;
+    }
+
+    /**
      * Set ageMin
      *
-     * @param integer $ageMin
+     * @param float $ageMin
      *
      * @return Rank
      */
@@ -247,19 +257,19 @@ class Rank
     }
 
     /**
-     * Get ageMin
+     * Get ageMax
      *
-     * @return integer
+     * @return float
      */
-    public function getAgeMin()
+    public function getAgeMax()
     {
-        return $this->ageMin;
+        return $this->ageMax;
     }
 
     /**
      * Set ageMax
      *
-     * @param integer $ageMax
+     * @param float $ageMax
      *
      * @return Rank
      */
@@ -268,15 +278,5 @@ class Rank
         $this->ageMax = $ageMax;
 
         return $this;
-    }
-
-    /**
-     * Get ageMax
-     *
-     * @return integer
-     */
-    public function getAgeMax()
-    {
-        return $this->ageMax;
     }
 }
