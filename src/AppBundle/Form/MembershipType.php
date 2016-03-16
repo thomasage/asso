@@ -32,6 +32,9 @@ class MembershipType extends AbstractType
                     'required' => true,
                     'label' => 'field.season',
                     'class' => 'AppBundle\Entity\Season',
+                    'attr' => array(
+                        'autofocus' => true,
+                    ),
                 )
             )
             ->add(

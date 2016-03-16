@@ -26,6 +26,9 @@ class PromotionType extends AbstractType
                     'required' => true,
                     'label' => 'field.date',
                     'widget' => 'single_text',
+                    'attr' => array(
+                        'autofocus' => true,
+                    ),
                 )
             )
             ->add(

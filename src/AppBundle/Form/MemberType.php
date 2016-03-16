@@ -26,6 +26,9 @@ class MemberType extends AbstractType
                 array(
                     'label' => 'field.firstname',
                     'required' => true,
+                    'attr' => array(
+                        'autofocus' => true,
+                    ),
                 )
             )
             ->add(
