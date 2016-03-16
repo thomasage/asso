@@ -29,6 +29,7 @@ class MembershipController extends Controller
 
         $membership = new Membership();
         $membership->setMember($member);
+        $membership->setSeason($this->getUser()->getCurrentSeason());
         $formEdit = $this->createForm(MembershipType::class, $membership);
         $formEdit->handleRequest($request);
 
