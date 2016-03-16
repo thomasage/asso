@@ -26,6 +26,15 @@
     width: 100%;
 }
 
+.app_member_index table > tbody > tr > td.rank {
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.app_member_index table > tbody > tr > td.rank > img {
+    border: 1px rgb(240, 240, 240) solid;
+}
+
 /* Add member */
 
 .app_member_add #member_address,
