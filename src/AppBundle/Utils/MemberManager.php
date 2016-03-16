@@ -111,9 +111,13 @@ class MemberManager
         $this->em->flush();
     }
 
-    public function getNextBirthdays()
+    /**
+     * @param Season $season
+     * @return \AppBundle\Entity\Member[]
+     */
+    public function getNextBirthdays(Season $season)
     {
-        return $this->em->getRepository('AppBundle:Member')->findNextBirthdays();
+        return $this->em->getRepository('AppBundle:Member')->findNextBirthdays($season);
     }
 
     /**

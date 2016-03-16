@@ -251,7 +251,7 @@ class DefaultController extends Controller
         $mm = $this->get('app.member_manager');
 
         // Next birthdays
-        $members = $mm->getNextBirthdays();
+        $members = $mm->getNextBirthdays($this->getUser()->getCurrentSeason());
 
         // Render
         return $this->render(

@@ -73,15 +73,19 @@ class MemberRepository extends EntityRepository
     }
 
     /**
+     * @param Season $season
      * @return \AppBundle\Entity\Member[]
      */
-    public function findNextBirthdays()
+    public function findNextBirthdays(Season $season)
     {
         // Period to scan
         $start = new \DateTime('-1 week');
         $stop = new \DateTime('+3 weeks');
 
         $builder = $this->createQueryBuilder('m')
+            ->innerJoin('m.memberships', 'ms')
+            ->andWhere('ms.season = :season')
+            ->setParameter('season', $season)
             ->setParameter('start', $start->format('m-d'))
             ->setParameter('stop', $stop->format('m-d'));
         if ($start->format('m') > $stop->format('m')) {
