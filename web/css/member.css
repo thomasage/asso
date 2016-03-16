@@ -96,7 +96,7 @@
 }
 
 .app_member_show .promotions .description > img {
-    max-height: 2em;
+    border: 1px rgb(240, 240, 240) solid;
 }
 
 .app_member_show .attendance {
