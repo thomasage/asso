@@ -33,9 +33,13 @@
                     <td>{{ rank.name }}</td>
                     <td>
                         {% if rank.imageExtension %}
-                            <img src="{{ path('app_param_rank_image',{rank:rank.id}) }}" alt="Image"/>
+                            <img src="{{ path('app_param_rank_image',{rank:rank.id}) }}"
+                                 alt="Image"
+                                 title="{{ rank.description }}"
+                                 class="rank-image"/>
+                        {% else %}
+                            <small>{{ rank.description }}</small>
                         {% endif %}
-                        <small>{{ rank.description }}</small>
                     </td>
                     <td>{{ rank.lessons }}</td>
                     <td>

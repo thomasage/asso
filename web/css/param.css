@@ -16,6 +16,10 @@
     margin: auto;
 }
 
+.app_param_rank .rank-image {
+    border: 1px rgb(220, 220, 220) solid;
+}
+
 /* Edit rank */
 
 .app_param_rank_edit .container {

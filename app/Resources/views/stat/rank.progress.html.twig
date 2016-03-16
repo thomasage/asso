@@ -49,12 +49,16 @@
                     <td>{{ result.level_name }}</td>
                     <td>
                         <img src="{{ path('app_param_rank_image',{rank:result.rank_id}) }}"
-                             alt="{{ result.rank_description }}"/>
+                             alt="{{ result.rank_description }}"
+                             title="{{ result.rank_description }}"
+                             class="rank-image"/><br/>
                         <small>{{ result.rank_name }}</small>
                     </td>
                     <td>
                         <img src="{{ path('app_param_rank_image',{rank:result.next_rank_id}) }}"
-                             alt="{{ result.next_rank_description }}"/>
+                             alt="{{ result.next_rank_description }}"
+                             title="{{ result.next_rank_description }}"
+                             class="rank-image"/><br/>
                         <small>{{ result.next_rank_name }}</small>
                     </td>
                     <td>
