@@ -24,6 +24,17 @@ class PlanningCollectionType extends AbstractType
                     'allow_delete' => true,
                     'by_reference' => true,
                 )
+            )
+            ->add(
+                'ignore',
+                CollectionType::class,
+                array(
+                    'label' => false,
+                    'entry_type' => PeriodType::class,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => true,
+                )
             );
     }
 }

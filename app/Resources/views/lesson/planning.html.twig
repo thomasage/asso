@@ -13,7 +13,7 @@
             <nav>
                 <a href="{{ path('app_lesson_index') }}" class="button">
                     <span class="fi-arrow-left"></span>
-                    Back
+                    {{ 'action.back'|trans({},'messages') }}
                 </a>
             </nav>
         </div>
@@ -22,10 +22,23 @@
 
         {{ form_start(formEdit) }}
 
+        <h4>{{ 'planning.title.pattern'|trans }}</h4>
+
         {{ form_row(formEdit.elements) }}
 
         <div class="action">
             <a href="#" class="button secondary element-add">
+                <span class="fi-plus"></span>
+                {{ 'action.add'|trans({},'messages') }}
+            </a>
+        </div>
+
+        <h4>{{ 'planning.title.ignore'|trans }}</h4>
+
+        {{ form_row(formEdit.ignore) }}
+
+        <div class="action">
+            <a href="#" class="button secondary ignore-add">
                 <span class="fi-plus"></span>
                 {{ 'action.add'|trans({},'messages') }}
             </a>
@@ -67,6 +80,14 @@
             $('.element-del').click(function (e) {
                 e.preventDefault();
                 PlanningDel($(this).parent().parent());
+            });
+            $('.ignore-add').click(function (e) {
+                e.preventDefault();
+                PlanningIgnoreAdd();
+            });
+            $('.ignore-del').click(function (e) {
+                e.preventDefault();
+                PlanningIgnoreDel($(this).parent().parent());
             });
         });
     </script>

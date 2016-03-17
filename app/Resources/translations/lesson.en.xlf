@@ -165,6 +165,22 @@
         <source>edit.title</source>
         <target>Edit lesson</target>
       </trans-unit>
+      <trans-unit id="9b4c42e0a974d9b534cde596c20bd080" resname="planning.title.pattern">
+        <source>planning.title.pattern</source>
+        <target>Model</target>
+      </trans-unit>
+      <trans-unit id="0fbb9c262e08ec1f98b39641e400e48f" resname="planning.title.ignore">
+        <source>planning.title.ignore</source>
+        <target>Periods to ignore</target>
+      </trans-unit>
+      <trans-unit id="f8e01e1880e12121ddb11d96809dfde9" resname="field.start_date">
+        <source>field.start_date</source>
+        <target>Start</target>
+      </trans-unit>
+      <trans-unit id="8e8f28f95a56b2db10ebe5433cebd9df" resname="field.stop_date">
+        <source>field.stop_date</source>
+        <target>Stop</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -21,6 +21,29 @@ function PlanningDel(element) {
 
 }
 
+function PlanningIgnoreAdd() {
+
+    var list = $('#planning_collection_ignore');
+    var element = $(list.data('prototype').replace(/__name__/g, count));
+    element.find('a.ignore-del').click(function (e) {
+        e.preventDefault();
+        PlanningIgnoreDel($(this).parent().parent());
+    });
+    element.hide();
+    list.append(element);
+    element.slideDown('fast');
+    count++;
+
+}
+
+function PlanningIgnoreDel(element) {
+
+    element.slideUp('fast', function () {
+        $(this).remove();
+    });
+
+}
+
 function LessonAttendance(lesson, member, active) {
 
     $.ajax(

@@ -95,7 +95,7 @@
       </trans-unit>
       <trans-unit id="62b5216c362a20e84216dc6aa8dc8c4c" resname="field.weekday">
         <source>field.weekday</source>
-        <target>Jour semaine</target>
+        <target>Jour</target>
       </trans-unit>
       <trans-unit id="6b65dd5bd47485d303b8f6501b661a6f" resname="field.start">
         <source>field.start</source>
@@ -164,6 +164,22 @@
       <trans-unit id="3cffdbb8528a93e6dc87e19c007734af" resname="edit.title">
         <source>edit.title</source>
         <target>Modifier un cours</target>
+      </trans-unit>
+      <trans-unit id="9b4c42e0a974d9b534cde596c20bd080" resname="planning.title.pattern">
+        <source>planning.title.pattern</source>
+        <target>Modèle</target>
+      </trans-unit>
+      <trans-unit id="0fbb9c262e08ec1f98b39641e400e48f" resname="planning.title.ignore">
+        <source>planning.title.ignore</source>
+        <target>Périodes à ignorer</target>
+      </trans-unit>
+      <trans-unit id="f8e01e1880e12121ddb11d96809dfde9" resname="field.start_date">
+        <source>field.start_date</source>
+        <target>Début</target>
+      </trans-unit>
+      <trans-unit id="8e8f28f95a56b2db10ebe5433cebd9df" resname="field.stop_date">
+        <source>field.stop_date</source>
+        <target>Fin</target>
       </trans-unit>
     </body>
   </file>

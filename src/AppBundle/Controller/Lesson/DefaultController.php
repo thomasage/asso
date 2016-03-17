@@ -264,7 +264,7 @@ class DefaultController extends Controller
 
                 // Build lessons
                 $lm = $this->get('app.lesson_manager');
-                $lm->buildFromPlanning($this->getUser()->getCurrentSeason());
+                $lm->buildFromPlanning($this->getUser()->getCurrentSeason(), $formEdit->getData()['ignore']);
 
                 // Flash message
                 $this->addFlash(

@@ -25,3 +25,27 @@
         </div>
     {%- endspaceless -%}
 {% endblock %}
+
+{% block _planning_collection_ignore_entry_label %}
+{% endblock %}
+
+{% block _planning_collection_ignore_entry_widget %}
+    {%- spaceless -%}
+        {{ form_errors(form) }}
+        <div>
+            <div>
+                {{ form_label(form.start) }}
+                {{ form_widget(form.start) }}
+            </div>
+            <div>
+                {{ form_label(form.stop) }}
+                {{ form_widget(form.stop) }}
+            </div>
+            <div>
+                <a href="#" class="button warning ignore-del">
+                    <span class="fi-trash"></span> {{ 'action.delete'|trans({},'messages') -}}
+                </a>
+            </div>
+        </div>
+    {%- endspaceless -%}
+{% endblock %}
