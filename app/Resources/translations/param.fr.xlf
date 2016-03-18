@@ -15,7 +15,7 @@
       </trans-unit>
       <trans-unit id="22cd011da67591275af53157ce006833" resname="field.password_new">
         <source>field.password_new</source>
-        <target>Nouveau mot de passe</target>
+        <target>Nouveau</target>
       </trans-unit>
       <trans-unit id="757d1add46e831568e990b7050f7ac1f" resname="field.password_confirmation">
         <source>field.password_confirmation</source>
@@ -27,7 +27,7 @@
       </trans-unit>
       <trans-unit id="09ee82750140bd7fe44b3536210e77f4" resname="field.password_current">
         <source>field.password_current</source>
-        <target>Mot de passe actuel</target>
+        <target>Actuel</target>
       </trans-unit>
       <trans-unit id="7e91fc8d4d091cd965b7cd5755b87731" resname="rank_add.title">
         <source>rank_add.title</source>

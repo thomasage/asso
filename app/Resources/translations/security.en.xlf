@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="49c302e23ed1d0286eaacef2d2f457dd" resname="field.username">
+        <source>field.username</source>
+        <target>Username</target>
+      </trans-unit>
+      <trans-unit id="1285989dc8cf92bbd1ed68c6447b3ffc" resname="field.password">
+        <source>field.password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="9f0c6a00327c7448a9e2e219b86c4310" resname="action.login">
+        <source>action.login</source>
+        <target>Log in</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

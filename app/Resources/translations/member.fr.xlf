@@ -217,6 +217,10 @@
         <source>field.email1</source>
         <target>E-mail (2)</target>
       </trans-unit>
+      <trans-unit id="6fe372e954318d002a1c83d798c09196" resname="next_birthdays.title">
+        <source>next_birthdays.title</source>
+        <target>Prochains anniversaires</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
