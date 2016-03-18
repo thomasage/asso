@@ -2,10 +2,10 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Form\Type\DatePickerType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,14 +21,10 @@ class PromotionType extends AbstractType
         $builder
             ->add(
                 'date',
-                DateType::class,
+                DatePickerType::class,
                 array(
                     'required' => true,
                     'label' => 'field.date',
-                    'widget' => 'single_text',
-                    'attr' => array(
-                        'autofocus' => true,
-                    ),
                 )
             )
             ->add(

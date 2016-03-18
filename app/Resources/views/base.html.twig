@@ -8,6 +8,8 @@
         <link type="text/css" rel="stylesheet" href="{{ asset('css/default.css') }}"/>
         <link type="text/css" rel="stylesheet" href="{{ asset('libs/foundation-icons/foundation-icons.css') }}"/>
         <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,600"/>
+        <link type="text/css" rel="stylesheet"
+              href="{{ asset('libs/jquery-ui-1.10.3/css/smoothness/jquery-ui.min.css') }}"/>
     {% endblock %}
     <link type="image/png" rel="icon" href="{{ asset('favicon.ico') }}"/>
 </head>
@@ -53,6 +55,16 @@
     <script type="text/javascript" src="{{ asset('libs/jquery-2.1.4.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script type="text/javascript" src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('libs/jquery-ui-1.10.3/js/jquery-ui-1.10.3.custom.min.js') }}"></script>
+    {% if app.request.locale=='fr' %}
+    <script type="text/javascript" src="{{ asset('libs/jquery-ui-1.10.3/js/jquery.ui.datepicker-fr.js') }}"></script>
+    {% endif %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input.date').datepicker($.datepicker.regional['{{ app.request.locale }}']);
+        });
+    </script>
 {% endblock %}
 </body>
 </html>

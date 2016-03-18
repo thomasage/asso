@@ -1,8 +1,8 @@
 <?php
 namespace AppBundle\Form;
 
+use AppBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,20 +17,18 @@ class PeriodType extends AbstractType
         $builder
             ->add(
                 'start',
-                DateType::class,
+                DatePickerType::class,
                 array(
                     'label' => 'field.start_date',
                     'required' => true,
-                    'widget' => 'single_text',
                 )
             )
             ->add(
                 'stop',
-                DateType::class,
+                DatePickerType::class,
                 array(
                     'label' => 'field.stop_date',
                     'required' => true,
-                    'widget' => 'single_text'
                 )
             );
     }

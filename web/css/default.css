@@ -201,6 +201,11 @@ input[type=date] {
     text-align: center;
 }
 
+input.date {
+    width: 8em;
+    text-align: center;
+}
+
 input.number {
     text-align: right;
 }
