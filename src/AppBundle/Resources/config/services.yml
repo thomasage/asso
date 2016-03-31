@@ -40,3 +40,8 @@ services:
     app.transaction_manager:
         class: AppBundle\Utils\TransactionManager
         arguments: [ "@doctrine.orm.entity_manager", "%transaction_copy_directory%" ]
+    app.twig_extension:
+        class: AppBundle\Twig\AppExtension
+        public: false
+        tags:
+            - { name: twig.extension }

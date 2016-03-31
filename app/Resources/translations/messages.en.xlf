@@ -101,6 +101,10 @@
         <source>action.add_and_new</source>
         <target>Add and New</target>
       </trans-unit>
+      <trans-unit id="8bf8854bebe108183caeb845c7676ae4" resname="of">
+        <source>of</source>
+        <target>of</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

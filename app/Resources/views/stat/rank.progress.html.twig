@@ -37,15 +37,14 @@
                 <th>{{ 'field.age'|trans }}</th>
                 <th>{{ 'field.level'|trans }}</th>
                 <th>{{ 'field.rank'|trans }}</th>
-                <th>{{ 'field.next_rank'|trans }}</th>
                 <th>{{ 'field.progress'|trans }}</th>
             </tr>
             </thead>
             <tbody>
             {% for result in results %}
                 <tr>
-                    <td>{{ result.member_name }}</td>
-                    <td>{{ result.member_age }}</td>
+                    <td>{{ result.member_firstname }} {{ result.member_lastname }}</td>
+                    <td>{{ result.member_birthday|age }}</td>
                     <td>{{ result.level_name }}</td>
                     <td>
                         <img src="{{ path('app_param_rank_image',{rank:result.rank_id}) }}"
@@ -54,22 +53,18 @@
                              class="rank-image"/><br/>
                         <small>{{ result.rank_name }}</small>
                     </td>
-                    <td>
-                        <img src="{{ path('app_param_rank_image',{rank:result.next_rank_id}) }}"
-                             alt="{{ result.next_rank_description }}"
-                             title="{{ result.next_rank_description }}"
-                             class="rank-image"/><br/>
-                        <small>{{ result.next_rank_name }}</small>
-                    </td>
-                    <td>
-                        {% if result.lessons_min>0 %}
-                            <meter min="0"
-                                   max="1"
-                                   value="{{ result.lessons_count/result.lessons_min }}"
-                                   title="{{ result.lessons_count }} / {{ result.lessons_min }} {{ 'lessons'|trans }}"></meter>
-                            <small>{{ result.lessons_count/result.lessons_min*100|number_format(2,'.','') }}%</small>
+                    <td class="progress-lesson">
+                        {% if result.rank_lessons %}
+                            <meter min="0" max="{{ result.rank_lessons }}" value="{{ result.lessons }}">
+                                {{ result.lessons/result.rank_lessons*100 }} %
+                            </meter><br/>
+                            <small>
+                                {{ 'count_lessons_on'|transchoice(result.lessons,{'%total%':result.rank_lessons}) }}
+                            </small>
                         {% else %}
-                            {{ result.lessons_count }} {{ 'lessons' }}
+                            <small>
+                                {{ 'count_lessons'|transchoice(result.lessons) }}
+                            </small>
                         {% endif %}
                     </td>
                 </tr>

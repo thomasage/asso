@@ -45,6 +45,14 @@
         <source>field.next_rank</source>
         <target>Titre suivant</target>
       </trans-unit>
+      <trans-unit id="c0bead2d989b332809932aea2bcc555f" resname="count_lessons">
+        <source>count_lessons</source>
+        <target>{0}aucun cours|]0,Inf[%count% cours</target>
+      </trans-unit>
+      <trans-unit id="f8bd06551c5e5c2a481f27fe8694dc78" resname="count_lessons_on">
+        <source>count_lessons_on</source>
+        <target>{0}aucun cours|]0,Inf[%count% cours sur %total%</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
