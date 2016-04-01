@@ -71,15 +71,15 @@ class Lesson
     private $comment;
 
     /**
-     * @var Level[]
+     * @var Level
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Level")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Level")
      * @ORM\JoinColumn(nullable=false)
      *
      * @Assert\NotBlank()
      * @Assert\Valid()
      */
-    private $levels;
+    private $level;
 
     /**
      * @var Member[]
@@ -94,7 +94,6 @@ class Lesson
     public function __construct()
     {
         $this->active = true;
-        $this->levels = new ArrayCollection();
         $this->members = new ArrayCollection();
     }
 
@@ -229,40 +228,6 @@ class Lesson
     }
 
     /**
-     * Add level
-     *
-     * @param Level $level
-     *
-     * @return Lesson
-     */
-    public function addLevel(Level $level)
-    {
-        $this->levels[] = $level;
-
-        return $this;
-    }
-
-    /**
-     * Remove level
-     *
-     * @param Level $level
-     */
-    public function removeLevel(Level $level)
-    {
-        $this->levels->removeElement($level);
-    }
-
-    /**
-     * Get levels
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getLevels()
-    {
-        return $this->levels;
-    }
-
-    /**
      * Add member
      *
      * @param Member $member
@@ -294,5 +259,29 @@ class Lesson
     public function getMembers()
     {
         return $this->members;
+    }
+
+    /**
+     * Set level
+     *
+     * @param Level $level
+     *
+     * @return Lesson
+     */
+    public function setLevel(Level $level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return Level
+     */
+    public function getLevel()
+    {
+        return $this->level;
     }
 }

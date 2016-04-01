@@ -83,7 +83,8 @@
 }
 
 .app_lesson_planning #planning_collection_elements > div > div > div label {
-    margin-right: 0.5em;
+    display: block;
+    margin-bottom: 0.3em;
 }
 
 .app_lesson_planning #planning_collection_elements > div > div > div input[id$="_duration"] {
@@ -216,4 +217,52 @@
 
 .app_lesson_day .lessons > div > div.title > span:nth-of-type(2) {
     float: right;
+}
+
+/* Add a lesson */
+
+.app_lesson_add #lesson_comment {
+    width: 20em;
+    height: 5em;
+}
+
+.app_lesson_add #lesson_duration {
+    width: 6em;
+    text-align: right;
+}
+
+.app_lesson_add #lesson_level {
+    width: 20em;
+}
+
+.app_lesson_add #lesson_start > select:first-of-type {
+    margin-right: 0.3em;
+}
+
+.app_lesson_add #lesson_start > select:nth-of-type(n+2) {
+    margin-left: 0.3em;
+}
+
+/* Edit a lesson */
+
+.app_lesson_edit #lesson_comment {
+    width: 20em;
+    height: 5em;
+}
+
+.app_lesson_edit #lesson_duration {
+    width: 6em;
+    text-align: right;
+}
+
+.app_lesson_edit #lesson_level {
+    width: 20em;
+}
+
+.app_lesson_edit #lesson_start > select:first-of-type {
+    margin-right: 0.3em;
+}
+
+.app_lesson_edit #lesson_start > select:nth-of-type(n+2) {
+    margin-left: 0.3em;
 }

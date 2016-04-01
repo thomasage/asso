@@ -1,10 +1,10 @@
 <?php
 namespace AppBundle\Form;
 
+use AppBundle\Form\Type\DatePickerType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
@@ -22,7 +22,7 @@ class LessonType extends AbstractType
         $builder
             ->add(
                 'date',
-                DateType::class,
+                DatePickerType::class,
                 array(
                     'required' => true,
                     'label' => 'field.date',
@@ -56,12 +56,11 @@ class LessonType extends AbstractType
                 )
             )
             ->add(
-                'levels',
+                'level',
                 EntityType::class,
                 array(
                     'required' => true,
-                    'label' => 'field.levels',
-                    'multiple' => true,
+                    'label' => 'field.level',
                     'class' => 'AppBundle\Entity\Level',
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('l')->addOrderBy('l.name', 'ASC');

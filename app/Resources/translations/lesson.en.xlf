@@ -181,6 +181,10 @@
         <source>field.stop_date</source>
         <target>Stop</target>
       </trans-unit>
+      <trans-unit id="8e8f28f95a56b2db10ebe5433cebd9dg" resname="field.level">
+        <source>field.level</source>
+        <target>Level</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

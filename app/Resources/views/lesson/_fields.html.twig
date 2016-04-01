@@ -18,6 +18,10 @@
                 {{ form_widget(form.duration) }}
             </div>
             <div>
+                {{ form_label(form.level) }}
+                {{ form_widget(form.level) }}
+            </div>
+            <div>
                 <a href="#" class="button warning element-del">
                     <span class="fi-trash"></span> {{ 'action.delete'|trans({},'messages') -}}
                 </a>

@@ -52,6 +52,16 @@ class Planning
     private $duration;
 
     /**
+     * @var Level
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Level")
+     *
+     * @Assert\NotBlank()
+     * @Assert\Valid()
+     */
+    private $level;
+
+    /**
      * Get id
      *
      * @return integer
@@ -131,5 +141,29 @@ class Planning
         $this->duration = $duration;
 
         return $this;
+    }
+
+    /**
+     * Set level
+     *
+     * @param \AppBundle\Entity\Level $level
+     *
+     * @return Planning
+     */
+    public function setLevel(\AppBundle\Entity\Level $level = null)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return \AppBundle\Entity\Level
+     */
+    public function getLevel()
+    {
+        return $this->level;
     }
 }

@@ -31,27 +31,25 @@
                         <span>{{ lesson.start|localizeddate('none','short') }}</span>
                         <span>{{ lesson.duration }} {{ 'minutes'|trans }}</span>
                     </div>
-                    {% for level in lesson.levels %}
-                        {% if members[level.id]|length>0 %}
-                            <div class="level">
-                                <div class="title">{{ level }}</div>
-                                <div class="members">
-                                    {% for member in members[level.id] %}
-                                        <a href="#"
-                                           class="{% if member in lesson.members %}active{% endif %}"
-                                           data-member="{{ member.id }}">
-                                            {{ member }}
-                                        </a>
-                                    {% endfor %}
-                                </div>
+                    {% if members[lesson.level.id] %}
+                        <div class="level">
+                            <div class="title">{{ lesson.level }}</div>
+                            <div class="members">
+                                {% for member in members[lesson.level.id] %}
+                                    <a href="#"
+                                       class="{% if member in lesson.members %}active{% endif %}"
+                                       data-member="{{ member.id }}">
+                                        {{ member }}
+                                    </a>
+                                {% endfor %}
                             </div>
-                        {% endif %}
-                    {% endfor %}
+                        </div>
+                    {% endif %}
                     {#<div class="information">#}
                     {#<textarea placeholder="{{ 'field.comment.placeholder'|trans }}"></textarea>#}
                     {#</div>#}
                     <div class="action">
-                        <a href="{{ path('app_lesson_edit',{lesson:lesson.id}) }}" class="button primary">
+                        <a href="{{ path('app_lesson_edit',{lesson:lesson.id}) }}" class="button secondary">
                             <span class="fi-pencil"></span>
                             {{ 'action.edit'|trans({},'messages') }}
                         </a>

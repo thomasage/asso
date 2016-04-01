@@ -39,7 +39,7 @@ class LessonManager
         // Existing lessons
         $lessons = new ArrayCollection();
         foreach ($this->em->getRepository('AppBundle:Lesson')->findBySeason($season) as $l) {
-            $lessons->add($l->getDate()->format('Y-m-d').'-'.$l->getStart()->format('H-i'));
+            $lessons->add($l->getDate()->format('Y-m-d').'-'.$l->getStart()->format('H-i').'-'.$l->getLevel()->getId());
         }
 
         // Periods to ignore
@@ -66,13 +66,17 @@ class LessonManager
                     continue;
                 }
 
-                if ($lessons->contains($date->format('Y-m-d').'-'.$p->getStart()->format('H-i'))) {
+                if ($lessons->contains(
+                    $date->format('Y-m-d').'-'.$p->getStart()->format('H-i').'-'.$p->getLevel()->getId()
+                )
+                ) {
                     continue;
                 }
 
                 $l = new Lesson();
                 $l->setDate($date)
                     ->setDuration($p->getDuration())
+                    ->setLevel($p->getLevel())
                     ->setStart($p->getStart());
                 $this->em->persist($l);
 
