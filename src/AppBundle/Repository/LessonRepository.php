@@ -71,12 +71,11 @@ class LessonRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('lesson')
-            ->innerJoin('lesson.levels', 'level')
             ->leftJoin('lesson.members', 'members')
             ->addSelect('members')
             ->andWhere('lesson.date >= :start')
             ->andWhere('lesson.date <= :stop')
-            ->andWhere('level = :level')
+            ->andWhere('lesson.level = :level')
             ->setParameter('start', $season->getStart()->format('Y-m-d'))
             ->setParameter('stop', $season->getStop()->format('Y-m-d'))
             ->setParameter('level', $level)
