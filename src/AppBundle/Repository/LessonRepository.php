@@ -3,7 +3,6 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Lesson;
 use AppBundle\Entity\Level;
-use AppBundle\Entity\Member;
 use AppBundle\Entity\Season;
 use Doctrine\ORM\EntityRepository;
 
