@@ -148,7 +148,7 @@
 }
 
 .app_lesson_day .lessons > div {
-    width: 30%;
+    width: 45%;
     margin-top: 1em;
 }
 
@@ -178,12 +178,15 @@
 
 .app_lesson_day .lessons > div > div.level > div.members > a {
     width: 49%;
+    overflow: hidden;
     display: block;
     margin-top: 0.4em;
     padding: 0.5em;
     color: inherit;
     text-align: center;
     text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     background-color: rgb(250, 250, 250);
     outline: none;
 }
