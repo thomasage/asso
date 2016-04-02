@@ -22,6 +22,25 @@
 
         {{ include('default/_flash_messages.html.twig') }}
 
+        <div class="navigation">
+            {% if previous %}
+                <a href="{{ path('app_lesson_day',{day:previous|date('Y-m-d')}) }}" class="button secondary previous">
+                    <span class="fi-arrow-left"></span>
+                    {{ 'previous_day'|trans }}
+                </a>
+            {% else %}
+                <span>{{ 'previous_day'|trans }}</span>
+            {% endif %}
+            {% if next %}
+                <a href="{{ path('app_lesson_day',{day:next|date('Y-m-d')}) }}" class="button secondary next">
+                    {{ 'next_day'|trans }}
+                    <span class="fi-arrow-right"></span>
+                </a>
+            {% else %}
+                <span>{{ 'next_day'|trans }}</span>
+            {% endif %}
+        </div>
+
         <div class="lessons">
 
             {% for lesson in lessons %}

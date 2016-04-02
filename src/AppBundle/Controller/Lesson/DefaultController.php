@@ -81,6 +81,12 @@ class DefaultController extends Controller
         $mm = $this->get('app.member_manager');
         $members = $mm->findByDateGroupByLevel($day);
 
+        // Previous day with lesson
+        $previous = $lm->findPreviousDayWithLesson($day);
+
+        // Next day with lesson
+        $next = $lm->findNextDayWithLesson($day);
+
         // Render
         return $this->render(
             'lesson/day.html.twig',
@@ -88,6 +94,8 @@ class DefaultController extends Controller
                 'day' => $day,
                 'lessons' => $lessons,
                 'members' => $members,
+                'next' => $next,
+                'previous' => $previous,
             )
         );
     }

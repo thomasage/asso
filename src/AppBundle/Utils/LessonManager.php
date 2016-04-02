@@ -113,4 +113,22 @@ class LessonManager
     {
         return $this->em->getRepository('AppBundle:Lesson')->findBySeason($season);
     }
+
+    /**
+     * @param \DateTime $date
+     * @return \DateTime|null
+     */
+    public function findPreviousDayWithLesson(\DateTime $date)
+    {
+        return $this->em->getRepository('AppBundle:Lesson')->findPreviousDayWithLesson($date);
+    }
+
+    /**
+     * @param \DateTime $date
+     * @return \DateTime|null
+     */
+    public function findNextDayWithLesson(\DateTime $date)
+    {
+        return $this->em->getRepository('AppBundle:Lesson')->findNextDayWithLesson($date);
+    }
 }

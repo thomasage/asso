@@ -181,9 +181,17 @@
         <source>field.stop_date</source>
         <target>Fin</target>
       </trans-unit>
-      <trans-unit id="8e8f28f95a56b2db10ebe5433cebd9dg" resname="field.level">
+      <trans-unit id="829c7663d7b62ff34bf4d8b31ceb47a2" resname="field.level">
         <source>field.level</source>
         <target>Niveau</target>
+      </trans-unit>
+      <trans-unit id="f23f53d54e897068865f116d89fcd175" resname="previous_day">
+        <source>previous_day</source>
+        <target>Jour précédent</target>
+      </trans-unit>
+      <trans-unit id="b899a76cbf8f86098f1ac5785ac4a8a1" resname="next_day">
+        <source>next_day</source>
+        <target>Jour suivant</target>
       </trans-unit>
     </body>
   </file>

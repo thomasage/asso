@@ -5,6 +5,7 @@ use AppBundle\Entity\Lesson;
 use AppBundle\Entity\Level;
 use AppBundle\Entity\Season;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NoResultException;
 
 /**
  * LessonRepository
@@ -82,5 +83,66 @@ class LessonRepository extends EntityRepository
             ->addOrderBy('lesson.start', 'ASC')
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @param \DateTime $date
+     * @return \DateTime|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findPreviousDayWithLesson(\DateTime $date)
+    {
+        try {
+
+            $result = $this->createQueryBuilder('lesson')
+                ->andWhere('lesson.active = 1')
+                ->andWhere('lesson.date < :date')
+                ->addOrderBy('lesson.date', 'DESC')
+                ->setParameter('date', $date)
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getSingleResult();
+
+            if ($result instanceof Lesson) {
+                return $result->getDate();
+            }
+
+        } catch (NoResultException $e) {
+
+            // Nothing to do here
+
+        }
+
+        return null;
+    }
+
+    /**
+     * @param \DateTime $date
+     * @return \DateTime|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findNextDayWithLesson(\DateTime $date)
+    {
+        try {
+            $result = $this->createQueryBuilder('lesson')
+                ->andWhere('lesson.active = 1')
+                ->andWhere('lesson.date > :date')
+                ->addOrderBy('lesson.date', 'ASC')
+                ->setParameter('date', $date)
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getSingleResult();
+
+            if ($result instanceof Lesson) {
+                return $result->getDate();
+            }
+
+        } catch (NoResultException $e) {
+
+            // Nothing to do here
+
+        }
+
+        return null;
     }
 }
