@@ -127,6 +127,8 @@ class MemberRepository extends EntityRepository
             ->innerJoin('m.memberships', 'ms')
             ->andWhere('ms.level = :level')
             ->andWhere('ms.season = :season')
+            ->addOrderBy('m.firstname','ASC')
+            ->addOrderBy('m.lastname','ASC')
             ->setParameter('level', $level)
             ->setParameter('season', $season)
             ->getQuery()
