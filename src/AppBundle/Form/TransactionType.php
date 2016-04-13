@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Form;
 
+use AppBundle\Form\Type\DatePickerType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -23,7 +24,7 @@ class TransactionType extends AbstractType
         $builder
             ->add(
                 'date',
-                DateType::class,
+                DatePickerType::class,
                 array(
                     'required' => true,
                     'label' => 'field.date',

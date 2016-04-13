@@ -1,8 +1,8 @@
 <?php
 namespace AppBundle\Form;
 
+use AppBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,7 +17,7 @@ class TransactionSearchType extends AbstractType
         $builder
             ->add(
                 'date',
-                DateType::class,
+                DatePickerType::class,
                 array(
                     'required' => false,
                     'label' => 'field.date',
