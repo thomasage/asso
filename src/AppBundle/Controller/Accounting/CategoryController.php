@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Controller\Accounting;
 
-use AppBundle\Form\CategoryCollectionType;
+use AppBundle\Form\Type\CategoryCollectionType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

@@ -1,6 +1,7 @@
 <?php
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
+use AppBundle\Form\CategoryType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
