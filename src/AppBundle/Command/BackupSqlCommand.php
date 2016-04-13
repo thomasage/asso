@@ -48,12 +48,7 @@ class BackupSqlCommand extends ContainerAwareCommand
         if ($r == 0) {
             $output->writeln('<info>Done!</info>');
         } else {
-            $output->writeln('<error>Error</error>');
-            $output->writeln('Output :');
-            ob_start();
-            print_r($o);
-            $output->writeln(ob_get_contents());
-            ob_end_clean();
+            $output->writeln('<error>Unable to dump database!</error>');
         }
 
         return 0;
