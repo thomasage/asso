@@ -1,0 +1,22 @@
+{
+  "name": "asso",
+  "homepage": "https://github.com/thomasage/asso",
+  "authors": [
+    "thomas <thomas@localhost>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-ui": "^1.11.4",
+    "jquery": "^2.2.3"
+  }
+}

@@ -1,9 +1,9 @@
 <?php
 namespace AppBundle\Form;
 
+use AppBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -53,9 +53,8 @@ class MemberType extends AbstractType
             )
             ->add(
                 'birthday',
-                DateType::class,
+                DatePickerType::class,
                 array(
-                    'widget' => 'single_text',
                     'label' => 'field.birthday',
                     'required' => true,
                 )
