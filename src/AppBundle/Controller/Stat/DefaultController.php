@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller\Stat;
 
+use AppBundle\Form\StatAmountByThirdType;
 use AppBundle\Form\StatRankProgressType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,6 +10,47 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return Response
+     *
+     * @Route("/stat/amountByThird",
+     *        name="app_stat_amount_by_third",
+     *        methods={"GET","POST"})
+     */
+    public function amountByThirdAction(Request $request)
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Curret season
+        $season = $this->getUser()->getCurrentSeason();
+
+        // Search form
+        $formSearch = $this->createForm(
+            StatAmountByThirdType::class,
+            [
+                'start' => $season->getStart(),
+                'stop' => $season->getStop(),
+            ]
+        );
+        $formSearch->handleRequest($request);
+
+        $results = $em->getRepository('AppBundle:Transaction')->statAmountByThird(
+            $formSearch->get('start')->getData(),
+            $formSearch->get('stop')->getData()
+        );
+
+        // Render
+        return $this->render(
+            'stat/amount-by-third.html.twig',
+            [
+                'formSearch' => $formSearch->createView(),
+                'results' => $results,
+            ]
+        );
+    }
+
     /**
      * @return Response
      *
@@ -19,10 +61,7 @@ class DefaultController extends Controller
     public function indexAction()
     {
         // Render
-        return $this->render(
-            'stat/index.html.twig',
-            array()
-        );
+        return $this->render('stat/index.html.twig');
     }
 
     /**
@@ -41,7 +80,9 @@ class DefaultController extends Controller
         // Search form
         $formSearch = $this->createForm(
             StatRankProgressType::class,
-            array('season' => $this->getUser()->getCurrentSeason()->getId())
+            [
+                'season' => $this->getUser()->getCurrentSeason()->getId(),
+            ]
         );
         $formSearch->handleRequest($request);
 

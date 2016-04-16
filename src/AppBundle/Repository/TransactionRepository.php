@@ -54,4 +54,25 @@ class TransactionRepository extends EntityRepository
 
         return new SearchResult($builder, $search);
     }
+
+    /**
+     * @param \DateTime|null $start
+     * @param \DateTime|null $stop
+     * @return array
+     */
+    public function statAmountByThird(\DateTime $start = null, \DateTime $stop = null)
+    {
+        $builder = $this->createQueryBuilder('t')
+            ->select('t.thirdName third, SUM( t.amount ) AS amount')
+            ->groupBy('t.thirdName')
+            ->addOrderBy('t.thirdName', 'ASC');
+        if ($start instanceof \DateTime) {
+            $builder->andWhere('t.date >= :start')->setParameter('start', $start);
+        }
+        if ($stop instanceof \DateTime) {
+            $builder->andWhere('t.date <= :stop')->setParameter('stop', $stop);
+        }
+
+        return $builder->getQuery()->getArrayResult();
+    }
 }
