@@ -193,6 +193,14 @@
         <source>next_day</source>
         <target>Next day</target>
       </trans-unit>
+      <trans-unit id="7c0a0ae016780349b67b00802c4f7bf1" resname="widget.missing-attendances.title">
+        <source>widget.missing-attendances.title</source>
+        <target>Missing attendances</target>
+      </trans-unit>
+      <trans-unit id="7d0db380a5b95a8ba1da0bca241abda1" resname="at">
+        <source>at</source>
+        <target>at</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

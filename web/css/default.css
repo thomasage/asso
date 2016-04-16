@@ -620,6 +620,20 @@ div.edit1 > div.notification {
     border: 1px rgb(220, 220, 220) solid;
 }
 
+div.actions_full {
+    margin-top: 2em;
+    padding: 1em 0;
+    text-align: center;
+    background-color: rgb(250, 250, 250);
+    border-top: 1px silver solid;
+}
+
+div.actions_full > span {
+    margin: 0 1em;
+}
+
+/* Widget : next birthdays */
+
 .widget-next-birthdays > div {
     display: flex;
     flex-direction: row;
@@ -644,14 +658,24 @@ div.edit1 > div.notification {
     margin: 5% auto;
 }
 
-div.actions_full {
-    margin-top: 2em;
-    padding: 1em 0;
-    text-align: center;
-    background-color: rgb(250, 250, 250);
-    border-top: 1px silver solid;
+/* Widget : missing attendances */
+
+.widget-missing-attendances > ul {
+    margin: 1em 0 0 1.5em;
+    padding: 0;
 }
 
-div.actions_full > span {
-    margin: 0 1em;
+.widget-missing-attendances > ul > li {
+    margin: 0.5em 0 0 0;
+    padding: 0;
+}
+
+.widget-missing-attendances > ul > li > a {
+    padding: 0.3em;
+    color: inherit;
+    text-decoration: none;
+}
+
+.widget-missing-attendances > ul > li > a:hover {
+    background-color: rgb(245, 245, 245);
 }

@@ -124,6 +124,7 @@ class LessonRepository extends EntityRepository
     public function findNextDayWithLesson(\DateTime $date)
     {
         try {
+
             $result = $this->createQueryBuilder('lesson')
                 ->andWhere('lesson.active = 1')
                 ->andWhere('lesson.date > :date')
@@ -144,5 +145,28 @@ class LessonRepository extends EntityRepository
         }
 
         return null;
+    }
+
+    /**
+     * @param Season $season
+     * @return array
+     */
+    public function findMissingAttendances(Season $season)
+    {
+        $start = $season->getStart();
+        $stop = date('Y-m-d');
+
+        return $this->createQueryBuilder('l')
+            ->leftJoin('l.members', 'm')
+            ->andWhere('l.active = 1')
+            ->andWhere('l.date BETWEEN :start AND :stop')
+            ->addGroupBy('l.id')
+            ->having('COUNT( m.id ) = 0')
+            ->addOrderBy('l.date', 'ASC')
+            ->addOrderBy('l.start', 'ASC')
+            ->setParameter('start', $start)
+            ->setParameter('stop', $stop)
+            ->getQuery()
+            ->getResult();
     }
 }
