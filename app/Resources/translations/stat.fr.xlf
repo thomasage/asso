@@ -53,6 +53,26 @@
         <source>count_lessons_on</source>
         <target>{0}aucun cours|]0,Inf[%count% cours sur %total%</target>
       </trans-unit>
+      <trans-unit id="af67a36808b6eaed0c1e070d8b57c7b2" resname="amount_by_third.title">
+        <source>amount_by_third.title</source>
+        <target>Montant par tiers</target>
+      </trans-unit>
+      <trans-unit id="4c1941b1dab56fec740abf447831faf9" resname="field.third">
+        <source>field.third</source>
+        <target>Tiers</target>
+      </trans-unit>
+      <trans-unit id="91bc6d3c76aae9bc4000f64cbd7a49be" resname="field.amount">
+        <source>field.amount</source>
+        <target>Montant</target>
+      </trans-unit>
+      <trans-unit id="6b65dd5bd47485d303b8f6501b661a6f" resname="field.start">
+        <source>field.start</source>
+        <target>Début</target>
+      </trans-unit>
+      <trans-unit id="6f4f614a9f4b48f8c703bcfde95eeed1" resname="field.stop">
+        <source>field.stop</source>
+        <target>Fin</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
