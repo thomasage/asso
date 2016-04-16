@@ -23,7 +23,7 @@
       </trans-unit>
       <trans-unit id="5e303b302e35f909576b4c80ed02f69a" resname="field.paymentMethod">
         <source>field.paymentMethod</source>
-        <target>Mode de règlement</target>
+        <target>Mode</target>
       </trans-unit>
       <trans-unit id="864ac7c27a89799511852c395284e8bc" resname="field.thirdName">
         <source>field.thirdName</source>
