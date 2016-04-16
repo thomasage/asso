@@ -26,15 +26,20 @@ class DatePickerType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setDefaults(
+            array(
+                'format' => 'MM/dd/yyyy',
+                'html5' => false,
+                'widget' => 'single_text',
+                'attr' => array(
+                    'class' => 'date',
+                ),
+            )
+        );
         if ($this->locale == 'fr') {
             $resolver->setDefaults(
                 array(
                     'format' => 'dd/MM/yyyy',
-                    'html5' => false,
-                    'widget' => 'single_text',
-                    'attr' => array(
-                        'class' => 'date',
-                    ),
                 )
             );
         }

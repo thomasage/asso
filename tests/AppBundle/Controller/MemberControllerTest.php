@@ -63,7 +63,7 @@ class MemberControllerTest extends WebTestCase
                 'member[firstname]' => 'John',
                 'member[lastname]' => 'Doe',
                 'member[gender]' => 'm',
-                'member[birthday]' => '1980-01-01',
+                'member[birthday]' => '11/04/1980',
                 'member[birthplace]' => 'New-York City',
                 'member[address]' => 'Main street',
                 'member[zip]' => '01234',
