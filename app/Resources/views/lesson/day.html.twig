@@ -50,7 +50,7 @@
                         <span>{{ lesson.start|localizeddate('none','short') }}</span>
                         <span>{{ lesson.duration }} {{ 'minutes'|trans }}</span>
                     </div>
-                    {% if members[lesson.level.id] %}
+                    {% if members[lesson.level.id] is defined %}
                         <div class="level">
                             <div class="title">{{ lesson.level }}</div>
                             <div class="members">
