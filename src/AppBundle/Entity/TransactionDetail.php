@@ -48,7 +48,7 @@ class TransactionDetail
      * @ORM\Column(name="amount", type="decimal", precision=10, scale=2)
      *
      * @Assert\NotBlank(message="transaction_detail.amount.blank")
-     * @Assert\GreaterThan(value="0")
+     * @Assert\NotEqualTo(0)
      */
     private $amount;
 
