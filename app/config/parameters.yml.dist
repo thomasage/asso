@@ -16,7 +16,7 @@ parameters:
     mailer_password:   ~
 
     # A secret key that's used to generate certain security-related tokens
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            ChangeThisNotSecretToken
 
     member_photo_directory: "%kernel.root_dir%/../document/member/photo"
     rank_image_directory: "%kernel.root_dir%/../document/rank/image"
