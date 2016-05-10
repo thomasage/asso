@@ -121,7 +121,7 @@ class RankController extends Controller
      *
      * @Route("/param/rank/image/{rank}",
      *        name="app_param_rank_image",
-     *        methods={"GET","POST"},
+     *        methods={"GET"},
      *        requirements={"rank"="\d+"})
      */
     public function imageAction(Rank $rank)
@@ -144,7 +144,7 @@ class RankController extends Controller
      *
      * @Route("/param/rank",
      *        name="app_param_rank",
-     *        methods={"GET","POST"})
+     *        methods={"GET"})
      */
     public function indexAction()
     {

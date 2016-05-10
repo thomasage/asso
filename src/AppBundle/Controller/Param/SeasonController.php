@@ -114,7 +114,7 @@ class SeasonController extends Controller
      *
      * @Route("/param/season",
      *        name="app_param_season",
-     *        methods={"GET","POST"})
+     *        methods={"GET"})
      */
     public function indexAction()
     {

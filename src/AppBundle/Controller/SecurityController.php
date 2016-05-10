@@ -12,7 +12,8 @@ class SecurityController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/login",
-     *        name="app_security_login")
+     *     name="app_security_login",
+     *     methods={"GET"})
      */
     public function loginAction(Request $request)
     {
@@ -29,7 +30,8 @@ class SecurityController extends Controller
 
     /**
      * @Route("/login/check",
-     *        name="app_security_login_check")
+     *     name="app_security_login_check",
+     *     methods={"GET"})
      */
     public function loginCheckAction()
     {
@@ -38,7 +40,8 @@ class SecurityController extends Controller
 
     /**
      * @Route("/logout",
-     *        name="app_security_logout")
+     *     name="app_security_logout",
+     *     methods={"GET"})
      */
     public function logoutAction()
     {

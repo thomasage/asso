@@ -68,7 +68,7 @@ class DefaultController extends Controller
      *
      * @Route("/lesson/day/{day}",
      *        name="app_lesson_day",
-     *        methods={"GET","POST"},
+     *        methods={"GET"},
      *        requirements={"day"="[0-9]{4}-[0-9]{2}-[0-9]{2}"})
      */
     public function dayAction(\DateTime $day)

@@ -10,7 +10,8 @@ class DefaultController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/",
-     *        name="app_index")
+     *     name="app_index",
+     *     methods={"GET"})
      */
     public function indexAction()
     {

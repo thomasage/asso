@@ -151,7 +151,7 @@ class LevelController extends Controller
      *
      * @Route("/param/level",
      *        name="app_param_level",
-     *        methods={"GET","POST"})
+     *        methods={"GET"})
      */
     public function indexAction()
     {

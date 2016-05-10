@@ -20,7 +20,8 @@ class DefaultController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
      * @Route("/member/add",
-     *        name="app_member_add")
+     *     name="app_member_add",
+     *     methods={"GET","POST"})
      */
     public function addAction(Request $request)
     {
@@ -64,8 +65,8 @@ class DefaultController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
      * @Route("/member/edit/{member}",
-     *        name="app_member_edit",
-     *        requirements={"member"="\d+"})
+     *     name="app_member_edit",
+     *     requirements={"member"="\d+"})
      */
     public function editAction(Request $request, Member $member)
     {
@@ -129,7 +130,8 @@ class DefaultController extends Controller
      * @return Response
      *
      * @Route("/member",
-     *        name="app_member_index")
+     *     name="app_member_index",
+     *     methods={"GET","POST"})
      */
     public function indexAction(Request $request)
     {
@@ -170,8 +172,9 @@ class DefaultController extends Controller
      * @return BinaryFileResponse
      *
      * @Route("/member/photo/{member}",
-     *        name="app_member_photo",
-     *        requirements={"member"="\d+"})
+     *     name="app_member_photo",
+     *     methods={"GET"},
+     *     requirements={"member"="\d+"})
      */
     public function photoAction(Member $member)
     {
@@ -197,8 +200,9 @@ class DefaultController extends Controller
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Route("/member/show/{member}",
-     *        name="app_member_show",
-     *        requirements={"member"="\d+"})
+     *     name="app_member_show",
+     *     methods={"GET"},
+     *     requirements={"member"="\d+"})
      */
     public function showAction(Member $member)
     {
