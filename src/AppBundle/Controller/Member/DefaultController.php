@@ -66,6 +66,7 @@ class DefaultController extends Controller
      *
      * @Route("/member/edit/{member}",
      *     name="app_member_edit",
+     *     methods={"GET","POST"},
      *     requirements={"member"="\d+"})
      */
     public function editAction(Request $request, Member $member)
