@@ -31,7 +31,7 @@ class SecurityController extends Controller
     /**
      * @Route("/login/check",
      *     name="app_security_login_check",
-     *     methods={"GET"})
+     *     methods={"POST"})
      */
     public function loginCheckAction()
     {
