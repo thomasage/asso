@@ -11,6 +11,29 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     /**
+     * @return Response
+     *
+     * @Route("/stat/amountByMonth",
+     *     name="app_stat_amount_by_month",
+     *     methods={"GET"})
+     */
+    public function amountByMonthAction()
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Resuls
+        $results = $em->getRepository('AppBundle:Transaction')->statAmountByMonth();
+        
+        return $this->render(
+            'stat/amount-by-month.html.twig',
+            [
+                'results' => $results,
+            ]
+        );
+    }
+
+    /**
      * @param Request $request
      * @return Response
      *

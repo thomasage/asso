@@ -4,6 +4,7 @@ namespace AppBundle\Repository;
 use AppBundle\Entity\Search;
 use AppBundle\Utils\SearchResult;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * TransactionRepository
@@ -74,5 +75,48 @@ class TransactionRepository extends EntityRepository
         }
 
         return $builder->getQuery()->getArrayResult();
+    }
+
+    /**
+     * @return array
+     */
+    public function statAmountByMonth()
+    {
+        $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('month', 'month');
+        $rsm->addScalarResult('amount', 'amount');
+
+        $query = $this->_em->createNativeQuery(
+            'SELECT DATE_FORMAT( t.date, \'%Y-%m\' ) AS month,
+                    SUM( t.amount ) AS amount
+             FROM transaction AS t
+             GROUP BY DATE_FORMAT( t.date, \'%Y-%m\' )
+             ORDER BY DATE_FORMAT( t.date, \'%Y-%m\' ) ASC',
+            $rsm
+        );
+
+        $results = [];
+
+        foreach ($query->getArrayResult() as $r) {
+            $results[$r['month']] = $r['amount'];
+        }
+
+        $months = array_keys($results);
+        $results[$months[0]] = (float)$results[$months[0]];
+
+        $start = new \DateTime($months[0].'-01 00:00:00');
+        $stop = new \DateTime($months[count($months) - 1].'-01 00:00:00');
+        $stop->modify('+1 month');
+        foreach (new \DatePeriod($start, new \DateInterval('P1M'), $stop) as $k => $v) {
+            if (!isset($results[$v->format('Y-m')])) {
+                $results[$v->format('Y-m')] = 0;
+            }
+            if ($k > 0) {
+                $results[$v->format('Y-m')] += $results[$v->modify('-1 month')->format('Y-m')];
+            }
+        }
+        ksort($results);
+
+        return $results;
     }
 }

@@ -73,6 +73,14 @@
         <source>field.stop</source>
         <target>Fin</target>
       </trans-unit>
+      <trans-unit id="b1de2c4e41c35ba06c8532118a728c83" resname="amount_by_month.title">
+        <source>amount_by_month.title</source>
+        <target>Solde bancaire par mois</target>
+      </trans-unit>
+      <trans-unit id="d460873eb154b3248ac712ee226a6b98" resname="field.month">
+        <source>field.month</source>
+        <target>Mois</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
