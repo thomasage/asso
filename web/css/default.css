@@ -639,12 +639,12 @@ div.actions_full > span {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 1em;
     margin-top: 1em;
 }
 
 .widget-next-birthdays > div > div {
     width: 15em;
+    margin-bottom: 1em;
     border: 1px rgb(235, 235, 235) solid;
 }
 
