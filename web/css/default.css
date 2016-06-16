@@ -655,7 +655,7 @@ div.actions_full > span {
 
 .widget-next-birthdays > div > div > div.photo > img {
     display: block;
-    width: 90%;
+    max-width: 90%;
     max-height: 195px;
     margin: 5% auto;
 }
