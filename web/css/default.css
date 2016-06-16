@@ -639,6 +639,7 @@ div.actions_full > span {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-bottom: 1em;
     margin-top: 1em;
 }
 
