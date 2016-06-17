@@ -40,6 +40,8 @@ twig:
     strict_variables: "%kernel.debug%"
     form_themes:
         - "default/_fields.html.twig"
+    globals:
+        application_name: '%application_name%'
 
 # Doctrine Configuration
 doctrine:
