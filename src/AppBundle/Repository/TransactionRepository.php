@@ -119,4 +119,87 @@ class TransactionRepository extends EntityRepository
 
         return $results;
     }
+
+    /**
+     * @param \DateTime $start
+     * @param \DateTime $stop
+     * @return array
+     */
+    public function statAccountSummary(\DateTime $start, \DateTime $stop)
+    {
+        // Total before season selected
+        //
+        $previous = (float)$this->createQueryBuilder('t')
+            ->select('SUM( t.amount ) amount')
+            ->andWhere('t.date < :date')
+            ->setParameter('date', $start)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        // Total for season selected
+
+        $period = (float)$this->createQueryBuilder('t')
+            ->select('SUM( t.amount ) amount')
+            ->andWhere('t.date BETWEEN :start AND :stop')
+            ->setParameter('start', $start)
+            ->setParameter('stop', $stop)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        // Expenses for season selected
+
+        $query = 'SELECT d.category_id AS category,
+                         SUM( d.amount ) AS amount
+                  FROM transaction AS t 
+                  LEFT JOIN transaction_detail AS d ON t.id = d.transaction_id
+                  WHERE d.amount < 0
+                  AND   t.date BETWEEN :start AND :stop
+                  GROUP BY d.category_id
+                  ORDER BY d.category_id ASC';
+
+        $rsm = new ResultSetMapping();
+        $rsm
+            ->addScalarResult('category', 'category')
+            ->addScalarResult('amount', 'amount');
+
+        $expenses = $this
+            ->_em
+            ->createNativeQuery($query, $rsm)
+            ->setParameter('start', $start)
+            ->setParameter('stop', $stop)
+            ->getArrayResult();
+
+        // Receipts for season selected
+
+        $query = 'SELECT d.category_id AS category,
+                         SUM( d.amount ) AS amount
+                  FROM transaction AS t 
+                  LEFT JOIN transaction_detail AS d ON t.id = d.transaction_id
+                  WHERE d.amount > 0
+                  AND   t.date BETWEEN :start AND :stop
+                  GROUP BY d.category_id
+                  ORDER BY d.category_id ASC';
+
+        $rsm = new ResultSetMapping();
+        $rsm
+            ->addScalarResult('category', 'category')
+            ->addScalarResult('amount', 'amount');
+
+        $receipts = $this
+            ->_em
+            ->createNativeQuery($query, $rsm)
+            ->setParameter('start', $start)
+            ->setParameter('stop', $stop)
+            ->getArrayResult();
+
+        return [
+            'expenses' => $expenses,
+            'receipts' => $receipts,
+            'previous' => [
+                'stop' => new \DateTime(date('Y-m-d', strtotime('-1 day', $start->getTimestamp()))),
+                'amount' => $previous,
+            ],
+            'period' => ['stop' => $stop, 'amount' => $period],
+        ];
+    }
 }

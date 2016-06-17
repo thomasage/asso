@@ -3,6 +3,7 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Season;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 /**
  * SeasonRepository
@@ -26,5 +27,26 @@ class SeasonRepository extends EntityRepository
             ->setParameter('date', $date)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    /**
+     * @return array
+     */
+    public function choicesList()
+    {
+        $list = [];
+
+        $seasons = $this->createQueryBuilder('s')
+            ->addOrderBy('s.start', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+        foreach ($seasons as $season) {
+            if ($season instanceof Season) {
+                $list[$season->__toString()] = $season->getId();
+            }
+        }
+
+        return $list;
     }
 }

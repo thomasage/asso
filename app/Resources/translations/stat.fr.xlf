@@ -81,6 +81,10 @@
         <source>field.month</source>
         <target>Mois</target>
       </trans-unit>
+      <trans-unit id="d62fa367606bdfcf282bbc004d74c81f" resname="account_summary.title">
+        <source>account_summary.title</source>
+        <target>Bilan comptable</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

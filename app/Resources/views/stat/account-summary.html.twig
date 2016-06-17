@@ -1,0 +1,107 @@
+{% extends 'stat/layout.html.twig' %}
+
+{% trans_default_domain 'stat' %}
+
+{% block body %}
+
+    <div class="app_stat_account_summary">
+
+        <div id="menu-secondary">
+            <h1>{{ 'account_summary.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_stat_index') }}" class="button">
+                    <span class="fi-arrow-left"></span>
+                    {{ 'action.back'|trans({},'messages') }}
+                </a>
+            </nav>
+        </div>
+
+        {{ form_start(formSearch) }}
+        <div class="search0">
+            {{ form_row(formSearch.start) }}
+            {{ form_row(formSearch.stop) }}
+            <div>
+                <button type="submit" class="button primary">
+                    <span class="fi-filter"></span>
+                    {{ 'action.search'|trans({},'messages') }}
+                </button>
+            </div>
+        </div>
+        {{ form_end(formSearch) }}
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        <table class="result3 expenses">
+            <thead>
+            <tr>
+                <th>D&eacute;penses</th>
+                <th class="alignright">Montant</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set total=0 %}
+            {% for expense in results.expenses %}
+                {% set total=total+expense.amount %}
+                <tr>
+                    <td>{{ expense.category }}</td>
+                    <td class="alignright">{{ expense.amount|number_format(2,'.',' ') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2" class="noresult">Aucune d&eacute;pense enregistr&eacute;e</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td class="alignright">Total</td>
+                <td class="alignright">{{ total|number_format(2,'.',' ') }}</td>
+            </tr>
+            </tfoot>
+        </table>
+
+        <table class="result3 receipts">
+            <thead>
+            <tr>
+                <th>Recettes</th>
+                <th class="alignright">Montant</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set total=0 %}
+            {% for receipt in results.receipts %}
+                {% set total=total+receipt.amount %}
+                <tr>
+                    <td>{{ receipt.category }}</td>
+                    <td class="alignright">{{ receipt.amount|number_format(2,'.',' ') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2" class="noresult">Aucune recette enregistr&eacute;e</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td class="alignright">Total</td>
+                <td class="alignright">{{ total|number_format(2,'.',' ') }}</td>
+            </tr>
+            </tfoot>
+        </table>
+
+        <p>
+            Bilan de la p&eacute;riode :
+            {{ results.period.amount|number_format(2,'.',' ') }}
+        </p>
+        <p>
+            Au {{ results.previous.stop|localizeddate('full','none') }} (p&eacute;riode pr&eacute;c&eacute;dente) :
+            {{ results.previous.amount|number_format(2,'.',' ') }}
+        </p>
+        <p>
+            Au {{ results.period.stop|localizeddate('full','none') }} (p&eacute;riode s&eacute;lectionn&eacute;e) :
+            {{ (results.period.amount+results.previous.amount)|number_format(2,'.',' ') }}
+        </p>
+
+    </div>
+
+{% endblock %}

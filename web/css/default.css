@@ -532,6 +532,40 @@ table.result2 + div.actions {
     margin-top: 0.5em;
 }
 
+table.result3 {
+    width: 100%;
+    margin-top: 1.5em;
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.result3 > tbody > tr > td {
+    padding: 0.8em;
+    border: 1px rgba(34, 36, 38, 0.1) solid;
+}
+
+table.result3 > tbody > tr > td.noresult {
+    padding: 2em;
+    color: gray;
+    font-style: italic;
+    text-align: center;
+}
+
+table.result3 > tfoot > tr > td {
+    padding: 0.8em;
+    font-weight: bold;
+    border: 0;
+}
+
+table.result3 > thead > tr > th {
+    padding: 0.8em;
+    font-weight: normal;
+    text-align: left;
+    background-color: rgb(250, 250, 250);
+    border: 1px rgba(34, 36, 38, 0.1) solid;
+}
+
 .card0 {
     display: flex;
     flex-direction: row;

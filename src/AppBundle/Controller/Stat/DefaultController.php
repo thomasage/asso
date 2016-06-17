@@ -1,6 +1,8 @@
 <?php
 namespace AppBundle\Controller\Stat;
 
+use AppBundle\Entity\Season;
+use AppBundle\Form\StatAccountSummaryType;
 use AppBundle\Form\StatAmountByThirdType;
 use AppBundle\Form\StatRankProgressType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -10,6 +12,72 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     *
+     * @Route("/stat/accountSummary",
+     *     name="app_stat_account_summary",
+     *     methods={"GET","POST"})
+     */
+    public function accountSummaryAction(Request $request)
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Default filter
+        $session = $this->get('session');
+        if (!$session->has('stat-account-summary-start')
+            || !$session->has('stat-account-summary-stop')
+        ) {
+            $season = $this->getUser()->getCurrentSeason();
+            if ($season instanceof Season) {
+                $session->set('stat-account-summary-start', $season->getStart());
+                $session->set('stat-account-summary-stop', $season->getStop());
+            } else {
+                $session->set('stat-account-summary-start', new \DateTime(date('Y-m-d', mktime(0, 0, 0, 1, 1))));
+                $session->set('stat-account-summary-stop', new \DateTime(date('Y-m-d', mktime(0, 0, 0, 12, 31))));
+            }
+        }
+
+        // Search form
+        $formSearch = $this->createForm(
+            StatAccountSummaryType::class,
+            [
+                'start' => $session->get('stat-account-summary-start'),
+                'stop' => $session->get('stat-account-summary-stop'),
+            ]
+        );
+        $formSearch->handleRequest($request);
+
+        // Update filter
+        if ($formSearch->isValid() && $formSearch->isSubmitted()) {
+
+            $data = $formSearch->getData();
+            $session->set('stat-account-summary-start', $data['start']);
+            $session->set('stat-account-summary-stop', $data['stop']);
+
+            return $this->redirectToRoute('app_stat_account_summary');
+        }
+
+        // Results
+        $results = $em
+            ->getRepository('AppBundle:Transaction')
+            ->statAccountSummary(
+                $session->get('stat-account-summary-start'),
+                $session->get('stat-account-summary-stop')
+            );
+
+        // Render
+        return $this->render(
+            'stat/account-summary.html.twig',
+            [
+                'formSearch' => $formSearch->createView(),
+                'results' => $results,
+            ]
+        );
+    }
+
     /**
      * @return Response
      *
@@ -24,7 +92,7 @@ class DefaultController extends Controller
 
         // Resuls
         $results = $em->getRepository('AppBundle:Transaction')->statAmountByMonth();
-        
+
         return $this->render(
             'stat/amount-by-month.html.twig',
             [
