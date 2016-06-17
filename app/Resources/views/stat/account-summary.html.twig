@@ -34,8 +34,8 @@
         <table class="result3 expenses">
             <thead>
             <tr>
-                <th>D&eacute;penses</th>
-                <th class="alignright">Montant</th>
+                <th>{{ 'field.expenses'|trans }}</th>
+                <th class="alignright">{{ 'field.amount'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -48,13 +48,13 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="2" class="noresult">Aucune d&eacute;pense enregistr&eacute;e</td>
+                    <td colspan="2" class="noresult">{{ 'no_expenses'|trans }}</td>
                 </tr>
             {% endfor %}
             </tbody>
             <tfoot>
             <tr>
-                <td class="alignright">Total</td>
+                <td class="alignright">{{ 'field.total'|trans }}</td>
                 <td class="alignright">{{ total|number_format(2,'.',' ') }}</td>
             </tr>
             </tfoot>
@@ -63,8 +63,8 @@
         <table class="result3 receipts">
             <thead>
             <tr>
-                <th>Recettes</th>
-                <th class="alignright">Montant</th>
+                <th>{{ 'field.receipts'|trans }}</th>
+                <th class="alignright">{{ 'field.amount'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -77,28 +77,28 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="2" class="noresult">Aucune recette enregistr&eacute;e</td>
+                    <td colspan="2" class="noresult">{{ 'no_receipts'|trans }}</td>
                 </tr>
             {% endfor %}
             </tbody>
             <tfoot>
             <tr>
-                <td class="alignright">Total</td>
+                <td class="alignright">{{ 'field_total'|trans }}</td>
                 <td class="alignright">{{ total|number_format(2,'.',' ') }}</td>
             </tr>
             </tfoot>
         </table>
 
         <p>
-            Bilan de la p&eacute;riode :
+            {{ 'balance_period'|trans }} :
             {{ results.period.amount|number_format(2,'.',' ') }}
         </p>
         <p>
-            Au {{ results.previous.stop|localizeddate('full','none') }} (p&eacute;riode pr&eacute;c&eacute;dente) :
+            {{ 'balance_period_previous'|trans({'%date%':results.previous.stop|localizeddate('full','none')}) }} :
             {{ results.previous.amount|number_format(2,'.',' ') }}
         </p>
         <p>
-            Au {{ results.period.stop|localizeddate('full','none') }} (p&eacute;riode s&eacute;lectionn&eacute;e) :
+            {{ 'balance_period_end'|trans({'%date%':results.period.stop|localizeddate('full','none')}) }} :
             {{ (results.period.amount+results.previous.amount)|number_format(2,'.',' ') }}
         </p>
 

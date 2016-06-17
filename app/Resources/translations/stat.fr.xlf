@@ -85,6 +85,42 @@
         <source>account_summary.title</source>
         <target>Bilan comptable</target>
       </trans-unit>
+      <trans-unit id="c6279fcfd960a655065bf93114fdf05f" resname="field.expenses">
+        <source>field.expenses</source>
+        <target>Dépenses</target>
+      </trans-unit>
+      <trans-unit id="46bd835bd3fac93ccc6b18b075b6db90" resname="no_expenses">
+        <source>no_expenses</source>
+        <target>Aucune dépense</target>
+      </trans-unit>
+      <trans-unit id="a175bbcb3f411bf5eff35da142320d77" resname="field.total">
+        <source>field.total</source>
+        <target>Total</target>
+      </trans-unit>
+      <trans-unit id="0f9e3975fdbafc980c88e11e8a4715cd" resname="field.receipts">
+        <source>field.receipts</source>
+        <target>Recettes</target>
+      </trans-unit>
+      <trans-unit id="802cd5d715e98f438050747ba3ef58fb" resname="no_receipts">
+        <source>no_receipts</source>
+        <target>Aucune recette</target>
+      </trans-unit>
+      <trans-unit id="c5a877f7a4ae69e7500dd66fe121b032" resname="field_total">
+        <source>field_total</source>
+        <target>Total</target>
+      </trans-unit>
+      <trans-unit id="07880e0b9b564ce6ffd62176320054e2" resname="balance_period">
+        <source>balance_period</source>
+        <target>Bilan de la période</target>
+      </trans-unit>
+      <trans-unit id="c7e941bd3769f31720774b010e097d2f" resname="balance_period_previous">
+        <source>balance_period_previous</source>
+        <target>Au %date% (fin de la période précédente)</target>
+      </trans-unit>
+      <trans-unit id="36e38c38d64c7c2bbcfebd0766c66bd8" resname="balance_period_end">
+        <source>balance_period_end</source>
+        <target>Au %date% (fin de la période sélectionnée)</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
