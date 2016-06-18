@@ -21,6 +21,7 @@ class TransactionDetailType extends AbstractType
                 TextType::class,
                 [
                     'required' => true,
+                    'error_bubbling' => true,
                 ]
             )
             ->add(

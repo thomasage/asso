@@ -33,11 +33,11 @@ class TransactionDetail
     private $transaction;
 
     /**
-     * @var Category
+     * @var string
      *
      * @ORM\Column(name="category", type="string", length=255)
      *
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(message="transaction_detail.category.not_blank")
      * @Assert\Length(min=1, max=255)
      */
     private $category;

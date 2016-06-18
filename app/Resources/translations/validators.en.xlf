@@ -17,6 +17,10 @@
         <source>transaction_detail.amount.blank</source>
         <target>All details need an amount.</target>
       </trans-unit>
+      <trans-unit id="1c71bd6db5c1afe0c6229289b7ca15b1" resname="transaction_detail.category.not_blank">
+        <source>transaction_detail.category.not_blank</source>
+        <target>All details need a category.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
