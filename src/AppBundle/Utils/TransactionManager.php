@@ -59,28 +59,26 @@ class TransactionManager
             }
         }
 
-        // Original copies
-        $originalCopies = new ArrayCollection(
-            $this->em->getRepository('AppBundle:TransactionCopy')->findBy(array('transaction' => $transaction))
-        );
-
-        // Remove old copies
-        foreach ($originalCopies as $copy) {
-            if (!$transaction->getCopies()->contains($copy)) {
-                $this->copyDel($copy);
-            }
-        }
-
         $this->em->flush();
 
-        // Add new copies
-        $files = $form->get('copy_add')->getData();
-        if (is_array($files)) {
-            foreach ($files as $file) {
-                if ($file instanceof UploadedFile) {
-                    $this->copyAdd($transaction, $file);
-                }
+        $copy = $form->get('copy')->getData();
+
+        if ($copy instanceof UploadedFile) {
+
+            // Remove copy
+            $old = $this->em
+                ->getRepository('AppBundle:TransactionCopy')
+                ->findBy(
+                    [
+                        'transaction' => $transaction,
+                    ]
+                );
+            foreach ($old as $o) {
+                $this->copyDelete($o);
             }
+
+            // Add copy
+            $this->copyAdd($transaction, $copy);
         }
     }
 
@@ -88,11 +86,16 @@ class TransactionManager
      * @param TransactionCopy $copy
      * @return bool
      */
-    private function copyDel(TransactionCopy $copy)
+    public function copyDelete(TransactionCopy $copy)
     {
         $filename = $this->copyDirectory.'/'.$copy->getId().'.'.$copy->getExtension();
+
         $this->em->remove($copy);
-        unlink($filename);
+        $this->em->flush();
+
+        if (file_exists($filename)) {
+            unlink($filename);
+        }
 
         return true;
     }

@@ -649,6 +649,14 @@ div.edit1 > div.action > span {
     margin: 0 1em;
 }
 
+div.edit1 > div.nolabel {
+    padding-left: 10em;
+}
+
+div.edit1 > div.nolabel > .button:nth-of-type(n+2) {
+    margin-left: 1em;
+}
+
 div.edit1 ul.errors {
     flex: 1;
     margin: 0 0 0 1em;

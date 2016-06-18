@@ -24,98 +24,86 @@ class TransactionType extends AbstractType
             ->add(
                 'date',
                 DatePickerType::class,
-                array(
+                [
                     'required' => true,
                     'label' => 'field.date',
                     'widget' => 'single_text',
-                )
+                ]
             )
             ->add(
                 'amount',
                 NumberType::class,
-                array(
+                [
                     'required' => true,
                     'label' => 'field.amount',
                     'scale' => 2,
                     'grouping' => true,
-                )
+                ]
             )
             ->add(
                 'thirdName',
                 TextType::class,
-                array(
+                [
                     'required' => true,
                     'label' => 'field.thirdName',
-                )
+                ]
             )
             ->add(
                 'bankName',
                 TextType::class,
-                array(
+                [
                     'required' => false,
                     'label' => 'field.bankName',
-                )
+                ]
             )
             ->add(
                 'operationNumber',
                 TextType::class,
-                array(
+                [
                     'required' => false,
                     'label' => 'field.operationNumber',
-                )
+                ]
             )
             ->add(
                 'information',
                 TextType::class,
-                array(
+                [
                     'required' => false,
                     'label' => 'field.information',
-                )
+                ]
             )
             ->add(
                 'paymentMethod',
                 EntityType::class,
-                array(
+                [
                     'required' => true,
                     'label' => 'field.paymentMethod',
                     'class' => 'AppBundle\Entity\PaymentMethod',
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('pm')->addOrderBy('pm.name', 'ASC');
                     },
-                )
+                ]
             )
             ->add(
                 'details',
                 CollectionType::class,
-                array(
+                [
                     'required' => false,
                     'label' => 'field.details',
                     'allow_add' => true,
                     'allow_delete' => true,
                     'by_reference' => false,
                     'entry_type' => TransactionDetailType::class,
-                )
+                ]
             )
             ->add(
-                'copies',
-                CollectionType::class,
-                array(
-                    'required' => false,
-                    'label' => 'field.copies',
-                    'allow_add' => false,
-                    'allow_delete' => true,
-                    'entry_type' => TransactionCopyType::class,
-                )
-            )
-            ->add(
-                'copy_add',
+                'copy',
                 FileType::class,
-                array(
+                [
                     'required' => false,
+                    'label' => 'field.copy',
                     'mapped' => false,
-                    'multiple' => true,
-                    'label' => 'field.copy.add',
-                )
+                ]
             );
     }
 
@@ -125,10 +113,10 @@ class TransactionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'data_class' => 'AppBundle\Entity\Transaction',
                 'translation_domain' => 'accounting',
-            )
+            ]
         );
     }
 }

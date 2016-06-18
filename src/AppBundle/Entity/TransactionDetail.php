@@ -35,10 +35,10 @@ class TransactionDetail
     /**
      * @var Category
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(name="category", type="string", length=255)
      *
-     * @Assert\Valid()
+     * @Assert\NotBlank()
+     * @Assert\Length(min=1, max=255)
      */
     private $category;
 
@@ -144,26 +144,26 @@ class TransactionDetail
     }
 
     /**
-     * Get category
-     *
-     * @return Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * Set category
      *
-     * @param Category $category
+     * @param string $category
      *
      * @return TransactionDetail
      */
-    public function setCategory(Category $category)
+    public function setCategory($category)
     {
         $this->category = $category;
 
         return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

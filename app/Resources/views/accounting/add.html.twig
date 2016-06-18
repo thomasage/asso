@@ -34,6 +34,7 @@
                 {{ form_row(formEdit.bankName,{attr:{class:'full'}}) }}
                 {{ form_row(formEdit.operationNumber,{attr:{class:'full'}}) }}
                 {{ form_row(formEdit.information,{attr:{class:'full'}}) }}
+                {{ form_row(formEdit.copy) }}
             </div>
 
             <h2>{{ form_label(formEdit.details) }}</h2>
@@ -56,13 +57,6 @@
                     <span class="fi-plus"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </a>
-            </div>
-
-            <h2>{{ form_label(formEdit.copies) }}</h2>
-
-            {{ form_widget(formEdit.copies) }}
-            <div class="copies-action">
-                {{ form_row(formEdit.copy_add) }}
             </div>
 
             <div class="actions_full">

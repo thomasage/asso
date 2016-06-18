@@ -34,6 +34,19 @@
                 {{ form_row(formEdit.bankName,{attr:{class:'full'}}) }}
                 {{ form_row(formEdit.operationNumber,{attr:{class:'full'}}) }}
                 {{ form_row(formEdit.information,{attr:{class:'full'}}) }}
+                {{ form_row(formEdit.copy) }}
+                {% if copy is not null %}
+                    <div class="nolabel">
+                        <a href="{{ path('app_accounting_copy_download',{copy:copy.id}) }}" class="button secondary">
+                            <span class="fi-download"></span>
+                            T&eacute;l&eacute;charger le document
+                        </a>
+                        <a href="#" class="button warning copy-delete" data-copy="{{ copy.id }}">
+                            <span class="fi-trash"></span>
+                            Supprimer
+                        </a>
+                    </div>
+                {% endif %}
             </div>
 
             <h2>{{ form_label(formEdit.details) }}</h2>
@@ -56,26 +69,6 @@
                     <span class="fi-plus"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </a>
-            </div>
-
-            <h2>{{ form_label(formEdit.copies) }}</h2>
-
-            <table class="result2 copies">
-                <thead>
-                <tr>
-                    <th>{{ 'field.name'|trans }}</th>
-                    <th>{{ 'field.size'|trans }}</th>
-                    <th>{{ 'field.date'|trans }}</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody id="transaction_copies">
-                {{ form_widget(formEdit.copies) }}
-                </tbody>
-            </table>
-            <div class="copies-action">
-                {{ form_row(formEdit.copy_add) }}
             </div>
 
             <div class="actions_full">
@@ -113,16 +106,7 @@
     {{ parent() }}
     <script type="text/javascript">
         var count ={{ formEdit.details|length }};
-        var countCopies ={{ formEdit.copies|length }};
         $(document).ready(function () {
-            $('.copy-add').click(function (e) {
-                e.preventDefault();
-                TransactionCopyAdd();
-            });
-            $('.copy-del').click(function (e) {
-                e.preventDefault();
-                TransactionCopyDel($(this).parent().parent());
-            });
             $('.transaction-add').click(function (e) {
                 e.preventDefault();
                 TransactionAdd();
@@ -130,6 +114,12 @@
             $('.transaction-del').click(function (e) {
                 e.preventDefault();
                 TransactionDel($(this).parent().parent());
+            });
+            $('.copy-delete').click(function (e) {
+                e.preventDefault();
+                if (window.confirm('{{ 'copy_delete.confirmation'|trans }}')) {
+                    window.location.href = Routing.generate('app_accounting_copy_delete', {copy: $(this).data('copy')});
+                }
             });
         });
     </script>

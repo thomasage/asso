@@ -26,10 +26,11 @@ class DefaultController extends Controller
      */
     public function addAction(Request $request)
     {
-        // Edit form
+        // Transaction
         $transaction = new Transaction();
-        $transaction->setDate(new \DateTime());
         $transaction->addDetail(new TransactionDetail());
+
+        // Edit form
         $formEdit = $this->createForm(TransactionType::class, $transaction);
         $formEdit->handleRequest($request);
 
@@ -40,19 +41,45 @@ class DefaultController extends Controller
             $tm->update($transaction, $formEdit);
 
             // Flash message
-            $this->addFlash('success', $this->get('translator')->trans('add.success.added', array(), 'accounting'));
+            $this->addFlash('success', $this->get('translator')->trans('add.success.added', [], 'accounting'));
 
             // Redirect
-            return $this->redirectToRoute('app_accounting_edit', array('transaction' => $transaction->getId()));
+            return $this->redirectToRoute('app_accounting_edit', ['transaction' => $transaction->getId()]);
 
         }
 
         // Render
         return $this->render(
             'accounting/add.html.twig',
-            array(
+            [
                 'formEdit' => $formEdit->createView(),
-            )
+            ]
+        );
+    }
+
+    /**
+     * @param TransactionCopy $copy
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * 
+     * @Route("/accounting/copy/delete/{copy}",
+     *     name="app_accounting_copy_delete",
+     *     methods={"GET"},
+     *     requirements={"copy"="\d+"},
+     *     options={"expose"=true})
+     */
+    public function copyDeleteAction(TransactionCopy $copy)
+    {
+        $transaction = $copy->getTransaction();
+
+        $tm = $this->get('app.transaction_manager');
+
+        $tm->copyDelete($copy);
+
+        return $this->redirectToRoute(
+            'app_accounting_edit',
+            [
+                'transaction' => $transaction->getId(),
+            ]
         );
     }
 
@@ -106,7 +133,7 @@ class DefaultController extends Controller
             // Flash message
             $this->addFlash(
                 'success',
-                $this->get('translator')->trans('delete.success.deleted', array(), 'accounting')
+                $this->get('translator')->trans('delete.success.deleted', [], 'accounting')
             );
 
             // Redirect
@@ -117,10 +144,10 @@ class DefaultController extends Controller
         // Render
         return $this->render(
             'accounting/delete.html.twig',
-            array(
+            [
                 'formDelete' => $formDelete->createView(),
                 'transaction' => $transaction,
-            )
+            ]
         );
     }
 
@@ -136,6 +163,12 @@ class DefaultController extends Controller
      */
     public function editAction(Request $request, Transaction $transaction)
     {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Copy
+        $copy = $em->getRepository('AppBundle:TransactionCopy')->findOneBy(['transaction' => $transaction]);
+
         // Edit form
         $formEdit = $this->createForm(TransactionType::class, $transaction);
         $formEdit->handleRequest($request);
@@ -147,11 +180,11 @@ class DefaultController extends Controller
             $tm->update($transaction, $formEdit);
 
             // Flash message
-            $this->addFlash('success', $this->get('translator')->trans('edit.success.updated', array(), 'accounting'));
+            $this->addFlash('success', $this->get('translator')->trans('edit.success.updated', [], 'accounting'));
 
             // Redirect
             if (!is_null($request->request->get('update'))) {
-                return $this->redirectToRoute('app_accounting_edit', array('transaction' => $transaction->getId()));
+                return $this->redirectToRoute('app_accounting_edit', ['transaction' => $transaction->getId()]);
             } else {
                 return $this->redirectToRoute('app_accounting_homepage');
             }
@@ -164,10 +197,10 @@ class DefaultController extends Controller
                 'error',
                 $this->get('translator')->trans(
                     'edit.warning.breakdown_amount',
-                    array(
+                    [
                         '%amount%' => number_format($transaction->getAmount(), 2, '.', ' '),
                         '%breakdown%' => number_format($transaction->getDetailsAmount(), 2, '.', ' '),
-                    ),
+                    ],
                     'accounting'
                 )
             );
@@ -176,10 +209,11 @@ class DefaultController extends Controller
         // Render
         return $this->render(
             'accounting/edit.html.twig',
-            array(
+            [
+                'copy' => $copy,
                 'formEdit' => $formEdit->createView(),
                 'transaction' => $transaction,
-            )
+            ]
         );
     }
 
@@ -217,11 +251,11 @@ class DefaultController extends Controller
         // Render
         return $this->render(
             'accounting/index.html.twig',
-            array(
+            [
                 'formSearch' => $formSearch->createView(),
                 'route' => $route,
                 'transactions' => $transactions,
-            )
+            ]
         );
     }
 }

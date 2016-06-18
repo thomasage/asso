@@ -20,14 +20,9 @@ class TransactionDetailType extends AbstractType
         $builder
             ->add(
                 'category',
-                EntityType::class,
+                TextType::class,
                 array(
                     'required' => true,
-                    'class' => 'AppBundle\Entity\Category',
-                    'query_builder' => function (EntityRepository $er) {
-                        return $er->createQueryBuilder('c')->addOrderBy('c.name', 'ASC');
-                    },
-                    'error_bubbling' => true,
                 )
             )
             ->add(

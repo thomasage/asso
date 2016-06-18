@@ -5,17 +5,9 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="e1e444bab1adf8b260db3036dc4d7893" resname="category.title">
-        <source>category.title</source>
-        <target>Categories</target>
-      </trans-unit>
       <trans-unit id="1ea7ccc01954ba1388047005183427ed" resname="index.title">
         <source>index.title</source>
         <target>Accounting</target>
-      </trans-unit>
-      <trans-unit id="01173daa528c56f77c41f0b9bc77918f" resname="category.success.updated">
-        <source>category.success.updated</source>
-        <target>Categories updated.</target>
       </trans-unit>
       <trans-unit id="58b356fc24871a5ee296315a1dadc957" resname="field.date">
         <source>field.date</source>
@@ -93,13 +85,13 @@
         <source>field.size</source>
         <target>Size</target>
       </trans-unit>
-      <trans-unit id="c4b6e256e556cafaa9c31ff189a3dbae" resname="field.copies">
-        <source>field.copies</source>
-        <target>Copies</target>
+      <trans-unit id="aa548356a197a0fb35a4d93fb9a099ec" resname="field.copy">
+        <source>field.copy</source>
+        <target>Copy</target>
       </trans-unit>
-      <trans-unit id="4463088218aba23ec546588ae5fdb603" resname="field.copy.add">
-        <source>field.copy.add</source>
-        <target>Add copies</target>
+      <trans-unit id="842a914c226cd9a9e6342c2e96b1454e" resname="copy_delete.confirmation">
+        <source>copy_delete.confirmation</source>
+        <target>Delete copy?</target>
       </trans-unit>
     </body>
   </file>

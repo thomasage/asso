@@ -24,9 +24,10 @@ class TransactionCopy
     /**
      * @var Transaction
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Transaction", inversedBy="copies", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false))
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Transaction")
+     * @ORM\JoinColumn(nullable=false)
      *
+     * @Assert\NotBlank()
      * @Assert\Valid()
      */
     private $transaction;
@@ -79,6 +80,11 @@ class TransactionCopy
      * @Assert\Length(max=20)
      */
     private $extension;
+
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
 
     /**
      * Get id
@@ -213,11 +219,11 @@ class TransactionCopy
     /**
      * Set transaction
      *
-     * @param \AppBundle\Entity\Transaction $transaction
+     * @param Transaction $transaction
      *
      * @return TransactionCopy
      */
-    public function setTransaction(\AppBundle\Entity\Transaction $transaction)
+    public function setTransaction(Transaction $transaction)
     {
         $this->transaction = $transaction;
 
@@ -227,7 +233,7 @@ class TransactionCopy
     /**
      * Get transaction
      *
-     * @return \AppBundle\Entity\Transaction
+     * @return Transaction
      */
     public function getTransaction()
     {
