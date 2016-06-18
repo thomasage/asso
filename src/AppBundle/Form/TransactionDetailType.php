@@ -1,8 +1,6 @@
 <?php
 namespace AppBundle\Form;
 
-use Doctrine\ORM\EntityRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -21,25 +19,25 @@ class TransactionDetailType extends AbstractType
             ->add(
                 'category',
                 TextType::class,
-                array(
+                [
                     'required' => true,
-                )
+                ]
             )
             ->add(
                 'amount',
                 MoneyType::class,
-                array(
+                [
                     'required' => true,
                     'error_bubbling' => true,
-                )
+                ]
             )
             ->add(
                 'information',
                 TextType::class,
-                array(
+                [
                     'required' => false,
                     'error_bubbling' => true,
-                )
+                ]
             );
     }
 
@@ -49,10 +47,10 @@ class TransactionDetailType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'data_class' => 'AppBundle\Entity\TransactionDetail',
                 'translation_domain' => 'accounting',
-            )
+            ]
         );
     }
 }
