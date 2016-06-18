@@ -76,7 +76,7 @@
         {% for k,v in results.c %}
         categories.push('{{ v }}');
         series[0].data.push({{ results.m[k] }});
-        series[1].data.push({{ results.f[k] }});
+        series[1].data.push({{ results.f[k]*-1 }});
         {% endfor %}
         $(document).ready(function () {
             $('#graph-pyramid').highcharts({
