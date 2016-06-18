@@ -121,6 +121,26 @@
         <source>balance_period_end</source>
         <target>The %date% (end of this selected period)</target>
       </trans-unit>
+      <trans-unit id="57183a81cd835293a1af9f0e77f1d3dd" resname="member_segment.title">
+        <source>member_segment.title</source>
+        <target>Segments of members</target>
+      </trans-unit>
+      <trans-unit id="89e568f8bb96f9eebb1af165de42c4ce" resname="field.gender">
+        <source>field.gender</source>
+        <target>Gender</target>
+      </trans-unit>
+      <trans-unit id="c94ce942c690ce827a07451529130eea" resname="gender-m">
+        <source>gender-m</source>
+        <target>Man</target>
+      </trans-unit>
+      <trans-unit id="f7290ca1651fbdc8e5ab18c4b7efc443" resname="gender-f">
+        <source>gender-f</source>
+        <target>Woman</target>
+      </trans-unit>
+      <trans-unit id="18a335d5c59185164fc68bf5b0e743d5" resname="member_segment.graph_title">
+        <source>member_segment.graph_title</source>
+        <target>Population pyramid</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

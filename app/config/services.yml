@@ -1,6 +1,6 @@
 services:
-    app.form.type.stat_account_summary:
-        class: AppBundle\Form\StatAccountSummaryType
+    app.form.type.stat_member_segment:
+        class: AppBundle\Form\StatMemberSegmentType
         arguments:
             - '@doctrine.orm.entity_manager'
         tags:

@@ -127,8 +127,8 @@ class MemberRepository extends EntityRepository
             ->innerJoin('m.memberships', 'ms')
             ->andWhere('ms.level = :level')
             ->andWhere('ms.season = :season')
-            ->addOrderBy('m.firstname','ASC')
-            ->addOrderBy('m.lastname','ASC')
+            ->addOrderBy('m.firstname', 'ASC')
+            ->addOrderBy('m.lastname', 'ASC')
             ->setParameter('level', $level)
             ->setParameter('season', $season)
             ->getQuery()
@@ -144,7 +144,7 @@ class MemberRepository extends EntityRepository
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('lessons', 'lessons');
         $rsm->addScalarResult('level_name', 'level_name');
-        $rsm->addScalarResult('member_birthday', 'member_birthday','date');
+        $rsm->addScalarResult('member_birthday', 'member_birthday', 'date');
         $rsm->addScalarResult('member_firstname', 'member_firstname');
         $rsm->addScalarResult('member_lastname', 'member_lastname');
         $rsm->addScalarResult('rank_description', 'rank_description');
@@ -182,5 +182,49 @@ class MemberRepository extends EntityRepository
         $query->setParameter('season', $season);
 
         return $query->getResult();
+    }
+
+    /**
+     * @param Season $season
+     * @return array
+     */
+    public function statSegment(Season $season)
+    {
+        $builder = $this->createQueryBuilder('m')
+            ->innerJoin('m.memberships', 'ms')
+            ->andWhere('ms.season = :season')
+            ->setParameter('season', $season);
+
+        $data = [
+            'c' => ['0-11', '12-17', '18-30', '31-40', '41-50', '51+'],
+            'f' => [0, 0, 0, 0, 0, 0],
+            'm' => [0, 0, 0, 0, 0, 0],
+        ];
+
+        foreach ($builder->getQuery()->getResult() as $member) {
+            if (!$member instanceof Member) {
+                continue;
+            }
+            $age = $member->getAge();
+            if ($age <= 11) {
+                $range = '0-11';
+            } elseif ($age <= 17) {
+                $range = '12-17';
+            } elseif ($age <= 30) {
+                $range = '18-30';
+            } elseif ($age <= 40) {
+                $range = '31-40';
+            } elseif ($age <= 50) {
+                $range = '41-50';
+            } else {
+                $range = '51+';
+            }
+            $category = array_search($range, $data['c']);
+            if ($category !== false) {
+                $data[$member->getGender()][$category]++;
+            }
+        }
+        
+        return $data;
     }
 }

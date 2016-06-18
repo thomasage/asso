@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Stat;
 use AppBundle\Entity\Season;
 use AppBundle\Form\StatAccountSummaryType;
 use AppBundle\Form\StatAmountByThirdType;
+use AppBundle\Form\StatMemberSegmentType;
 use AppBundle\Form\StatRankProgressType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -153,6 +154,66 @@ class DefaultController extends Controller
     {
         // Render
         return $this->render('stat/index.html.twig');
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     *
+     * @Route("/stat/memberSegment",
+     *     name="app_stat_member_segment",
+     *     methods={"GET","POST"})
+     */
+    public function memberSegmentAction(Request $request)
+    {
+        // Session
+        $session = $this->get('session');
+
+        // Default values
+        if (!$session->has('stat-member-segment')) {
+            $season = $this->getUser()->getCurrentSeason();
+            if ($season instanceof Season) {
+                $session->set('stat-member-segment', ['season' => $season->getId()]);
+            } else {
+                $session->set('stat-member-segment', ['season' => null]);
+            }
+        }
+
+        // Search form
+        $formSearch = $this->createForm(
+            StatMemberSegmentType::class,
+            [
+                'season' => $session->get('stat-member-segment')['season'],
+            ]
+        );
+        $formSearch->handleRequest($request);
+
+        // Update filter
+        if ($formSearch->isSubmitted() && $formSearch->isValid()) {
+
+            $data = $formSearch->getData();
+            $session->set('stat-member-segment', ['season' => $data['season']]);
+
+            return $this->redirectToRoute('app_stat_member_segment');
+        }
+
+        // Results
+        $em = $this->getDoctrine()->getManager();
+        $season = $em->getRepository('AppBundle:Season')->find($session->get('stat-member-segment')['season']);
+        if ($season instanceof Season) {
+            $results = $em->getRepository('AppBundle:Member')->statSegment($season);
+        } else {
+            $results = [];
+        }
+
+        // Render
+        return $this->render(
+            'stat/member-segment.html.twig',
+            [
+                'formSearch' => $formSearch->createView(),
+                'results' => $results,
+            ]
+        );
     }
 
     /**

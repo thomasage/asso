@@ -258,6 +258,10 @@ table.result0 {
     border-spacing: 0;
 }
 
+table.result0.auto {
+    width: auto;
+}
+
 table.result0 > tbody > tr {
     border-bottom: 1px rgb(240, 240, 240) dashed;
     -webkit-transition: all 0.2s;
@@ -449,6 +453,10 @@ table.result1 {
     border-spacing: 0;
 }
 
+table.result1.auto {
+    width: auto;
+}
+
 table.result1 > tbody > tr {
     border-bottom: 1px rgb(240, 240, 240) dashed;
     -webkit-transition: all 0.2s;
@@ -492,6 +500,10 @@ table.result2 {
     border: 1px rgba(34, 36, 38, 0.1) solid;
     border-collapse: collapse;
     border-spacing: 0;
+}
+
+table.result2.auto {
+    width: auto;
 }
 
 table.result2 > tbody > tr > td {
@@ -538,6 +550,10 @@ table.result3 {
     border: 0;
     border-collapse: collapse;
     border-spacing: 0;
+}
+
+table.result3.auto {
+    width: auto;
 }
 
 table.result3 > tbody > tr > td {

@@ -14,3 +14,9 @@
 .app_stat_account_summary .receipts > thead > tr > th:nth-of-type(2) {
     width: 20%;
 }
+
+/* Members segment */
+
+.app_stat_member_segment #graph-pyramid {
+    margin-top: 2em;
+}
