@@ -613,6 +613,27 @@ table.result3 > thead > tr > th {
     margin-bottom: 0.5em;
 }
 
+div.edit0 {
+    margin-top: 1.5em;
+}
+
+div.edit0 > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-top: 0.5em;
+}
+
+div.edit0 > div > label {
+    width: 8em;
+}
+
+div.edit0 > div.actions {
+    display: block;
+    margin-top: 1.5em;
+}
+
 div.edit1 {
     margin-top: 1.5em;
 }

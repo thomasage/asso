@@ -11,3 +11,9 @@ services:
             - '@doctrine.orm.entity_manager'
         tags:
             - { name: form.type }
+    app.form.type.stat_member_signature:
+        class: AppBundle\Form\StatMemberSignatureType
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags:
+            - { name: form.type }

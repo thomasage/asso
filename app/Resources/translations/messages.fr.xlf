@@ -105,6 +105,10 @@
         <source>of</source>
         <target>de</target>
       </trans-unit>
+      <trans-unit id="8bf8854bebe108183caeb845c7676ae5" resname="action.build">
+        <source>action.build</source>
+        <target>Construire</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

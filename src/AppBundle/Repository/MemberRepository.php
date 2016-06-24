@@ -244,4 +244,20 @@ class MemberRepository extends EntityRepository
 
         return $builder->getQuery()->getScalarResult();
     }
+
+    /**
+     * @param Season $season
+     * @return Member[]
+     */
+    public function statSignature(Season $season)
+    {
+        $builder = $this->createQueryBuilder('m')
+            ->innerJoin('m.memberships', 'ms')
+            ->andWhere('ms.season = :season')
+            ->setParameter('season', $season)
+            ->addOrderBy('m.lastname', 'ASC')
+            ->addOrderBy('m.firstname', 'ASC');
+
+        return $builder->getQuery()->getResult();
+    }
 }

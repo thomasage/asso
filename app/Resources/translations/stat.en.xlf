@@ -25,6 +25,10 @@
         <source>field.member</source>
         <target>Member</target>
       </trans-unit>
+      <trans-unit id="b839723b47597133748d23aeaf74d48b" resname="field.members">
+        <source>field.members</source>
+        <target>Members</target>
+      </trans-unit>
       <trans-unit id="d4f7fea053c7ebcb82bd149fbcf40c82" resname="field.age">
         <source>field.age</source>
         <target>Age</target>
@@ -144,6 +148,46 @@
       <trans-unit id="44dc3b663bd0e215e05966b02241428b" resname="member_origin.title">
         <source>member_origin.title</source>
         <target>Population origin</target>
+      </trans-unit>
+      <trans-unit id="8f1ab205c1f1c90b41997e3e46568622" resname="member_signature.title">
+        <source>member_signature.title</source>
+        <target>Members signatures</target>
+      </trans-unit>
+      <trans-unit id="756e42bc58d752839aa1db720186d52d" resname="female_represented_by">
+        <source>female_represented_by</source>
+        <target>Represented by</target>
+      </trans-unit>
+      <trans-unit id="13c1d788367a75a3f301e751e2fc62d5" resname="male_represented_by">
+        <source>male_represented_by</source>
+        <target>Represented by</target>
+      </trans-unit>
+      <trans-unit id="448c304722d7a9c7082e582c061cbe6b" resname="field.lastname">
+        <source>field.lastname</source>
+        <target>Lastname</target>
+      </trans-unit>
+      <trans-unit id="2efac63ce0f9b1bd223a4cfff021b8b2" resname="field.firstname">
+        <source>field.firstname</source>
+        <target>Firstname</target>
+      </trans-unit>
+      <trans-unit id="804037f4186a188fef4ec83228df1eb7" resname="field.function">
+        <source>field.function</source>
+        <target>Function</target>
+      </trans-unit>
+      <trans-unit id="6a9db4707a76a3086f4a4094aadde126" resname="field.signature">
+        <source>field.signature</source>
+        <target>Signature</target>
+      </trans-unit>
+      <trans-unit id="6a9db4707a76a3086f4a4094aadde127" resname="member_over_age">
+        <source>member_over_age</source>
+        <target>Active member</target>
+      </trans-unit>
+      <trans-unit id="6a9db4707a76a3086f4a4094aadde128" resname="member_under_age">
+        <source>member_under_age</source>
+        <target>Underage active member</target>
+      </trans-unit>
+      <trans-unit id="6a9db4707a76a3086f4a4094aadde129" resname="field.title">
+        <source>field.title</source>
+        <target>Title</target>
       </trans-unit>
     </body>
   </file>

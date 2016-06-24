@@ -1,0 +1,36 @@
+{% extends 'stat/layout.html.twig' %}
+
+{% trans_default_domain 'stat' %}
+
+{% block body %}
+
+    <div class="app_stat_member_signature">
+
+        <div id="menu-secondary">
+            <h1>{{ 'member_signature.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_stat_index') }}" class="button">
+                    <span class="fi-arrow-left"></span>
+                    {{ 'action.back'|trans({},'messages') }}
+                </a>
+            </nav>
+        </div>
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        {{ form_start(formSearch) }}
+        <div class="edit1">
+            {{ form_row(formSearch.season) }}
+            {{ form_row(formSearch.title) }}
+            <div class="actions">
+                <button type="submit" class="button primary">
+                    <span class="fi-wrench"></span>
+                    {{ 'action.build'|trans({},'messages') }}
+                </button>
+            </div>
+        </div>
+        {{ form_end(formSearch) }}
+
+    </div>
+
+{% endblock %}
