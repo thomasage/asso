@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * TransactionDetail
  *
  * @ORM\Table(name="transaction_detail")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TransactionDetailRepository")
  */
 class TransactionDetail
 {

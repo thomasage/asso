@@ -10,6 +10,7 @@ use AppBundle\Form\TransactionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -58,9 +59,31 @@ class DefaultController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return JsonResponse
+     *
+     * @Route("/accounting/autocompleteCategory",
+     *     name="app_accounting_autocomplete_category",
+     *     methods={"GET"},
+     *     options={"expose"=true})
+     */
+    public function autocompleteCategoryAction(Request $request)
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Results
+        $data = $em->getRepository('AppBundle:TransactionDetail')
+            ->findAutocompleteCategory($request->query->get('term'));
+
+        // Render
+        return new JsonResponse($data);
+    }
+
+    /**
      * @param TransactionCopy $copy
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     * 
+     *
      * @Route("/accounting/copy/delete/{copy}",
      *     name="app_accounting_copy_delete",
      *     methods={"GET"},

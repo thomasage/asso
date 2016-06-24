@@ -121,6 +121,9 @@
                     window.location.href = Routing.generate('app_accounting_copy_delete', {copy: $(this).data('copy')});
                 }
             });
+            $('.details input[id^=transaction_details_][id$=_category]').autocomplete({
+                source: Routing.generate('app_accounting_autocomplete_category')
+            });
         });
     </script>
 
