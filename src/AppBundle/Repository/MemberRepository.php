@@ -224,7 +224,24 @@ class MemberRepository extends EntityRepository
                 $data[$member->getGender()][$category]++;
             }
         }
-        
+
         return $data;
+    }
+
+    /**
+     * @param Season $season
+     * @return array
+     */
+    public function statOrigin(Season $season)
+    {
+        $builder = $this->createQueryBuilder('m')
+            ->select('m.city city, COUNT( m.id ) AS total')
+            ->innerJoin('m.memberships', 'ms')
+            ->andWhere('ms.season = :season')
+            ->setParameter('season', $season)
+            ->addGroupBy('m.city')
+            ->addOrderBy('total', 'DESC');
+
+        return $builder->getQuery()->getScalarResult();
     }
 }

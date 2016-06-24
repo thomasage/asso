@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Stat;
 use AppBundle\Entity\Season;
 use AppBundle\Form\StatAccountSummaryType;
 use AppBundle\Form\StatAmountByThirdType;
+use AppBundle\Form\StatMemberOriginType;
 use AppBundle\Form\StatMemberSegmentType;
 use AppBundle\Form\StatRankProgressType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -154,6 +155,66 @@ class DefaultController extends Controller
     {
         // Render
         return $this->render('stat/index.html.twig');
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     *
+     * @Route("/stat/memberOrigin",
+     *     name="app_stat_member_origin",
+     *     methods={"GET","POST"})
+     */
+    public function memberOriginAction(Request $request)
+    {
+        // Session
+        $session = $this->get('session');
+
+        // Default values
+        if (!$session->has('stat-member-origin')) {
+            $season = $this->getUser()->getCurrentSeason();
+            if ($season instanceof Season) {
+                $session->set('stat-member-origin', ['season' => $season->getId()]);
+            } else {
+                $session->set('stat-member-origin', ['season' => null]);
+            }
+        }
+
+        // Search form
+        $formSearch = $this->createForm(
+            StatMemberOriginType::class,
+            [
+                'season' => $session->get('stat-member-origin')['season'],
+            ]
+        );
+        $formSearch->handleRequest($request);
+
+        // Update filter
+        if ($formSearch->isSubmitted() && $formSearch->isValid()) {
+
+            $data = $formSearch->getData();
+            $session->set('stat-member-origin', ['season' => $data['season']]);
+
+            return $this->redirectToRoute('app_stat_member_origin');
+        }
+
+        // Results
+        $em = $this->getDoctrine()->getManager();
+        $season = $em->getRepository('AppBundle:Season')->find($session->get('stat-member-origin')['season']);
+        if ($season instanceof Season) {
+            $results = $em->getRepository('AppBundle:Member')->statOrigin($season);
+        } else {
+            $results = [];
+        }
+
+        // Render
+        return $this->render(
+            'stat/member-origin.html.twig',
+            [
+                'formSearch' => $formSearch->createView(),
+                'results' => $results,
+            ]
+        );
     }
 
     /**

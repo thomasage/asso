@@ -1,4 +1,10 @@
 services:
+    app.form.type.stat_member_origin:
+        class: AppBundle\Form\StatMemberOriginType
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags:
+            - { name: form.type }
     app.form.type.stat_member_segment:
         class: AppBundle\Form\StatMemberSegmentType
         arguments:

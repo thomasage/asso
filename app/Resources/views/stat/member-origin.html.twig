@@ -1,0 +1,82 @@
+{% extends 'stat/layout.html.twig' %}
+
+{% trans_default_domain 'stat' %}
+
+{% block body %}
+
+    <div class="app_stat_member_origin">
+
+        <div id="menu-secondary">
+            <h1>{{ 'member_origin.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_stat_index') }}" class="button">
+                    <span class="fi-arrow-left"></span>
+                    {{ 'action.back'|trans({},'messages') }}
+                </a>
+            </nav>
+        </div>
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        {{ form_start(formSearch) }}
+        <div class="search0">
+            {{ form_row(formSearch.season) }}
+            <div>
+                <button type="submit" class="button primary">
+                    <span class="fi-filter"></span>
+                    {{ 'action.search'|trans({},'messages') }}
+                </button>
+            </div>
+        </div>
+        {{ form_end(formSearch) }}
+
+        <div id="graph-pie"></div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/modules/exporting.js') }}"></script>
+    <script type="text/javascript">
+        var series = [
+            {
+                data: []
+            }
+        ];
+        {% for result in results %}
+        series[0].data.push({
+            name: '{{ result.city }}',
+            y: {{ result.total }}
+        });
+        {% endfor %}
+        $(document).ready(function () {
+            $('#graph-pie').highcharts({
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: '{{ 'member_origin.title'|trans }}'
+                },
+                tooltip: {
+                    pointFormat: '<b>{point.percentage:.1f}%</b> ({point.y})'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.name}<br>{point.y}'
+                        }
+                    }
+                },
+                series: series
+            });
+        });
+    </script>
+
+{% endblock %}

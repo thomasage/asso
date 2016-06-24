@@ -141,6 +141,10 @@
         <source>member_segment.graph_title</source>
         <target>Population pyramid</target>
       </trans-unit>
+      <trans-unit id="44dc3b663bd0e215e05966b02241428b" resname="member_origin.title">
+        <source>member_origin.title</source>
+        <target>Population origin</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

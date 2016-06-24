@@ -26,3 +26,9 @@
 .app_stat_member_segment #graph-pyramid {
     margin-top: 2em;
 }
+
+/* Members origin */
+
+.app_stat_member_origin #graph-pie {
+    margin-top: 2em;
+}
