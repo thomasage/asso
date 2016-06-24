@@ -18,27 +18,51 @@
 
         {{ include('default/_flash_messages.html.twig') }}
 
-        <table class="result2">
-            <thead>
-            <tr>
-                <th>{{ 'field.month'|trans }}</th>
-                <th>{{ 'field.amount'|trans }}</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for month,amount in results %}
-                <tr>
-                    <td>{{ month|localizedmonth|capitalize }}</td>
-                    <td>{{ amount|localizedcurrency('EUR') }}</td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="2" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        <div id="graph-evolution"></div>
 
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/modules/exporting.js') }}"></script>
+    <script type="text/javascript">
+        var categories = [];
+        var series = [
+            {
+                name: '{{ 'field.amount'|trans }}',
+                data: []
+            }
+        ];
+        {% set min=0 %}
+        {% for month,amount in results %}
+        {% set min=min(min,amount) %}
+        categories.push('{{ month|date('Y-m') }}');
+        series[0].data.push({{ amount }});
+        {% endfor %}
+        $(document).ready(function () {
+            $('#graph-evolution').highcharts({
+                chart: {
+                    type: 'spline'
+                },
+                title: {
+                    text: '{{ 'amount_by_month.title'|trans }}'
+                },
+                xAxis: {
+                    categories: categories
+                },
+                yAxis: {
+                    min: {{ min }}
+                },
+                legend: {
+                    enabled: false
+                },
+                series: series
+            });
+        });
+    </script>
 
 {% endblock %}

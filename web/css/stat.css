@@ -15,6 +15,12 @@
     width: 20%;
 }
 
+/* Amount by month */
+
+.app_stat_amount_by_month #graph-evolution {
+    margin-top: 2em;
+}
+
 /* Members segment */
 
 .app_stat_member_segment #graph-pyramid {
