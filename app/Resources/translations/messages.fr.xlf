@@ -101,6 +101,10 @@
         <source>action.add_and_new</source>
         <target>Ajouter et nouveau</target>
       </trans-unit>
+      <trans-unit id="74d0b7024adec56a85cbe8aa35bd2c05" resname="action.add_and_close">
+        <source>action.add_and_close</source>
+        <target>Ajouter et fermer</target>
+      </trans-unit>
       <trans-unit id="8bf8854bebe108183caeb845c7676ae4" resname="of">
         <source>of</source>
         <target>de</target>
