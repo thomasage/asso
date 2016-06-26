@@ -45,7 +45,11 @@ class DefaultController extends Controller
             $this->addFlash('success', $this->get('translator')->trans('add.success.added', [], 'accounting'));
 
             // Redirect
-            return $this->redirectToRoute('app_accounting_edit', ['transaction' => $transaction->getId()]);
+            if (!is_null($request->request->get('add_and_new'))) {
+                return $this->redirectToRoute('app_accounting_add');
+            } else {
+                return $this->redirectToRoute('app_accounting_edit', ['transaction' => $transaction->getId()]);
+            }
 
         }
 
