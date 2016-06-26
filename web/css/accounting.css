@@ -1,23 +1,7 @@
-.app_accounting_category .edit > .action {
-    margin-top: 1.5em;
-}
+/* List of transactions */
 
-.app_accounting_category .edit > .action > span {
-    margin: 0 1em;
-}
-
-.app_accounting_category .edit > ol.categories {
-    margin: 2em 0 0 0;
-    padding: 0 0 0 1.5em;
-}
-
-.app_accounting_category .edit > .categories > li {
-    margin-top: 0.5em;
-    padding: 0 0 0 0.5em;
-}
-
-.app_accounting_category .edit > .categories > li > input[type=text] {
-    width: 30em;
+.app_accounting_index tr.alert {
+    background-color: rgb(255, 245, 245);
 }
 
 /* Add a transaction */

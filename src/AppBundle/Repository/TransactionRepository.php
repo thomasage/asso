@@ -17,7 +17,9 @@ class TransactionRepository extends EntityRepository
         $builder = $this
             ->createQueryBuilder('t')
             ->innerJoin('t.paymentMethod', 'pm')
-            ->addSelect('pm');
+            ->addSelect('pm')
+            ->innerJoin('t.details', 'd')
+            ->addSelect('d');
 
         // Filter
         if (!is_null($date = $search->getFilter('date'))) {

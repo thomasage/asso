@@ -50,11 +50,17 @@
             </thead>
             <tbody>
             {% for transaction in transactions %}
-                <tr>
+                {% set detailsAmount=transaction.detailsAmount %}
+                <tr{% if transaction.amount!=detailsAmount %} class="alert"{% endif %}>
                     <td>{{ transaction.date|localizeddate('full','none') }}</td>
                     <td>{{ transaction.paymentMethod }}</td>
                     <td>{{ transaction.thirdName }}</td>
-                    <td>{{ transaction.amount|localizedcurrency('EUR') }}</td>
+                    <td>
+                        {{ transaction.amount|localizedcurrency('EUR') }}
+                        {% if transaction.amount!=detailsAmount %}
+                            <small>({{ detailsAmount|localizedcurrency('EUR') }})</small>
+                        {% endif %}
+                    </td>
                     <td class="action">
                         <a href="{{ path('app_accounting_edit',{transaction:transaction.id}) }}" class="button primary">
                             <span class="fi-magnifying-glass"></span>
