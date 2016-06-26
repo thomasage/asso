@@ -18,7 +18,7 @@ class TransactionRepository extends EntityRepository
             ->createQueryBuilder('t')
             ->innerJoin('t.paymentMethod', 'pm')
             ->addSelect('pm')
-            ->innerJoin('t.details', 'd')
+            ->leftJoin('t.details', 'd')
             ->addSelect('d');
 
         // Filter
