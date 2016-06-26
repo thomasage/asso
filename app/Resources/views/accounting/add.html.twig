@@ -103,6 +103,12 @@
                 e.preventDefault();
                 TransactionDel($(this).parent().parent());
             });
+            $('#transaction_thirdName').autocomplete({
+                source: Routing.generate('app_accounting_autocomplete_thirdname')
+            });
+            $('#transaction_bankName').autocomplete({
+                source: Routing.generate('app_accounting_autocomplete_bankname')
+            });
             $('.details input[id^=transaction_details_][id$=_category]').autocomplete({
                 source: Routing.generate('app_accounting_autocomplete_category')
             });

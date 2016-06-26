@@ -198,4 +198,48 @@ class TransactionRepository extends EntityRepository
             'period' => ['stop' => $stop, 'amount' => $period],
         ];
     }
+
+    /**
+     * @param string $term
+     * @return array
+     */
+    public function findAutocompleteBankName($term)
+    {
+        $data = [];
+
+        $builder = $this->createQueryBuilder('t')
+            ->select('DISTINCT t.bankName bankname')
+            ->andWhere('t.bankName LIKE :bankname')
+            ->setParameter('bankname', $term.'%')
+            ->addOrderBy('t.bankName', 'ASC')
+            ->setMaxResults(10);
+
+        foreach ($builder->getQuery()->getScalarResult() as $r) {
+            $data[] = $r['bankname'];
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param string $term
+     * @return array
+     */
+    public function findAutocompleteThirdName($term)
+    {
+        $data = [];
+
+        $builder = $this->createQueryBuilder('t')
+            ->select('DISTINCT t.thirdName thirdname')
+            ->andWhere('t.thirdName LIKE :thirdname')
+            ->setParameter('thirdname', $term.'%')
+            ->addOrderBy('t.thirdName', 'ASC')
+            ->setMaxResults(10);
+
+        foreach ($builder->getQuery()->getScalarResult() as $r) {
+            $data[] = $r['thirdname'];
+        }
+
+        return $data;
+    }
 }

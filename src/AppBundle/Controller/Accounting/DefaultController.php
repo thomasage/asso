@@ -68,6 +68,28 @@ class DefaultController extends Controller
      * @param Request $request
      * @return JsonResponse
      *
+     * @Route("/accounting/autocompleteBankName",
+     *     name="app_accounting_autocomplete_bankname",
+     *     methods={"GET"},
+     *     options={"expose"=true})
+     */
+    public function autocompleteBankNameAction(Request $request)
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Results
+        $data = $em->getRepository('AppBundle:Transaction')
+            ->findAutocompleteBankName($request->query->get('term'));
+
+        // Render
+        return new JsonResponse($data);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     *
      * @Route("/accounting/autocompleteCategory",
      *     name="app_accounting_autocomplete_category",
      *     methods={"GET"},
@@ -81,6 +103,28 @@ class DefaultController extends Controller
         // Results
         $data = $em->getRepository('AppBundle:TransactionDetail')
             ->findAutocompleteCategory($request->query->get('term'));
+
+        // Render
+        return new JsonResponse($data);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     *
+     * @Route("/accounting/autocompleteThirdName",
+     *     name="app_accounting_autocomplete_thirdname",
+     *     methods={"GET"},
+     *     options={"expose"=true})
+     */
+    public function autocompleteThirdNameAction(Request $request)
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Results
+        $data = $em->getRepository('AppBundle:Transaction')
+            ->findAutocompleteThirdName($request->query->get('term'));
 
         // Render
         return new JsonResponse($data);
