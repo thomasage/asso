@@ -43,7 +43,7 @@ class TransactionRepository extends EntityRepository
                     break;
             }
         }
-        $builder->addOrderBy('t.id', 'ASC');
+        $builder->addOrderBy('t.id', 'DESC');
 
         // Page
         $builder->setMaxResults(20);
