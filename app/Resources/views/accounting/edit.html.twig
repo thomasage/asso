@@ -76,17 +76,17 @@
                     <span class="fi-check"></span>
                     {{ 'action.update'|trans({},'messages') }}
                 </button>
-                <span>or</span>
+                <span>{{ 'or'|trans({},'messages') }}</span>
                 <button type="submit" class="button success" name="update_and_close">
                     <span class="fi-check"></span>
                     {{ 'action.update_and_close'|trans({},'messages') }}
                 </button>
-                <span>or</span>
+                <span>{{ 'or'|trans({},'messages') }}</span>
                 <a href="{{ path('app_accounting_delete',{transaction:transaction.id}) }}" class="button warning">
                     <span class="fi-trash"></span>
                     {{ 'action.delete'|trans({},'messages') }}
                 </a>
-                <span>or</span>
+                <span>{{ 'or'|trans({},'messages') }}</span>
                 <a href="{{ path('app_accounting_homepage') }}" class="button">
                     <span class="fi-x"></span>
                     {{ 'action.cancel'|trans({},'messages') }}
