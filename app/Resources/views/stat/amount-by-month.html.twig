@@ -41,7 +41,7 @@
         {% for month,amount in results %}
         {% set min=min(min,amount) %}
         categories.push('{{ month|date('Y-m') }}');
-        series[0].data.push({{ amount }});
+        series[0].data.push({{ amount|number_format(2,'.','') }});
         {% endfor %}
         $(document).ready(function () {
             $('#graph-evolution').highcharts({
