@@ -31,7 +31,6 @@ class TransactionSearchType extends AbstractType
                 array(
                     'required' => false,
                     'label' => 'field.thirdName',
-                    'widget' => 'single_text',
                 )
             );
     }
