@@ -3,6 +3,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -26,7 +27,7 @@ class TransactionSearchType extends AbstractType
             )
             ->add(
                 'thirdName',
-                DatePickerType::class,
+                TextType::class,
                 array(
                     'required' => false,
                     'label' => 'field.thirdName',
