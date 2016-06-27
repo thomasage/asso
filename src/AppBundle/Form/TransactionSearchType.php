@@ -23,6 +23,15 @@ class TransactionSearchType extends AbstractType
                     'label' => 'field.date',
                     'widget' => 'single_text',
                 )
+            )
+            ->add(
+                'thirdName',
+                DatePickerType::class,
+                array(
+                    'required' => false,
+                    'label' => 'field.thirdName',
+                    'widget' => 'single_text',
+                )
             );
     }
 

@@ -25,6 +25,9 @@ class TransactionRepository extends EntityRepository
         if (!is_null($date = $search->getFilter('date'))) {
             $builder->andWhere('t.date = :date')->setParameter(':date', $date);
         }
+        if (!is_null($thirdName = $search->getFilter('thirdName'))) {
+            $builder->andWhere('t.thirdName LIKE :thirdName')->setParameter(':thirdName', '%'.$thirdName.'%');
+        }
 
         // Orderby
         foreach ($search->getOrderby() as $key => $reverse) {
