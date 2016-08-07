@@ -3,7 +3,6 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Season;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query;
 
 /**
  * SeasonRepository
