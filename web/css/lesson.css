@@ -138,90 +138,6 @@
 
 /* Day */
 
-.app_lesson_day .lessons {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-top: 1em;
-}
-
-.app_lesson_day .lessons > div {
-    width: 45%;
-    margin-top: 1em;
-}
-
-.app_lesson_day .lessons > div > div.action {
-    margin-top: 1em;
-    text-align: right;
-}
-
-.app_lesson_day .lessons > div > div.information {
-    margin-top: 1em;
-}
-
-.app_lesson_day .lessons > div > div.information > textarea {
-    width: 100%;
-}
-
-.app_lesson_day .lessons > div > div.level {
-    margin-top: 1em;
-}
-
-.app_lesson_day .lessons > div > div.level > div.members {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.app_lesson_day .lessons > div > div.level > div.members > a {
-    width: 49%;
-    overflow: hidden;
-    display: block;
-    margin-top: 0.4em;
-    padding: 0.5em;
-    color: inherit;
-    text-align: center;
-    text-decoration: none;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    background-color: rgb(250, 250, 250);
-    outline: none;
-}
-
-.app_lesson_day .lessons > div > div.level > div.members > a:hover {
-    background-color: aliceblue;
-    cursor: pointer;
-}
-
-.app_lesson_day .lessons > div > div.level > div.members > a.active {
-    background-color: rgb(50, 255, 50);
-}
-
-.app_lesson_day .lessons > div > div.level > div.members > a.active:hover {
-    background-color: rgb(50, 250, 50);
-}
-
-.app_lesson_day .lessons > div > div.level > div.title {
-    padding: 0.5em;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    background-color: rgb(150, 150, 150);
-}
-
-.app_lesson_day .lessons > div > div.title {
-    padding: 0.5em 0;
-    font-weight: bold;
-    border-bottom: 1px silver solid;
-}
-
-.app_lesson_day .lessons > div > div.title > span:nth-of-type(2) {
-    float: right;
-}
-
 .app_lesson_day .navigation {
     margin-top: 2em;
     text-align: center;
@@ -242,6 +158,137 @@
     border: 0;
     border-radius: 0.1em;
     cursor: not-allowed;
+}
+
+.app_lesson_day form[name="lesson_day_collection"] > div.actions {
+    margin-top: 2em;
+    text-align: center;
+}
+
+.app_lesson_day form[name="lesson_day_collection"] > div.actions > span {
+    margin: 0 2em;
+}
+
+.app_lesson_day #lesson_day_collection_lessons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson {
+    width: 28em;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.action {
+    margin-top: 1em;
+    font-size: 0.8em;
+    text-align: right;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.comment {
+    margin-top: 1em;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.comment > textarea {
+    width: 100%;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div {
+    width: 49%;
+    margin-bottom: 0.5em;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=checkbox] {
+    display: none;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=checkbox] ~ label {
+    display: block;
+    overflow: hidden;
+    padding: 0.5em;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: rgb(220, 220, 220);
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=checkbox] ~ label:hover {
+    background-color: rgb(200, 200, 200);
+    cursor: pointer;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=checkbox]:checked ~ label {
+    background-color: rgb(50, 255, 50);
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=checkbox]:checked ~ label:hover {
+    background-color: rgb(50, 235, 50);
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div {
+    width: 49%;
+    margin-bottom: 0.5em;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div > input[type=checkbox] {
+    display: none;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div > input[type=checkbox] ~ label {
+    display: block;
+    overflow: hidden;
+    padding: 0.5em;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: rgb(220, 220, 220);
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div > input[type=checkbox] ~ label:hover {
+    background-color: rgb(200, 200, 200);
+    cursor: pointer;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div > input[type=checkbox]:checked ~ label {
+    background-color: rgb(255, 190, 0);
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div > input[type=checkbox]:checked ~ label:hover {
+    background-color: rgb(235, 170, 0);
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.time_duration {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.title {
+    margin-top: 0.5em;
+    padding: 0.5em 0;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    background-color: darkviolet;
 }
 
 /* Add a lesson */

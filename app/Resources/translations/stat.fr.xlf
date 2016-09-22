@@ -25,7 +25,7 @@
         <source>field.member</source>
         <target>Membre</target>
       </trans-unit>
-      <trans-unit id="b839723b47597133748d23aeaf74d48b" resname="field.members">
+      <trans-unit id="df22af5f4c1b750ad046791ab740f791" resname="field.members">
         <source>field.members</source>
         <target>Membres</target>
       </trans-unit>
@@ -177,15 +177,15 @@
         <source>field.signature</source>
         <target>Signature</target>
       </trans-unit>
-      <trans-unit id="6a9db4707a76a3086f4a4094aadde127" resname="member_over_age">
+      <trans-unit id="8f3d170bc2cc7f6a7864831b97597bfc" resname="member_over_age">
         <source>member_over_age</source>
         <target>Membre actif mineur</target>
       </trans-unit>
-      <trans-unit id="6a9db4707a76a3086f4a4094aadde128" resname="member_under_age">
+      <trans-unit id="7cc95e3b9810563783c7c482483045f8" resname="member_under_age">
         <source>member_under_age</source>
         <target>Membre actif majeur</target>
       </trans-unit>
-      <trans-unit id="6a9db4707a76a3086f4a4094aadde129" resname="field.title">
+      <trans-unit id="f894f363e08b0d6db6b38371b8b35662" resname="field.title">
         <source>field.title</source>
         <target>Titre</target>
       </trans-unit>

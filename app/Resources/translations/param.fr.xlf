@@ -137,6 +137,26 @@
         <source>field.current</source>
         <target>En cours</target>
       </trans-unit>
+      <trans-unit id="59889e130e54651507b7e33776ebf898" resname="theme.title">
+        <source>theme.title</source>
+        <target>Thèmes</target>
+      </trans-unit>
+      <trans-unit id="0ccdc0987241280b6982ea1f6b6583fc" resname="theme_edit.success.updated">
+        <source>theme_edit.success.updated</source>
+        <target>Thème modifié.</target>
+      </trans-unit>
+      <trans-unit id="e1966f9e7f9030269a076c29878f3a27" resname="theme_add.success.added">
+        <source>theme_add.success.added</source>
+        <target>Thème ajouté.</target>
+      </trans-unit>
+      <trans-unit id="289cb4d434340dec53a24b3262aeac5e" resname="delete_theme.confirmation">
+        <source>delete_theme.confirmation</source>
+        <target>Supprimer le thème "%theme%" ?</target>
+      </trans-unit>
+      <trans-unit id="60137b9fe82167345c14cc1ed9d07646" resname="theme_delete.success.deleted">
+        <source>theme_delete.success.deleted</source>
+        <target>Thème supprimé.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

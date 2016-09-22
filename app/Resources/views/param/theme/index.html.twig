@@ -1,0 +1,46 @@
+{% extends ':param:layout.html.twig' %}
+
+{% trans_default_domain 'param' %}
+
+{% block body %}
+
+    <div class="app_param_theme">
+
+        {% include('param/_menu.html.twig') with {active:'theme'} only %}
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        <table class="result2">
+            <thead>
+            <tr>
+                <th>{{ 'field.name'|trans }}</th>
+                <th class="action">
+                    <a href="{{ path('app_param_theme_add') }}" class="button primary">
+                        <span class="fi-plus"></span>
+                        {{ 'action.add'|trans({},'messages') }}
+                    </a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for theme in themes %}
+                <tr>
+                    <td>{{ theme.name }}</td>
+                    <td class="action">
+                        <a href="{{ path('app_param_theme_edit',{theme:theme.id}) }}" class="button primary">
+                            <span class="fi-pencil"></span>
+                            {{ 'action.edit'|trans({},'messages') }}
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}

@@ -2,6 +2,8 @@
 
 {% trans_default_domain 'lesson' %}
 
+{% form_theme formCollection 'lesson/_fields.html.twig' %}
+
 {% block body %}
 
     <div class="app_lesson_day">
@@ -41,62 +43,21 @@
             {% endif %}
         </div>
 
-        <div class="lessons">
-
-            {% for lesson in lessons %}
-
-                <div data-lesson="{{ lesson.id }}">
-                    <div class="title">
-                        <span>{{ lesson.start|localizeddate('none','short') }}</span>
-                        <span>{{ lesson.duration }} {{ 'minutes'|trans }}</span>
-                    </div>
-                    {% if members[lesson.level.id] is defined %}
-                        <div class="level">
-                            <div class="title">{{ lesson.level }}</div>
-                            <div class="members">
-                                {% for member in members[lesson.level.id] %}
-                                    <a href="#"
-                                       class="{% if member in lesson.members %}active{% endif %}"
-                                       data-member="{{ member.id }}">
-                                        {{ member }}
-                                    </a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    {% endif %}
-                    {#<div class="information">#}
-                    {#<textarea placeholder="{{ 'field.comment.placeholder'|trans }}"></textarea>#}
-                    {#</div>#}
-                    <div class="action">
-                        <a href="{{ path('app_lesson_edit',{lesson:lesson.id}) }}" class="button secondary">
-                            <span class="fi-pencil"></span>
-                            {{ 'action.edit'|trans({},'messages') }}
-                        </a>
-                    </div>
-                </div>
-
-            {% endfor %}
-
+        {{ form_start(formCollection) }}
+        {{ form_widget(formCollection.lessons) }}
+        <div class="actions">
+            <button type="submit" class="button success">
+                <span class="fi-check"></span>
+                {{ 'action.update_lessons'|trans }}
+            </button>
+            <span>ou</span>
+            <a href="{{ path('app_lesson_index') }}" class="button">
+                <span class="fi-x"></span>
+                {{ 'action.cancel'|trans({},'messages') }}
+            </a>
         </div>
+        {{ form_end(formCollection) }}
 
     </div>
-
-{% endblock %}
-
-{% block javascripts %}
-
-    {{ parent() }}
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('a[data-member]').click(function (e) {
-                e.preventDefault();
-                LessonAttendance(
-                        $(this).parents('[data-lesson]').data('lesson'),
-                        $(this).data('member'),
-                        $(this).hasClass('active')
-                );
-            });
-        });
-    </script>
 
 {% endblock %}

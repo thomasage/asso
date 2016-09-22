@@ -101,7 +101,7 @@
         <source>action.add_and_new</source>
         <target>Ajouter et nouveau</target>
       </trans-unit>
-      <trans-unit id="74d0b7024adec56a85cbe8aa35bd2c05" resname="action.add_and_close">
+      <trans-unit id="256ee520f85672e7de739e70f32f416b" resname="action.add_and_close">
         <source>action.add_and_close</source>
         <target>Ajouter et fermer</target>
       </trans-unit>
@@ -109,9 +109,41 @@
         <source>of</source>
         <target>de</target>
       </trans-unit>
-      <trans-unit id="8bf8854bebe108183caeb845c7676ae5" resname="action.build">
+      <trans-unit id="fb87e88655e4d289d9244cefa954fa34" resname="action.build">
         <source>action.build</source>
         <target>Construire</target>
+      </trans-unit>
+      <trans-unit id="448c304722d7a9c7082e582c061cbe6b" resname="field.lastname">
+        <source>field.lastname</source>
+        <target>__field.lastname</target>
+      </trans-unit>
+      <trans-unit id="2efac63ce0f9b1bd223a4cfff021b8b2" resname="field.firstname">
+        <source>field.firstname</source>
+        <target>__field.firstname</target>
+      </trans-unit>
+      <trans-unit id="804037f4186a188fef4ec83228df1eb7" resname="field.function">
+        <source>field.function</source>
+        <target>__field.function</target>
+      </trans-unit>
+      <trans-unit id="6a9db4707a76a3086f4a4094aadde126" resname="field.signature">
+        <source>field.signature</source>
+        <target>__field.signature</target>
+      </trans-unit>
+      <trans-unit id="7cc95e3b9810563783c7c482483045f8" resname="member_under_age">
+        <source>member_under_age</source>
+        <target>__member_under_age</target>
+      </trans-unit>
+      <trans-unit id="8f3d170bc2cc7f6a7864831b97597bfc" resname="member_over_age">
+        <source>member_over_age</source>
+        <target>__member_over_age</target>
+      </trans-unit>
+      <trans-unit id="756e42bc58d752839aa1db720186d52d" resname="female_represented_by">
+        <source>female_represented_by</source>
+        <target>__female_represented_by</target>
+      </trans-unit>
+      <trans-unit id="13c1d788367a75a3f301e751e2fc62d5" resname="male_represented_by">
+        <source>male_represented_by</source>
+        <target>__male_represented_by</target>
       </trans-unit>
     </body>
   </file>

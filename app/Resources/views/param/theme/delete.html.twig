@@ -1,0 +1,37 @@
+{% extends ':param:layout.html.twig' %}
+
+{% trans_default_domain 'param' %}
+
+{% block body %}
+
+    <div class="app_param_theme_delete">
+
+        {% include('param/_menu.html.twig') with {active:'theme'} only %}
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        {{ form_start(formDelete) }}
+
+        <div class="edit1">
+            {{ form_errors(formDelete) }}
+            <div class="notification">
+                {{ 'delete_theme.confirmation'|trans({'%theme%':theme}) }}
+            </div>
+            <div class="action">
+                <button type="submit" class="button error" name="delete">
+                    <span class="fi-trash"></span>
+                    {{ 'action.delete'|trans({},'messages') }}
+                </button>
+                <span>or</span>
+                <a href="{{ path('app_param_theme_edit',{theme:theme.id}) }}" class="button">
+                    <span class="fi-x"></span>
+                    {{ 'action.cancel'|trans({},'messages') }}
+                </a>
+            </div>
+        </div>
+
+        {{ form_end(formDelete) }}
+
+    </div>
+
+{% endblock %}

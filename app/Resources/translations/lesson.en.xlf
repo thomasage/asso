@@ -201,6 +201,26 @@
         <source>at</source>
         <target>at</target>
       </trans-unit>
+      <trans-unit id="df22af5f4c1b750ad046791ab740f791" resname="field.members">
+        <source>field.members</source>
+        <target>Members</target>
+      </trans-unit>
+      <trans-unit id="8a63484689e9e7d0cba05de911f56bc7" resname="field.themes">
+        <source>field.themes</source>
+        <target>Themes</target>
+      </trans-unit>
+      <trans-unit id="5d7204a88968f55f03ad9a74de7ca63c" resname="action.update_lessons">
+        <source>action.update_lessons</source>
+        <target>Save lessons</target>
+      </trans-unit>
+      <trans-unit id="5cea04139c1d2d492cec4420d4ff58dc" resname="lesson.success.updated">
+        <source>lesson.success.updated</source>
+        <target>Lessons updated.</target>
+      </trans-unit>
+      <trans-unit id="bb8e712b0709e426d5c227e6d891e703" resname="alert.set_season_active">
+        <source>alert.set_season_active</source>
+        <target>Set current season.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

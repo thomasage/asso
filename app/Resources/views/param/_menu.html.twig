@@ -11,6 +11,10 @@
         <span class="fi-graph-bar"></span>
         {{ 'level.title'|trans({},'param') }}
     </a>
+    <a href="{{ path('app_param_theme') }}"{% if active=='theme' %} class="active"{% endif %}>
+        <span class="fi-contrast"></span>
+        {{ 'theme.title'|trans({},'param') }}
+    </a>
     <a href="{{ path('app_param_password') }}"{% if active=='password' %} class="active"{% endif %}>
         <span class="fi-lock"></span>
         {{ 'password.title'|trans({},'param') }}

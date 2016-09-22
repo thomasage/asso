@@ -4,6 +4,7 @@ namespace AppBundle\Repository;
 use AppBundle\Entity\Lesson;
 use AppBundle\Entity\Level;
 use AppBundle\Entity\Season;
+use AppBundle\Entity\Theme;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\NoResultException;
 
@@ -58,6 +59,21 @@ class LessonRepository extends EntityRepository
             ->innerJoin('lesson.levels', 'level')
             ->andWhere('level = :level')
             ->setParameter('level', $level)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * @param Theme $theme
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByTheme(Theme $theme)
+    {
+        return $this->createQueryBuilder('lesson')
+            ->innerJoin('lesson.themes', 'themes')
+            ->andWhere('themes = :theme')
+            ->setParameter('theme', $theme)
             ->getQuery()
             ->getOneOrNullResult();
     }

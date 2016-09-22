@@ -2,14 +2,14 @@
 namespace AppBundle\Controller\Lesson;
 
 use AppBundle\Entity\Lesson;
-use AppBundle\Entity\Member;
+use AppBundle\Entity\Season;
+use AppBundle\Form\LessonDayCollectionType;
 use AppBundle\Form\LessonDeleteType;
 use AppBundle\Form\LessonType;
 use AppBundle\Form\PlanningCollectionType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -44,42 +44,39 @@ class DefaultController extends Controller
             // Flash message
             $this->addFlash(
                 'success',
-                $this->get('translator')->trans('lesson_add.success.added', array(), 'lesson')
+                $this->get('translator')->trans('lesson_add.success.added', [], 'lesson')
             );
 
             // Redirect
-            return $this->redirectToRoute('app_lesson_day', array('day' => $lesson->getDate()->format('Y-m-d')));
+            return $this->redirectToRoute('app_lesson_day', ['day' => $lesson->getDate()->format('Y-m-d')]);
 
         }
 
         // Render
         return $this->render(
             'lesson/add.html.twig',
-            array(
+            [
                 'day' => $day,
                 'formEdit' => $formEdit->createView(),
-            )
+            ]
         );
     }
 
     /**
+     * @param Request $request
      * @param \DateTime $day
      * @return Response
      *
      * @Route("/lesson/day/{day}",
      *        name="app_lesson_day",
-     *        methods={"GET"},
+     *        methods={"GET","POST"},
      *        requirements={"day"="[0-9]{4}-[0-9]{2}-[0-9]{2}"})
      */
-    public function dayAction(\DateTime $day)
+    public function dayAction(Request $request, \DateTime $day)
     {
         // Lessons of the day
         $lm = $this->get('app.lesson_manager');
         $lessons = $lm->findByDate($day);
-
-        // Members by level
-        $mm = $this->get('app.member_manager');
-        $members = $mm->findByDateGroupByLevel($day);
 
         // Previous day with lesson
         $previous = $lm->findPreviousDayWithLesson($day);
@@ -87,16 +84,31 @@ class DefaultController extends Controller
         // Next day with lesson
         $next = $lm->findNextDayWithLesson($day);
 
+        // Collection form
+        $formCollection = $this->createForm(LessonDayCollectionType::class, ['lessons' => $lessons]);
+        $formCollection->handleRequest($request);
+
+        if ($formCollection->isSubmitted() && $formCollection->isValid()) {
+
+            // Save data
+            $this->getDoctrine()->getManager()->flush();
+
+            // Flash message
+            $this->addFlash('success', $this->get('translator')->trans('lesson.success.updated', [], 'lesson'));
+
+            // Redirect
+            return $this->redirectToRoute('app_lesson_day', ['day' => $day->format('Y-m-d')]);
+        }
+
         // Render
         return $this->render(
             'lesson/day.html.twig',
-            array(
+            [
                 'day' => $day,
-                'lessons' => $lessons,
-                'members' => $members,
+                'formCollection' => $formCollection->createView(),
                 'next' => $next,
                 'previous' => $previous,
-            )
+            ]
         );
     }
 
@@ -126,21 +138,21 @@ class DefaultController extends Controller
             // Flash message
             $this->addFlash(
                 'success',
-                $this->get('translator')->trans('delete.success.deleted', array(), 'lesson')
+                $this->get('translator')->trans('delete.success.deleted', [], 'lesson')
             );
 
             // Redirect
-            return $this->redirectToRoute('app_lesson_day', array('day' => $day->format('Y-m-d')));
+            return $this->redirectToRoute('app_lesson_day', ['day' => $day->format('Y-m-d')]);
 
         }
 
         // Render
         return $this->render(
             'lesson/delete.html.twig',
-            array(
+            [
                 'formDelete' => $formDelete->createView(),
                 'lesson' => $lesson,
-            )
+            ]
         );
     }
 
@@ -169,26 +181,26 @@ class DefaultController extends Controller
             // Flash message
             $this->addFlash(
                 'success',
-                $this->get('translator')->trans('edit.success.updated', array(), 'lesson')
+                $this->get('translator')->trans('edit.success.updated', [], 'lesson')
             );
 
             // Redirect
-            return $this->redirectToRoute('app_lesson_day', array('day' => $lesson->getDate()->format('Y-m-d')));
+            return $this->redirectToRoute('app_lesson_day', ['day' => $lesson->getDate()->format('Y-m-d')]);
 
         }
 
         // Render
         return $this->render(
             'lesson/edit.html.twig',
-            array(
+            [
                 'formEdit' => $formEdit->createView(),
                 'lesson' => $lesson,
-            )
+            ]
         );
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
      * @Route("/lesson",
      *        name="app_lesson_index",
@@ -201,18 +213,23 @@ class DefaultController extends Controller
 
         // Season to display
         $season = $this->getUser()->getCurrentSeason();
+        if (!$season instanceof Season) {
+            $this->addFlash('error', $this->get('translator')->trans(''));
+
+            return $this->redirectToRoute('app_param_season');
+        }
 
         // Calendar of season
         $start = new \DateTime($season->getStart()->format('Y-m-01'));
         $stop = new \DateTime($season->getStop()->format('Y-m-01'));
         $stop->modify('+1 month');
-        $months = array();
+        $months = [];
         foreach (new \DatePeriod($start, new \DateInterval('P1M'), $stop) as $v) {
             $months[] = $v;
         }
 
         // Days with lessons
-        $lessons = array();
+        $lessons = [];
         foreach ($em->getRepository('AppBundle:Lesson')->findBySeason($season) as $lesson) {
             $lessons[] = $lesson->getDate()->format('Y-m-d');
         }
@@ -221,11 +238,11 @@ class DefaultController extends Controller
         // Render
         return $this->render(
             'lesson/index.html.twig',
-            array(
+            [
                 'lessons' => $lessons,
                 'months' => $months,
                 'now' => new \DateTime(),
-            )
+            ]
         );
     }
 
@@ -244,12 +261,12 @@ class DefaultController extends Controller
 
         // Planning defined
         $elements = $em->getRepository('AppBundle:Planning')->findBy(
-            array(),
-            array('weekday' => 'ASC', 'start' => 'ASC')
+            [],
+            ['weekday' => 'ASC', 'start' => 'ASC']
         );
 
         // Edit form
-        $formEdit = $this->createForm(PlanningCollectionType::class, array('elements' => $elements));
+        $formEdit = $this->createForm(PlanningCollectionType::class, ['elements' => $elements]);
         $formEdit->handleRequest($request);
 
         // Save data
@@ -277,7 +294,7 @@ class DefaultController extends Controller
                 // Flash message
                 $this->addFlash(
                     'success',
-                    $this->get('translator')->trans('planning.success.built', array(), 'lesson')
+                    $this->get('translator')->trans('planning.success.built', [], 'lesson')
                 );
 
                 // Redirect
@@ -288,7 +305,7 @@ class DefaultController extends Controller
                 // Flash message
                 $this->addFlash(
                     'success',
-                    $this->get('translator')->trans('planning.success.updated', array(), 'lesson')
+                    $this->get('translator')->trans('planning.success.updated', [], 'lesson')
                 );
 
                 // Redirect
@@ -301,36 +318,9 @@ class DefaultController extends Controller
         // Render
         return $this->render(
             'lesson/planning.html.twig',
-            array(
+            [
                 'formEdit' => $formEdit->createView(),
-            )
+            ]
         );
-    }
-
-    /**
-     * @param Lesson $lesson
-     * @param Member $member
-     * @param bool $active
-     * @return JsonResponse
-     *
-     * @Route("/lesson/attendance/{lesson}/{member}/{active}",
-     *        name="app_lesson_set_attendance",
-     *        methods={"POST"},
-     *        requirements={"lesson"="\d+","member"="\d+","active"="0|1"},
-     *        options={"expose"="true"})
-     */
-    public function setAttendanceAction(Lesson $lesson, Member $member, $active)
-    {
-        if ($active) {
-            if (!$lesson->getMembers()->contains($member)) {
-                $lesson->addMember($member);
-            }
-        } else {
-            $lesson->removeMember($member);
-        }
-        $lm = $this->get('app.lesson_manager');
-        $lm->updateLesson($lesson);
-
-        return new JsonResponse(array('status' => $lesson->getMembers()->contains($member) ? 1 : 0));
     }
 }

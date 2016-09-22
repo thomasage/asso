@@ -91,15 +91,21 @@ class Lesson
      */
     private $members;
 
+    /**
+     * @var Theme[]
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Theme")
+     */
+    private $themes;
+
     public function __construct()
     {
         $this->active = true;
         $this->members = new ArrayCollection();
+        $this->themes = new ArrayCollection();
     }
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -108,8 +114,6 @@ class Lesson
     }
 
     /**
-     * Get date
-     *
      * @return \DateTime
      */
     public function getDate()
@@ -118,10 +122,7 @@ class Lesson
     }
 
     /**
-     * Set date
-     *
      * @param \DateTime $date
-     *
      * @return Lesson
      */
     public function setDate($date)
@@ -132,8 +133,6 @@ class Lesson
     }
 
     /**
-     * Get start
-     *
      * @return \DateTime
      */
     public function getStart()
@@ -142,10 +141,7 @@ class Lesson
     }
 
     /**
-     * Set start
-     *
      * @param \DateTime $start
-     *
      * @return Lesson
      */
     public function setStart($start)
@@ -156,8 +152,6 @@ class Lesson
     }
 
     /**
-     * Get duration
-     *
      * @return int
      */
     public function getDuration()
@@ -166,10 +160,7 @@ class Lesson
     }
 
     /**
-     * Set duration
-     *
      * @param integer $duration
-     *
      * @return Lesson
      */
     public function setDuration($duration)
@@ -180,8 +171,6 @@ class Lesson
     }
 
     /**
-     * Get active
-     *
      * @return bool
      */
     public function getActive()
@@ -190,10 +179,7 @@ class Lesson
     }
 
     /**
-     * Set active
-     *
      * @param boolean $active
-     *
      * @return Lesson
      */
     public function setActive($active)
@@ -204,8 +190,6 @@ class Lesson
     }
 
     /**
-     * Get comment
-     *
      * @return string
      */
     public function getComment()
@@ -214,10 +198,7 @@ class Lesson
     }
 
     /**
-     * Set comment
-     *
      * @param string $comment
-     *
      * @return Lesson
      */
     public function setComment($comment)
@@ -228,10 +209,7 @@ class Lesson
     }
 
     /**
-     * Add member
-     *
      * @param Member $member
-     *
      * @return Lesson
      */
     public function addMember(Member $member)
@@ -242,8 +220,6 @@ class Lesson
     }
 
     /**
-     * Remove member
-     *
      * @param Member $member
      */
     public function removeMember(Member $member)
@@ -252,8 +228,6 @@ class Lesson
     }
 
     /**
-     * Get members
-     *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getMembers()
@@ -262,10 +236,15 @@ class Lesson
     }
 
     /**
-     * Set level
-     *
+     * @return Level
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
      * @param Level $level
-     *
      * @return Lesson
      */
     public function setLevel(Level $level)
@@ -276,12 +255,29 @@ class Lesson
     }
 
     /**
-     * Get level
-     *
-     * @return Level
+     * @param Theme $theme
+     * @return Lesson
      */
-    public function getLevel()
+    public function addTheme(Theme $theme)
     {
-        return $this->level;
+        $this->themes[] = $theme;
+
+        return $this;
+    }
+
+    /**
+     * @param Theme $theme
+     */
+    public function removeTheme(Theme $theme)
+    {
+        $this->themes->removeElement($theme);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getThemes()
+    {
+        return $this->themes;
     }
 }
