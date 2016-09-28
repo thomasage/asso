@@ -10,7 +10,8 @@
     width: 10em;
 }
 
-.app_accounting_add #transaction_date {
+.app_accounting_add #transaction_date,
+.app_accounting_add #transaction_dateValue {
     width: 10em;
 }
 
@@ -74,7 +75,8 @@
     width: 10em;
 }
 
-.app_accounting_edit #transaction_date {
+.app_accounting_edit #transaction_date,
+.app_accounting_edit #transaction_dateValue {
     width: 10em;
 }
 

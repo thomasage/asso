@@ -38,6 +38,9 @@
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:transactions.orderby,orderby:'date',title:'field.date'|trans} only -%}
                 </th>
                 <th>
+                    {%- include 'default/_table_orderby.html.twig' with {route:route,sets:transactions.orderby,orderby:'date_value',title:'field.date_value'|trans} only -%}
+                </th>
+                <th>
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:transactions.orderby,orderby:'paymentMethod',title:'field.paymentMethod'|trans} only -%}
                 </th>
                 <th>
@@ -53,7 +56,8 @@
             {% for transaction in transactions %}
                 {% set detailsAmount=transaction.detailsAmount %}
                 <tr{% if transaction.amount!=detailsAmount %} class="alert"{% endif %}>
-                    <td>{{ transaction.date|localizeddate('full','none') }}</td>
+                    <td>{{ transaction.date|localizeddate('long','none') }}</td>
+                    <td>{% if transaction.dateValue is not null %}{{ transaction.dateValue|localizeddate('long','none') }}{% endif %}</td>
                     <td>{{ transaction.paymentMethod }}</td>
                     <td>{{ transaction.thirdName }}</td>
                     <td>

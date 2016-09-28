@@ -13,6 +13,10 @@
         <source>field.date</source>
         <target>Date</target>
       </trans-unit>
+      <trans-unit id="f291d23e12fe625de7060e5ae3205bb6" resname="field.date_value">
+        <source>field.date_value</source>
+        <target>Date of value</target>
+      </trans-unit>
       <trans-unit id="5e303b302e35f909576b4c80ed02f69a" resname="field.paymentMethod">
         <source>field.paymentMethod</source>
         <target>Payment method</target>

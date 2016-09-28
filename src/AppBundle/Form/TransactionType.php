@@ -31,6 +31,15 @@ class TransactionType extends AbstractType
                 ]
             )
             ->add(
+                'dateValue',
+                DatePickerType::class,
+                [
+                    'required' => false,
+                    'label' => 'field.date_value',
+                    'widget' => 'single_text',
+                ]
+            )
+            ->add(
                 'amount',
                 NumberType::class,
                 [

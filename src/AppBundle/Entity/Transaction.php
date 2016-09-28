@@ -44,6 +44,15 @@ class Transaction
     private $date;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_value", type="date", nullable=true)
+     *
+     * @Assert\Date()
+     */
+    private $dateValue;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="amount", type="decimal", precision=10, scale=2)
@@ -98,9 +107,6 @@ class Transaction
      */
     private $details;
 
-    /**
-     * Constructor
-     */
     public function __construct()
     {
         $this->date = new \DateTime();
@@ -108,8 +114,6 @@ class Transaction
     }
 
     /**
-     * Get id
-     *
      * @return integer
      */
     public function getId()
@@ -118,8 +122,6 @@ class Transaction
     }
 
     /**
-     * Get date
-     *
      * @return \DateTime
      */
     public function getDate()
@@ -128,10 +130,7 @@ class Transaction
     }
 
     /**
-     * Set date
-     *
      * @param \DateTime $date
-     *
      * @return Transaction
      */
     public function setDate($date)
@@ -142,8 +141,6 @@ class Transaction
     }
 
     /**
-     * Get amount
-     *
      * @return string
      */
     public function getAmount()
@@ -152,10 +149,7 @@ class Transaction
     }
 
     /**
-     * Set amount
-     *
      * @param string $amount
-     *
      * @return Transaction
      */
     public function setAmount($amount)
@@ -166,8 +160,6 @@ class Transaction
     }
 
     /**
-     * Get thirdName
-     *
      * @return string
      */
     public function getThirdName()
@@ -176,10 +168,7 @@ class Transaction
     }
 
     /**
-     * Set thirdName
-     *
      * @param string $thirdName
-     *
      * @return Transaction
      */
     public function setThirdName($thirdName)
@@ -190,8 +179,6 @@ class Transaction
     }
 
     /**
-     * Get bankName
-     *
      * @return string
      */
     public function getBankName()
@@ -200,10 +187,7 @@ class Transaction
     }
 
     /**
-     * Set bankName
-     *
      * @param string $bankName
-     *
      * @return Transaction
      */
     public function setBankName($bankName)
@@ -214,8 +198,6 @@ class Transaction
     }
 
     /**
-     * Get operationNumber
-     *
      * @return string
      */
     public function getOperationNumber()
@@ -224,10 +206,7 @@ class Transaction
     }
 
     /**
-     * Set operationNumber
-     *
      * @param string $operationNumber
-     *
      * @return Transaction
      */
     public function setOperationNumber($operationNumber)
@@ -238,8 +217,6 @@ class Transaction
     }
 
     /**
-     * Get information
-     *
      * @return string
      */
     public function getInformation()
@@ -248,10 +225,7 @@ class Transaction
     }
 
     /**
-     * Set information
-     *
      * @param string $information
-     *
      * @return Transaction
      */
     public function setInformation($information)
@@ -262,8 +236,6 @@ class Transaction
     }
 
     /**
-     * Get paymentMethod
-     *
      * @return PaymentMethod
      */
     public function getPaymentMethod()
@@ -272,10 +244,7 @@ class Transaction
     }
 
     /**
-     * Set paymentMethod
-     *
      * @param PaymentMethod $paymentMethod
-     *
      * @return Transaction
      */
     public function setPaymentMethod(PaymentMethod $paymentMethod)
@@ -286,10 +255,7 @@ class Transaction
     }
 
     /**
-     * Add detail
-     *
      * @param TransactionDetail $detail
-     *
      * @return Transaction
      */
     public function addDetail(TransactionDetail $detail)
@@ -301,8 +267,6 @@ class Transaction
     }
 
     /**
-     * Remove detail
-     *
      * @param TransactionDetail $detail
      */
     public function removeDetail(TransactionDetail $detail)
@@ -324,12 +288,29 @@ class Transaction
     }
 
     /**
-     * Get details
-     *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getDetails()
     {
         return $this->details;
+    }
+
+    /**
+     * @param \DateTime $dateValue
+     * @return Transaction
+     */
+    public function setDateValue($dateValue)
+    {
+        $this->dateValue = $dateValue;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateValue()
+    {
+        return $this->dateValue;
     }
 }
