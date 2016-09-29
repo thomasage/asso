@@ -21,6 +21,12 @@
     margin-top: 2em;
 }
 
+/* Members evolution */
+
+.app_stat_member_evolution #graph-evolution {
+    margin-top: 2em;
+}
+
 /* Members segment */
 
 .app_stat_member_segment #graph-pyramid {

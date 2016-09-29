@@ -260,4 +260,45 @@ class MemberRepository extends EntityRepository
 
         return $builder->getQuery()->getResult();
     }
+
+    /**
+     * @return array
+     */
+    public function statEvolution()
+    {
+        $categories = [];
+        $series = [];
+
+        $builder = $this->createQueryBuilder('m')
+            ->innerJoin('m.memberships', 'ms')
+            ->innerJoin('ms.season', 'season')
+            ->innerJoin('ms.level', 'level')
+            ->addGroupBy('season.id')
+            ->addGroupBy('level.id')
+            ->addOrderBy('season.start', 'ASC')
+            ->addOrderBy('level.name', 'ASC')
+            ->select('COUNT( m.id ) AS total, season.start AS season_start, level.name AS level_name');
+
+        foreach ($builder->getQuery()->getArrayResult() as $v) {
+            if (!$v['season_start'] instanceof \DateTime) {
+                continue;
+            }
+            if (!in_array($v['season_start']->format('Y'), $categories)) {
+                $categories[] = $v['season_start']->format('Y');
+            }
+            $index = array_search($v['season_start']->format('Y'), $categories);
+            $series[$v['level_name']][$index] = (int)$v['total'];
+        }
+
+        foreach ($series as $name => $serie) {
+            foreach ($categories as $k => $v) {
+                if (!isset($serie[$k])) {
+                    $series[$name][$k] = 0;
+                }
+            }
+            ksort($series[$name]);
+        }
+
+        return ['categories' => $categories, 'series' => $series];
+    }
 }

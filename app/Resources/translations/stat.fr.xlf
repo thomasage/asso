@@ -189,6 +189,10 @@
         <source>field.title</source>
         <target>Titre</target>
       </trans-unit>
+      <trans-unit id="1add9fc6ecf7c0e260bf4d84c2604c85" resname="member_evolution.title">
+        <source>member_evolution.title</source>
+        <target>Évolution de l'effectif</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

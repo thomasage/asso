@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller\Stat;
 
+use AppBundle\Entity\Member;
 use AppBundle\Entity\Season;
 use AppBundle\Form\StatAccountSummaryType;
 use AppBundle\Form\StatAmountByThirdType;
@@ -213,6 +214,28 @@ class DefaultController extends Controller
             'stat/member-origin.html.twig',
             [
                 'formSearch' => $formSearch->createView(),
+                'results' => $results,
+            ]
+        );
+    }
+
+    /**
+     * @return Response
+     *
+     * @Route("/stat/memberEvolution",
+     *     name="app_stat_member_evolution",
+     *     methods={"GET","POST"})
+     */
+    public function memberEvolutionAction()
+    {
+        // Results
+        $em = $this->getDoctrine()->getManager();
+        $results = $em->getRepository(Member::class)->statEvolution();
+
+        // Render
+        return $this->render(
+            'stat/member-evolution.html.twig',
+            [
                 'results' => $results,
             ]
         );

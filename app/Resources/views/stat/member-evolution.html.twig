@@ -1,0 +1,70 @@
+{% extends 'stat/layout.html.twig' %}
+
+{% trans_default_domain 'stat' %}
+
+{% block body %}
+
+    <div class="app_stat_member_evolution">
+
+        <div id="menu-secondary">
+            <h1>{{ 'member_evolution.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_stat_index') }}" class="button">
+                    <span class="fi-arrow-left"></span>
+                    {{ 'action.back'|trans({},'messages') }}
+                </a>
+            </nav>
+        </div>
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        <div id="graph-evolution"></div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/modules/exporting.js') }}"></script>
+    <script type="text/javascript">
+        var categories = [{{ results.categories|join(',') }}];
+        var series = [];
+        {% for label,serie in results.series %}
+        series.push({
+            name: '{{ label }}',
+            data: [{{ serie|join(',') }}]
+        });
+        {% endfor %}
+        $(document).ready(function () {
+            $('#graph-evolution').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: false,
+                xAxis: {
+                    categories: categories
+                },
+                yAxis: {
+                    min: 0,
+                    title: false
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true
+                        }
+                    }
+                },
+                legend: {
+                    enabled: true
+                },
+                series: series
+            });
+        });
+    </script>
+
+{% endblock %}
