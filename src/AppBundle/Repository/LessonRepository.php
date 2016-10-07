@@ -169,7 +169,7 @@ class LessonRepository extends EntityRepository
      */
     public function findMissingAttendances(Season $season)
     {
-        $start = $season->getStart();
+        $start = max($season->getStart(), new \DateTime('-15 days'));
         $stop = date('Y-m-d');
 
         return $this->createQueryBuilder('l')
