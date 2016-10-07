@@ -46,33 +46,33 @@ if (isset($members)) {
         $pdf->SetY($startY);
         if (strlen($member->getPhone0()) > 0) {
             $pdf->SetX(110);
-            $pdf->MultiCell(50, 5, $member->getPhone0(), 0, 'L', false);
+            $pdf->MultiCell(60, 5, $member->getPhone0(), 0, 'L', false);
         }
         if (strlen($member->getPhone1()) > 0) {
             $pdf->SetX(110);
-            $pdf->MultiCell(50, 5, $member->getPhone1(), 0, 'L', false);
+            $pdf->MultiCell(60, 5, $member->getPhone1(), 0, 'L', false);
         }
         if (strlen($member->getPhone2()) > 0) {
             $pdf->SetX(110);
-            $pdf->MultiCell(50, 5, $member->getPhone2(), 0, 'L', false);
+            $pdf->MultiCell(60, 5, $member->getPhone2(), 0, 'L', false);
         }
         if (strlen($member->getPhone3()) > 0) {
             $pdf->SetX(110);
-            $pdf->MultiCell(50, 5, $member->getPhone3(), 0, 'L', false);
+            $pdf->MultiCell(60, 5, $member->getPhone3(), 0, 'L', false);
         }
         if (strlen($member->getEmail0()) > 0) {
             $pdf->SetX(110);
-            $pdf->MultiCell(50, 5, $member->getEmail0(), 0, 'L', false);
+            $pdf->MultiCell(60, 5, $member->getEmail0(), 0, 'L', false);
         }
         if (strlen($member->getEmail1()) > 0) {
             $pdf->SetX(110);
-            $pdf->MultiCell(50, 5, $member->getEmail1(), 0, 'L', false);
+            $pdf->MultiCell(60, 5, $member->getEmail1(), 0, 'L', false);
         }
         $lastY = max($lastY, $pdf->GetY());
 
         if (count($promotions) > 0) {
             $promotion = $promotions[count($promotions) - 1];
-            $pdf->SetXY(160, $startY);
+            $pdf->SetXY(170, $startY);
             $pdf->MultiCell(60, 5, $promotion->getRank()."\n".$promotion->getRank()->getDescription(), 0, 'L', false);
             $lastY = max($lastY, $pdf->GetY());
         }
