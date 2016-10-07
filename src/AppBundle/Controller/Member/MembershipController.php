@@ -134,7 +134,7 @@ class MembershipController extends Controller
             } elseif ($document == $membership->getRegistrationForm()) {
                 $membership->setRegistrationForm(null);
             }
-            $dm = $this->get('app.document_mananer');
+            $dm = $this->get('app.document_manager');
             $dm->delete($document);
 
             // Flash message
@@ -171,7 +171,7 @@ class MembershipController extends Controller
     public function documentDownloadAction(Document $document)
     {
         // Document manager
-        $dm = $this->get('app.document_mananer');
+        $dm = $this->get('app.document_manager');
 
         if (!is_null($filename = $dm->getFilename($document))) {
             $response = new BinaryFileResponse($filename);
