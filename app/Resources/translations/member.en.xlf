@@ -245,6 +245,10 @@
         <source>delete_registrationForm.confirmation</source>
         <target>Delete the registration form ("%document%")?</target>
       </trans-unit>
+      <trans-unit id="76c7db8793ad0b91ee59eafbf1e221c3" resname="widget.missing-numbers.title">
+        <source>widget.missing-numbers.title</source>
+        <target>Missing membership numbers</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

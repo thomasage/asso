@@ -763,3 +763,25 @@ div.actions_full > span {
 .widget-missing-attendances > ul > li > a:hover {
     background-color: rgb(245, 245, 245);
 }
+
+/* Widget : missing numbers */
+
+.widget-missing-numbers > ul {
+    margin: 1em 0 0 1.5em;
+    padding: 0;
+}
+
+.widget-missing-numbers > ul > li {
+    margin: 0.5em 0 0 0;
+    padding: 0;
+}
+
+.widget-missing-numbers > ul > li > a {
+    padding: 0.3em;
+    color: inherit;
+    text-decoration: none;
+}
+
+.widget-missing-numbers > ul > li > a:hover {
+    background-color: rgb(245, 245, 245);
+}

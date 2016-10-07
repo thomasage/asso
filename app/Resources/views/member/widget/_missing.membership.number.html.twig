@@ -1,0 +1,18 @@
+{% trans_default_domain 'member' %}
+
+{% if missing|length>0 %}
+
+    <div class="widget-missing-numbers">
+        <h2>{{ 'widget.missing-numbers.title'|trans }}</h2>
+        <ul>
+            {% for membership in missing %}
+                <li>
+                    <a href="{{ path('app_member_membership_edit',{membership:membership.id}) }}">
+                        {{ membership.member }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endif %}

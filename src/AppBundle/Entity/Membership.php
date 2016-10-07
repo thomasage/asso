@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="membership")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\MembershipRepository")
  * @UniqueEntity(fields={"member","season"},message="membership.member_season.duplicate")
  */
 class Membership
