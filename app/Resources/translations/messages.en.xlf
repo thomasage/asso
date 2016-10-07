@@ -145,6 +145,10 @@
         <source>male_represented_by</source>
         <target>__male_represented_by</target>
       </trans-unit>
+      <trans-unit id="94984f1387b32df7099c95c1c13edc5d" resname="action.print">
+        <source>action.print</source>
+        <target>Print</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -44,19 +44,24 @@ class DefaultController extends Controller
             }
 
             // Flash message
-            $this->addFlash('success', $this->get('translator')->trans('add.success.added', array(), 'member'));
+            $this->addFlash('success', $this->get('translator')->trans('add.success.added', [], 'member'));
 
             // Redirect
             if ($request->request->has('add_and_new')) {
                 return $this->redirectToRoute('app_member_add');
             } else {
-                return $this->redirectToRoute('app_member_show', array('member' => $member->getId()));
+                return $this->redirectToRoute('app_member_show', ['member' => $member->getId()]);
             }
 
         }
 
         // Render
-        return $this->render('member/add.html.twig', array('formEdit' => $formEdit->createView()));
+        return $this->render(
+            'member/add.html.twig',
+            [
+                'formEdit' => $formEdit->createView(),
+            ]
+        );
     }
 
     /**
@@ -89,13 +94,13 @@ class DefaultController extends Controller
             }
 
             // Flash message
-            $this->addFlash('success', $this->get('translator')->trans('edit.success.updated', array(), 'member'));
+            $this->addFlash('success', $this->get('translator')->trans('edit.success.updated', [], 'member'));
 
             // Redirect
             if ($request->request->has('update_close')) {
-                return $this->redirectToRoute('app_member_show', array('member' => $member->getId()));
+                return $this->redirectToRoute('app_member_show', ['member' => $member->getId()]);
             } else {
-                return $this->redirectToRoute('app_member_edit', array('member' => $member->getId()));
+                return $this->redirectToRoute('app_member_edit', ['member' => $member->getId()]);
             }
 
         }
@@ -108,21 +113,21 @@ class DefaultController extends Controller
             // Flash message
             $this->addFlash(
                 'success',
-                $this->get('translator')->trans('edit.success.photo_deleted', array(), 'member')
+                $this->get('translator')->trans('edit.success.photo_deleted', [], 'member')
             );
 
             // Redirect
-            return $this->redirectToRoute('app_member_edit', array('member' => $member->getId()));
+            return $this->redirectToRoute('app_member_edit', ['member' => $member->getId()]);
 
         }
 
         // Render
         return $this->render(
             'member/edit.html.twig',
-            array(
+            [
                 'formEdit' => $formEdit->createView(),
                 'member' => $member,
-            )
+            ]
         );
     }
 
@@ -151,21 +156,43 @@ class DefaultController extends Controller
         if ($reload) {
             $sm->update($search);
 
-            return $this->redirectToRoute('app_member_index');
+            if (!$request->request->has('print')) {
+                return $this->redirectToRoute('app_member_index');
+            }
         }
 
         // Members
         $members = $em->getRepository('AppBundle:Member')->findBySearch($search);
 
         // Render
-        return $this->render(
-            'member/index.html.twig',
-            array(
-                'formSearch' => $formSearch->createView(),
-                'members' => $members,
-                'route' => $route,
-            )
-        );
+
+        if ($request->request->has('print')) {
+
+            return new Response(
+                $this->renderView(
+                    'member/index.pdf.php',
+                    [
+                        'members' => $members,
+                    ]
+                ),
+                Response::HTTP_OK,
+                [
+                    'Content-Type' => 'application/pdf',
+                ]
+            );
+
+        } else {
+
+            return $this->render(
+                'member/index.html.twig',
+                [
+                    'formSearch' => $formSearch->createView(),
+                    'members' => $members,
+                    'route' => $route,
+                ]
+            );
+
+        }
     }
 
     /**
@@ -221,9 +248,14 @@ class DefaultController extends Controller
         $season = $this->getUser()->getCurrentSeason();
 
         // Membership for the season
-        $currentMembership = $em->getRepository('AppBundle:Membership')->findOneBy(
-            array('member' => $member, 'season' => $season)
-        );
+        $currentMembership = $em
+            ->getRepository('AppBundle:Membership')
+            ->findOneBy(
+                [
+                    'member' => $member,
+                    'season' => $season,
+                ]
+            );
 
         // Lessons for the season and level
         if ($currentMembership instanceof Membership && $currentMembership->getLevel() instanceof Level) {
@@ -232,18 +264,18 @@ class DefaultController extends Controller
                 $season
             );
         } else {
-            $lessons = array();
+            $lessons = [];
         }
 
         // Render
         return $this->render(
             'member/show.html.twig',
-            array(
+            [
                 'lessons' => $lessons,
                 'member' => $member,
                 'memberships' => $memberships,
                 'promotions' => $promotions,
-            )
+            ]
         );
     }
 
@@ -261,10 +293,10 @@ class DefaultController extends Controller
         // Render
         return $this->render(
             'member/widget/_next_birthdays.html.twig',
-            array(
+            [
                 'members' => $members,
                 'now' => new \DateTime(),
-            )
+            ]
         );
     }
 }
