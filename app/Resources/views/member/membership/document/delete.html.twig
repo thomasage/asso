@@ -1,0 +1,49 @@
+{% extends ':member:layout.html.twig' %}
+
+{% trans_default_domain 'member' %}
+
+{% block body %}
+
+    <div id="menu-secondary">
+        <h1>{{ 'delete_document.title'|trans }}</h1>
+        <nav>
+            <a href="{{ path('app_member_membership_edit',{membership:membership.id}) }}" class="button">
+                <span class="fi-arrow-left"></span>
+                {{ 'action.back'|trans({},'messages') }}
+            </a>
+        </nav>
+    </div>
+
+    {{ include('default/_flash_messages.html.twig') }}
+
+    <div class="app_member_membership_document_delete">
+
+        {{ form_start(formDelete) }}
+
+        <div class="edit1">
+            {{ form_errors(formDelete) }}
+            <div class="notification">
+                {% if document==membership.medicalCertificate %}
+                    {{ 'delete_medicalCertificate.confirmation'|trans({'%document%':document.name}) }}
+                {% elseif document==membership.registrationForm %}
+                    {{ 'delete_registrationForm.confirmation'|trans({'%document%':document.name}) }}
+                {% endif %}
+            </div>
+            <div class="action">
+                <button type="submit" class="button error" name="delete">
+                    <span class="fi-trash"></span>
+                    {{ 'action.delete'|trans({},'messages') }}
+                </button>
+                <span>or</span>
+                <a href="{{ path('app_member_membership_edit',{membership:membership.id}) }}" class="button">
+                    <span class="fi-x"></span>
+                    {{ 'action.cancel'|trans({},'messages') }}
+                </a>
+            </div>
+        </div>
+
+        {{ form_end(formDelete) }}
+
+    </div>
+
+{% endblock %}

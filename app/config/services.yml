@@ -1,4 +1,7 @@
 services:
+    app.document_mananer:
+        class: AppBundle\Utils\DocumentManager
+        arguments: [ "@doctrine.orm.entity_manager", "%document_directory%" ]
     app.form.lesson_day:
         class: AppBundle\Form\LessonDayType
         arguments:
@@ -49,7 +52,7 @@ services:
             - { name: kernel.event_subscriber }
     app.member_manager:
         class: AppBundle\Utils\MemberManager
-        arguments: [ "@doctrine.orm.entity_manager", "%member_photo_directory%" ]
+        arguments: [ "@doctrine.orm.entity_manager", "%member_photo_directory%", "@app.document_mananer" ]
     app.rank_manager:
         class: AppBundle\Utils\RankManager
         arguments: [ "@doctrine.orm.entity_manager", "%rank_image_directory%" ]

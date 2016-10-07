@@ -221,6 +221,30 @@
         <source>next_birthdays.title</source>
         <target>Next birthdays</target>
       </trans-unit>
+      <trans-unit id="c2e42faf7cf79f6329f780ea2705a6aa" resname="field.medicalCertificate">
+        <source>field.medicalCertificate</source>
+        <target>Medical certificate</target>
+      </trans-unit>
+      <trans-unit id="00d126843dbaa8b446ddc66b071dc4d7" resname="field.registrationForm">
+        <source>field.registrationForm</source>
+        <target>Registration form</target>
+      </trans-unit>
+      <trans-unit id="5d92480eaea3b313a3755b4f3328f036" resname="delete_document.title">
+        <source>delete_document.title</source>
+        <target>Delete a document</target>
+      </trans-unit>
+      <trans-unit id="bcac984eb7659be863a91b353c243815" resname="document_delete.success.deleted">
+        <source>document_delete.success.deleted</source>
+        <target>Document deleted.</target>
+      </trans-unit>
+      <trans-unit id="b2f37fdf379248415bd0ab3103bd12bd" resname="delete_medicalCertificate.confirmation">
+        <source>delete_medicalCertificate.confirmation</source>
+        <target>Delete the medical certificate ("%document%")?</target>
+      </trans-unit>
+      <trans-unit id="b6d0e04e8fb743543afb023712739f7f" resname="delete_registrationForm.confirmation">
+        <source>delete_registrationForm.confirmation</source>
+        <target>Delete the registration form ("%document%")?</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

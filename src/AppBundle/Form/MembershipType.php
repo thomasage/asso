@@ -1,9 +1,13 @@
 <?php
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Level;
+use AppBundle\Entity\Membership;
+use AppBundle\Entity\Season;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,34 +24,52 @@ class MembershipType extends AbstractType
             ->add(
                 'number',
                 TextType::class,
-                array(
+                [
                     'required' => false,
                     'label' => 'field.number',
-                )
+                ]
             )
             ->add(
                 'season',
                 EntityType::class,
-                array(
+                [
                     'required' => true,
                     'label' => 'field.season',
-                    'class' => 'AppBundle\Entity\Season',
-                    'attr' => array(
+                    'class' => Season::class,
+                    'attr' => [
                         'autofocus' => true,
-                    ),
-                )
+                    ],
+                ]
             )
             ->add(
                 'level',
                 EntityType::class,
-                array(
+                [
                     'required' => false,
                     'label' => 'field.level',
-                    'class' => 'AppBundle\Entity\Level',
+                    'class' => Level::class,
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('l')->addOrderBy('l.name', 'ASC');
                     },
-                )
+                ]
+            )
+            ->add(
+                'medicalCertificate',
+                FileType::class,
+                [
+                    'required' => false,
+                    'label' => 'field.medicalCertificate',
+                    'mapped' => false,
+                ]
+            )
+            ->add(
+                'registrationForm',
+                FileType::class,
+                [
+                    'required' => false,
+                    'label' => 'field.registrationForm',
+                    'mapped' => false,
+                ]
             );
     }
 
@@ -57,10 +79,10 @@ class MembershipType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
-                'data_class' => 'AppBundle\Entity\Membership',
+            [
+                'data_class' => Membership::class,
                 'translation_domain' => 'member',
-            )
+            ]
         );
     }
 }

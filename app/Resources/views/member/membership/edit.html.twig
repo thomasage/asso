@@ -36,6 +36,36 @@
             {{ form_row(formEdit.season) }}
             {{ form_row(formEdit.number) }}
             {{ form_row(formEdit.level) }}
+            {{ form_row(formEdit.medicalCertificate) }}
+            {% if membership.medicalCertificate %}
+                <div class="nolabel">
+                    <a href="{{ path('app_member_membership_document_download',{document:membership.medicalCertificate.id}) }}"
+                       class="button secondary">
+                        <span class="fi-download"></span>
+                        T&eacute;l&eacute;charger
+                    </a>
+                    <a href="{{ path('app_member_membership_document_delete',{membership:membership.id,document:membership.medicalCertificate.id}) }}"
+                       class="button warning">
+                        <span class="fi-trash"></span>
+                        Supprimer
+                    </a>
+                </div>
+            {% endif %}
+            {{ form_row(formEdit.registrationForm) }}
+            {% if membership.registrationForm %}
+                <div class="nolabel">
+                    <a href="{{ path('app_member_membership_document_download',{document:membership.registrationForm.id}) }}"
+                       class="button secondary">
+                        <span class="fi-download"></span>
+                        T&eacute;l&eacute;charger
+                    </a>
+                    <a href="{{ path('app_member_membership_document_delete',{membership:membership.id,document:membership.registrationForm.id}) }}"
+                       class="button warning">
+                        <span class="fi-trash"></span>
+                        Supprimer
+                    </a>
+                </div>
+            {% endif %}
             <div class="action">
                 <button type="submit" class="button success" name="update">
                     <span class="fi-check"></span>

@@ -662,8 +662,7 @@ div.edit1 > div > label.required:after {
 
 div.edit1 > div.action {
     display: block;
-    margin-left: 10em;
-    margin-top: 1em;
+    margin-top: 2em;
 }
 
 div.edit1 > div.action > span {
@@ -672,6 +671,10 @@ div.edit1 > div.action > span {
 
 div.edit1 > div.nolabel {
     padding-left: 10em;
+}
+
+div.edit1 > div.nolabel > .button {
+    font-size: 0.9em;
 }
 
 div.edit1 > div.nolabel > .button:nth-of-type(n+2) {

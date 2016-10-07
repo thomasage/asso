@@ -6,8 +6,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Membership
- *
  * @ORM\Table(name="membership")
  * @ORM\Entity()
  * @UniqueEntity(fields={"member","season"},message="membership.member_season.duplicate")
@@ -61,8 +59,26 @@ class Membership
     private $level;
 
     /**
-     * Get id
+     * @var Document
      *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Document")
+     * @ORM\JoinColumn(nullable=true)
+     *
+     * @Assert\Valid();
+     */
+    private $medicalCertificate;
+
+    /**
+     * @var Document
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Document")
+     * @ORM\JoinColumn(nullable=true)
+     *
+     * @Assert\Valid();
+     */
+    private $registrationForm;
+
+    /**
      * @return integer
      */
     public function getId()
@@ -71,8 +87,6 @@ class Membership
     }
 
     /**
-     * Get number
-     *
      * @return string
      */
     public function getNumber()
@@ -81,10 +95,7 @@ class Membership
     }
 
     /**
-     * Set number
-     *
      * @param string $number
-     *
      * @return Membership
      */
     public function setNumber($number)
@@ -95,9 +106,7 @@ class Membership
     }
 
     /**
-     * Get member
-     *
-     * @return \AppBundle\Entity\Member
+     * @return Member
      */
     public function getMember()
     {
@@ -105,13 +114,10 @@ class Membership
     }
 
     /**
-     * Set member
-     *
-     * @param \AppBundle\Entity\Member $member
-     *
+     * @param Member $member
      * @return Membership
      */
-    public function setMember(\AppBundle\Entity\Member $member)
+    public function setMember(Member $member)
     {
         $this->member = $member;
 
@@ -119,9 +125,7 @@ class Membership
     }
 
     /**
-     * Get season
-     *
-     * @return \AppBundle\Entity\Season
+     * @return Season
      */
     public function getSeason()
     {
@@ -129,13 +133,10 @@ class Membership
     }
 
     /**
-     * Set season
-     *
-     * @param \AppBundle\Entity\Season $season
-     *
+     * @param Season $season
      * @return Membership
      */
-    public function setSeason(\AppBundle\Entity\Season $season)
+    public function setSeason(Season $season)
     {
         $this->season = $season;
 
@@ -143,13 +144,10 @@ class Membership
     }
 
     /**
-     * Set level
-     *
-     * @param \AppBundle\Entity\Level $level
-     *
+     * @param Level $level
      * @return Membership
      */
-    public function setLevel(\AppBundle\Entity\Level $level = null)
+    public function setLevel(Level $level = null)
     {
         $this->level = $level;
 
@@ -157,12 +155,48 @@ class Membership
     }
 
     /**
-     * Get level
-     *
-     * @return \AppBundle\Entity\Level
+     * @return Level
      */
     public function getLevel()
     {
         return $this->level;
+    }
+
+    /**
+     * @param Document $medicalCertificate
+     * @return Membership
+     */
+    public function setMedicalCertificate(Document $medicalCertificate = null)
+    {
+        $this->medicalCertificate = $medicalCertificate;
+
+        return $this;
+    }
+
+    /**
+     * @return Document
+     */
+    public function getMedicalCertificate()
+    {
+        return $this->medicalCertificate;
+    }
+
+    /**
+     * @param Document $registrationForm
+     * @return Membership
+     */
+    public function setRegistrationForm(Document $registrationForm = null)
+    {
+        $this->registrationForm = $registrationForm;
+
+        return $this;
+    }
+
+    /**
+     * @return Document
+     */
+    public function getRegistrationForm()
+    {
+        return $this->registrationForm;
     }
 }

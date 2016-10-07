@@ -24,3 +24,5 @@ parameters:
     rank_image_directory: "%kernel.root_dir%/../document/rank/image"
 
     transaction_copy_directory: "%kernel.root_dir%/../document/transaction/copy"
+
+    document_directory: "%kernel.root_dir%/../document/document"

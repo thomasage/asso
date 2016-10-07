@@ -1,15 +1,23 @@
 <?php
 namespace AppBundle\Utils;
 
+use AppBundle\Entity\Document;
+use AppBundle\Entity\Level;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Membership;
 use AppBundle\Entity\Promotion;
 use AppBundle\Entity\Season;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class MemberManager
 {
+    /**
+     * @var DocumentManager
+     */
+    private $dm;
+
     /**
      * @var EntityManager
      */
@@ -23,9 +31,11 @@ class MemberManager
     /**
      * @param EntityManager $em
      * @param string $photoDirectory
+     * @param DocumentManager $dm
      */
-    public function __construct(EntityManager $em, $photoDirectory)
+    public function __construct(EntityManager $em, $photoDirectory, DocumentManager $dm)
     {
+        $this->dm = $dm;
         $this->em = $em;
         $this->photoDirectory = $photoDirectory;
     }
@@ -89,7 +99,7 @@ class MemberManager
     public function getPromotions(Member $member)
     {
         return $this->em
-            ->getRepository('AppBundle:Promotion')
+            ->getRepository(Promotion::class)
             ->findBy(array('member' => $member), array('date' => 'ASC'));
     }
 
@@ -117,7 +127,7 @@ class MemberManager
      */
     public function getNextBirthdays(Season $season)
     {
-        return $this->em->getRepository('AppBundle:Member')->findNextBirthdays($season);
+        return $this->em->getRepository(Member::class)->findNextBirthdays($season);
     }
 
     /**
@@ -127,17 +137,50 @@ class MemberManager
     public function getMemberships(Member $member)
     {
         return $this->em
-            ->getRepository('AppBundle:Membership')
+            ->getRepository(Membership::class)
             ->findBy(array('member' => $member), array('season' => 'DESC'));
     }
 
     /**
      * @param Membership $membership
+     * @param Form $form
      */
-    public function updateMembership(Membership $membership)
+    public function updateMembership(Membership $membership, Form $form)
     {
         $this->em->persist($membership);
         $this->em->flush();
+
+        $medicalCertificate = $form->get('medicalCertificate')->getData();
+        if ($medicalCertificate instanceof UploadedFile) {
+
+            // Remove old document
+            if (($d = $membership->getMedicalCertificate()) instanceof Document) {
+                $membership->setMedicalCertificate(null);
+                $this->em->flush();
+                $this->dm->delete($d);
+            }
+
+            // Add new document
+            $document = $this->dm->add($medicalCertificate);
+            $membership->setMedicalCertificate($document);
+            $this->em->flush();
+        }
+
+        $registrationForm = $form->get('registrationForm')->getData();
+        if ($registrationForm instanceof UploadedFile) {
+
+            // Remove old document
+            if (($d = $membership->getRegistrationForm()) instanceof Document) {
+                $membership->setRegistrationForm(null);
+                $this->em->flush();
+                $this->dm->delete($d);
+            }
+
+            // Add new document
+            $document = $this->dm->add($registrationForm);
+            $membership->setRegistrationForm($document);
+            $this->em->flush();
+        }
     }
 
     /**
@@ -155,16 +198,16 @@ class MemberManager
      */
     public function findByDateGroupByLevel(\DateTime $date)
     {
-        $season = $this->em->getRepository('AppBundle:Season')->findByDate($date);
+        $season = $this->em->getRepository(Season::class)->findByDate($date);
 
         if (!$season instanceof Season) {
             return array();
         }
 
         $members = array();
-        foreach ($this->em->getRepository('AppBundle:Level')->findAll() as $level) {
+        foreach ($this->em->getRepository(Level::class)->findAll() as $level) {
             $members[$level->getId()] = $this->em
-                ->getRepository('AppBundle:Member')
+                ->getRepository(Member::class)
                 ->findByLevelAndSeason($level, $season);
         }
 

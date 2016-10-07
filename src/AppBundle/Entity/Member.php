@@ -6,8 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Member
- *
  * @ORM\Table(name="member")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MemberRepository")
  */
@@ -220,8 +218,6 @@ class Member
     }
 
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -230,8 +226,6 @@ class Member
     }
 
     /**
-     * Get firstname
-     *
      * @return string
      */
     public function getFirstname()
@@ -240,10 +234,7 @@ class Member
     }
 
     /**
-     * Set firstname
-     *
      * @param string $firstname
-     *
      * @return Member
      */
     public function setFirstname($firstname)
@@ -254,8 +245,6 @@ class Member
     }
 
     /**
-     * Get lastname
-     *
      * @return string
      */
     public function getLastname()
@@ -264,10 +253,7 @@ class Member
     }
 
     /**
-     * Set lastname
-     *
      * @param string $lastname
-     *
      * @return Member
      */
     public function setLastname($lastname)
@@ -278,8 +264,6 @@ class Member
     }
 
     /**
-     * Get birthday
-     *
      * @return \DateTime
      */
     public function getBirthday()
@@ -288,10 +272,7 @@ class Member
     }
 
     /**
-     * Set birthday
-     *
      * @param \DateTime $birthday
-     *
      * @return Member
      */
     public function setBirthday($birthday)
@@ -302,8 +283,6 @@ class Member
     }
 
     /**
-     * Get birthplace
-     *
      * @return string
      */
     public function getBirthplace()
@@ -312,10 +291,7 @@ class Member
     }
 
     /**
-     * Set birthplace
-     *
      * @param string $birthplace
-     *
      * @return Member
      */
     public function setBirthplace($birthplace)
@@ -337,8 +313,6 @@ class Member
     }
 
     /**
-     * Get address
-     *
      * @return string
      */
     public function getAddress()
@@ -347,10 +321,7 @@ class Member
     }
 
     /**
-     * Set address
-     *
      * @param string $address
-     *
      * @return Member
      */
     public function setAddress($address)
@@ -361,8 +332,6 @@ class Member
     }
 
     /**
-     * Get zip
-     *
      * @return string
      */
     public function getZip()
@@ -371,10 +340,7 @@ class Member
     }
 
     /**
-     * Set zip
-     *
      * @param string $zip
-     *
      * @return Member
      */
     public function setZip($zip)
@@ -385,8 +351,6 @@ class Member
     }
 
     /**
-     * Get city
-     *
      * @return string
      */
     public function getCity()
@@ -395,10 +359,7 @@ class Member
     }
 
     /**
-     * Set city
-     *
      * @param string $city
-     *
      * @return Member
      */
     public function setCity($city)
@@ -409,8 +370,6 @@ class Member
     }
 
     /**
-     * Get photoExtension
-     *
      * @return string
      */
     public function getPhotoExtension()
@@ -419,10 +378,7 @@ class Member
     }
 
     /**
-     * Set photoExtension
-     *
      * @param string $photoExtension
-     *
      * @return Member
      */
     public function setPhotoExtension($photoExtension)
@@ -433,8 +389,6 @@ class Member
     }
 
     /**
-     * Get gender
-     *
      * @return string
      */
     public function getGender()
@@ -443,10 +397,7 @@ class Member
     }
 
     /**
-     * Set gender
-     *
      * @param string $gender
-     *
      * @return Member
      */
     public function setGender($gender)
@@ -470,10 +421,7 @@ class Member
     }
 
     /**
-     * Add promotion
-     *
      * @param Promotion $promotion
-     *
      * @return Member
      */
     public function addPromotion(Promotion $promotion)
@@ -484,8 +432,6 @@ class Member
     }
 
     /**
-     * Remove promotion
-     *
      * @param Promotion $promotion
      */
     public function removePromotion(Promotion $promotion)
@@ -494,8 +440,6 @@ class Member
     }
 
     /**
-     * Get promotions
-     *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getPromotions()
@@ -504,10 +448,7 @@ class Member
     }
 
     /**
-     * Add membership
-     *
      * @param Membership $membership
-     *
      * @return Member
      */
     public function addMembership(Membership $membership)
@@ -518,8 +459,6 @@ class Member
     }
 
     /**
-     * Remove membership
-     *
      * @param Membership $membership
      */
     public function removeMembership(Membership $membership)
@@ -528,8 +467,6 @@ class Member
     }
 
     /**
-     * Get memberships
-     *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getMemberships()
@@ -538,8 +475,6 @@ class Member
     }
 
     /**
-     * Get profession
-     *
      * @return string
      */
     public function getProfession()
@@ -548,10 +483,7 @@ class Member
     }
 
     /**
-     * Set profession
-     *
      * @param string $profession
-     *
      * @return Member
      */
     public function setProfession($profession)
@@ -562,8 +494,6 @@ class Member
     }
 
     /**
-     * Get phone0
-     *
      * @return string
      */
     public function getPhone0()
@@ -572,10 +502,7 @@ class Member
     }
 
     /**
-     * Set phone0
-     *
      * @param string $phone0
-     *
      * @return Member
      */
     public function setPhone0($phone0)
@@ -586,8 +513,6 @@ class Member
     }
 
     /**
-     * Get phone1
-     *
      * @return string
      */
     public function getPhone1()
@@ -596,10 +521,7 @@ class Member
     }
 
     /**
-     * Set phone1
-     *
      * @param string $phone1
-     *
      * @return Member
      */
     public function setPhone1($phone1)
@@ -610,8 +532,6 @@ class Member
     }
 
     /**
-     * Get phone2
-     *
      * @return string
      */
     public function getPhone2()
@@ -620,10 +540,7 @@ class Member
     }
 
     /**
-     * Set phone2
-     *
      * @param string $phone2
-     *
      * @return Member
      */
     public function setPhone2($phone2)
@@ -634,8 +551,6 @@ class Member
     }
 
     /**
-     * Get phone3
-     *
      * @return string
      */
     public function getPhone3()
@@ -644,10 +559,7 @@ class Member
     }
 
     /**
-     * Set phone3
-     *
      * @param string $phone3
-     *
      * @return Member
      */
     public function setPhone3($phone3)
@@ -658,8 +570,6 @@ class Member
     }
 
     /**
-     * Get email0
-     *
      * @return string
      */
     public function getEmail0()
@@ -668,10 +578,7 @@ class Member
     }
 
     /**
-     * Set email0
-     *
      * @param string $email0
-     *
      * @return Member
      */
     public function setEmail0($email0)
@@ -682,8 +589,6 @@ class Member
     }
 
     /**
-     * Get email1
-     *
      * @return string
      */
     public function getEmail1()
@@ -692,10 +597,7 @@ class Member
     }
 
     /**
-     * Set email1
-     *
      * @param string $email1
-     *
      * @return Member
      */
     public function setEmail1($email1)
@@ -706,8 +608,6 @@ class Member
     }
 
     /**
-     * Get comment
-     *
      * @return string
      */
     public function getComment()
@@ -716,10 +616,7 @@ class Member
     }
 
     /**
-     * Set comment
-     *
      * @param string $comment
-     *
      * @return Member
      */
     public function setComment($comment)
@@ -730,10 +627,15 @@ class Member
     }
 
     /**
-     * Set nationality
-     *
+     * @return string
+     */
+    public function getNationality()
+    {
+        return $this->nationality;
+    }
+
+    /**
      * @param string $nationality
-     *
      * @return Member
      */
     public function setNationality($nationality)
@@ -741,15 +643,5 @@ class Member
         $this->nationality = $nationality;
 
         return $this;
-    }
-
-    /**
-     * Get nationality
-     *
-     * @return string
-     */
-    public function getNationality()
-    {
-        return $this->nationality;
     }
 }
