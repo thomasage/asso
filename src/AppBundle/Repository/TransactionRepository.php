@@ -38,6 +38,9 @@ class TransactionRepository extends EntityRepository
                 case 'date':
                     $builder->addOrderBy('t.date', $reverse === true ? 'ASC' : 'DESC');
                     break;
+                case 'dateValue':
+                    $builder->addOrderBy('t.dateValue', $reverse === true ? 'ASC' : 'DESC');
+                    break;
                 case 'paymentMethod':
                     $builder->addOrderBy('pm.name', $reverse === true ? 'ASC' : 'DESC');
                     break;
