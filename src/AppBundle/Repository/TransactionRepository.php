@@ -92,6 +92,7 @@ class TransactionRepository extends EntityRepository
             'SELECT DATE_FORMAT( t.date_value, \'%Y-%m\' ) AS month,
                     SUM( t.amount ) AS amount
              FROM transaction AS t
+             WHERE t.date_value IS NOT NULL
              GROUP BY DATE_FORMAT( t.date_value, \'%Y-%m\' )
              ORDER BY DATE_FORMAT( t.date_value, \'%Y-%m\' ) ASC',
             $rsm
