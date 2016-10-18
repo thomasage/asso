@@ -89,11 +89,11 @@ class TransactionRepository extends EntityRepository
         $rsm->addScalarResult('amount', 'amount');
 
         $query = $this->_em->createNativeQuery(
-            'SELECT DATE_FORMAT( t.date, \'%Y-%m\' ) AS month,
+            'SELECT DATE_FORMAT( t.date_value, \'%Y-%m\' ) AS month,
                     SUM( t.amount ) AS amount
              FROM transaction AS t
-             GROUP BY DATE_FORMAT( t.date, \'%Y-%m\' )
-             ORDER BY DATE_FORMAT( t.date, \'%Y-%m\' ) ASC',
+             GROUP BY DATE_FORMAT( t.date_value, \'%Y-%m\' )
+             ORDER BY DATE_FORMAT( t.date_value, \'%Y-%m\' ) ASC',
             $rsm
         );
 
@@ -110,6 +110,9 @@ class TransactionRepository extends EntityRepository
         $stop = new \DateTime($months[count($months) - 1].'-01 00:00:00');
         $stop->modify('+1 month');
         foreach (new \DatePeriod($start, new \DateInterval('P1M'), $stop) as $k => $v) {
+            if (!$v instanceof \DateTime) {
+                continue;
+            }
             if (!isset($results[$v->format('Y-m')])) {
                 $results[$v->format('Y-m')] = 0;
             }
