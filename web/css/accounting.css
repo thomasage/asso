@@ -4,6 +4,15 @@
     background-color: rgb(255, 245, 245);
 }
 
+.app_accounting_index #transaction_search_operationNumber {
+    width: 10em;
+}
+
+.app_accounting_index #transaction_search_bankName,
+.app_accounting_index #transaction_search_thirdName {
+    width: 13em;
+}
+
 /* Add a transaction */
 
 .app_accounting_add #transaction_amount {

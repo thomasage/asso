@@ -32,6 +32,22 @@ class TransactionSearchType extends AbstractType
                     'required' => false,
                     'label' => 'field.thirdName',
                 )
+            )
+            ->add(
+                'operationNumber',
+                TextType::class,
+                array(
+                    'required' => false,
+                    'label' => 'field.operationNumber',
+                )
+            )
+            ->add(
+                'bankName',
+                TextType::class,
+                array(
+                    'required' => false,
+                    'label' => 'field.bankName',
+                )
             );
     }
 

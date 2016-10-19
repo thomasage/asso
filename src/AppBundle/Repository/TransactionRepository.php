@@ -22,11 +22,25 @@ class TransactionRepository extends EntityRepository
             ->addSelect('d');
 
         // Filter
+        if (!is_null($bankName = $search->getFilter('bankName'))) {
+            $builder
+                ->andWhere('t.bankName LIKE :bankName')
+                ->setParameter(':bankName', '%'.$bankName.'%');
+        }
         if (!is_null($date = $search->getFilter('date'))) {
-            $builder->andWhere('t.date = :date')->setParameter(':date', $date);
+            $builder
+                ->andWhere('t.date = :date')
+                ->setParameter(':date', $date);
+        }
+        if (!is_null($operationNumber = $search->getFilter('operationNumber'))) {
+            $builder
+                ->andWhere('t.operationNumber LIKE :operationNumber')
+                ->setParameter(':operationNumber', '%'.$operationNumber.'%');
         }
         if (!is_null($thirdName = $search->getFilter('thirdName'))) {
-            $builder->andWhere('t.thirdName LIKE :thirdName')->setParameter(':thirdName', '%'.$thirdName.'%');
+            $builder
+                ->andWhere('t.thirdName LIKE :thirdName')
+                ->setParameter(':thirdName', '%'.$thirdName.'%');
         }
 
         // Orderby
