@@ -52,7 +52,7 @@ if (isset($members)) {
 
         $data = [
             $member->getLastname(),
-            $member->getLastname(),
+            $member->getFirstname(),
             $member->getBirthplace(),
             $member->getAddress(),
             $member->getZip(),
