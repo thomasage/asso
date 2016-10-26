@@ -162,6 +162,11 @@ class DefaultController extends Controller
         }
 
         // Members
+        if ($request->request->has('print')) {
+            $search
+                ->setPage(0)
+                ->setResultsPerPage(999);
+        }
         $members = $em->getRepository('AppBundle:Member')->findBySearch($search);
 
         // Render

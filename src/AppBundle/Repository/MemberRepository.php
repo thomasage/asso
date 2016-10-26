@@ -66,8 +66,8 @@ class MemberRepository extends EntityRepository
         $builder->addOrderBy('m.id', 'ASC');
 
         // Page
-        $builder->setMaxResults(20);
-        $builder->setFirstResult($search->getPage() * 20);
+        $builder->setMaxResults($search->getResultsPerPage());
+        $builder->setFirstResult($search->getPage() * $search->getResultsPerPage());
 
         return new SearchResult($builder, $search);
     }

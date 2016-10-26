@@ -51,16 +51,22 @@ class Search
      */
     private $page;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="results_per_page", type="integer")
+     */
+    private $resultsPerPage;
+
     public function __construct()
     {
         $this->filter = array();
         $this->orderby = array();
         $this->page = 0;
+        $this->resultsPerPage = 20;
     }
 
     /**
-     * Get route
-     *
      * @return string
      */
     public function getRoute()
@@ -69,10 +75,7 @@ class Search
     }
 
     /**
-     * Set route
-     *
      * @param string $route
-     *
      * @return Search
      */
     public function setRoute($route)
@@ -100,10 +103,7 @@ class Search
     }
 
     /**
-     * Set filter
-     *
      * @param array $filter
-     *
      * @return Search
      */
     public function setFilter($filter)
@@ -114,8 +114,6 @@ class Search
     }
 
     /**
-     * Get orderby
-     *
      * @return array
      */
     public function getOrderby()
@@ -124,10 +122,7 @@ class Search
     }
 
     /**
-     * Set orderby
-     *
      * @param array $orderby
-     *
      * @return Search
      */
     public function setOrderby($orderby)
@@ -138,8 +133,6 @@ class Search
     }
 
     /**
-     * Get page
-     *
      * @return integer
      */
     public function getPage()
@@ -148,10 +141,7 @@ class Search
     }
 
     /**
-     * Set page
-     *
      * @param integer $page
-     *
      * @return Search
      */
     public function setPage($page)
@@ -162,8 +152,6 @@ class Search
     }
 
     /**
-     * Get user
-     *
      * @return \AppBundle\Entity\User
      */
     public function getUser()
@@ -172,10 +160,7 @@ class Search
     }
 
     /**
-     * Set user
-     *
      * @param \AppBundle\Entity\User $user
-     *
      * @return Search
      */
     public function setUser(User $user)
@@ -226,5 +211,24 @@ class Search
         }
 
         return false;
+    }
+
+    /**
+     * @return int
+     */
+    public function getResultsPerPage()
+    {
+        return $this->resultsPerPage;
+    }
+
+    /**
+     * @param int $resultsPerPage
+     * @return Search
+     */
+    public function setResultsPerPage($resultsPerPage)
+    {
+        $this->resultsPerPage = $resultsPerPage;
+
+        return $this;
     }
 }
