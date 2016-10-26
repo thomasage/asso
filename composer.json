@@ -31,7 +31,8 @@
     "phpunit/phpunit": "^5.1",
     "phpunit/php-code-coverage": "^3.0",
     "friendsofsymfony/jsrouting-bundle": "^1.6",
-    "itbz/fpdf": "^1.7"
+    "itbz/fpdf": "^1.7",
+    "box/spout": "^2.7"
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.0",

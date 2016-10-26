@@ -149,6 +149,14 @@
         <source>action.print</source>
         <target>Imprimer</target>
       </trans-unit>
+      <trans-unit id="1af950ece8eb78dfb0fa3fb165340c99" resname="action.ods">
+        <source>action.ods</source>
+        <target>ODS</target>
+      </trans-unit>
+      <trans-unit id="a5c874f44b0c09d908b33932e247b16a" resname="action.pdf">
+        <source>action.pdf</source>
+        <target>PDF</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -156,13 +156,13 @@ class DefaultController extends Controller
         if ($reload) {
             $sm->update($search);
 
-            if (!$request->request->has('print')) {
+            if (!$request->request->has('ods') && !$request->request->has('pdf')) {
                 return $this->redirectToRoute('app_member_index');
             }
         }
 
         // Members
-        if ($request->request->has('print')) {
+        if ($request->request->has('ods') || $request->request->has('pdf')) {
             $search
                 ->setPage(0)
                 ->setResultsPerPage(999);
@@ -171,7 +171,19 @@ class DefaultController extends Controller
 
         // Render
 
-        if ($request->request->has('print')) {
+        if ($request->request->has('ods')) {
+
+            return new Response(
+                $this->renderView(
+                    'member/index.ods.php',
+                    [
+                        'members' => $members,
+                    ]
+                ),
+                Response::HTTP_OK
+            );
+
+        } elseif ($request->request->has('pdf')) {
 
             return new Response(
                 $this->renderView(

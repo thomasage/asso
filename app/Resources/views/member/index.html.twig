@@ -28,9 +28,13 @@
                 </button>
             </div>
             <div>
-                <button type="submit" class="button secondary" name="print">
+                <button type="submit" class="button secondary" name="ods">
+                    <span class="fi-page-export-csv"></span>
+                    {{ 'action.ods'|trans({},'messages') }}
+                </button>
+                <button type="submit" class="button secondary" name="pdf">
                     <span class="fi-print"></span>
-                    {{ 'action.print'|trans({},'messages') }}
+                    {{ 'action.pdf'|trans({},'messages') }}
                 </button>
             </div>
         </div>
