@@ -53,7 +53,7 @@ if (isset($members)) {
         $data = [
             $member->getLastname(),
             $member->getFirstname(),
-            $member->getBirthplace(),
+            $member->getBirthday()->format('Y-m-d'),
             $member->getAddress(),
             $member->getZip(),
             $member->getCity(),
