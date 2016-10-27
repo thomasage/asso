@@ -170,12 +170,12 @@ class LessonRepository extends EntityRepository
     public function findMissingAttendances(Season $season)
     {
         $start = max($season->getStart(), new \DateTime('-15 days'));
-        $stop = date('Y-m-d');
+        $stop = date('Y-m-d H:i:s');
 
         return $this->createQueryBuilder('l')
             ->leftJoin('l.members', 'm')
             ->andWhere('l.active = 1')
-            ->andWhere('l.date BETWEEN :start AND :stop')
+            ->andWhere('CONCAT( l.date, \' \', l.start ) BETWEEN :start AND :stop')
             ->addGroupBy('l.id')
             ->having('COUNT( m.id ) = 0')
             ->addOrderBy('l.date', 'ASC')
