@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Form;
 
+use AppBundle\Form\Type\ChoiceLevelType;
 use AppBundle\Form\Type\ChoiceSeasonType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,26 +20,34 @@ class MemberSearchType extends AbstractType
             ->add(
                 'firstname',
                 TextType::class,
-                array(
+                [
                     'label' => 'field.firstname',
                     'required' => false,
-                )
+                ]
             )
             ->add(
                 'lastname',
                 TextType::class,
-                array(
+                [
                     'label' => 'field.lastname',
                     'required' => false,
-                )
+                ]
             )
             ->add(
                 'season',
                 ChoiceSeasonType::class,
-                array(
+                [
                     'label' => 'field.season',
                     'required' => false,
-                )
+                ]
+            )
+            ->add(
+                'level',
+                ChoiceLevelType::class,
+                [
+                    'label' => 'field.level',
+                    'required' => false,
+                ]
             );
     }
 
@@ -48,9 +57,9 @@ class MemberSearchType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'translation_domain' => 'member',
-            )
+            ]
         );
     }
 }

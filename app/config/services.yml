@@ -26,6 +26,11 @@ services:
             - '@doctrine.orm.entity_manager'
         tags:
             - { name: form.type }
+    app.form.type.choice_level:
+        class: AppBundle\Form\Type\ChoiceLevelType
+        arguments: [ "@doctrine.orm.entity_manager" ]
+        tags:
+            - { name: form.type }
     app.form.type.choice_season:
         class: AppBundle\Form\Type\ChoiceSeasonType
         arguments: [ "@doctrine.orm.entity_manager" ]

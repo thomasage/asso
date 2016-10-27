@@ -167,7 +167,7 @@ class DefaultController extends Controller
                 ->setPage(0)
                 ->setResultsPerPage(999);
         }
-        $members = $em->getRepository('AppBundle:Member')->findBySearch($search);
+        $members = $em->getRepository(Member::class)->findBySearch($search);
 
         // Render
 

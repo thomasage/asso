@@ -41,6 +41,9 @@ class MemberRepository extends EntityRepository
         if (!is_null($lastname = $search->getFilter('lastname'))) {
             $builder->andWhere('m.lastname LIKE :lastname')->setParameter(':lastname', '%'.$lastname.'%');
         }
+        if (!is_null($level = $search->getFilter('level'))) {
+            $builder->andWhere('ms.level = :level')->setParameter(':level', $level);
+        }
         if (!is_null($season = $search->getFilter('season'))) {
             $builder->andWhere('ms.season = :season')->setParameter(':season', $season);
         }
