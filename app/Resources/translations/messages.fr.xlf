@@ -157,6 +157,10 @@
         <source>action.pdf</source>
         <target>PDF</target>
       </trans-unit>
+      <trans-unit id="01b6e20344b68835c5ed1ddedf20d531" resname="to">
+        <source>to</source>
+        <target>à</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
