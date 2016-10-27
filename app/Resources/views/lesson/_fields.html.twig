@@ -61,15 +61,16 @@
 {%- endblock -%}
 
 {%- block _lesson_day_collection_lessons_entry_widget -%}
-    <div class="time_duration">
+    <div class="title">
+        <div class="level">
+            {{- form.vars.value.level -}}
+        </div>
         <div class="time">
             {{- form.vars.value.start|localizeddate('none','short') -}}
-        </div>
-        <div class="duration">
-            {{- form.vars.value.duration -}}&nbsp;{{- 'minutes'|trans({},'lesson') -}}
+            &nbsp;{{- 'to'|trans({},'messages') -}}&nbsp;
+            {{- form.vars.value.start|date_modify('+'~form.vars.value.duration~' minutes')|localizeddate('none','short') -}}
         </div>
     </div>
-    <div class="title">{{- form.vars.value.level -}}</div>
     <div class="members">
         {%- for child in form.members -%}
             <div>
