@@ -1,0 +1,82 @@
+{% extends 'stat/layout.html.twig' %}
+
+{% trans_default_domain 'stat' %}
+
+{% block body %}
+
+    <div class="app_stat_attendance">
+
+        <div id="menu-secondary">
+            <h1>{{ 'attendance.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_stat_index') }}" class="button">
+                    <span class="fi-arrow-left"></span>
+                    {{ 'action.back'|trans({},'messages') }}
+                </a>
+            </nav>
+        </div>
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        {{ form_start(formSearch) }}
+        <div class="search0">
+            {{ form_row(formSearch.season) }}
+            <div>
+                <button type="submit" class="button primary">
+                    <span class="fi-filter"></span>
+                    {{ 'action.search'|trans({},'messages') }}
+                </button>
+                <button type="submit" class="button secondary" name="ods">
+                    <span class="fi-page-export-csv"></span>
+                    {{ 'action.ods'|trans({},'messages') }}
+                </button>
+            </div>
+        </div>
+        {{ form_end(formSearch) }}
+
+        <table class="result2">
+            <thead>
+            <tr>
+                <th>{{ 'field.weekday'|trans }}</th>
+                <th>{{ 'field.date'|trans }}</th>
+                <th>{{ 'field.start'|trans }}</th>
+                <th>{{ 'field.stop'|trans }}</th>
+                <th>{{ 'field.level'|trans }}</th>
+                <th>{{ 'field.members'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for lesson in lessons %}
+                <tr>
+                    <td>
+                        {{ ('weekday.'~lesson.date|date('l'))|trans }}
+                    </td>
+                    <td>
+                        {{ lesson.date|localizeddate('long','none') }}
+                    </td>
+                    <td>
+                        {{ lesson.start|localizeddate('none','short') }}
+                    </td>
+                    <td>
+                        {{ lesson.start|date_modify('+'~lesson.duration~' minutes')|localizeddate('none','short') }}
+                    </td>
+                    <td>
+                        {{ lesson.level }}
+                    </td>
+                    <td>
+                        {% for member in lesson.members %}
+                            &bull; {{ member }}<br/>
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}

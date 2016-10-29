@@ -193,6 +193,46 @@
         <source>member_evolution.title</source>
         <target>Evolution of members</target>
       </trans-unit>
+      <trans-unit id="24bcfd7a2216e6f17a42493ab1daf61c" resname="attendance.title">
+        <source>attendance.title</source>
+        <target>Attendance</target>
+      </trans-unit>
+      <trans-unit id="76df759e97ef91601c41a03fb1f481ba" resname="weekday.Monday">
+        <source>weekday.Monday</source>
+        <target>Monday</target>
+      </trans-unit>
+      <trans-unit id="33850ef667e54e08f4875e9fa613862a" resname="weekday.Tuesday">
+        <source>weekday.Tuesday</source>
+        <target>Tuesday</target>
+      </trans-unit>
+      <trans-unit id="eee4feb1051d04e94748fcf0f58fcc63" resname="weekday.Wednesday">
+        <source>weekday.Wednesday</source>
+        <target>Wednesday</target>
+      </trans-unit>
+      <trans-unit id="31bebcd9924e175e17aba4cba78d727f" resname="weekday.Thursday">
+        <source>weekday.Thursday</source>
+        <target>Thursday</target>
+      </trans-unit>
+      <trans-unit id="6427da17059f555e1fb63176aa0b641b" resname="weekday.Friday">
+        <source>weekday.Friday</source>
+        <target>Friday</target>
+      </trans-unit>
+      <trans-unit id="7f627fb8f175e04a9361b8f97f5d8199" resname="weekday.Saturday">
+        <source>weekday.Saturday</source>
+        <target>Saturday</target>
+      </trans-unit>
+      <trans-unit id="d1ce5630d2b8003a26a3b44a3509a478" resname="weekday.Sunday">
+        <source>weekday.Sunday</source>
+        <target>Sunday</target>
+      </trans-unit>
+      <trans-unit id="62b5216c362a20e84216dc6aa8dc8c4c" resname="field.weekday">
+        <source>field.weekday</source>
+        <target>Weekday</target>
+      </trans-unit>
+      <trans-unit id="58b356fc24871a5ee296315a1dadc957" resname="field.date">
+        <source>field.date</source>
+        <target>Date</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

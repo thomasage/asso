@@ -1,10 +1,13 @@
 <?php
 namespace AppBundle\Controller\Stat;
 
+use AppBundle\Entity\Lesson;
+use AppBundle\Entity\Level;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Season;
 use AppBundle\Form\StatAccountSummaryType;
 use AppBundle\Form\StatAmountByThirdType;
+use AppBundle\Form\StatAttendanceType;
 use AppBundle\Form\StatMemberOriginType;
 use AppBundle\Form\StatMemberSegmentType;
 use AppBundle\Form\StatMemberSignatureType;
@@ -120,6 +123,9 @@ class DefaultController extends Controller
 
         // Curret season
         $season = $this->getUser()->getCurrentSeason();
+        if (!$season instanceof Season) {
+            return $this->redirectToRoute('app_stat_index');
+        }
 
         // Search form
         $formSearch = $this->createForm(
@@ -144,6 +150,64 @@ class DefaultController extends Controller
                 'results' => $results,
             ]
         );
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     *
+     * @Route("/stat/attendance",
+     *        name="app_stat_attendance",
+     *        methods={"GET","POST"})
+     */
+    public function attendanceAction(Request $request)
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Curret season
+        $season = $this->getUser()->getCurrentSeason();
+        if (!$season instanceof Season) {
+            return $this->redirectToRoute('app_stat_index');
+        }
+
+        // Search form
+        $formSearch = $this->createForm(
+            StatAttendanceType::class,
+            [
+                'season' => $season->getId(),
+            ]
+        );
+        $formSearch->handleRequest($request);
+
+        $season = $em->getRepository(Season::class)->find($formSearch->get('season')->getData());
+        $lessons = $em->getRepository(Lesson::class)->statAttendance($season);
+
+        // Render
+        if ($request->request->has('ods')) {
+
+            return new Response(
+                $this->renderView(
+                    'stat/attendance.ods.php',
+                    [
+                        'lessons' => $lessons,
+                        'translator' => $this->get('translator'),
+                    ]
+                ),
+                Response::HTTP_OK
+            );
+
+        } else {
+
+            return $this->render(
+                'stat/attendance.html.twig',
+                [
+                    'formSearch' => $formSearch->createView(),
+                    'lessons' => $lessons,
+                ]
+            );
+
+        }
     }
 
     /**

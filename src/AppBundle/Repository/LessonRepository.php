@@ -167,6 +167,25 @@ class LessonRepository extends EntityRepository
      * @param Season $season
      * @return array
      */
+    public function statAttendance(Season $season)
+    {
+        return $this
+            ->createQueryBuilder('lesson')
+            ->leftJoin('lesson.members','members')
+            ->addSelect('members')
+            ->andWhere('lesson.date BETWEEN :start AND :stop')
+            ->addOrderBy('lesson.date','ASC')
+            ->addOrderBy('lesson.start','ASC')
+            ->setParameter('start', $season->getStart())
+            ->setParameter('stop', $season->getStop())
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param Season $season
+     * @return array
+     */
     public function findMissingAttendances(Season $season)
     {
         $start = max($season->getStart(), new \DateTime('-15 days'));
