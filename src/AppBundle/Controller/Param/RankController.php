@@ -169,7 +169,7 @@ class RankController extends Controller
      *
      * @Route("/param/rank/sort/{ranks}",
      *        name="app_param_rank_sort",
-     *        methods={"POST"},
+     *        methods={"PUT"},
      *        options={"expose"="true"})
      */
     public function sortAction($ranks)

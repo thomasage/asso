@@ -19,7 +19,7 @@ function ParamRankSort() {
     $.ajax(
         {
             url: Routing.generate('app_param_rank_sort', {ranks: ranks.join(',')}),
-            method: 'POST',
+            method: 'PUT',
             success: function (data) {
                 for (var i = 0; i < ranks.length; i++) {
                     $('.ranks > tr[data-reference=' + ranks[i] + '] > td:first-of-type').html('#' + (i + 1));
