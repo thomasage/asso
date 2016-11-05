@@ -57,7 +57,7 @@ class SeasonController extends Controller
      *
      * @Route("/param/season/active/{season}",
      *        name="app_param_season_active",
-     *        methods={"POST"},
+     *        methods={"PUT"},
      *        requirements={"season"="\d+"},
      *        options={"expose"="true"})
      */
