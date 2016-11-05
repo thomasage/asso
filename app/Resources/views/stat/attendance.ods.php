@@ -18,7 +18,7 @@ if (!isset($lessons) || !is_array($lessons)) {
 
 $writer = WriterFactory::create(Type::ODS);
 if (!$writer instanceof Writer) {
-    exit();
+    throw new Exception('Writer is not available.');
 }
 $writer->openToBrowser('document.ods');
 
