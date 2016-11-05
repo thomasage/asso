@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Attendance;
 use AppBundle\Entity\Lesson;
 use AppBundle\Entity\Level;
 use AppBundle\Entity\Member;
@@ -9,6 +10,7 @@ use AppBundle\Entity\Theme;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -81,28 +83,51 @@ class LessonDayType extends AbstractType
         }
 
         // Season of lesson
-        $season = $this->em->getRepository('AppBundle:Season')->findByDate($data->getDate());
+        $season = $this->em->getRepository(Season::class)->findByDate($data->getDate());
         if (!$season instanceof Season) {
             return false;
         }
 
         // Fetch members by level
-        $members = $this->em->getRepository('AppBundle:Member')->findByLevelAndSeason($level, $season);
+        $members = $this->em->getRepository(Member::class)->findByLevelAndSeason($level, $season);
+
+        // Available attendances
+        $attendances = [];
+        foreach ($this->em->getRepository(Member::class)->findAvailableAttendances($data) as $member) {
+            if (count($member->getAttendances()) > 0) {
+                $attendances = array_merge($attendances, $member->getAttendances()->toArray());
+            } else {
+                $attendance = new Attendance();
+                $attendance
+                    ->setLesson($data)
+                    ->setMember($member);
+                $attendances[] = $attendance;
+            }
+        }
 
         // Add members to form
         $form = $event->getForm();
         $form->add(
-            'members',
-            EntityType::class,
+            'attendances',
+            CollectionType::class,
             [
-                'class' => Member::class,
-                'required' => false,
-                'label' => 'field.members',
-                'multiple' => true,
-                'expanded' => true,
-                'choices' => $members,
+                'entry_type' => AttendanceType::class,
+                'data' => $attendances,
             ]
         );
+
+//        $form->add(
+//            'members',
+//            EntityType::class,
+//            [
+//                'class' => Member::class,
+//                'required' => false,
+//                'label' => 'field.members',
+//                'multiple' => true,
+//                'expanded' => true,
+//                'choices' => $members,
+//            ]
+//        );
 
         return true;
     }

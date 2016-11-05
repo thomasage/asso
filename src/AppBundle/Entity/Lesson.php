@@ -82,26 +82,23 @@ class Lesson
     private $level;
 
     /**
-     * @var Member[]
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Member")
-     * @ORM\JoinColumn(nullable=true)
-     *
-     * @Assert\Valid()
-     */
-    private $members;
-
-    /**
      * @var Theme[]
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Theme")
      */
     private $themes;
 
+    /**
+     * @var Attendance[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Attendance", mappedBy="lesson", cascade={"persist"})
+     */
+    private $attendances;
+
     public function __construct()
     {
         $this->active = true;
-        $this->members = new ArrayCollection();
+        $this->attendances = new ArrayCollection();
         $this->themes = new ArrayCollection();
     }
 
@@ -209,33 +206,6 @@ class Lesson
     }
 
     /**
-     * @param Member $member
-     * @return Lesson
-     */
-    public function addMember(Member $member)
-    {
-        $this->members[] = $member;
-
-        return $this;
-    }
-
-    /**
-     * @param Member $member
-     */
-    public function removeMember(Member $member)
-    {
-        $this->members->removeElement($member);
-    }
-
-    /**
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getMembers()
-    {
-        return $this->members;
-    }
-
-    /**
      * @return Level
      */
     public function getLevel()
@@ -279,5 +249,32 @@ class Lesson
     public function getThemes()
     {
         return $this->themes;
+    }
+
+    /**
+     * @param Attendance $attendance
+     * @return Lesson
+     */
+    public function addAttendance(Attendance $attendance)
+    {
+        $this->attendances[] = $attendance;
+
+        return $this;
+    }
+
+    /**
+     * @param Attendance $attendance
+     */
+    public function removeAttendance(Attendance $attendance)
+    {
+        $this->attendances->removeElement($attendance);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAttendances()
+    {
+        return $this->attendances;
     }
 }

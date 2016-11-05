@@ -130,9 +130,14 @@
     color: rgb(180, 180, 180);
 }
 
-.app_member_show .attendance > div > div.day.active {
+.app_member_show .attendance > div > div.day.state1 {
     color: inherit;
-    background-color: rgb(50, 255, 50);
+    background-color: rgb(255, 230, 0);
+}
+
+.app_member_show .attendance > div > div.day.state2 {
+    color: white;
+    background-color: rgb(18, 174, 55);
 }
 
 .app_member_show .attendance > div > div.month {

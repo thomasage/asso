@@ -58,6 +58,29 @@
         </div>
         {{ form_end(formCollection) }}
 
+        <div class="legend">
+            L&eacute;gende :<br/>
+            <span class="absent">Absent</span>
+            <span class="apologize">Excus&eacute;</span>
+            <span class="present">Pr&eacute;sent</span>
+        </div>
+
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript">
+        $('#lesson_day_collection_lessons').find('div.members > div > label').click(function () {
+            var inputs = $(this).parent().find('input[type=radio]');
+            var next = inputs.filter(':checked').next('input[type=radio]');
+            if (next.length == 0) {
+                next = inputs.first();
+            }
+            next.prop('checked', 'checked');
+        });
+    </script>
 
 {% endblock %}

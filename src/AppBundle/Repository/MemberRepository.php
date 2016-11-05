@@ -1,12 +1,14 @@
 <?php
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Lesson;
 use AppBundle\Entity\Level;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Search;
 use AppBundle\Entity\Season;
 use AppBundle\Utils\SearchResult;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
@@ -139,6 +141,29 @@ class MemberRepository extends EntityRepository
     }
 
     /**
+     * @param Lesson $lesson
+     * @return Member[]
+     */
+    public function findAvailableAttendances(Lesson $lesson)
+    {
+        $season = $this->_em->getRepository(Season::class)->findByDate($lesson->getDate());
+
+        return $this->createQueryBuilder('m')
+            ->innerJoin('m.memberships', 'ms')
+            ->leftJoin('m.attendances', 'a', Join::WITH, 'a.lesson = :lesson')
+            ->addSelect('a')
+            ->andWhere('ms.level = :level')
+            ->andWhere('ms.season = :season')
+            ->addOrderBy('m.firstname', 'ASC')
+            ->addOrderBy('m.lastname', 'ASC')
+            ->setParameter('lesson', $lesson)
+            ->setParameter('level', $lesson->getLevel())
+            ->setParameter('season', $season)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * @param Season $season
      * @return array
      */
@@ -172,10 +197,10 @@ class MemberRepository extends EntityRepository
              LEFT  JOIN promotion AS p1 ON member.id               = p1.member_id
                                        AND p1.date                 > p0.date
              INNER JOIN rank            ON p0.rank_id              = rank.id
-             LEFT  JOIN ( SELECT lesson.date, lesson_member.member_id
+             LEFT  JOIN ( SELECT lesson.date, attendance.member_id
                           FROM lesson
-                          INNER JOIN lesson_member ON lesson.id = lesson_member.lesson_id ) AS lessons ON member.id = lessons.member_id
-                                                                                                      AND p0.date   < lessons.date
+                          INNER JOIN attendance ON lesson.id = attendance.lesson_id ) AS lessons ON member.id = lessons.member_id
+                                                                                                AND p0.date   < lessons.date
              WHERE membership.season_id = :season
              AND   p1.id                IS NULL
              GROUP BY member.id

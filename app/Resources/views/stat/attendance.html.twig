@@ -42,7 +42,9 @@
                 <th>{{ 'field.start'|trans }}</th>
                 <th>{{ 'field.stop'|trans }}</th>
                 <th>{{ 'field.level'|trans }}</th>
-                <th>{{ 'field.members'|trans }}</th>
+                <th>{{ 'field.themes'|trans }}</th>
+                <th>{{ 'field.present'|trans }}</th>
+                <th>{{ 'field.apologize'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -64,8 +66,22 @@
                         {{ lesson.level }}
                     </td>
                     <td>
-                        {% for member in lesson.members %}
-                            &bull; {{ member }}<br/>
+                        {% for theme in lesson.themes %}
+                            {{ theme }}<br/>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for attendance in lesson.attendances %}
+                            {% if attendance.state==2 %}
+                                {{ attendance.member }}<br/>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for attendance in lesson.attendances %}
+                            {% if attendance.state==1 %}
+                                {{ attendance.member }}<br/>
+                            {% endif %}
                         {% endfor %}
                     </td>
                 </tr>

@@ -177,6 +177,31 @@
     justify-content: space-between;
 }
 
+.app_lesson_day > div.legend {
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px rgb(220, 220, 220) dashed;
+}
+
+.app_lesson_day > div.legend > span {
+    display: inline-block;
+    margin-top: 0.5em;
+    padding: 0.5em;
+}
+
+.app_lesson_day > div.legend > span.apologize {
+    background-color: rgb(255, 230, 0);
+}
+
+.app_lesson_day > div.legend > span.absent {
+    background-color: rgb(220, 220, 220);
+}
+
+.app_lesson_day > div.legend > span.present {
+    color: white;
+    background-color: rgb(18, 174, 55);
+}
+
 .app_lesson_day #lesson_day_collection_lessons > div.lesson {
     width: 47%;
     margin-top: 2em;
@@ -209,11 +234,11 @@
     margin-bottom: 0.5em;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=checkbox] {
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=radio] {
     display: none;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=checkbox] ~ label {
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=radio] ~ label {
     display: block;
     overflow: hidden;
     padding: 0.5em;
@@ -223,17 +248,18 @@
     background-color: rgb(220, 220, 220);
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=checkbox] ~ label:hover {
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=radio] ~ label:hover {
     background-color: rgb(200, 200, 200);
     cursor: pointer;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=checkbox]:checked ~ label {
-    background-color: rgb(50, 255, 50);
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=radio][value="1"]:checked ~ label {
+    background-color: rgb(255, 230, 0);
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=checkbox]:checked ~ label:hover {
-    background-color: rgb(50, 235, 50);
+.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=radio][value="2"]:checked ~ label {
+    color: white;
+    background-color: rgb(18, 174, 55);
 }
 
 .app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes {
@@ -269,11 +295,12 @@
 }
 
 .app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div > input[type=checkbox]:checked ~ label {
-    background-color: rgb(255, 190, 0);
+    color: white;
+    background-color: rgb(100, 100, 255);
 }
 
 .app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div > input[type=checkbox]:checked ~ label:hover {
-    background-color: rgb(235, 170, 0);
+    background-color: rgb(60, 60, 255);
 }
 
 .app_lesson_day #lesson_day_collection_lessons > div.lesson > div.title {

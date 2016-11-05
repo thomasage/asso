@@ -201,10 +201,18 @@ class Member
     private $comment;
 
     /**
+     * @var Attendance[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Attendance", mappedBy="member")
+     */
+    private $attendances;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
+        $this->attendances = new ArrayCollection();
         $this->memberships = new ArrayCollection();
         $this->promotions = new ArrayCollection();
     }
@@ -643,5 +651,32 @@ class Member
         $this->nationality = $nationality;
 
         return $this;
+    }
+
+    /**
+     * @param Attendance $attendance
+     * @return Member
+     */
+    public function addAttendance(Attendance $attendance)
+    {
+        $this->attendances[] = $attendance;
+
+        return $this;
+    }
+
+    /**
+     * @param Attendance $attendance
+     */
+    public function removeAttendance(Attendance $attendance)
+    {
+        $this->attendances->removeElement($attendance);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAttendances()
+    {
+        return $this->attendances;
     }
 }

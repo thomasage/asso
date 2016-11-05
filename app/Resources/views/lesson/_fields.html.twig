@@ -72,10 +72,12 @@
         </div>
     </div>
     <div class="members">
-        {%- for child in form.members -%}
+        {%- for child in form.attendances -%}
             <div>
-                {{- form_widget(child) -}}
-                {{- form_label(child) -}}
+                {% for state in child.state %}
+                        {{ form_widget(state) }}
+                {% endfor %}
+                <label>{{ child.vars.value.member }}</label>
             </div>
         {%- endfor -%}
     </div>

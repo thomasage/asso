@@ -233,6 +233,22 @@
         <source>field.date</source>
         <target>Date</target>
       </trans-unit>
+      <trans-unit id="8a63484689e9e7d0cba05de911f56bc7" resname="field.themes">
+        <source>field.themes</source>
+        <target>Thèmes</target>
+      </trans-unit>
+      <trans-unit id="c1320f297de70b5beafa81f99139af47" resname="field.present">
+        <source>field.present</source>
+        <target>Présent</target>
+      </trans-unit>
+      <trans-unit id="57017f523f601b823de223be8b1bc176" resname="field.apologize">
+        <source>field.apologize</source>
+        <target>Excusé</target>
+      </trans-unit>
+      <trans-unit id="e7065d3a4390ccdb2443be982792d69c" resname="field.comment">
+        <source>field.comment</source>
+        <target>Commentaire</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

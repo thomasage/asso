@@ -1,6 +1,6 @@
 <?php
+use AppBundle\Entity\Attendance;
 use AppBundle\Entity\Lesson;
-use AppBundle\Entity\Member;
 use Box\Spout\Common\Type;
 use Box\Spout\Writer\ODS\Writer;
 use Box\Spout\Writer\Style\Color;
@@ -34,12 +34,15 @@ $styleNormal = (new StyleBuilder())
     ->build();
 
 $data = [
-    'Jour',
-    'Date',
-    'Début',
-    'Fin',
-    'Niveau',
-    'Membres',
+    $translator->trans('field.weekday', [], 'stat'),
+    $translator->trans('field.date', [], 'stat'),
+    $translator->trans('field.start', [], 'stat'),
+    $translator->trans('field.stop', [], 'stat'),
+    $translator->trans('field.level', [], 'stat'),
+    $translator->trans('field.themes', [], 'stat'),
+    $translator->trans('field.present', [], 'stat'),
+    $translator->trans('field.apologize', [], 'stat'),
+    $translator->trans('field.comment', [], 'stat'),
 ];
 
 $writer->addRowWithStyle($data, $styleHeader);
@@ -50,12 +53,21 @@ foreach ($lessons as $lesson) {
         continue;
     }
 
-    $members = [];
-    foreach ($lesson->getMembers() as $m) {
-        if (!$m instanceof Member) {
+    $themes = [];
+    foreach ($lesson->getThemes() as $t) {
+        $themes[] = $t->__toString();
+    }
+
+    $apologize = $present = [];
+    foreach ($lesson->getAttendances() as $a) {
+        if (!$a instanceof Attendance) {
             continue;
         }
-        $members[] = $m->__toString();
+        if ($a->getState() == 1) {
+            $apologize[] = $a->getMember()->__toString();
+        } elseif ($a->getState() == 2) {
+            $present[] = $a->getMember()->__toString();
+        }
     }
 
     $data = [
@@ -64,7 +76,10 @@ foreach ($lessons as $lesson) {
         $lesson->getStart()->format('H:i'),
         $lesson->getStart()->modify('+'.$lesson->getDuration().' minutes')->format('H:i'),
         $lesson->getLevel()->getName(),
-        implode("\n", $members),
+        implode("\n", $themes),
+        implode("\n", $present),
+        implode("\n", $apologize),
+        $lesson->getComment(),
     ];
 
     $writer->addRowWithStyle($data, $styleNormal);

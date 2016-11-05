@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller\Member;
 
+use AppBundle\Entity\Lesson;
 use AppBundle\Entity\Level;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Membership;
@@ -274,12 +275,9 @@ class DefaultController extends Controller
                 ]
             );
 
-        // Lessons for the season and level
-        if ($currentMembership instanceof Membership && $currentMembership->getLevel() instanceof Level) {
-            $lessons = $em->getRepository('AppBundle:Lesson')->findByLevelAndSeason(
-                $currentMembership->getLevel(),
-                $season
-            );
+        // Lessons for the membership
+        if ($currentMembership instanceof Membership) {
+            $lessons = $em->getRepository(Lesson::class)->findAttendanceByMembership($currentMembership);
         } else {
             $lessons = [];
         }
