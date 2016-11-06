@@ -88,9 +88,6 @@ class LessonDayType extends AbstractType
             return false;
         }
 
-        // Fetch members by level
-        $members = $this->em->getRepository(Member::class)->findByLevelAndSeason($level, $season);
-
         // Available attendances
         $attendances = [];
         foreach ($this->em->getRepository(Member::class)->findAvailableAttendances($data) as $member) {
@@ -115,19 +112,6 @@ class LessonDayType extends AbstractType
                 'data' => $attendances,
             ]
         );
-
-//        $form->add(
-//            'members',
-//            EntityType::class,
-//            [
-//                'class' => Member::class,
-//                'required' => false,
-//                'label' => 'field.members',
-//                'multiple' => true,
-//                'expanded' => true,
-//                'choices' => $members,
-//            ]
-//        );
 
         return true;
     }
