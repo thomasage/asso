@@ -287,7 +287,7 @@ class DefaultController extends Controller
      *
      * @Route("/stat/memberEvolution",
      *     name="app_stat_member_evolution",
-     *     methods={"GET","POST"})
+     *     methods={"GET"})
      */
     public function memberEvolutionAction()
     {
