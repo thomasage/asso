@@ -2,7 +2,6 @@
 namespace AppBundle\Controller\Member;
 
 use AppBundle\Entity\Lesson;
-use AppBundle\Entity\Level;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Membership;
 use AppBundle\Form\MemberSearchType;
