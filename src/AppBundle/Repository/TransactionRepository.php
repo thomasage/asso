@@ -148,7 +148,7 @@ class TransactionRepository extends EntityRepository
     public function statAccountSummary(\DateTime $start, \DateTime $stop)
     {
         // Total before season selected
-        //
+
         $previous = (float)$this->createQueryBuilder('t')
             ->select('SUM( t.amount ) amount')
             ->andWhere('t.date < :date')
