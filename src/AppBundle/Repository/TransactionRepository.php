@@ -151,7 +151,7 @@ class TransactionRepository extends EntityRepository
 
         $previous = (float)$this->createQueryBuilder('t')
             ->select('SUM( t.amount ) amount')
-            ->andWhere('t.date < :date')
+            ->andWhere('t.date_value < :date')
             ->setParameter('date', $start)
             ->getQuery()
             ->getSingleScalarResult();
@@ -160,7 +160,7 @@ class TransactionRepository extends EntityRepository
 
         $period = (float)$this->createQueryBuilder('t')
             ->select('SUM( t.amount ) amount')
-            ->andWhere('t.date BETWEEN :start AND :stop')
+            ->andWhere('t.date_value BETWEEN :start AND :stop')
             ->setParameter('start', $start)
             ->setParameter('stop', $stop)
             ->getQuery()
@@ -173,7 +173,7 @@ class TransactionRepository extends EntityRepository
                   FROM transaction AS t 
                   LEFT JOIN transaction_detail AS d ON t.id = d.transaction_id
                   WHERE d.amount < 0
-                  AND   t.date BETWEEN :start AND :stop
+                  AND   t.date_value BETWEEN :start AND :stop
                   GROUP BY d.category
                   ORDER BY d.category ASC';
 
