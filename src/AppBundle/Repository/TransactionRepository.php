@@ -196,7 +196,7 @@ class TransactionRepository extends EntityRepository
                   FROM transaction AS t 
                   LEFT JOIN transaction_detail AS d ON t.id = d.transaction_id
                   WHERE d.amount > 0
-                  AND   t.date BETWEEN :start AND :stop
+                  AND   t.date_value BETWEEN :start AND :stop
                   GROUP BY d.category
                   ORDER BY d.category ASC';
 
