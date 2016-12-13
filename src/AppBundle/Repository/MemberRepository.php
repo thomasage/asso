@@ -199,8 +199,9 @@ class MemberRepository extends EntityRepository
              INNER JOIN rank            ON p0.rank_id              = rank.id
              LEFT  JOIN ( SELECT lesson.date, attendance.member_id
                           FROM lesson
-                          INNER JOIN attendance ON lesson.id = attendance.lesson_id ) AS lessons ON member.id = lessons.member_id
-                                                                                                AND p0.date   < lessons.date
+                          INNER JOIN attendance ON lesson.id = attendance.lesson_id
+                          WHERE attendance.state = 2 ) AS lessons ON member.id = lessons.member_id
+                                                                 AND p0.date   < lessons.date
              WHERE membership.season_id = :season
              AND   p1.id                IS NULL
              GROUP BY member.id
