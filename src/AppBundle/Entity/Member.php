@@ -421,7 +421,7 @@ class Member
     public function getNextBirthday()
     {
         $birthday = new \DateTime(date('Y').$this->birthday->format('-m-d'));
-        if ($birthday < new \DateTime()) {
+        if ($birthday < new \DateTime('00:00:00')) {
             $birthday->modify('+1 year');
         }
 
