@@ -1,7 +1,6 @@
 <?php
 namespace AppBundle\Form;
 
-use AppBundle\Form\Type\ChoiceCategoryType;
 use AppBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
