@@ -1,10 +1,12 @@
 <?php
 namespace AppBundle\Form;
 
+use AppBundle\Form\Type\ChoiceCategoryType;
 use AppBundle\Form\Type\DatePickerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TransactionSearchType extends AbstractType
@@ -19,47 +21,56 @@ class TransactionSearchType extends AbstractType
             ->add(
                 'date',
                 DatePickerType::class,
-                array(
+                [
                     'required' => false,
                     'label' => 'field.date',
                     'widget' => 'single_text',
-                )
+                ]
             )
             ->add(
                 'thirdName',
                 TextType::class,
-                array(
+                [
                     'required' => false,
                     'label' => 'field.thirdName',
-                )
+                ]
             )
             ->add(
                 'operationNumber',
                 TextType::class,
-                array(
+                [
                     'required' => false,
                     'label' => 'field.operationNumber',
-                )
+                ]
             )
             ->add(
                 'bankName',
                 TextType::class,
-                array(
+                [
                     'required' => false,
                     'label' => 'field.bankName',
-                )
+                ]
+            )
+            ->add(
+                'category',
+                TextType::class,
+                [
+                    'required' => false,
+                    'label' => 'field.category',
+                ]
             );
     }
 
     /**
      * @param OptionsResolver $resolver
+     * @throws AccessException
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'translation_domain' => 'accounting',
-            )
+            ]
         );
     }
 }

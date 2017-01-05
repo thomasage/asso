@@ -4,6 +4,8 @@ namespace AppBundle\Repository;
 use AppBundle\Entity\Search;
 use AppBundle\Utils\SearchResult;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\ResultSetMapping;
 
 class TransactionRepository extends EntityRepository
@@ -22,25 +24,30 @@ class TransactionRepository extends EntityRepository
             ->addSelect('d');
 
         // Filter
-        if (!is_null($bankName = $search->getFilter('bankName'))) {
+        if (($bankName = $search->getFilter('bankName')) !== null) {
             $builder
                 ->andWhere('t.bankName LIKE :bankName')
                 ->setParameter(':bankName', '%'.$bankName.'%');
         }
-        if (!is_null($date = $search->getFilter('date'))) {
+        if (($date = $search->getFilter('date')) !== null) {
             $builder
                 ->andWhere('t.date = :date')
                 ->setParameter(':date', $date);
         }
-        if (!is_null($operationNumber = $search->getFilter('operationNumber'))) {
+        if (($operationNumber = $search->getFilter('operationNumber')) !== null) {
             $builder
                 ->andWhere('t.operationNumber LIKE :operationNumber')
                 ->setParameter(':operationNumber', '%'.$operationNumber.'%');
         }
-        if (!is_null($thirdName = $search->getFilter('thirdName'))) {
+        if (($thirdName = $search->getFilter('thirdName')) !== null) {
             $builder
                 ->andWhere('t.thirdName LIKE :thirdName')
                 ->setParameter(':thirdName', '%'.$thirdName.'%');
+        }
+        if (($category = $search->getFilter('category')) !== null) {
+            $builder
+                ->andWhere('d.category LIKE :category')
+                ->setParameter(':category', '%'.$category.'%');
         }
 
         // Orderby
@@ -144,6 +151,8 @@ class TransactionRepository extends EntityRepository
      * @param \DateTime $start
      * @param \DateTime $stop
      * @return array
+     * @throws NoResultException
+     * @throws NonUniqueResultException
      */
     public function statAccountSummary(\DateTime $start, \DateTime $stop)
     {

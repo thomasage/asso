@@ -20,6 +20,7 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \LogicException
      *
      * @Route("/accounting/add",
      *        name="app_accounting_add",
@@ -45,9 +46,9 @@ class DefaultController extends Controller
             $this->addFlash('success', $this->get('translator')->trans('add.success.added', [], 'accounting'));
 
             // Redirect
-            if (!is_null($request->request->get('add_and_close'))) {
+            if ($request->request->get('add_and_close') !== null) {
                 return $this->redirectToRoute('app_accounting_homepage');
-            } elseif (!is_null($request->request->get('add_and_new'))) {
+            } elseif ($request->request->get('add_and_new') !== null) {
                 return $this->redirectToRoute('app_accounting_add');
             } else {
                 return $this->redirectToRoute('app_accounting_edit', ['transaction' => $transaction->getId()]);
@@ -67,6 +68,8 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
      *
      * @Route("/accounting/autocompleteBankName",
      *     name="app_accounting_autocomplete_bankname",
@@ -79,8 +82,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // Results
-        $data = $em->getRepository('AppBundle:Transaction')
-            ->findAutocompleteBankName($request->query->get('term'));
+        $data = $em->getRepository(Transaction::class)->findAutocompleteBankName($request->query->get('term'));
 
         // Render
         return new JsonResponse($data);
@@ -89,6 +91,8 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
      *
      * @Route("/accounting/autocompleteCategory",
      *     name="app_accounting_autocomplete_category",
@@ -101,8 +105,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // Results
-        $data = $em->getRepository('AppBundle:TransactionDetail')
-            ->findAutocompleteCategory($request->query->get('term'));
+        $data = $em->getRepository(TransactionDetail::class)->findAutocompleteCategory($request->query->get('term'));
 
         // Render
         return new JsonResponse($data);
@@ -111,6 +114,8 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
      *
      * @Route("/accounting/autocompleteThirdName",
      *     name="app_accounting_autocomplete_thirdname",
@@ -123,8 +128,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // Results
-        $data = $em->getRepository('AppBundle:Transaction')
-            ->findAutocompleteThirdName($request->query->get('term'));
+        $data = $em->getRepository(Transaction::class)->findAutocompleteThirdName($request->query->get('term'));
 
         // Render
         return new JsonResponse($data);
@@ -169,7 +173,7 @@ class DefaultController extends Controller
     {
         $tm = $this->get('app.transaction_manager');
 
-        if (!is_null($filename = $tm->getCopyFilename($copy))) {
+        if (($filename = $tm->getCopyFilename($copy)) !== null) {
             $response = new BinaryFileResponse($filename);
             $response
                 ->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, $copy->getName())
@@ -185,6 +189,7 @@ class DefaultController extends Controller
      * @param Request $request
      * @param Transaction $transaction
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \LogicException
      *
      * @Route("/accounting/delete/{transaction}",
      *        name="app_accounting_delete",
@@ -228,6 +233,8 @@ class DefaultController extends Controller
      * @param Request $request
      * @param Transaction $transaction
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
      *
      * @Route("/accounting/edit/{transaction}",
      *        name="app_accounting_edit",
@@ -240,7 +247,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // Copy
-        $copy = $em->getRepository('AppBundle:TransactionCopy')->findOneBy(['transaction' => $transaction]);
+        $copy = $em->getRepository(TransactionCopy::class)->findOneBy(['transaction' => $transaction]);
 
         // Edit form
         $formEdit = $this->createForm(TransactionType::class, $transaction);
@@ -256,7 +263,7 @@ class DefaultController extends Controller
             $this->addFlash('success', $this->get('translator')->trans('edit.success.updated', [], 'accounting'));
 
             // Redirect
-            if (!is_null($request->request->get('update'))) {
+            if ($request->request->get('update') !== null) {
                 return $this->redirectToRoute('app_accounting_edit', ['transaction' => $transaction->getId()]);
             } else {
                 return $this->redirectToRoute('app_accounting_homepage');
@@ -265,7 +272,7 @@ class DefaultController extends Controller
         }
 
         // Difference between transaction and breakdown
-        if ($transaction->getAmount() != $transaction->getDetailsAmount()) {
+        if ($transaction->getAmount() !== $transaction->getDetailsAmount()) {
             $this->addFlash(
                 'error',
                 $this->get('translator')->trans(
@@ -293,6 +300,8 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
      *
      * @Route("/accounting",
      *        name="app_accounting_homepage",
@@ -319,7 +328,7 @@ class DefaultController extends Controller
         }
 
         // Transactions
-        $transactions = $em->getRepository('AppBundle:Transaction')->findBySearch($search);
+        $transactions = $em->getRepository(Transaction::class)->findBySearch($search);
 
         // Render
         return $this->render(
