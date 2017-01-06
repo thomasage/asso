@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -294,6 +295,38 @@ class DefaultController extends Controller
                 'formEdit' => $formEdit->createView(),
                 'transaction' => $transaction,
             ]
+        );
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
+     *
+     * @Route("/accounting/export",
+     *        name="app_accounting_export",
+     *        methods={"GET"})
+     */
+    public function exportAction()
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Categories
+        $categories = $em->getRepository(TransactionDetail::class)->findAutocompleteCategory('');
+
+        // Transactions
+        $transactions = $em->getRepository(Transaction::class)->findBy([], ['date' => 'ASC']);
+
+        // Render
+        return new Response(
+            $this->renderView(
+                'accounting/index.xlsx.php',
+                [
+                    'categories' => $categories,
+                    'transactions' => $transactions,
+                ]
+            )
         );
     }
 

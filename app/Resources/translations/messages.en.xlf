@@ -157,9 +157,9 @@
         <source>action.pdf</source>
         <target>PDF</target>
       </trans-unit>
-      <trans-unit id="01b6e20344b68835c5ed1ddedf20d531" resname="to">
-        <source>to</source>
-        <target>__to</target>
+      <trans-unit id="217cbcecb74db4490b474ded0043112d" resname="action.export_all">
+        <source>action.export_all</source>
+        <target>Export all</target>
       </trans-unit>
     </body>
   </file>

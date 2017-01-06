@@ -24,10 +24,14 @@
             {{ form_row(formSearch.bankName) }}
             {{ form_row(formSearch.category) }}
             <div>
-                <button type="submit" class="button secondary" name="search">
+                <button type="submit" class="button primary">
                     <span class="fi-filter"></span>
                     {{ 'action.search'|trans({},'messages') }}
                 </button>
+                <a href="{{ path('app_accounting_export') }}" class="button secondary">
+                    <span class="fi-page-export-csv"></span>
+                    {{ 'action.export_all'|trans({},'messages') }}
+                </a>
             </div>
         </div>
         {{ form_end(formSearch) }}

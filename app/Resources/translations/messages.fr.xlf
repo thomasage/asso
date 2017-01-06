@@ -161,6 +161,10 @@
         <source>to</source>
         <target>à</target>
       </trans-unit>
+      <trans-unit id="217cbcecb74db4490b474ded0043112d" resname="action.export_all">
+        <source>action.export_all</source>
+        <target>Tout exporter</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
