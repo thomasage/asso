@@ -316,7 +316,7 @@ class DefaultController extends Controller
         $categories = $em->getRepository(TransactionDetail::class)->findAutocompleteCategory('');
 
         // Transactions
-        $transactions = $em->getRepository(Transaction::class)->findBy([], ['date' => 'ASC']);
+        $transactions = $em->getRepository(Transaction::class)->findBy([], ['date' => 'ASC', 'dateValue' => 'ASC']);
 
         // Render
         return new Response(
