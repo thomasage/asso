@@ -274,9 +274,6 @@ class DefaultController extends Controller
 
         // Difference between transaction and breakdown
         if ((float)$transaction->getAmount() !== (float)$transaction->getDetailsAmount()) {
-            var_dump((float)$transaction->getAmount());
-            var_dump((float)$transaction->getDetailsAmount());
-            exit();
             $this->addFlash(
                 'error',
                 $this->get('translator')->trans(
