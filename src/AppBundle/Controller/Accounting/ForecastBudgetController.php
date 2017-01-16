@@ -113,6 +113,7 @@ class ForecastBudgetController extends Controller
 
             $period = $em->getRepository(ForecastBudgetPeriod::class)->find($session->get('forecast_budget_period'));
 
+            // Add new items
             $new = new ArrayCollection($formEdit->get('items')->getData());
             foreach ($new as $item) {
                 if (!$item instanceof ForecastBudgetItem) {
@@ -122,6 +123,7 @@ class ForecastBudgetController extends Controller
                 $em->persist($item);
             }
 
+            // Remove old items
             foreach ($items as $item) {
                 if (!$new->contains($item)) {
                     $em->remove($item);
