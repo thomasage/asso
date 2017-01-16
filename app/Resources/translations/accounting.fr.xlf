@@ -101,6 +101,38 @@
         <source>copy_delete.confirmation</source>
         <target>Supprimer la copie ?</target>
       </trans-unit>
+      <trans-unit id="5ced9ecc343451ad932b68414683cac1" resname="forecast_budget.title">
+        <source>forecast_budget.title</source>
+        <target>Budget prévisionnel</target>
+      </trans-unit>
+      <trans-unit id="a2afc7918f0960307cad3c173835fad2" resname="forecast_budget_add.title">
+        <source>forecast_budget_add.title</source>
+        <target>Ajouter une période</target>
+      </trans-unit>
+      <trans-unit id="d2b17e513ed34f9097f68db3fa3725d4" resname="forecast_budget_period_add.title">
+        <source>forecast_budget_period_add.title</source>
+        <target>Ajouter une période</target>
+      </trans-unit>
+      <trans-unit id="6b65dd5bd47485d303b8f6501b661a6f" resname="field.start">
+        <source>field.start</source>
+        <target>Début</target>
+      </trans-unit>
+      <trans-unit id="6f4f614a9f4b48f8c703bcfde95eeed1" resname="field.stop">
+        <source>field.stop</source>
+        <target>Fin</target>
+      </trans-unit>
+      <trans-unit id="4b58c842dae83802a36f011bb8a2c720" resname="foreacast_budget_period.success.added">
+        <source>foreacast_budget_period.success.added</source>
+        <target>La période est ajoutée.</target>
+      </trans-unit>
+      <trans-unit id="3212b0f58b397d1f354f9dec75527022" resname="field.period">
+        <source>field.period</source>
+        <target>Période</target>
+      </trans-unit>
+      <trans-unit id="b5dd818ae542f0a38d52867ff006342b" resname="foreacast_budget_items.success.updated">
+        <source>foreacast_budget_items.success.updated</source>
+        <target>Le budget prévisionnel est modifié.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

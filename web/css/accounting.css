@@ -142,3 +142,22 @@
 .app_accounting_edit table.details + div.action {
     margin-top: 0.5em;
 }
+
+/* Forecast budget */
+
+.app_accounting_forecast_budget_index #forecast_budget_item_collection_items > tr > td:nth-of-type(1) {
+    width: 99%;
+}
+
+.app_accounting_forecast_budget_index #forecast_budget_item_collection_items > tr > td:nth-of-type(1) > input {
+    width: 100%;
+}
+
+.app_accounting_forecast_budget_index #forecast_budget_item_collection_items > tr > td:nth-of-type(2) {
+    white-space: nowrap;
+}
+
+.app_accounting_forecast_budget_index #forecast_budget_item_collection_items > tr > td:nth-of-type(2) > input {
+    width: 10em;
+    text-align: right;
+}

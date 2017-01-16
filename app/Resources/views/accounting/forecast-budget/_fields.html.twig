@@ -1,0 +1,32 @@
+{% block _forecast_budget_item_collection_items_widget %}
+    {% if prototype is defined %}
+        {%- set attr = attr|merge({'data-prototype': form_row(prototype) }) -%}
+    {% endif %}
+    <table class="result2">
+        <thead>
+        <tr>
+            <th>{{ 'field.category'|trans }}</th>
+            <th>{{ 'field.amount'|trans }}</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody {{ block('widget_attributes') }}>
+        {% for child in form %}
+            <tr>
+                {{ form_widget(child) }}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block _forecast_budget_item_collection_items_entry_widget %}
+    <td>{{ form_widget(form.category) }}</td>
+    <td>{{ form_widget(form.amount) }}</td>
+    <td class="action">
+        <a href="#" class="button warning item_delete">
+            <span class="fi-trash"></span>
+            {{ 'action.delete'|trans({},'messages') }}
+        </a>
+    </td>
+{% endblock %}

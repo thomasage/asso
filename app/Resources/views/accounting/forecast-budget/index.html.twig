@@ -1,0 +1,79 @@
+{% extends ':accounting:layout.html.twig' %}
+
+{% trans_default_domain 'accounting' %}
+
+{% form_theme formEdit 'accounting/forecast-budget/_fields.html.twig' %}
+
+{% block body %}
+
+    <div class="app_accounting_forecast_budget_index">
+
+        <div id="menu-secondary">
+            <h1>{{ 'forecast_budget.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_accounting_forecast_budget_period_add') }}" class="button secondary">
+                    <span class="fi-plus"></span>
+                    {{ 'action.add'|trans({},'messages') }}
+                </a>
+            </nav>
+        </div>
+
+        {{ form_start(formSearch) }}
+        <div class="search0">
+            {{ form_row(formSearch.period) }}
+            <div>
+                <button type="submit" class="button primary">
+                    <span class="fi-filter"></span>
+                    {{ 'action.search'|trans({},'messages') }}
+                </button>
+            </div>
+        </div>
+        {{ form_end(formSearch) }}
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        {{ form_errors(formEdit) }}
+
+        {{ form_start(formEdit) }}
+        <div class="edit1">
+            {{ form_row(formEdit.items) }}
+            <div>
+                <a href="#" class="button secondary item_add">
+                    <span class="fi-plus"></span>
+                    {{ 'action.add'|trans({},'messages') }}
+                </a>
+            </div>
+            <div class="action">
+                <button type="submit" class="button success">
+                    <span class="fi-check"></span>
+                    {{ 'action.update'|trans({},'messages') }}
+                </button>
+                <span>{{ 'or'|trans({},'messages') }}</span>
+                <a href="#" class="button">
+                    <span class="fi-x"></span>
+                    {{ 'action.cancel'|trans({},'messages') }}
+                </a>
+            </div>
+        </div>
+        {{ form_end(formEdit) }}
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{- parent() -}}
+    <script type="text/javascript">
+        var count ={{ formEdit.items|length }};
+        $(function () {
+            $('a.item_add').click(function (e) {
+                e.preventDefault();
+                ForecastBudgetItemAdd();
+            });
+            $('a.item_delete').click(function (e) {
+                e.preventDefault();
+                ForecastBudgetItemDelete($(this).parent().parent());
+            });
+        });
+    </script>
+{% endblock %}

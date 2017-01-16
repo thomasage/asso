@@ -115,35 +115,35 @@
       </trans-unit>
       <trans-unit id="448c304722d7a9c7082e582c061cbe6b" resname="field.lastname">
         <source>field.lastname</source>
-        <target>__field.lastname</target>
+        <target>Nom</target>
       </trans-unit>
       <trans-unit id="2efac63ce0f9b1bd223a4cfff021b8b2" resname="field.firstname">
         <source>field.firstname</source>
-        <target>__field.firstname</target>
+        <target>Prénom</target>
       </trans-unit>
       <trans-unit id="804037f4186a188fef4ec83228df1eb7" resname="field.function">
         <source>field.function</source>
-        <target>__field.function</target>
+        <target>Fonction</target>
       </trans-unit>
       <trans-unit id="6a9db4707a76a3086f4a4094aadde126" resname="field.signature">
         <source>field.signature</source>
-        <target>__field.signature</target>
+        <target>Signature</target>
       </trans-unit>
       <trans-unit id="7cc95e3b9810563783c7c482483045f8" resname="member_under_age">
         <source>member_under_age</source>
-        <target>__member_under_age</target>
+        <target>Membre actif mineur</target>
       </trans-unit>
       <trans-unit id="8f3d170bc2cc7f6a7864831b97597bfc" resname="member_over_age">
         <source>member_over_age</source>
-        <target>__member_over_age</target>
+        <target>Membre actif majeur</target>
       </trans-unit>
       <trans-unit id="756e42bc58d752839aa1db720186d52d" resname="female_represented_by">
         <source>female_represented_by</source>
-        <target>__female_represented_by</target>
+        <target>Représentée par</target>
       </trans-unit>
       <trans-unit id="13c1d788367a75a3f301e751e2fc62d5" resname="male_represented_by">
         <source>male_represented_by</source>
-        <target>__male_represented_by</target>
+        <target>Représenté par</target>
       </trans-unit>
       <trans-unit id="94984f1387b32df7099c95c1c13edc5d" resname="action.print">
         <source>action.print</source>
@@ -161,9 +161,57 @@
         <source>to</source>
         <target>à</target>
       </trans-unit>
-      <trans-unit id="217cbcecb74db4490b474ded0043112d" resname="action.export_all">
+      <trans-unit id="1402942f84fbdc42faa99584cdb81603" resname="action.export_all">
         <source>action.export_all</source>
         <target>Tout exporter</target>
+      </trans-unit>
+      <trans-unit id="62b5216c362a20e84216dc6aa8dc8c4c" resname="field.weekday">
+        <source>field.weekday</source>
+        <target>Jour</target>
+      </trans-unit>
+      <trans-unit id="58b356fc24871a5ee296315a1dadc957" resname="field.date">
+        <source>field.date</source>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="6b65dd5bd47485d303b8f6501b661a6f" resname="field.start">
+        <source>field.start</source>
+        <target>Début</target>
+      </trans-unit>
+      <trans-unit id="6f4f614a9f4b48f8c703bcfde95eeed1" resname="field.stop">
+        <source>field.stop</source>
+        <target>Fin</target>
+      </trans-unit>
+      <trans-unit id="829c7663d7b62ff34bf4d8b31ceb47a2" resname="field.level">
+        <source>field.level</source>
+        <target>Niveau</target>
+      </trans-unit>
+      <trans-unit id="8a63484689e9e7d0cba05de911f56bc7" resname="field.themes">
+        <source>field.themes</source>
+        <target>Thèmes</target>
+      </trans-unit>
+      <trans-unit id="c1320f297de70b5beafa81f99139af47" resname="field.present">
+        <source>field.present</source>
+        <target>Présent</target>
+      </trans-unit>
+      <trans-unit id="57017f523f601b823de223be8b1bc176" resname="field.apologize">
+        <source>field.apologize</source>
+        <target>Absent excusé</target>
+      </trans-unit>
+      <trans-unit id="e7065d3a4390ccdb2443be982792d69c" resname="field.comment">
+        <source>field.comment</source>
+        <target>Commentaire</target>
+      </trans-unit>
+      <trans-unit id="ddb059a7b152733ec2d2cc2bd5d153f6" resname="weekday.">
+        <source>weekday.</source>
+        <target>__weekday.</target>
+      </trans-unit>
+      <trans-unit id="7c35ad98d8c5c13c2e30ffdd4a6231e3" resname="field.category">
+        <source>field.category</source>
+        <target>Catégorie</target>
+      </trans-unit>
+      <trans-unit id="91bc6d3c76aae9bc4000f64cbd7a49be" resname="field.amount">
+        <source>field.amount</source>
+        <target>Montant</target>
       </trans-unit>
     </body>
   </file>

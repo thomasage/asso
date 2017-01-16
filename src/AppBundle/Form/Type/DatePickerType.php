@@ -4,6 +4,7 @@ namespace AppBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DatePickerType extends AbstractType
@@ -23,24 +24,25 @@ class DatePickerType extends AbstractType
 
     /**
      * @param OptionsResolver $resolver
+     * @throws AccessException
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'format' => 'MM/dd/yyyy',
                 'html5' => false,
                 'widget' => 'single_text',
-                'attr' => array(
+                'attr' => [
                     'class' => 'date',
-                ),
-            )
+                ],
+            ]
         );
-        if ($this->locale == 'fr') {
+        if ($this->locale === 'fr') {
             $resolver->setDefaults(
-                array(
+                [
                     'format' => 'dd/MM/yyyy',
-                )
+                ]
             );
         }
     }

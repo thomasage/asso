@@ -22,3 +22,26 @@ function TransactionDel(element) {
     });
 
 }
+
+function ForecastBudgetItemAdd() {
+
+    var list = $('#forecast_budget_item_collection_items');
+    var element = $(list.data('prototype').replace(/__name__/g, count));
+    element.find('input[id$=_category]').autocomplete({
+        source: Routing.generate('app_accounting_autocomplete_category')
+    });
+    element.find('a.item_delete').click(function (e) {
+        e.preventDefault();
+        ForecastBudgetItemDelete($(this).parent().parent());
+    });
+    list.append(element);
+    element.find('input').eq(0).focus();
+    count++;
+
+}
+
+function ForecastBudgetItemDelete(element) {
+
+    element.remove();
+
+}

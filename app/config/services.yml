@@ -26,6 +26,12 @@ services:
             - '@doctrine.orm.entity_manager'
         tags:
             - { name: form.type }
+    app.form.type.choice_forecast_budget_period:
+        class: AppBundle\Form\Type\ChoiceForecastBudgetPeriodType
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags:
+            - { name: form.type }
     app.form.type.choice_level:
         class: AppBundle\Form\Type\ChoiceLevelType
         arguments: [ "@doctrine.orm.entity_manager" ]
