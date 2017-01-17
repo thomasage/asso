@@ -187,7 +187,7 @@
                         },
                         opposite: true,
                         min: 0,
-                        max: {{ ratioMaxExpenses }}
+                        max: {{ ratioMaxExpenses|round(0,'ceil') }}
                     }
                 ],
                 plotOptions: {
@@ -245,7 +245,7 @@
                         },
                         opposite: true,
                         min: 0,
-                        max: {{ ratioMaxReceipts }}
+                        max: {{ ratioMaxReceipts|round(0,'ceil') }}
                     }
                 ],
                 plotOptions: {
