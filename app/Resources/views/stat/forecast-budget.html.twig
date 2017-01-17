@@ -148,7 +148,7 @@
         expensesCategories.push('{{ e.category }}');
         expensesForecastData.push({{ e.amount_forecast*-1 }});
         expensesRealizedData.push({{ e.amount_realized*-1 }});
-        expensesRatioData.push({{ (e.amount_realized/e.amount_forecast*100)|round(2) }});
+        expensesRatioData.push({{ (e.amount_realized/e.amount_forecast*100)|number_format(2,'.','') }});
         {% endfor %}
         var receiptsCategories = [];
         var receiptsForecastData = [];
@@ -158,12 +158,12 @@
         receiptsCategories.push('{{ r.category }}');
         receiptsForecastData.push({{ r.amount_forecast }});
         receiptsRealizedData.push({{ r.amount_realized }});
-        receiptsRatioData.push({{ (r.amount_realized/r.amount_forecast*100)|round(2) }});
+        receiptsRatioData.push({{ (r.amount_realized/r.amount_forecast*100)|number_format(2,'.','') }});
         {% endfor %}
         $(function () {
             Highcharts.chart('graph-expenses', {
                 chart: {
-                    type: 'column'
+                    height: 600
                 },
                 title: {
                     text: '{{ 'field.expenses'|trans }}'
@@ -221,7 +221,7 @@
             });
             Highcharts.chart('graph-receipts', {
                 chart: {
-                    type: 'column'
+                    height: 600
                 },
                 title: {
                     text: '{{ 'field.receipts'|trans }}'
