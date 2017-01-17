@@ -42,9 +42,11 @@
             <tbody>
             {% set totalForecast=0 %}
             {% set totalRealized=0 %}
+            {% set ratioMaxExpenses=100 %}
             {% for expense in expenses %}
                 {% set totalForecast=totalForecast+expense.amount_forecast %}
                 {% set totalRealized=totalRealized+expense.amount_realized %}
+                {% set ratioMaxExpenses=max(ratioMaxExpenses,expense.amount_realized/expense.amount_forecast*100) %}
                 <tr>
                     <td>{{ expense.category }}</td>
                     <td class="alignright">
@@ -91,9 +93,11 @@
             <tbody>
             {% set totalForecast=0 %}
             {% set totalRealized=0 %}
+            {% set ratioMaxReceipts=100 %}
             {% for receipt in receipts %}
                 {% set totalForecast=totalForecast+receipt.amount_forecast %}
                 {% set totalRealized=totalRealized+receipt.amount_realized %}
+                {% set ratioMaxReceipts=max(ratioMaxReceipts,expense.amount_realized/expense.amount_forecast*100) %}
                 <tr>
                     <td>{{ receipt.category }}</td>
                     <td class="alignright">
@@ -182,7 +186,8 @@
                             text: '{{ 'field.ratio'|trans }} %'
                         },
                         opposite: true,
-                        min: 0
+                        min: 0,
+                        max: {{ ratioMaxExpenses }}
                     }
                 ],
                 plotOptions: {
@@ -239,7 +244,8 @@
                             text: '{{ 'field.ratio'|trans }} %'
                         },
                         opposite: true,
-                        min: 0
+                        min: 0,
+                        max: {{ ratioMaxReceipts }}
                     }
                 ],
                 plotOptions: {
