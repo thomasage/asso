@@ -137,12 +137,11 @@
 
     </div>
 
-    {{ ratioMaxExpenses }}
-
 {% endblock %}
 
 {% block javascripts %}
     {{- parent() -}}
+    {{ ratioMaxExpenses }}
     <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts-more.js') }}"></script>
     <script type="text/javascript">
