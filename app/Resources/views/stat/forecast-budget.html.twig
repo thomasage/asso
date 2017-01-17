@@ -2,6 +2,9 @@
 
 {% trans_default_domain 'stat' %}
 
+{% set ratioMaxExpenses=100 %}
+{% set ratioMaxReceipts=100 %}
+
 {% block body %}
 
     <div class="app_stat_forecast_budget">
@@ -42,7 +45,6 @@
             <tbody>
             {% set totalForecast=0 %}
             {% set totalRealized=0 %}
-            {% set ratioMaxExpenses=100 %}
             {% for expense in expenses %}
                 {% set totalForecast=totalForecast+expense.amount_forecast %}
                 {% set totalRealized=totalRealized+expense.amount_realized %}
@@ -93,7 +95,6 @@
             <tbody>
             {% set totalForecast=0 %}
             {% set totalRealized=0 %}
-            {% set ratioMaxReceipts=100 %}
             {% for receipt in receipts %}
                 {% set totalForecast=totalForecast+receipt.amount_forecast %}
                 {% set totalRealized=totalRealized+receipt.amount_realized %}
@@ -141,12 +142,9 @@
 
 {% block javascripts %}
     {{- parent() -}}
-    {{ ratioMaxExpenses }}
     <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts-more.js') }}"></script>
     <script type="text/javascript">
-        var ratioMaxExpenses = Math.floor({{ ratioMaxExpenses|number_format(2,'.','') }});
-        var ratioMaxReceipts = Math.floor({{ ratioMaxReceipts|number_format(2,'.','') }});
         var expensesCategories = [];
         var expensesForecastData = [];
         var expensesRealizedData = [];
@@ -190,7 +188,7 @@
                         },
                         opposite: true,
                         min: 0,
-                        max: ratioMaxExpenses
+                        max: {{ ratioMaxExpenses|round(0,'floor') }}
                     }
                 ],
                 plotOptions: {
@@ -248,7 +246,7 @@
                         },
                         opposite: true,
                         min: 0,
-                        max: ratioMaxReceipts
+                        max: {{ ratioMaxReceipts|round(0,'floor') }}
                     }
                 ],
                 plotOptions: {
