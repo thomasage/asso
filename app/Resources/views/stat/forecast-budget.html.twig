@@ -146,8 +146,8 @@
         var expensesRatioData = [];
         {% for e in expenses %}
         expensesCategories.push('{{ e.category }}');
-        expensesForecastData.push({{ e.amount_forecast*-1 }});
-        expensesRealizedData.push({{ e.amount_realized*-1 }});
+        expensesForecastData.push({{ (e.amount_forecast*-1)|number_format(2,'.','') }});
+        expensesRealizedData.push({{ (e.amount_realized*-1)|number_format(2,'.','') }});
         expensesRatioData.push({{ (e.amount_realized/e.amount_forecast*100)|number_format(2,'.','') }});
         {% endfor %}
         var receiptsCategories = [];
@@ -156,8 +156,8 @@
         var receiptsRatioData = [];
         {% for r in receipts %}
         receiptsCategories.push('{{ r.category }}');
-        receiptsForecastData.push({{ r.amount_forecast }});
-        receiptsRealizedData.push({{ r.amount_realized }});
+        receiptsForecastData.push({{ r.amount_forecast|number_format(2,'.','') }});
+        receiptsRealizedData.push({{ r.amount_realized|number_format(2,'.','') }});
         receiptsRatioData.push({{ (r.amount_realized/r.amount_forecast*100)|number_format(2,'.','') }});
         {% endfor %}
         $(function () {
