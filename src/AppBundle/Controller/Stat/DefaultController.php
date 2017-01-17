@@ -15,6 +15,7 @@ use AppBundle\Form\StatMemberSegmentType;
 use AppBundle\Form\StatMemberSignatureType;
 use AppBundle\Form\StatRankProgressType;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,6 +26,10 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @throws \InvalidArgumentException
+     * @throws \LogicException
+     * @throws NonUniqueResultException
+     * @throws NoResultException
      *
      * @Route("/stat/accountSummary",
      *     name="app_stat_account_summary",
@@ -90,6 +95,8 @@ class DefaultController extends Controller
 
     /**
      * @return Response
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
      *
      * @Route("/stat/amountByMonth",
      *     name="app_stat_amount_by_month",
@@ -114,6 +121,9 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return Response
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
+     * @throws \OutOfBoundsException
      *
      * @Route("/stat/amountByThird",
      *        name="app_stat_amount_by_third",
@@ -158,6 +168,9 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return Response
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
+     * @throws \OutOfBoundsException
      *
      * @Route("/stat/attendance",
      *        name="app_stat_attendance",
@@ -295,6 +308,8 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return Response
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
      *
      * @Route("/stat/memberOrigin",
      *     name="app_stat_member_origin",
@@ -336,10 +351,9 @@ class DefaultController extends Controller
         // Results
         $em = $this->getDoctrine()->getManager();
         $season = $em->getRepository('AppBundle:Season')->find($session->get('stat-member-origin')['season']);
+        $results = [];
         if ($season instanceof Season) {
             $results = $em->getRepository('AppBundle:Member')->statOrigin($season);
-        } else {
-            $results = [];
         }
 
         // Render
@@ -354,6 +368,8 @@ class DefaultController extends Controller
 
     /**
      * @return Response
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
      *
      * @Route("/stat/memberEvolution",
      *     name="app_stat_member_evolution",
@@ -377,6 +393,8 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return Response
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
      *
      * @Route("/stat/memberSegment",
      *     name="app_stat_member_segment",
@@ -417,11 +435,10 @@ class DefaultController extends Controller
 
         // Results
         $em = $this->getDoctrine()->getManager();
-        $season = $em->getRepository('AppBundle:Season')->find($session->get('stat-member-segment')['season']);
+        $season = $em->getRepository(Season::class)->find($session->get('stat-member-segment')['season']);
+        $results = [];
         if ($season instanceof Season) {
-            $results = $em->getRepository('AppBundle:Member')->statSegment($season);
-        } else {
-            $results = [];
+            $results = $em->getRepository(Member::class)->statSegment($season);
         }
 
         // Render
@@ -437,6 +454,9 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return Response
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
+     * @throws \OutOfBoundsException
      *
      * @Route("/stat/memberSignature",
      *     name="app_stat_member_signature",
@@ -475,10 +495,9 @@ class DefaultController extends Controller
             // Results
             $em = $this->getDoctrine()->getManager();
             $season = $em->getRepository('AppBundle:Season')->find($session->get('stat-member-signature')['season']);
+            $results = [];
             if ($season instanceof Season) {
                 $results = $em->getRepository('AppBundle:Member')->statSignature($season);
-            } else {
-                $results = [];
             }
 
             // Render PDF
@@ -510,6 +529,8 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return Response
+     * @throws \LogicException
+     * @throws \InvalidArgumentException
      *
      * @Route("/stat/rankProgress",
      *        name="app_stat_rank_progress",
