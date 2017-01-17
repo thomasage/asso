@@ -144,8 +144,8 @@
     <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts-more.js') }}"></script>
     <script type="text/javascript">
-        var ratioMaxExpenses = Math.floor({{ ratioMaxExpenses }});
-        var ratioMaxReceipts = Math.floor({{ ratioMaxReceipts }});
+        var ratioMaxExpenses = Math.floor({{ ratioMaxExpenses|number_format(2,'.','') }});
+        var ratioMaxReceipts = Math.floor({{ ratioMaxReceipts|number_format(2,'.','') }});
         var expensesCategories = [];
         var expensesForecastData = [];
         var expensesRealizedData = [];
