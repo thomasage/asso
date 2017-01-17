@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="forecast_budget_item")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ForecastBudgetItemRepository")
  */
 class ForecastBudgetItem
 {

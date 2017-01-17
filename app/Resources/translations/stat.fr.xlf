@@ -249,6 +249,30 @@
         <source>field.comment</source>
         <target>Commentaire</target>
       </trans-unit>
+      <trans-unit id="5ced9ecc343451ad932b68414683cac1" resname="forecast_budget.title">
+        <source>forecast_budget.title</source>
+        <target>Budget prévisionnel</target>
+      </trans-unit>
+      <trans-unit id="7882837cd991d984e2575f7077c69ab1" resname="field.amount_forecast">
+        <source>field.amount_forecast</source>
+        <target>Montant prévu</target>
+      </trans-unit>
+      <trans-unit id="7b250c6f695f04fdce49a7136ff28913" resname="field.amount_realized">
+        <source>field.amount_realized</source>
+        <target>Montant réalise</target>
+      </trans-unit>
+      <trans-unit id="15dd15148eb85ccb8d44c056623a8839" resname="field.amount_ratio">
+        <source>field.amount_ratio</source>
+        <target>% Montant</target>
+      </trans-unit>
+      <trans-unit id="3212b0f58b397d1f354f9dec75527022" resname="field.period">
+        <source>field.period</source>
+        <target>Période</target>
+      </trans-unit>
+      <trans-unit id="80803f1cb308281ae288c64e4f10360d" resname="field.ratio">
+        <source>field.ratio</source>
+        <target>Ratio</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

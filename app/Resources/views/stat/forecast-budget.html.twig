@@ -1,0 +1,282 @@
+{% extends 'stat/layout.html.twig' %}
+
+{% trans_default_domain 'stat' %}
+
+{% block body %}
+
+    <div class="app_stat_forecast_budget">
+
+        <div id="menu-secondary">
+            <h1>{{ 'forecast_budget.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_stat_index') }}" class="button">
+                    <span class="fi-arrow-left"></span>
+                    {{ 'action.back'|trans({},'messages') }}
+                </a>
+            </nav>
+        </div>
+
+        {{ form_start(formSearch) }}
+        <div class="search0">
+            {{ form_row(formSearch.period) }}
+            <div>
+                <button type="submit" class="button primary">
+                    <span class="fi-filter"></span>
+                    {{ 'action.search'|trans({},'messages') }}
+                </button>
+            </div>
+        </div>
+        {{ form_end(formSearch) }}
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        <table class="result3 expenses">
+            <thead>
+            <tr>
+                <th>{{ 'field.expenses'|trans }}</th>
+                <th class="alignright">{{ 'field.amount_forecast'|trans }}</th>
+                <th class="alignright">{{ 'field.amount_realized'|trans }}</th>
+                <th class="alignright">{{ 'field.amount_ratio'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set totalForecast=0 %}
+            {% set totalRealized=0 %}
+            {% for expense in expenses %}
+                {% set totalForecast=totalForecast+expense.amount_forecast %}
+                {% set totalRealized=totalRealized+expense.amount_realized %}
+                <tr>
+                    <td>{{ expense.category }}</td>
+                    <td class="alignright">
+                        {{ expense.amount_forecast|number_format(2,'.',' ') }}
+                    </td>
+                    <td class="alignright">
+                        {{ expense.amount_realized|number_format(2,'.',' ') }}
+                    </td>
+                    <td class="alignright">
+                        {% if expense.amount_forecast!=0 %}
+                            {{ (expense.amount_realized/expense.amount_forecast*100)|number_format(2,'.',' ') }}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="noresult">{{ 'no_expenses'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td class="alignright">{{ 'field.total'|trans }}</td>
+                <td class="alignright">{{ totalForecast|number_format(2,'.',' ') }}</td>
+                <td class="alignright">{{ totalRealized|number_format(2,'.',' ') }}</td>
+                <td class="alignright">
+                    {% if totalForecast!=0 %}
+                        {{ (totalRealized/totalForecast*100)|number_format(2,'.',' ') }}
+                    {% endif %}
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+
+        <table class="result3 receipts">
+            <thead>
+            <tr>
+                <th>{{ 'field.receipts'|trans }}</th>
+                <th class="alignright">{{ 'field.amount_forecast'|trans }}</th>
+                <th class="alignright">{{ 'field.amount_realized'|trans }}</th>
+                <th class="alignright">{{ 'field.amount_ratio'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set totalForecast=0 %}
+            {% set totalRealized=0 %}
+            {% for receipt in receipts %}
+                {% set totalForecast=totalForecast+receipt.amount_forecast %}
+                {% set totalRealized=totalRealized+receipt.amount_realized %}
+                <tr>
+                    <td>{{ receipt.category }}</td>
+                    <td class="alignright">
+                        {{ receipt.amount_forecast|number_format(2,'.',' ') }}
+                    </td>
+                    <td class="alignright">
+                        {{ receipt.amount_realized|number_format(2,'.',' ') }}
+                    </td>
+                    <td class="alignright">
+                        {% if receipt.amount_forecast!=0 %}
+                            {{ (receipt.amount_realized/receipt.amount_forecast*100)|number_format(2,'.',' ') }}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="noresult">{{ 'no_receipts'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td class="alignright">{{ 'field.total'|trans }}</td>
+                <td class="alignright">{{ totalForecast|number_format(2,'.',' ') }}</td>
+                <td class="alignright">{{ totalRealized|number_format(2,'.',' ') }}</td>
+                <td class="alignright">
+                    {% if totalForecast!=0 %}
+                        {{ (totalRealized/totalForecast*100)|number_format(2,'.',' ') }}
+                    {% endif %}
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+
+        <div id="graph-expenses"></div>
+        <div id="graph-receipts"></div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{- parent() -}}
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts-more.js') }}"></script>
+    <script type="text/javascript">
+        var expensesCategories = [];
+        var expensesForecastData = [];
+        var expensesRealizedData = [];
+        var expensesRatioData = [];
+        {% for e in expenses %}
+        expensesCategories.push('{{ e.category }}');
+        expensesForecastData.push({{ e.amount_forecast*-1 }});
+        expensesRealizedData.push({{ e.amount_realized*-1 }});
+        expensesRatioData.push({{ (e.amount_realized/e.amount_forecast*100)|round(2) }});
+        {% endfor %}
+        var receiptsCategories = [];
+        var receiptsForecastData = [];
+        var receiptsRealizedData = [];
+        var receiptsRatioData = [];
+        {% for r in receipts %}
+        receiptsCategories.push('{{ r.category }}');
+        receiptsForecastData.push({{ r.amount_forecast }});
+        receiptsRealizedData.push({{ r.amount_realized }});
+        receiptsRatioData.push({{ (r.amount_realized/r.amount_forecast*100)|round(2) }});
+        {% endfor %}
+        $(function () {
+            Highcharts.chart('graph-expenses', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '{{ 'field.expenses'|trans }}'
+                },
+                xAxis: {
+                    categories: expensesCategories
+                },
+                yAxis: [
+                    {
+                        title: {
+                            text: '{{ 'field.amount'|trans }} €'
+                        }
+                    },
+                    {
+                        title: {
+                            text: '{{ 'field.ratio'|trans }} %'
+                        },
+                        opposite: true
+                    }
+                ],
+                plotOptions: {
+                    column: {
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.2f} €'
+                        },
+                        enableMouseTracking: false
+                    },
+                    spline: {
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.2f} %'
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                series: [
+                    {
+                        type: 'column',
+                        name: '{{ 'field.amount_forecast'|trans }}',
+                        data: expensesForecastData
+                    },
+                    {
+                        type: 'column',
+                        name: '{{ 'field.amount_realized'|trans }}',
+                        data: expensesRealizedData
+                    },
+                    {
+                        type: 'spline',
+                        name: '{{ 'field.amount_ratio'|trans }}',
+                        data: expensesRatioData,
+                        yAxis: 1
+                    }
+                ]
+            });
+            Highcharts.chart('graph-receipts', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '{{ 'field.receipts'|trans }}'
+                },
+                xAxis: {
+                    categories: receiptsCategories
+                },
+                yAxis: [
+                    {
+                        title: {
+                            text: '{{ 'field.amount'|trans }} €'
+                        }
+                    },
+                    {
+                        title: {
+                            text: '{{ 'field.ratio'|trans }} %'
+                        },
+                        opposite: true
+                    }
+                ],
+                plotOptions: {
+                    column: {
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.2f} €'
+                        },
+                        enableMouseTracking: false
+                    },
+                    spline: {
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.2f} %'
+                        },
+                        enableMouseTracking: false
+                    }
+                },
+                series: [
+                    {
+                        type: 'column',
+                        name: '{{ 'field.amount_forecast'|trans }}',
+                        data: receiptsForecastData
+                    },
+                    {
+                        type: 'column',
+                        name: '{{ 'field.amount_realized'|trans }}',
+                        data: receiptsRealizedData
+                    },
+                    {
+                        type: 'spline',
+                        name: '{{ 'field.amount_ratio'|trans }}',
+                        data: receiptsRatioData,
+                        yAxis: 1
+                    }
+                ]
+            });
+        });
+    </script>
+{% endblock %}

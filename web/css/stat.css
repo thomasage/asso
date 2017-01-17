@@ -38,3 +38,10 @@
 .app_stat_member_origin #graph-pie {
     margin-top: 2em;
 }
+
+/* Forecast budget */
+
+.app_stat_forecast_budget #graph-expenses,
+.app_stat_forecast_budget #graph-receipts {
+    margin-top: 2em;
+}

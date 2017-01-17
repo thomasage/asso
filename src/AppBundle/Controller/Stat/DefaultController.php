@@ -1,16 +1,20 @@
 <?php
 namespace AppBundle\Controller\Stat;
 
+use AppBundle\Entity\ForecastBudgetItem;
+use AppBundle\Entity\ForecastBudgetPeriod;
 use AppBundle\Entity\Lesson;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Season;
 use AppBundle\Form\StatAccountSummaryType;
 use AppBundle\Form\StatAmountByThirdType;
 use AppBundle\Form\StatAttendanceType;
+use AppBundle\Form\StatForecastBudgetType;
 use AppBundle\Form\StatMemberOriginType;
 use AppBundle\Form\StatMemberSegmentType;
 use AppBundle\Form\StatMemberSignatureType;
 use AppBundle\Form\StatRankProgressType;
+use Doctrine\ORM\NonUniqueResultException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -207,6 +211,72 @@ class DefaultController extends Controller
             );
 
         }
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     * @throws \InvalidArgumentException
+     * @throws \LogicException
+     * @throws NonUniqueResultException
+     * @throws \OutOfBoundsException
+     *
+     * @Route("/stat/forecast-budget",
+     *        name="app_stat_forecast_budget",
+     *        methods={"GET","POST"})
+     */
+    public function forecastBudgetAction(Request $request)
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Session
+        $session = $this->get('session');
+        if (!$session->has('stat_forecast_budget_period')) {
+            $period = $em->getRepository(ForecastBudgetPeriod::class)->findCurrent();
+            if (!$period instanceof ForecastBudgetPeriod) {
+                $period = $em->getRepository(ForecastBudgetPeriod::class)->findBy([], ['start' => 'DESC']);
+                if (count($period) === 0) {
+                    return $this->redirectToRoute('app_stat_index');
+                } else {
+                    $period = $period[0];
+                }
+            }
+            $session->set('stat_forecast_budget_period', $period);
+        }
+
+        // Search form
+        $formSearch = $this
+            ->createForm(
+                StatForecastBudgetType::class,
+                [
+                    'period' => $session->get('stat_forecast_budget_period')->getId(),
+                ]
+            );
+        $formSearch->handleRequest($request);
+        if ($formSearch->isSubmitted() && $formSearch->isValid()) {
+            $period = $em->getRepository(ForecastBudgetPeriod::class)->find($formSearch->get('period')->getData());
+            $session->set('stat_forecast_budget_period', $period);
+
+            return $this->redirectToRoute('app_stat_forecast_budget');
+        }
+
+        $expenses = $em
+            ->getRepository(ForecastBudgetItem::class)
+            ->statExpenses($session->get('stat_forecast_budget_period'));
+        $receipts = $em
+            ->getRepository(ForecastBudgetItem::class)
+            ->statReceipts($session->get('stat_forecast_budget_period'));
+
+        // Render
+        return $this->render(
+            'stat/forecast-budget.html.twig',
+            [
+                'expenses' => $expenses,
+                'formSearch' => $formSearch->createView(),
+                'receipts' => $receipts,
+            ]
+        );
     }
 
     /**
