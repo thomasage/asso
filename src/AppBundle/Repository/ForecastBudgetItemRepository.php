@@ -18,7 +18,7 @@ class ForecastBudgetItemRepository extends EntityRepository
         $rsm->addScalarResult('amount_realized', 'amount_realized');
         $rsm->addScalarResult('category', 'category');
 
-        $query = 'SELECT item.category,
+        $query = 'SELECT item.category AS category,
                          item.amount AS amount_forecast,
                          SUM( IFNULL( detail.amount, 0 ) ) AS amount_realized
                   FROM forecast_budget_item AS item
@@ -30,7 +30,19 @@ class ForecastBudgetItemRepository extends EntityRepository
                   WHERE item.period_id = :period
                   AND   item.amount < 0
                   GROUP BY item.id
-                  ORDER BY item.category ASC';
+                  UNION
+                  SELECT detail.category AS category,
+                         0 AS amount_forecast,
+                         SUM( IFNULL( detail.amount, 0 ) ) AS amount_realized
+                  FROM forecast_budget_period AS period
+                  INNER JOIN transaction                      ON transaction.date_value BETWEEN period.start AND period.stop
+                  INNER JOIN transaction_detail AS detail     ON transaction.id         = detail.transaction_id
+                                                             AND detail.amount          < 0
+                  LEFT  JOIN forecast_budget_item AS item     ON period.id              = item.period_id
+                                                             AND item.category          = detail.category
+                  WHERE item.id IS NULL
+                  GROUP BY detail.category
+                  ORDER BY category ASC';
 
         return $this
             ->_em
@@ -50,7 +62,7 @@ class ForecastBudgetItemRepository extends EntityRepository
         $rsm->addScalarResult('amount_realized', 'amount_realized');
         $rsm->addScalarResult('category', 'category');
 
-        $query = 'SELECT item.category,
+        $query = 'SELECT item.category AS category,
                          item.amount AS amount_forecast,
                          SUM( IFNULL( detail.amount, 0 ) ) AS amount_realized
                   FROM forecast_budget_item AS item
@@ -62,7 +74,19 @@ class ForecastBudgetItemRepository extends EntityRepository
                   WHERE item.period_id = :period
                   AND   item.amount > 0
                   GROUP BY item.id
-                  ORDER BY item.category ASC';
+                  UNION
+                  SELECT detail.category AS category,
+                         0 AS amount_forecast,
+                         SUM( IFNULL( detail.amount, 0 ) ) AS amount_realized
+                  FROM forecast_budget_period AS period
+                  INNER JOIN transaction                      ON transaction.date_value BETWEEN period.start AND period.stop
+                  INNER JOIN transaction_detail AS detail     ON transaction.id         = detail.transaction_id
+                                                             AND detail.amount          > 0
+                  LEFT  JOIN forecast_budget_item AS item     ON period.id              = item.period_id
+                                                             AND item.category          = detail.category
+                  WHERE item.id IS NULL
+                  GROUP BY detail.category
+                  ORDER BY category ASC';
 
         return $this
             ->_em

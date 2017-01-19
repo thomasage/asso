@@ -48,7 +48,9 @@
             {% for expense in expenses %}
                 {% set totalForecast=totalForecast+expense.amount_forecast %}
                 {% set totalRealized=totalRealized+expense.amount_realized %}
-                {% set ratioMaxExpenses=max(ratioMaxExpenses,expense.amount_realized/expense.amount_forecast*100) %}
+                {% if expense.amount_forecast!=0 %}
+                    {% set ratioMaxExpenses=max(ratioMaxExpenses,expense.amount_realized/expense.amount_forecast*100) %}
+                {% endif %}
                 <tr>
                     <td>{{ expense.category }}</td>
                     <td class="alignright">
@@ -98,7 +100,9 @@
             {% for receipt in receipts %}
                 {% set totalForecast=totalForecast+receipt.amount_forecast %}
                 {% set totalRealized=totalRealized+receipt.amount_realized %}
-                {% set ratioMaxReceipts=max(ratioMaxReceipts,expense.amount_realized/expense.amount_forecast*100) %}
+                {% if receipt.amount_forecast!=0 %}
+                    {% set ratioMaxReceipts=max(ratioMaxReceipts,receipt.amount_realized/receipt.amount_forecast*100) %}
+                {% endif %}
                 <tr>
                     <td>{{ receipt.category }}</td>
                     <td class="alignright">
@@ -153,7 +157,11 @@
         expensesCategories.push('{{ e.category }}');
         expensesForecastData.push({{ (e.amount_forecast*-1)|number_format(2,'.','') }});
         expensesRealizedData.push({{ (e.amount_realized*-1)|number_format(2,'.','') }});
+        {% if e.amount_forecast!=0 %}
         expensesRatioData.push({{ (e.amount_realized/e.amount_forecast*100)|number_format(2,'.','') }});
+        {% else %}
+        expensesRatioData.push(null);
+        {% endif %}
         {% endfor %}
         var receiptsCategories = [];
         var receiptsForecastData = [];
@@ -163,7 +171,11 @@
         receiptsCategories.push('{{ r.category }}');
         receiptsForecastData.push({{ r.amount_forecast|number_format(2,'.','') }});
         receiptsRealizedData.push({{ r.amount_realized|number_format(2,'.','') }});
+        {% if r.amount_forecast!=0 %}
         receiptsRatioData.push({{ (r.amount_realized/r.amount_forecast*100)|number_format(2,'.','') }});
+        {% else %}
+        receiptsRatioData.push(null);
+        {% endif %}
         {% endfor %}
         $(function () {
             Highcharts.chart('graph-expenses', {
@@ -276,7 +288,7 @@
                     },
                     {
                         type: 'spline',
-                        name: '{{ 'field.ratiow'|trans }}',
+                        name: '{{ 'field.ratio'|trans }}',
                         data: receiptsRatioData,
                         yAxis: 1
                     }
