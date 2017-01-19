@@ -40,6 +40,7 @@ class ForecastBudgetItemRepository extends EntityRepository
                                                              AND detail.amount          < 0
                   LEFT  JOIN forecast_budget_item AS item     ON period.id              = item.period_id
                                                              AND item.category          = detail.category
+                                                             AND item.amount            < 0
                   WHERE period.id = :period
                   AND   item.id IS NULL
                   GROUP BY detail.category
@@ -85,6 +86,7 @@ class ForecastBudgetItemRepository extends EntityRepository
                                                              AND detail.amount          > 0
                   LEFT  JOIN forecast_budget_item AS item     ON period.id              = item.period_id
                                                              AND item.category          = detail.category
+                                                             AND item.amount            > 0
                   WHERE period.id = :period
                   AND   item.id IS NULL
                   GROUP BY detail.category
