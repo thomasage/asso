@@ -62,6 +62,8 @@
                     <td class="alignright">
                         {% if expense.amount_forecast!=0 %}
                             {{ (expense.amount_realized/expense.amount_forecast*100)|number_format(2,'.',' ') }}
+                        {% else %}
+                            -
                         {% endif %}
                     </td>
                 </tr>
@@ -114,6 +116,8 @@
                     <td class="alignright">
                         {% if receipt.amount_forecast!=0 %}
                             {{ (receipt.amount_realized/receipt.amount_forecast*100)|number_format(2,'.',' ') }}
+                        {% else %}
+                            -
                         {% endif %}
                     </td>
                 </tr>
