@@ -277,6 +277,7 @@ class DefaultController extends Controller
         $expenses = $em
             ->getRepository(ForecastBudgetItem::class)
             ->statExpenses($session->get('stat_forecast_budget_period'));
+
         $receipts = $em
             ->getRepository(ForecastBudgetItem::class)
             ->statReceipts($session->get('stat_forecast_budget_period'));
