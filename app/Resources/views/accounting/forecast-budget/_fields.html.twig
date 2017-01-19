@@ -12,12 +12,16 @@
         </thead>
         <tbody {{ block('widget_attributes') }}>
         {% for child in form %}
-            <tr>
-                {{ form_widget(child) }}
-            </tr>
+            {{ form_row(child) }}
         {% endfor %}
         </tbody>
     </table>
+{% endblock %}
+
+{% block _forecast_budget_item_collection_items_entry_row %}
+    <tr>
+        {{ form_widget(form) }}
+    </tr>
 {% endblock %}
 
 {% block _forecast_budget_item_collection_items_entry_widget %}
