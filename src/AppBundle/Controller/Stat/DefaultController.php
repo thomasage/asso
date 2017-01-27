@@ -4,8 +4,10 @@ namespace AppBundle\Controller\Stat;
 use AppBundle\Entity\ForecastBudgetItem;
 use AppBundle\Entity\ForecastBudgetPeriod;
 use AppBundle\Entity\Lesson;
+use AppBundle\Entity\Level;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Season;
+use AppBundle\Entity\Transaction;
 use AppBundle\Form\StatAccountSummaryType;
 use AppBundle\Form\StatAmountByThirdType;
 use AppBundle\Form\StatAttendanceType;
@@ -77,7 +79,7 @@ class DefaultController extends Controller
 
         // Results
         $results = $em
-            ->getRepository('AppBundle:Transaction')
+            ->getRepository(Transaction::class)
             ->statAccountSummary(
                 $session->get('stat-account-summary-start'),
                 $session->get('stat-account-summary-stop')
@@ -108,7 +110,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // Resuls
-        $results = $em->getRepository('AppBundle:Transaction')->statAmountByMonth();
+        $results = $em->getRepository(Transaction::class)->statAmountByMonth();
 
         return $this->render(
             'stat/amount-by-month.html.twig',
@@ -150,7 +152,7 @@ class DefaultController extends Controller
         );
         $formSearch->handleRequest($request);
 
-        $results = $em->getRepository('AppBundle:Transaction')->statAmountByThird(
+        $results = $em->getRepository(Transaction::class)->statAmountByThird(
             $formSearch->get('start')->getData(),
             $formSearch->get('stop')->getData()
         );
@@ -351,10 +353,10 @@ class DefaultController extends Controller
 
         // Results
         $em = $this->getDoctrine()->getManager();
-        $season = $em->getRepository('AppBundle:Season')->find($session->get('stat-member-origin')['season']);
+        $season = $em->getRepository(Season::class)->find($session->get('stat-member-origin')['season']);
         $results = [];
         if ($season instanceof Season) {
-            $results = $em->getRepository('AppBundle:Member')->statOrigin($season);
+            $results = $em->getRepository(Member::class)->statOrigin($season);
         }
 
         // Render
@@ -495,10 +497,10 @@ class DefaultController extends Controller
 
             // Results
             $em = $this->getDoctrine()->getManager();
-            $season = $em->getRepository('AppBundle:Season')->find($session->get('stat-member-signature')['season']);
+            $season = $em->getRepository(Season::class)->find($session->get('stat-member-signature')['season']);
             $results = [];
             if ($season instanceof Season) {
-                $results = $em->getRepository('AppBundle:Member')->statSignature($season);
+                $results = $em->getRepository(Member::class)->statSignature($season);
             }
 
             // Render PDF
@@ -551,8 +553,13 @@ class DefaultController extends Controller
         );
         $formSearch->handleRequest($request);
 
-        $season = $em->getRepository('AppBundle:Season')->find($formSearch->getData()['season']);
-        $results = $em->getRepository('AppBundle:Member')->statRankProgress($season);
+        $data = $formSearch->getData();
+        $season = $em->getRepository(Season::class)->find($data['season']);
+        $level = null;
+        if (isset($data['level'])) {
+            $level = $em->getRepository(Level::class)->find($data['level']);
+        }
+        $results = $em->getRepository(Member::class)->statRankProgress($season, $level);
 
         // Render
         return $this->render(

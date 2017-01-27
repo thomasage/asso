@@ -8,6 +8,7 @@ use AppBundle\Entity\Search;
 use AppBundle\Entity\Season;
 use AppBundle\Utils\SearchResult;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Query\ResultSetMapping;
 
@@ -143,6 +144,7 @@ class MemberRepository extends EntityRepository
     /**
      * @param Lesson $lesson
      * @return Member[]
+     * @throws NonUniqueResultException
      */
     public function findAvailableAttendances(Lesson $lesson)
     {
@@ -165,9 +167,10 @@ class MemberRepository extends EntityRepository
 
     /**
      * @param Season $season
+     * @param Level $level
      * @return array
      */
-    public function statRankProgress(Season $season)
+    public function statRankProgress(Season $season, Level $level = null)
     {
         $rsm = new ResultSetMapping();
         $rsm->addScalarResult('lessons', 'lessons');
@@ -180,35 +183,40 @@ class MemberRepository extends EntityRepository
         $rsm->addScalarResult('rank_lessons', 'rank_lessons');
         $rsm->addScalarResult('rank_name', 'rank_name');
 
-        $query = $this->_em->createNativeQuery(
-            'SELECT member.firstname AS member_firstname,
-                    member.lastname AS member_lastname,
-                    rank.description AS rank_description,
-                    rank.id AS rank_id,
-                    rank.name AS rank_name,
-                    rank.lessons AS rank_lessons,
-                    COUNT( DISTINCT lessons.date ) AS lessons,
-                    level.name AS level_name,
-                    member.birthday AS member_birthday
-             FROM member
-             INNER JOIN membership      ON member.id               = membership.member_id
-             INNER JOIN level           ON membership.level_id     = level.id
-             INNER JOIN promotion AS p0 ON member.id               = p0.member_id
-             LEFT  JOIN promotion AS p1 ON member.id               = p1.member_id
-                                       AND p1.date                 > p0.date
-             INNER JOIN rank            ON p0.rank_id              = rank.id
-             LEFT  JOIN ( SELECT lesson.date, attendance.member_id
-                          FROM lesson
-                          INNER JOIN attendance ON lesson.id = attendance.lesson_id
-                          WHERE attendance.state = 2 ) AS lessons ON member.id = lessons.member_id
-                                                                 AND p0.date   < lessons.date
-             WHERE membership.season_id = :season
-             AND   p1.id                IS NULL
-             GROUP BY member.id
-             ORDER BY member.firstname ASC, member.lastname ASC',
-            $rsm
-        );
-        $query->setParameter('season', $season);
+        $query = 'SELECT member.firstname AS member_firstname,
+                         member.lastname AS member_lastname,
+                         rank.description AS rank_description,
+                         rank.id AS rank_id,
+                         rank.name AS rank_name,
+                         rank.lessons AS rank_lessons,
+                         COUNT( DISTINCT lessons.date ) AS lessons,
+                         level.name AS level_name,
+                         member.birthday AS member_birthday
+                  FROM member
+                  INNER JOIN membership      ON member.id               = membership.member_id
+                  INNER JOIN level           ON membership.level_id     = level.id
+                  INNER JOIN promotion AS p0 ON member.id               = p0.member_id
+                  LEFT  JOIN promotion AS p1 ON member.id               = p1.member_id
+                                            AND p1.date                 > p0.date
+                  INNER JOIN rank            ON p0.rank_id              = rank.id
+                  LEFT  JOIN ( SELECT lesson.date, attendance.member_id
+                               FROM lesson
+                               INNER JOIN attendance ON lesson.id = attendance.lesson_id
+                               WHERE attendance.state = 2 ) AS lessons ON member.id = lessons.member_id
+                                                                      AND p0.date   < lessons.date
+                  WHERE membership.season_id = :season
+                  AND   p1.id                IS NULL';
+        if ($level !== null) {
+            $query .= ' AND level.id = :level';
+        }
+        $query .= ' GROUP BY member.id
+                    ORDER BY member.firstname ASC, member.lastname ASC';
+
+        $query = $this->_em->createNativeQuery($query, $rsm);
+        $query->setParameter(':season', $season);
+        if ($level !== null) {
+            $query->setParameter(':level', $level);
+        }
 
         return $query->getResult();
     }
@@ -312,10 +320,10 @@ class MemberRepository extends EntityRepository
             if (!$v['season_start'] instanceof \DateTime) {
                 continue;
             }
-            if (!in_array($v['season_start']->format('Y'), $categories)) {
+            if (!in_array($v['season_start']->format('Y'), $categories, true)) {
                 $categories[] = $v['season_start']->format('Y');
             }
-            $index = array_search($v['season_start']->format('Y'), $categories);
+            $index = array_search($v['season_start']->format('Y'), $categories, true);
             $series[$v['level_name']][$index] = (int)$v['total'];
         }
 
