@@ -30,5 +30,6 @@ security:
                 target: app_security_login
 
     access_control:
+        - { path: ^/deploy, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, role: ROLE_USER }
