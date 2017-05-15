@@ -29,7 +29,6 @@
     <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts-more.js') }}"></script>
     <script type="text/javascript">
-        var categories = $.parseJSON('{{ categories|json_encode|raw }}');
         var series = [];
         {% for serie in series %}
         var serie = {
@@ -45,12 +44,10 @@
             Highcharts.chart('graph',
                 {
                     chart: {
-                        type: 'spline'
+                        type: 'spline',
+                        height: 600
                     },
                     title: false,
-                    xAxis: {
-                        categories: categories
-                    },
                     yAxis: {
                         title: false
                     },

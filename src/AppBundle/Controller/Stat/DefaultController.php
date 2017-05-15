@@ -229,7 +229,6 @@ class DefaultController extends Controller
         // Data
         $data = $em->getRepository(Attendance::class)->statByWeek();
 
-        $categories = range(1, 53);
         $seasons = [];
         $series = [];
         foreach ($data as $d) {
@@ -239,17 +238,16 @@ class DefaultController extends Controller
                 $seasons[$index] = $d['season'];
                 $series[$index] = (object)[
                     'name' => $d['season'],
-                    'data' => array_fill_keys(array_keys($categories), null),
+                    'data' => [],
                 ];
             }
-            $series[$index]->data[array_search((int)$d['week'], $categories, true)] = (int)$d['members'];
+            $series[$index]->data[] = (int)$d['members'];
         }
 
         // Render
         return $this->render(
             'stat/attendance_week.html.twig',
             [
-                'categories' => $categories,
                 'series' => $series,
             ]
         );
