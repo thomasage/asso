@@ -18,7 +18,9 @@
 
         {{ include('default/_flash_messages.html.twig') }}
 
-        <div id="graph"></div>
+        {% for s,serie in series %}
+            <div id="graph{{ s }}"></div>
+        {% endfor %}
 
     </div>
 
@@ -29,32 +31,46 @@
     <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts-more.js') }}"></script>
     <script type="text/javascript">
-        var series = [];
-        {% for serie in series %}
-        var serie = {
-            name: '{{ serie.name }}',
-            data: []
-        };
-        {% for d in serie.data %}
-        serie.data.push({{ d|default('null') }});
-        {% endfor %}
-        series.push(serie);
-        {% endfor %}
+        {#var series = [];#}
+        {#{% for serie in series %}#}
+        {#var serie = {#}
+        {#name: '{{ serie.name }}',#}
+        {#data: []#}
+        {#};#}
+        {#{% for d in serie.data %}#}
+        {#serie.data.push({{ d|default('null') }});#}
+        {#{% endfor %}#}
+        {#series.push(serie);#}
+        {#{% endfor %}#}
         $(function () {
-            Highcharts.chart('graph',
+            {% for s,serie in series %}
+            Highcharts.chart('graph{{ s }}',
                 {
                     chart: {
-                        type: 'column',
-                        height: 600
+                        type: 'spline',
+                        height: 300
                     },
-                    title: false,
+                    title: {
+                        text: '{{ serie.name }}'
+                    },
+                    xAxis: {
+                        allowDecimals: false
+                    },
                     yAxis: {
                         title: false,
                         allowDecimals: false
                     },
-                    series: series
+                    legend: {
+                        enabled: false
+                    },
+                    series: [
+                        {
+                            data:{{ serie.data|json_encode|raw }}
+                        }
+                    ]
                 }
             );
+            {% endfor %}
         });
     </script>
 {% endblock %}
