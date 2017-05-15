@@ -45,3 +45,9 @@
 .app_stat_forecast_budget #graph-receipts {
     margin-top: 2em;
 }
+
+/* Attendance by week */
+
+#page-stat-attendance-week #graph {
+    margin-top: 2em;
+}

@@ -1,0 +1,62 @@
+{% extends 'stat/layout.html.twig' %}
+
+{% trans_default_domain 'stat' %}
+
+{% block body %}
+
+    <div id="page-stat-attendance-week">
+
+        <div id="menu-secondary">
+            <h1>{{ 'attendance_week.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_stat_index') }}" class="button">
+                    <span class="fi-arrow-left"></span>
+                    {{ 'action.back'|trans({},'messages') }}
+                </a>
+            </nav>
+        </div>
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        <div id="graph"></div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts-more.js') }}"></script>
+    <script type="text/javascript">
+        var categories = $.parseJSON('{{ categories|json_encode|raw }}');
+        var series = [];
+        {% for serie in series %}
+        var serie = {
+            name: '{{ serie.name }}',
+            data: []
+        };
+        {% for d in serie.data %}
+        serie.data.push({{ d|default('null') }});
+        {% endfor %}
+        series.push(serie);
+        {% endfor %}
+        $(function () {
+            Highcharts.chart('graph',
+                {
+                    chart: {
+                        type: 'spline'
+                    },
+                    title: false,
+                    xAxis: {
+                        categories: categories
+                    },
+                    yAxis: {
+                        title: false
+                    },
+                    series: series
+                }
+            );
+        });
+    </script>
+{% endblock %}

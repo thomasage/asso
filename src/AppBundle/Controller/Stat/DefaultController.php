@@ -1,6 +1,8 @@
 <?php
+
 namespace AppBundle\Controller\Stat;
 
+use AppBundle\Entity\Attendance;
 use AppBundle\Entity\ForecastBudgetItem;
 use AppBundle\Entity\ForecastBudgetPeriod;
 use AppBundle\Entity\Lesson;
@@ -16,8 +18,6 @@ use AppBundle\Form\StatMemberOriginType;
 use AppBundle\Form\StatMemberSegmentType;
 use AppBundle\Form\StatMemberSignatureType;
 use AppBundle\Form\StatRankProgressType;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,10 +28,6 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @throws \InvalidArgumentException
-     * @throws \LogicException
-     * @throws NonUniqueResultException
-     * @throws NoResultException
      *
      * @Route("/stat/accountSummary",
      *     name="app_stat_account_summary",
@@ -97,8 +93,6 @@ class DefaultController extends Controller
 
     /**
      * @return Response
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
      *
      * @Route("/stat/amountByMonth",
      *     name="app_stat_amount_by_month",
@@ -123,9 +117,6 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return Response
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
-     * @throws \OutOfBoundsException
      *
      * @Route("/stat/amountByThird",
      *        name="app_stat_amount_by_third",
@@ -136,7 +127,7 @@ class DefaultController extends Controller
         // Entity manager
         $em = $this->getDoctrine()->getManager();
 
-        // Curret season
+        // Current season
         $season = $this->getUser()->getCurrentSeason();
         if (!$season instanceof Season) {
             return $this->redirectToRoute('app_stat_index');
@@ -170,9 +161,6 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return Response
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
-     * @throws \OutOfBoundsException
      *
      * @Route("/stat/attendance",
      *        name="app_stat_attendance",
@@ -183,7 +171,7 @@ class DefaultController extends Controller
         // Entity manager
         $em = $this->getDoctrine()->getManager();
 
-        // Curret season
+        // Current season
         $season = $this->getUser()->getCurrentSeason();
         if (!$season instanceof Season) {
             return $this->redirectToRoute('app_stat_index');
@@ -215,26 +203,61 @@ class DefaultController extends Controller
                 Response::HTTP_OK
             );
 
-        } else {
-
-            return $this->render(
-                'stat/attendance.html.twig',
-                [
-                    'formSearch' => $formSearch->createView(),
-                    'lessons' => $lessons,
-                ]
-            );
-
         }
+
+        return $this->render(
+            'stat/attendance.html.twig',
+            [
+                'formSearch' => $formSearch->createView(),
+                'lessons' => $lessons,
+            ]
+        );
+    }
+
+    /**
+     * @return Response
+     *
+     * @Route("/stat/attendance-week",
+     *        name="app_stat_attendance_week",
+     *        methods={"GET"})
+     */
+    public function attendanceWeekAction()
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Data
+        $data = $em->getRepository(Attendance::class)->statByWeek();
+
+        $categories = range(1, 53);
+        $seasons = [];
+        $series = [];
+        foreach ($data as $d) {
+            $index = array_search($d['season'], $seasons, true);
+            if ($index === false) {
+                $index = count($series);
+                $seasons[$index] = $d['season'];
+                $series[$index] = (object)[
+                    'name' => $d['season'],
+                    'data' => array_fill_keys(array_keys($categories), null),
+                ];
+            }
+            $series[$index]->data[array_search((int)$d['week'], $categories, true)] = (int)$d['members'];
+        }
+
+        // Render
+        return $this->render(
+            'stat/attendance_week.html.twig',
+            [
+                'categories' => $categories,
+                'series' => $series,
+            ]
+        );
     }
 
     /**
      * @param Request $request
      * @return Response
-     * @throws \InvalidArgumentException
-     * @throws \LogicException
-     * @throws NonUniqueResultException
-     * @throws \OutOfBoundsException
      *
      * @Route("/stat/forecast-budget",
      *        name="app_stat_forecast_budget",
@@ -253,9 +276,8 @@ class DefaultController extends Controller
                 $period = $em->getRepository(ForecastBudgetPeriod::class)->findBy([], ['start' => 'DESC']);
                 if (count($period) === 0) {
                     return $this->redirectToRoute('app_stat_index');
-                } else {
-                    $period = $period[0];
                 }
+                $period = $period[0];
             }
             $session->set('stat_forecast_budget_period', $period);
         }
@@ -311,8 +333,6 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return Response
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
      *
      * @Route("/stat/memberOrigin",
      *     name="app_stat_member_origin",
@@ -371,8 +391,6 @@ class DefaultController extends Controller
 
     /**
      * @return Response
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
      *
      * @Route("/stat/memberEvolution",
      *     name="app_stat_member_evolution",
@@ -396,8 +414,6 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return Response
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
      *
      * @Route("/stat/memberSegment",
      *     name="app_stat_member_segment",
@@ -457,9 +473,6 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return Response
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
-     * @throws \OutOfBoundsException
      *
      * @Route("/stat/memberSignature",
      *     name="app_stat_member_signature",
@@ -532,8 +545,6 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return Response
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
      *
      * @Route("/stat/rankProgress",
      *        name="app_stat_rank_progress",

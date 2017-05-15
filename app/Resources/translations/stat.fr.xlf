@@ -273,6 +273,10 @@
         <source>field.ratio</source>
         <target>Ratio</target>
       </trans-unit>
+      <trans-unit id="58f268d2380644f604432b4fb75b7172" resname="attendance_week.title">
+        <source>attendance_week.title</source>
+        <target>Effectif par semaine</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
