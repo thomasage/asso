@@ -23,11 +23,12 @@ class AttendanceRepository extends EntityRepository
                   FROM attendance
                   INNER JOIN lesson
                       ON attendance.lesson_id = lesson.id
+                      AND lesson.active = 1
                   INNER JOIN season
                       ON lesson.date BETWEEN season.start AND season.stop
                   WHERE attendance.state = 2
                   GROUP BY season.id, WEEKOFYEAR( lesson.date )
-                  ORDER BY season.start ASC, WEEKOFYEAR( lesson.date ) ASC';
+                  ORDER BY season.start ASC, lesson.date ASC';
 
         return $this
             ->_em
