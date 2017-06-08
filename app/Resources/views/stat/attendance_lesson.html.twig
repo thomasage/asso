@@ -1,0 +1,80 @@
+{% extends 'stat/layout.html.twig' %}
+
+{% trans_default_domain 'stat' %}
+
+{% block body %}
+
+    <div id="page-stat-attendance-lesson">
+
+        <div id="menu-secondary">
+            <h1>{{ 'attendance_lesson.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_stat_index') }}" class="button">
+                    <span class="fi-arrow-left"></span>
+                    {{ 'action.back'|trans({},'messages') }}
+                </a>
+            </nav>
+        </div>
+
+        {{ form_start(formSearch) }}
+        <div class="search0">
+            {{ form_row(formSearch.season) }}
+            {{ form_row(formSearch.level) }}
+            <div>
+                <button type="submit" class="button secondary">
+                    <span class="fi-filter"></span>
+                    {{ 'action.search'|trans({},'messages') }}
+                </button>
+            </div>
+        </div>
+        {{ form_end(formSearch) }}
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        <div id="graph"></div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts-more.js') }}"></script>
+    <script type="text/javascript">
+        var categories = [];
+        var series = [
+            {
+                name: 'Présents',
+                data: []
+            }
+        ];
+        {% for d in data %}
+        categories.push('{{ d.lesson|localizeddate('short','none') }}');
+        series[0].data.push({{ (d.attendance/d.total*100)|number_format(1,'.','') }});
+        {% endfor %}
+        Highcharts.chart(
+            'graph',
+            {
+                chart: {
+                    type: 'column'
+                },
+                title: false,
+                xAxis: {
+                    categories: categories
+                },
+                yAxis: {
+                    min: 0,
+                    max: 100,
+                    title: {
+                        text: '%'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                series: series
+            }
+        );
+    </script>
+{% endblock %}

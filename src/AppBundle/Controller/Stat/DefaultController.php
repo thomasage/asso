@@ -18,6 +18,7 @@ use AppBundle\Form\StatMemberOriginType;
 use AppBundle\Form\StatMemberSegmentType;
 use AppBundle\Form\StatMemberSignatureType;
 use AppBundle\Form\StatRankProgressType;
+use AppBundle\Form\Type\StatAttendanceLessonType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +34,7 @@ class DefaultController extends Controller
      *     name="app_stat_account_summary",
      *     methods={"GET","POST"})
      */
-    public function accountSummaryAction(Request $request)
+    public function accountSummaryAction(Request $request): Response
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -98,7 +99,7 @@ class DefaultController extends Controller
      *     name="app_stat_amount_by_month",
      *     methods={"GET"})
      */
-    public function amountByMonthAction()
+    public function amountByMonthAction(): Response
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -122,7 +123,7 @@ class DefaultController extends Controller
      *        name="app_stat_amount_by_third",
      *        methods={"GET","POST"})
      */
-    public function amountByThirdAction(Request $request)
+    public function amountByThirdAction(Request $request): Response
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -166,7 +167,7 @@ class DefaultController extends Controller
      *        name="app_stat_attendance",
      *        methods={"GET","POST"})
      */
-    public function attendanceAction(Request $request)
+    public function attendanceAction(Request $request): Response
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -210,6 +211,68 @@ class DefaultController extends Controller
             [
                 'formSearch' => $formSearch->createView(),
                 'lessons' => $lessons,
+            ]
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     *
+     * @Route("/stat/attendance-lesson",
+     *        name="app_stat_attendance_lesson",
+     *        methods={"GET", "POST"})
+     */
+    public function attendanceLessonAction(Request $request): Response
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        $route = 'app_stat_attendance_lesson';
+
+        // Search form
+        $formSearch = $this->createForm(StatAttendanceLessonType::class);
+
+        // Search manager
+        $sm = $this->get('app.search_manager');
+        $search = $sm->get($route, $this->getUser());
+        $reload = $search->handleRequest($request, $formSearch);
+        if ($reload) {
+            $sm->update($search);
+
+            return $this->redirectToRoute('app_stat_attendance_lesson');
+        }
+
+        $level = $em->getRepository(Level::class)->find($search->getFilter('level')??0);
+        if (!$level instanceof Level) {
+            $level = $em->getRepository(Level::class)->findOneBy([]);
+            if (!$level instanceof Level) {
+                return $this->redirectToRoute('app_stat_index');
+            }
+            $search->addFilter('level', $level->getId());
+            $sm->update($search);
+        }
+        $season = $em->getRepository(Season::class)->find($search->getFilter('season')??0);
+        if (!$season instanceof Season) {
+            $season = $em->getRepository(Season::class)->findOneBy([]);
+            if (!$season instanceof Season) {
+                return $this->redirectToRoute('app_stat_index');
+            }
+            $search->addFilter('season', $season->getId());
+            $sm->update($search);
+        }
+
+        $data = $em->getRepository(Attendance::class)->statByLesson(
+            $em->getRepository(Season::class)->find($search->getFilter('season')),
+            $em->getRepository(Level::class)->find($search->getFilter('level'))
+        );
+
+        // Render
+        return $this->render(
+            'stat/attendance_lesson.html.twig',
+            [
+                'data' => $data,
+                'formSearch' => $formSearch->createView(),
             ]
         );
     }

@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -14,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 class Search
 {
     /**
-     * @var \AppBundle\Entity\User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(nullable=false)
@@ -60,8 +61,8 @@ class Search
 
     public function __construct()
     {
-        $this->filter = array();
-        $this->orderby = array();
+        $this->filter = [];
+        $this->orderby = [];
         $this->page = 0;
         $this->resultsPerPage = 20;
     }
@@ -69,7 +70,7 @@ class Search
     /**
      * @return string
      */
-    public function getRoute()
+    public function getRoute(): string
     {
         return $this->route;
     }
@@ -78,7 +79,7 @@ class Search
      * @param string $route
      * @return Search
      */
-    public function setRoute($route)
+    public function setRoute(string $route): Search
     {
         $this->route = $route;
 
@@ -89,24 +90,24 @@ class Search
      * @param string $code
      * @return mixed
      */
-    public function getFilter($code = null)
+    public function getFilter(?string $code = null)
     {
-        if (!is_null($code)) {
+        if ($code !== null) {
             if (isset($this->filter[$code])) {
                 return $this->filter[$code];
-            } else {
-                return null;
             }
-        } else {
-            return $this->filter;
+
+            return null;
         }
+
+        return $this->filter;
     }
 
     /**
      * @param array $filter
      * @return Search
      */
-    public function setFilter($filter)
+    public function setFilter(array $filter): Search
     {
         $this->filter = $filter;
 
@@ -114,9 +115,21 @@ class Search
     }
 
     /**
+     * @param string $code
+     * @param mixed $value
+     * @return Search
+     */
+    public function addFilter(string $code, $value): Search
+    {
+        $this->filter[$code] = $value;
+
+        return $this;
+    }
+
+    /**
      * @return array
      */
-    public function getOrderby()
+    public function getOrderby(): array
     {
         return $this->orderby;
     }
@@ -125,7 +138,7 @@ class Search
      * @param array $orderby
      * @return Search
      */
-    public function setOrderby($orderby)
+    public function setOrderby(array $orderby): Search
     {
         $this->orderby = $orderby;
 
@@ -133,18 +146,18 @@ class Search
     }
 
     /**
-     * @return integer
+     * @return int
      */
-    public function getPage()
+    public function getPage(): int
     {
         return $this->page;
     }
 
     /**
-     * @param integer $page
+     * @param int $page
      * @return Search
      */
-    public function setPage($page)
+    public function setPage(int $page): Search
     {
         $this->page = $page;
 
@@ -152,18 +165,18 @@ class Search
     }
 
     /**
-     * @return \AppBundle\Entity\User
+     * @return User
      */
-    public function getUser()
+    public function getUser(): User
     {
         return $this->user;
     }
 
     /**
-     * @param \AppBundle\Entity\User $user
+     * @param User $user
      * @return Search
      */
-    public function setUser(User $user)
+    public function setUser(User $user): Search
     {
         $this->user = $user;
 
@@ -175,20 +188,20 @@ class Search
      * @param FormInterface $form
      * @return bool
      */
-    public function handleRequest(Request $request, FormInterface $form)
+    public function handleRequest(Request $request, FormInterface $form): bool
     {
         // Pagination
-        if (!is_null($pagenum = $request->query->get('pagenum'))) {
+        if (($pagenum = $request->query->get('pagenum')) !== null) {
             $this->setPage($pagenum);
 
             return true;
         }
 
         // Orderby
-        if (!is_null($orderby = $request->query->get('orderby'))) {
+        if (($orderby = $request->query->get('orderby')) !== null) {
             $reverse = false;
             if (isset($this->orderby[$orderby])) {
-                if (array_keys($this->orderby)[0] == $orderby) {
+                if (array_keys($this->orderby)[0] === $orderby) {
                     $reverse = !$this->orderby[$orderby];
                 }
                 unset($this->orderby[$orderby]);
@@ -216,7 +229,7 @@ class Search
     /**
      * @return int
      */
-    public function getResultsPerPage()
+    public function getResultsPerPage(): int
     {
         return $this->resultsPerPage;
     }
@@ -225,7 +238,7 @@ class Search
      * @param int $resultsPerPage
      * @return Search
      */
-    public function setResultsPerPage($resultsPerPage)
+    public function setResultsPerPage(int $resultsPerPage): Search
     {
         $this->resultsPerPage = $resultsPerPage;
 

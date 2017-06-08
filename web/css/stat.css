@@ -51,3 +51,9 @@
 #page-stat-attendance-week #graph {
     margin-top: 2em;
 }
+
+/* Attendance by lesson */
+
+#page-stat-attendance-lesson #graph {
+    margin-top: 2em;
+}

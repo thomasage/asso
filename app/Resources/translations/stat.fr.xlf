@@ -277,6 +277,10 @@
         <source>attendance_week.title</source>
         <target>Effectif par semaine</target>
       </trans-unit>
+      <trans-unit id="7618e8a37f18b3200dadfc81ac2baf06" resname="attendance_lesson.title">
+        <source>attendance_lesson.title</source>
+        <target>Effectif par cours</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
