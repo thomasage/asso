@@ -281,6 +281,10 @@
         <source>attendance_lesson.title</source>
         <target>Effectif par cours</target>
       </trans-unit>
+      <trans-unit id="78d4617f8c5c73a2aa71f95d6ec52429" resname="last_promotion.title">
+        <source>last_promotion.title</source>
+        <target>Dernières promotions</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -8,7 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * Promotion
  *
  * @ORM\Table(name="promotion")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PromotionRepository")
  * @UniqueEntity(fields={"member","rank"},message="promotion.member_rank.duplicate")
  */
 class Promotion

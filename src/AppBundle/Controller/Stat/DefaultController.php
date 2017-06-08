@@ -8,6 +8,7 @@ use AppBundle\Entity\ForecastBudgetPeriod;
 use AppBundle\Entity\Lesson;
 use AppBundle\Entity\Level;
 use AppBundle\Entity\Member;
+use AppBundle\Entity\Promotion;
 use AppBundle\Entity\Season;
 use AppBundle\Entity\Transaction;
 use AppBundle\Form\StatAccountSummaryType;
@@ -19,6 +20,7 @@ use AppBundle\Form\StatMemberSegmentType;
 use AppBundle\Form\StatMemberSignatureType;
 use AppBundle\Form\StatRankProgressType;
 use AppBundle\Form\Type\StatAttendanceLessonType;
+use AppBundle\Form\Type\StatLastPromotionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -211,6 +213,58 @@ class DefaultController extends Controller
             [
                 'formSearch' => $formSearch->createView(),
                 'lessons' => $lessons,
+            ]
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     *
+     * @Route("/stat/last-promotion",
+     *        name="app_stat_last_promotion",
+     *        methods={"GET", "POST"})
+     */
+    public function lastPromotionAction(Request $request): Response
+    {
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        $route = 'app_stat_last_promotion';
+
+        // Search form
+        $formSearch = $this->createForm(StatLastPromotionType::class);
+
+        // Search manager
+        $sm = $this->get('app.search_manager');
+        $search = $sm->get($route, $this->getUser());
+        $reload = $search->handleRequest($request, $formSearch);
+        if ($reload) {
+            $sm->update($search);
+
+            return $this->redirectToRoute($route);
+        }
+
+        $season = $em->getRepository(Season::class)->find($search->getFilter('season')??0);
+        if (!$season instanceof Season) {
+            $season = $em->getRepository(Season::class)->findOneBy([]);
+            if (!$season instanceof Season) {
+                return $this->redirectToRoute('app_stat_index');
+            }
+            $search->addFilter('season', $season->getId());
+            $sm->update($search);
+        }
+
+        $promotions = $em
+            ->getRepository(Promotion::class)
+            ->findBySeason($em->getRepository(Season::class)->find($search->getFilter('season')));
+
+        // Render
+        return $this->render(
+            'stat/last_promotion.html.twig',
+            [
+                'formSearch' => $formSearch->createView(),
+                'promotions' => $promotions,
             ]
         );
     }
