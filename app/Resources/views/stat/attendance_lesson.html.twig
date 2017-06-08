@@ -88,7 +88,7 @@
         {% set day=-1 %}
         {% endif %}
         {% set day=day+1 %}
-        data.push([{{ month }}, {{ day }}, {{ (d.attendance/d.total*100)|number_format(1,'.','') }}]);
+        data.push([{{ month }}, {{ day }}, {{ (d.attendance/d.total*100)|round(0) }}]);
         {% endfor %}
         Highcharts.chart(
             'test',
