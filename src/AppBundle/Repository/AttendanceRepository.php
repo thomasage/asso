@@ -49,8 +49,10 @@ class AttendanceRepository extends EntityRepository
         $rsm->addScalarResult('attendance', 'attendance');
         $rsm->addScalarResult('lesson', 'lesson');
         $rsm->addScalarResult('total', 'total');
+        $rsm->addScalarResult('month','month');
 
         $query = 'SELECT lesson.date AS lesson,
+                         MONTH( lesson.date ) AS month,
                          COUNT( DISTINCT membership.id ) AS total,
                          COUNT( DISTINCT attendance.id ) AS attendance
                   FROM lesson
