@@ -91,7 +91,7 @@ class Lesson
     /**
      * @var Attendance[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Attendance", mappedBy="lesson", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Attendance", mappedBy="lesson", cascade={"persist", "remove"})
      */
     private $attendances;
 
