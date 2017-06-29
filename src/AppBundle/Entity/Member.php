@@ -111,6 +111,7 @@ class Member
      * @var Promotion[]
      *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Promotion", mappedBy="member")
+     * @ORM\OrderBy({"date"="ASC"})
      */
     private $promotions;
 
