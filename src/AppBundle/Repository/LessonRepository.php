@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Lesson;
@@ -60,14 +61,15 @@ class LessonRepository extends EntityRepository
     /**
      * @param Theme $theme
      * @return mixed
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findOneByTheme(Theme $theme)
     {
-        return $this->createQueryBuilder('lesson')
+        return $this
+            ->createQueryBuilder('lesson')
             ->innerJoin('lesson.themes', 'themes')
             ->andWhere('themes = :theme')
             ->setParameter('theme', $theme)
+            ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
     }
