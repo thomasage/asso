@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -313,12 +314,11 @@ class Member
     /**
      * @return int
      */
-    public function getAge()
+    public function getAge(): int
     {
         $now = new \DateTime();
-        $interval = $now->diff($this->birthday);
 
-        return $interval->y;
+        return $now->diff($this->birthday)->y;
     }
 
     /**
