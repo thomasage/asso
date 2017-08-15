@@ -34,7 +34,8 @@
     "itbz/fpdf": "^1.7",
     "box/spout": "^2.7",
     "phpoffice/phpspreadsheet": "dev-master",
-    "symfony/web-server-bundle": "^3.3"
+    "symfony/web-server-bundle": "^3.3",
+    "friendsofsymfony/user-bundle": "~2.0"
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.0",

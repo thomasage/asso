@@ -1,10 +1,15 @@
 <?php
+declare(strict_types=1);
+
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
 class AppKernel extends Kernel
 {
-    public function registerBundles()
+    /**
+     * @return array
+     */
+    public function registerBundles(): array
     {
         $bundles = array(
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
@@ -16,7 +21,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new AppBundle\AppBundle(),
-            new \Symfony\Bundle\WebServerBundle\WebServerBundle()
+            new \Symfony\Bundle\WebServerBundle\WebServerBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
@@ -30,22 +36,34 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
-    public function getCacheDir()
+    /**
+     * @return string
+     */
+    public function getCacheDir(): string
     {
-        return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
+        return __DIR__.'/var/cache/'.$this->getEnvironment();
     }
 
-    public function getLogDir()
+    /**
+     * @return string
+     */
+    public function getLogDir(): string
     {
-        return dirname(__DIR__).'/var/logs';
+        return __DIR__.'/var/logs';
     }
 
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    /**
+     * @param LoaderInterface $loader
+     */
+    public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
     }
 
-    public function getRootDir()
+    /**
+     * @return string
+     */
+    public function getRootDir(): string
     {
         return __DIR__;
     }

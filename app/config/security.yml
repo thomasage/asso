@@ -1,33 +1,23 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/book/security.html
 security:
 
     encoders:
-        AppBundle\Entity\User:
-            algorithm: bcrypt
+            FOS\UserBundle\Model\UserInterface: bcrypt
 
     providers:
-        users:
-            entity:
-                class: AppBundle:User
-                property: username
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             pattern: ^/
-            anonymous: ~
-            provider: users
             form_login:
-                login_path: app_security_login
-                check_path: app_security_login_check
+                provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
-            logout:
-                path: app_security_logout
-                target: app_security_login
+            logout:       true
+            anonymous:    true
 
     access_control:
         - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
