@@ -1,7 +1,11 @@
 services:
+    app.accounting_manager:
+        class: AppBundle\Utils\AccountingManager
     app.document_manager:
         class: AppBundle\Utils\DocumentManager
-        arguments: [ "@doctrine.orm.entity_manager", "%document_directory%" ]
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "%document_directory%"
     app.form.lesson_day:
         class: AppBundle\Form\LessonDayType
         arguments:
@@ -34,25 +38,30 @@ services:
             - { name: form.type }
     app.form.type.choice_level:
         class: AppBundle\Form\Type\ChoiceLevelType
-        arguments: [ "@doctrine.orm.entity_manager" ]
+        arguments:
+            - "@doctrine.orm.entity_manager"
         tags:
             - { name: form.type }
     app.form.type.choice_season:
         class: AppBundle\Form\Type\ChoiceSeasonType
-        arguments: [ "@doctrine.orm.entity_manager" ]
+        arguments:
+            - "@doctrine.orm.entity_manager"
         tags:
             - { name: form.type }
     app.form.type.date_picker:
         class: AppBundle\Form\Type\DatePickerType
-        arguments: [ "@request_stack" ]
+        arguments:
+            - "@request_stack"
         tags:
             - { name: form.type }
     app.lesson_manager:
         class: AppBundle\Utils\LessonManager
-        arguments: [ "@doctrine.orm.entity_manager" ]
+        arguments:
+            - "@doctrine.orm.entity_manager"
     app.level_manager:
         class: AppBundle\Utils\LevelManager
-        arguments: [ "@doctrine.orm.entity_manager" ]
+        arguments:
+            - "@doctrine.orm.entity_manager"
     app.locale_listener:
         class: AppBundle\Listener\LocaleListener
         arguments:
@@ -63,16 +72,23 @@ services:
             - { name: kernel.event_subscriber }
     app.member_manager:
         class: AppBundle\Utils\MemberManager
-        arguments: [ "@doctrine.orm.entity_manager", "%member_photo_directory%", "@app.document_manager" ]
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "%member_photo_directory%"
+            - "@app.document_manager"
     app.rank_manager:
         class: AppBundle\Utils\RankManager
-        arguments: [ "@doctrine.orm.entity_manager", "%rank_image_directory%" ]
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "%rank_image_directory%"
     app.search_manager:
         class: AppBundle\Utils\SearchManager
-        arguments: [ "@doctrine.orm.entity_manager" ]
+        arguments:
+            - "@doctrine.orm.entity_manager"
     app.security.authentication_listner:
         class: AppBundle\Listener\AuthenticationListener
-        arguments: ['@logger']
+        arguments:
+            - "@logger"
         tags:
             - { name: kernel.event_subscriber }
     app.theme_manager:
@@ -80,10 +96,13 @@ services:
         arguments: [ "@doctrine.orm.entity_manager" ]
     app.transaction_manager:
         class: AppBundle\Utils\TransactionManager
-        arguments: [ "@doctrine.orm.entity_manager", "%transaction_copy_directory%" ]
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "%transaction_copy_directory%"
     app.twig_extension:
         class: AppBundle\Twig\AppExtension
-        arguments: ['@request_stack']
+        arguments:
+            - "@request_stack"
         public: false
         tags:
             - { name: twig.extension }

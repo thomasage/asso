@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace AppBundle\Controller\Accounting;
 
 use AppBundle\Entity\Transaction;
@@ -11,23 +13,22 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends Controller
 {
     /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * @throws \LogicException
+     * @return Response
      *
      * @Route("/accounting/add",
      *        name="app_accounting_add",
      *        methods={"GET","POST"})
      */
-    public function addAction(Request $request)
+    public function addAction(Request $request): Response
     {
         // Transaction
         $transaction = new Transaction();
@@ -49,11 +50,12 @@ class DefaultController extends Controller
             // Redirect
             if ($request->request->get('add_and_close') !== null) {
                 return $this->redirectToRoute('app_accounting_homepage');
-            } elseif ($request->request->get('add_and_new') !== null) {
-                return $this->redirectToRoute('app_accounting_add');
-            } else {
-                return $this->redirectToRoute('app_accounting_edit', ['transaction' => $transaction->getId()]);
             }
+            if ($request->request->get('add_and_new') !== null) {
+                return $this->redirectToRoute('app_accounting_add');
+            }
+
+            return $this->redirectToRoute('app_accounting_edit', ['transaction' => $transaction->getId()]);
 
         }
 
@@ -69,15 +71,13 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
      *
      * @Route("/accounting/autocompleteBankName",
      *     name="app_accounting_autocomplete_bankname",
      *     methods={"GET"},
      *     options={"expose"=true})
      */
-    public function autocompleteBankNameAction(Request $request)
+    public function autocompleteBankNameAction(Request $request): JsonResponse
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -92,15 +92,13 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
      *
      * @Route("/accounting/autocompleteCategory",
      *     name="app_accounting_autocomplete_category",
      *     methods={"GET"},
      *     options={"expose"=true})
      */
-    public function autocompleteCategoryAction(Request $request)
+    public function autocompleteCategoryAction(Request $request): JsonResponse
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -115,15 +113,13 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
      *
      * @Route("/accounting/autocompleteThirdName",
      *     name="app_accounting_autocomplete_thirdname",
      *     methods={"GET"},
      *     options={"expose"=true})
      */
-    public function autocompleteThirdNameAction(Request $request)
+    public function autocompleteThirdNameAction(Request $request): JsonResponse
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -137,7 +133,7 @@ class DefaultController extends Controller
 
     /**
      * @param TransactionCopy $copy
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      *
      * @Route("/accounting/copy/delete/{copy}",
      *     name="app_accounting_copy_delete",
@@ -145,7 +141,7 @@ class DefaultController extends Controller
      *     requirements={"copy"="\d+"},
      *     options={"expose"=true})
      */
-    public function copyDeleteAction(TransactionCopy $copy)
+    public function copyDeleteAction(TransactionCopy $copy): RedirectResponse
     {
         $transaction = $copy->getTransaction();
 
@@ -163,14 +159,14 @@ class DefaultController extends Controller
 
     /**
      * @param TransactionCopy $copy
-     * @return BinaryFileResponse|NotFoundHttpException
+     * @return Response
      *
      * @Route("/accounting/copy/download/{copy}",
      *        name="app_accounting_copy_download",
      *        methods={"GET"},
      *        requirements={"copy"="\d+"})
      */
-    public function copyDownloadAction(TransactionCopy $copy)
+    public function copyDownloadAction(TransactionCopy $copy): Response
     {
         $tm = $this->get('app.transaction_manager');
 
@@ -183,21 +179,20 @@ class DefaultController extends Controller
             return $response;
         }
 
-        return new NotFoundHttpException();
+        return new Response(null, Response::HTTP_NOT_FOUND);
     }
 
     /**
      * @param Request $request
      * @param Transaction $transaction
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * @throws \LogicException
+     * @return Response
      *
      * @Route("/accounting/delete/{transaction}",
      *        name="app_accounting_delete",
      *        methods={"GET","POST"},
      *        requirements={"transaction"="\d+"})
      */
-    public function deleteAction(Request $request, Transaction $transaction)
+    public function deleteAction(Request $request, Transaction $transaction): Response
     {
         // Delete form
         $formDelete = $this->createForm(TransactionDeleteType::class, $transaction);
@@ -233,16 +228,14 @@ class DefaultController extends Controller
     /**
      * @param Request $request
      * @param Transaction $transaction
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
+     * @return Response
      *
      * @Route("/accounting/edit/{transaction}",
      *        name="app_accounting_edit",
      *        methods={"GET","POST"},
      *        requirements={"transaction"="\d+"})
      */
-    public function editAction(Request $request, Transaction $transaction)
+    public function editAction(Request $request, Transaction $transaction): Response
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -266,9 +259,9 @@ class DefaultController extends Controller
             // Redirect
             if ($request->request->get('update') !== null) {
                 return $this->redirectToRoute('app_accounting_edit', ['transaction' => $transaction->getId()]);
-            } else {
-                return $this->redirectToRoute('app_accounting_homepage');
             }
+
+            return $this->redirectToRoute('app_accounting_homepage');
 
         }
 
@@ -299,15 +292,13 @@ class DefaultController extends Controller
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
+     * @return Response
      *
      * @Route("/accounting/export",
      *        name="app_accounting_export",
      *        methods={"GET"})
      */
-    public function exportAction()
+    public function exportAction(): Response
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -318,29 +309,20 @@ class DefaultController extends Controller
         // Transactions
         $transactions = $em->getRepository(Transaction::class)->findBy([], ['date' => 'ASC', 'dateValue' => 'ASC']);
 
-        // Render
-        return new Response(
-            $this->renderView(
-                'accounting/index.xlsx.php',
-                [
-                    'categories' => $categories,
-                    'transactions' => $transactions,
-                ]
-            )
-        );
+        return $this
+            ->get('app.accounting_manager')
+            ->export($categories, $transactions);
     }
 
     /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @throws \LogicException
-     * @throws \InvalidArgumentException
+     * @return Response
      *
      * @Route("/accounting",
      *        name="app_accounting_homepage",
      *        methods={"GET","POST"})
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request): Response
     {
         $route = 'app_accounting_homepage';
 
