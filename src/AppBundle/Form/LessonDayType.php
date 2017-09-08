@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Attendance;
@@ -36,7 +37,7 @@ class LessonDayType extends AbstractType
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
@@ -69,7 +70,7 @@ class LessonDayType extends AbstractType
      * @param FormEvent $event
      * @return bool
      */
-    public function preSetData(FormEvent $event)
+    public function preSetData(FormEvent $event): bool
     {
         $data = $event->getData();
         if (!$data instanceof Lesson) {
@@ -88,17 +89,26 @@ class LessonDayType extends AbstractType
             return false;
         }
 
-        // Available attendances
+        // Attendances known
         $attendances = [];
-        foreach ($this->em->getRepository(Member::class)->findAvailableAttendances($data) as $member) {
-            if (count($member->getAttendances()) > 0) {
-                $attendances = array_merge($attendances, $member->getAttendances()->toArray());
+        foreach ($data->getAttendances() as $a) {
+            $attendances[$a->getMember()->getId()] = $a;
+        }
+
+        // Members available
+        $members = $this->em->getRepository(Member::class)->findByLevelAndSeason($level, $season);
+
+        // Populate collection
+        $collection = [];
+        foreach ($members as $member) {
+            if (isset($attendances[$member->getId()])) {
+                $collection[] = $attendances[$member->getId()];
             } else {
                 $attendance = new Attendance();
                 $attendance
                     ->setLesson($data)
                     ->setMember($member);
-                $attendances[] = $attendance;
+                $collection[] = $attendance;
             }
         }
 
@@ -109,7 +119,7 @@ class LessonDayType extends AbstractType
             CollectionType::class,
             [
                 'entry_type' => AttendanceType::class,
-                'data' => $attendances,
+                'data' => $collection,
             ]
         );
 
@@ -119,7 +129,7 @@ class LessonDayType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
             [

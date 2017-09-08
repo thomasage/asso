@@ -71,16 +71,18 @@
             {{- form.vars.value.start|date_modify('+'~form.vars.value.duration~' minutes')|localizeddate('none','short') -}}
         </div>
     </div>
-    <div class="members">
-        {%- for child in form.attendances -%}
-            <div>
-                {% for state in child.state %}
+    {% if form.attendances is defined %}
+        <div class="members">
+            {%- for child in form.attendances -%}
+                <div>
+                    {% for state in child.state %}
                         {{ form_widget(state) }}
-                {% endfor %}
-                <label>{{ child.vars.value.member }}</label>
-            </div>
-        {%- endfor -%}
-    </div>
+                    {% endfor %}
+                    <label>{{ child.vars.value.member }}</label>
+                </div>
+            {%- endfor -%}
+        </div>
+    {% endif %}
     <div class="themes">
         {%- for child in form.themes -%}
             <div>

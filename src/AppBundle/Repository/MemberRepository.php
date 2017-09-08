@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Lesson;
@@ -8,7 +9,6 @@ use AppBundle\Entity\Search;
 use AppBundle\Entity\Season;
 use AppBundle\Utils\SearchResult;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Query\ResultSetMapping;
 
@@ -144,13 +144,13 @@ class MemberRepository extends EntityRepository
     /**
      * @param Lesson $lesson
      * @return Member[]
-     * @throws NonUniqueResultException
      */
-    public function findAvailableAttendances(Lesson $lesson)
+    public function findAvailableAttendances(Lesson $lesson): array
     {
         $season = $this->_em->getRepository(Season::class)->findByDate($lesson->getDate());
 
-        return $this->createQueryBuilder('m')
+        return $this
+            ->createQueryBuilder('m')
             ->innerJoin('m.memberships', 'ms')
             ->leftJoin('m.attendances', 'a', Join::WITH, 'a.lesson = :lesson')
             ->addSelect('a')

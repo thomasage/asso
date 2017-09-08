@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Controller\Lesson;
 
 use AppBundle\Entity\Attendance;
@@ -76,7 +77,7 @@ class DefaultController extends Controller
      *        methods={"GET","POST"},
      *        requirements={"day"="[0-9]{4}-[0-9]{2}-[0-9]{2}"})
      */
-    public function dayAction(Request $request, \DateTime $day)
+    public function dayAction(Request $request, \DateTime $day): Response
     {
         // Lessons of the day
         $lm = $this->get('app.lesson_manager');
@@ -258,7 +259,7 @@ class DefaultController extends Controller
      *        name="app_lesson_planning",
      *        methods={"GET","POST"})
      */
-    public function planningAction(Request $request)
+    public function planningAction(Request $request): Response
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -304,18 +305,16 @@ class DefaultController extends Controller
                 // Redirect
                 return $this->redirectToRoute('app_lesson_index');
 
-            } else {
-
-                // Flash message
-                $this->addFlash(
-                    'success',
-                    $this->get('translator')->trans('planning.success.updated', [], 'lesson')
-                );
-
-                // Redirect
-                return $this->redirectToRoute('app_lesson_planning');
-
             }
+
+            // Flash message
+            $this->addFlash(
+                'success',
+                $this->get('translator')->trans('planning.success.updated', [], 'lesson')
+            );
+
+            // Redirect
+            return $this->redirectToRoute('app_lesson_planning');
 
         }
 
@@ -340,7 +339,7 @@ class DefaultController extends Controller
      *     requirements={"lesson"="\d+","member"="\d+","state"="\d+"},
      *     options={"expose"=true})
      */
-    public function setAttendanceAction(Lesson $lesson, Member $member, $state)
+    public function setAttendanceAction(Lesson $lesson, Member $member, $state): JsonResponse
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -348,7 +347,7 @@ class DefaultController extends Controller
         // Previous attendance
         $attendance = $em->getRepository(Attendance::class)->findByLessonMember($lesson, $member);
 
-        if ($state == 1 || $state == 2) {
+        if ($state === 1 || $state === 2) {
             if (!$attendance instanceof Attendance) {
                 $attendance = new Attendance();
                 $attendance
@@ -380,12 +379,12 @@ class DefaultController extends Controller
      *     requirements={"lesson"="\d+","theme"="\d+","state"="\d+"},
      *     options={"expose"=true})
      */
-    public function setThemeAction(Lesson $lesson, Theme $theme, $state)
+    public function setThemeAction(Lesson $lesson, Theme $theme, $state): JsonResponse
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
 
-        if ($state == 1) {
+        if ($state === 1) {
             $lesson->addTheme($theme);
         } else {
             $lesson->removeTheme($theme);
