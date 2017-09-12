@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -71,15 +72,11 @@ class Lesson
     private $comment;
 
     /**
-     * @var Level
+     * @var Level[]
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Level")
-     * @ORM\JoinColumn(nullable=false)
-     *
-     * @Assert\NotBlank()
-     * @Assert\Valid()
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Level")
      */
-    private $level;
+    private $levels;
 
     /**
      * @var Theme[]
@@ -99,6 +96,7 @@ class Lesson
     {
         $this->active = true;
         $this->attendances = new ArrayCollection();
+        $this->levels = new ArrayCollection();
         $this->themes = new ArrayCollection();
     }
 
@@ -206,25 +204,6 @@ class Lesson
     }
 
     /**
-     * @return Level
-     */
-    public function getLevel()
-    {
-        return $this->level;
-    }
-
-    /**
-     * @param Level $level
-     * @return Lesson
-     */
-    public function setLevel(Level $level)
-    {
-        $this->level = $level;
-
-        return $this;
-    }
-
-    /**
      * @param Theme $theme
      * @return Lesson
      */
@@ -276,5 +255,32 @@ class Lesson
     public function getAttendances()
     {
         return $this->attendances;
+    }
+
+    /**
+     * @param Level $level
+     * @return Lesson
+     */
+    public function addLevel(Level $level)
+    {
+        $this->levels[] = $level;
+
+        return $this;
+    }
+
+    /**
+     * @param Level $level
+     */
+    public function removeLevel(Level $level)
+    {
+        $this->levels->removeElement($level);
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLevels()
+    {
+        return $this->levels;
     }
 }

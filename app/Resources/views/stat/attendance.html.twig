@@ -63,7 +63,7 @@
                         {{ lesson.start|date_modify('+'~lesson.duration~' minutes')|localizeddate('none','short') }}
                     </td>
                     <td>
-                        {{ lesson.level }}
+                        {{ lesson.levels|join(', ') }}
                     </td>
                     <td>
                         {% for theme in lesson.themes %}

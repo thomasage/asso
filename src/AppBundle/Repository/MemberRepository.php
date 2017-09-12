@@ -8,6 +8,8 @@ use AppBundle\Entity\Member;
 use AppBundle\Entity\Search;
 use AppBundle\Entity\Season;
 use AppBundle\Utils\SearchResult;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\Query\ResultSetMapping;
@@ -136,6 +138,25 @@ class MemberRepository extends EntityRepository
             ->addOrderBy('m.firstname', 'ASC')
             ->addOrderBy('m.lastname', 'ASC')
             ->setParameter('level', $level)
+            ->setParameter('season', $season)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param Collection $levels
+     * @param Season $season
+     * @return array
+     */
+    public function findByLevelsAndSeason(Collection $levels, Season $season)
+    {
+        return $this->createQueryBuilder('m')
+            ->innerJoin('m.memberships', 'ms')
+            ->andWhere('ms.level IN ( :levels )')
+            ->andWhere('ms.season = :season')
+            ->addOrderBy('m.firstname', 'ASC')
+            ->addOrderBy('m.lastname', 'ASC')
+            ->setParameter('levels', $levels)
             ->setParameter('season', $season)
             ->getQuery()
             ->getResult();

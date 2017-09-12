@@ -109,8 +109,8 @@ class LessonRepository extends EntityRepository
                 Join::WITH,
                 'attendance.member = :member AND attendance.state IN ( 1, 2 )'
             )
+            ->innerJoin('lesson.levels', 'levels', Join::WITH, 'levels.id = :level')
             ->addSelect('attendance')
-            ->andWhere('lesson.level = :level')
             ->andWhere('lesson.date >= :start')
             ->andWhere('lesson.date <= :stop')
             ->setParameter('level', $membership->getLevel())
@@ -195,11 +195,11 @@ class LessonRepository extends EntityRepository
             ->createQueryBuilder('lesson')
             ->leftJoin('lesson.attendances', 'attendances')
             ->leftJoin('attendances.member', 'm')
-            ->leftJoin('lesson.level', 'level')
+            ->leftJoin('lesson.levels', 'levels')
             ->leftJoin('lesson.themes', 'themes')
             ->addSelect('attendances')
             ->addSelect('m')
-            ->addSelect('level')
+            ->addSelect('levels')
             ->addSelect('themes')
             ->andWhere('lesson.date BETWEEN :start AND :stop')
             ->addOrderBy('lesson.date', 'ASC')

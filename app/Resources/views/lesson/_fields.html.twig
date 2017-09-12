@@ -63,7 +63,7 @@
 {%- block _lesson_day_collection_lessons_entry_widget -%}
     <div class="title">
         <div class="level">
-            {{- form.vars.value.level -}}
+            {{- form.vars.value.levels|join(', ') -}}
         </div>
         <div class="time">
             {{- form.vars.value.start|localizeddate('none','short') -}}

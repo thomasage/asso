@@ -75,7 +75,7 @@ foreach ($lessons as $lesson) {
         $lesson->getDate()->format('Y-m-d'),
         $lesson->getStart()->format('H:i'),
         $lesson->getStart()->modify('+'.$lesson->getDuration().' minutes')->format('H:i'),
-        $lesson->getLevel()->getName(),
+        implode(', ',$lesson->getLevels()),
         implode("\n", $themes),
         implode("\n", $present),
         implode("\n", $apologize),

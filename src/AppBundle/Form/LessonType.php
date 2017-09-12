@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Form;
 
 use AppBundle\Form\Type\DatePickerType;
@@ -56,10 +57,11 @@ class LessonType extends AbstractType
                 )
             )
             ->add(
-                'level',
+                'levels',
                 EntityType::class,
                 array(
                     'required' => true,
+                    'multiple' => true,
                     'label' => 'field.level',
                     'class' => 'AppBundle\Entity\Level',
                     'query_builder' => function (EntityRepository $er) {

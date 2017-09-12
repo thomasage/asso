@@ -78,10 +78,7 @@ class LessonDayType extends AbstractType
         }
 
         // Level of lesson
-        $level = $data->getLevel();
-        if (!$level instanceof Level) {
-            return false;
-        }
+        $levels = $data->getLevels();
 
         // Season of lesson
         $season = $this->em->getRepository(Season::class)->findByDate($data->getDate());
@@ -96,7 +93,7 @@ class LessonDayType extends AbstractType
         }
 
         // Members available
-        $members = $this->em->getRepository(Member::class)->findByLevelAndSeason($level, $season);
+        $members = $this->em->getRepository(Member::class)->findByLevelsAndSeason($levels, $season);
 
         // Populate collection
         $collection = [];
