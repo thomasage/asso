@@ -245,7 +245,7 @@ class DefaultController extends Controller
             return $this->redirectToRoute($route);
         }
 
-        $season = $em->getRepository(Season::class)->find($search->getFilter('season')??0);
+        $season = $em->getRepository(Season::class)->find($search->getFilter('season') ?? 0);
         if (!$season instanceof Season) {
             $season = $em->getRepository(Season::class)->findOneBy([]);
             if (!$season instanceof Season) {
@@ -297,7 +297,7 @@ class DefaultController extends Controller
             return $this->redirectToRoute('app_stat_attendance_lesson');
         }
 
-        $level = $em->getRepository(Level::class)->find($search->getFilter('level')??0);
+        $level = $em->getRepository(Level::class)->find($search->getFilter('level') ?? 0);
         if (!$level instanceof Level) {
             $level = $em->getRepository(Level::class)->findOneBy([]);
             if (!$level instanceof Level) {
@@ -306,7 +306,7 @@ class DefaultController extends Controller
             $search->addFilter('level', $level->getId());
             $sm->update($search);
         }
-        $season = $em->getRepository(Season::class)->find($search->getFilter('season')??0);
+        $season = $em->getRepository(Season::class)->find($search->getFilter('season') ?? 0);
         if (!$season instanceof Season) {
             $season = $em->getRepository(Season::class)->findOneBy([]);
             if (!$season instanceof Season) {
@@ -338,7 +338,7 @@ class DefaultController extends Controller
      *        name="app_stat_attendance_week",
      *        methods={"GET"})
      */
-    public function attendanceWeekAction()
+    public function attendanceWeekAction(): Response
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -378,7 +378,7 @@ class DefaultController extends Controller
      *        name="app_stat_forecast_budget",
      *        methods={"GET","POST"})
      */
-    public function forecastBudgetAction(Request $request)
+    public function forecastBudgetAction(Request $request): Response
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -439,7 +439,7 @@ class DefaultController extends Controller
      *        name="app_stat_index",
      *        methods={"GET"})
      */
-    public function indexAction()
+    public function indexAction(): Response
     {
         // Render
         return $this->render('stat/index.html.twig');
@@ -453,7 +453,7 @@ class DefaultController extends Controller
      *     name="app_stat_member_origin",
      *     methods={"GET","POST"})
      */
-    public function memberOriginAction(Request $request)
+    public function memberOriginAction(Request $request): Response
     {
         // Session
         $session = $this->get('session');
@@ -511,7 +511,7 @@ class DefaultController extends Controller
      *     name="app_stat_member_evolution",
      *     methods={"GET"})
      */
-    public function memberEvolutionAction()
+    public function memberEvolutionAction(): Response
     {
         // Results
         $em = $this->getDoctrine()->getManager();
@@ -534,7 +534,7 @@ class DefaultController extends Controller
      *     name="app_stat_member_segment",
      *     methods={"GET","POST"})
      */
-    public function memberSegmentAction(Request $request)
+    public function memberSegmentAction(Request $request): Response
     {
         // Session
         $session = $this->get('session');
@@ -591,9 +591,9 @@ class DefaultController extends Controller
      *
      * @Route("/stat/memberSignature",
      *     name="app_stat_member_signature",
-     *     methods={"GET","POST"})
+     *     methods={"GET"})
      */
-    public function memberSignatureAction(Request $request)
+    public function memberSignatureAction(Request $request): Response
     {
         // Session
         $session = $this->get('session');
@@ -611,9 +611,8 @@ class DefaultController extends Controller
         // Search form
         $formSearch = $this->createForm(
             StatMemberSignatureType::class,
-            [
-                'season' => $session->get('stat-member-signature')['season'],
-            ]
+            ['season' => $session->get('stat-member-signature')['season']],
+            ['method' => 'GET']
         );
         $formSearch->handleRequest($request);
 
@@ -665,7 +664,7 @@ class DefaultController extends Controller
      *        name="app_stat_rank_progress",
      *        methods={"GET","POST"})
      */
-    public function rankProgressAction(Request $request)
+    public function rankProgressAction(Request $request): Response
     {
         // Entity manager
         $em = $this->getDoctrine()->getManager();
@@ -673,9 +672,7 @@ class DefaultController extends Controller
         // Search form
         $formSearch = $this->createForm(
             StatRankProgressType::class,
-            [
-                'season' => $this->getUser()->getCurrentSeason()->getId(),
-            ]
+            ['season' => $this->getUser()->getCurrentSeason()->getId()]
         );
         $formSearch->handleRequest($request);
 
@@ -690,10 +687,10 @@ class DefaultController extends Controller
         // Render
         return $this->render(
             'stat/rank.progress.html.twig',
-            array(
+            [
                 'formSearch' => $formSearch->createView(),
                 'results' => $results,
-            )
+            ]
         );
     }
 }
