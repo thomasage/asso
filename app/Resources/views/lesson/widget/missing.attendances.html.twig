@@ -12,7 +12,7 @@
                         {{ 'at'|trans }}
                         {{ lesson.start|localizeddate('none','short') }}
                         :
-                        {{ lesson.level }}
+                        {{ lesson.levels|join(', ') }}
                     </a>
                 </li>
             {% endfor %}
