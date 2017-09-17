@@ -1,10 +1,10 @@
 <?php
+declare(strict_types=1);
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Attendance;
 use AppBundle\Entity\Lesson;
-use AppBundle\Entity\Level;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Season;
 use AppBundle\Entity\Theme;
@@ -98,6 +98,9 @@ class LessonDayType extends AbstractType
         // Populate collection
         $collection = [];
         foreach ($members as $member) {
+            if (!$member instanceof Member) {
+                continue;
+            }
             if (isset($attendances[$member->getId()])) {
                 $collection[] = $attendances[$member->getId()];
             } else {

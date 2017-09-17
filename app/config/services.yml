@@ -7,7 +7,7 @@ services:
             - "@doctrine.orm.entity_manager"
             - "%document_directory%"
     app.form.lesson_day:
-        class: AppBundle\Form\LessonDayType
+        class: AppBundle\Form\Type\LessonDayType
         arguments:
             - "@doctrine.orm.entity_manager"
         tags:

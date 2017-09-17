@@ -1,5 +1,7 @@
 <?php
-namespace AppBundle\Form;
+declare(strict_types=1);
+
+namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Attendance;
 use Symfony\Component\Form\AbstractType;
@@ -13,7 +15,7 @@ class AttendanceType extends AbstractType
      * @param FormBuilderInterface $builder
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
@@ -31,7 +33,7 @@ class AttendanceType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
             [

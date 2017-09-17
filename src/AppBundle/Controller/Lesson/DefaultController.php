@@ -2,15 +2,13 @@
 
 namespace AppBundle\Controller\Lesson;
 
-use AppBundle\Entity\Attendance;
 use AppBundle\Entity\Lesson;
-use AppBundle\Entity\Member;
 use AppBundle\Entity\Season;
 use AppBundle\Entity\Theme;
-use AppBundle\Form\LessonDayCollectionType;
 use AppBundle\Form\LessonDeleteType;
 use AppBundle\Form\LessonType;
 use AppBundle\Form\PlanningCollectionType;
+use AppBundle\Form\Type\LessonDayCollectionType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -219,8 +217,6 @@ class DefaultController extends Controller
         // Season to display
         $season = $this->getUser()->getCurrentSeason();
         if (!$season instanceof Season) {
-            $this->addFlash('error', $this->get('translator')->trans(''));
-
             return $this->redirectToRoute('app_param_season');
         }
 
@@ -325,46 +321,6 @@ class DefaultController extends Controller
                 'formEdit' => $formEdit->createView(),
             ]
         );
-    }
-
-    /**
-     * @param Lesson $lesson
-     * @param Member $member
-     * @param int $state
-     * @return JsonResponse
-     *
-     * @Route("/lesson/setAttendance/{lesson}/{member}/{state}",
-     *     name="app_lesson_set_attendance",
-     *     methods={"POST"},
-     *     requirements={"lesson"="\d+","member"="\d+","state"="\d+"},
-     *     options={"expose"=true})
-     */
-    public function setAttendanceAction(Lesson $lesson, Member $member, $state): JsonResponse
-    {
-        // Entity manager
-        $em = $this->getDoctrine()->getManager();
-
-        // Previous attendance
-        $attendance = $em->getRepository(Attendance::class)->findByLessonMember($lesson, $member);
-
-        if ($state === 1 || $state === 2) {
-            if (!$attendance instanceof Attendance) {
-                $attendance = new Attendance();
-                $attendance
-                    ->setLesson($lesson)
-                    ->setMember($member);
-            }
-            $attendance->setState($state);
-            $em->persist($attendance);
-            $em->flush();
-        } else {
-            if ($attendance instanceof Attendance) {
-                $em->remove($attendance);
-                $em->flush();
-            }
-        }
-
-        return new JsonResponse('OK');
     }
 
     /**
