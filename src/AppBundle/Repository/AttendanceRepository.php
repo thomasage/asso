@@ -56,14 +56,16 @@ class AttendanceRepository extends EntityRepository
                          COUNT( DISTINCT membership.id ) AS total,
                          COUNT( DISTINCT attendance.id ) AS attendance
                   FROM lesson
+                  INNER JOIN lesson_level
+                      ON lesson.id = lesson_level.lesson_id
                   INNER JOIN membership
-                      ON lesson.level_id = membership.level_id
+                      ON lesson_level.level_id = membership.level_id
                       AND membership.season_id = :season
                   LEFT JOIN attendance
                       ON lesson.id = attendance.lesson_id
                       AND attendance.state = 2
                   WHERE lesson.date BETWEEN :start AND :stop
-                  AND   lesson.level_id = :level
+                  AND   lesson_level.level_id = :level
                   GROUP BY lesson.id
                   ORDER BY lesson.date ASC, lesson.start ASC';
 
