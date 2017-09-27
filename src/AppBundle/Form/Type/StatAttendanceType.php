@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class StatAttendanceLessonType extends AbstractType
+class StatAttendanceType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -21,14 +21,6 @@ class StatAttendanceLessonType extends AbstractType
                 ChoiceSeasonType::class,
                 [
                     'label' => 'field.season',
-                    'required' => true,
-                ]
-            )
-            ->add(
-                'level',
-                ChoiceLevelType::class,
-                [
-                    'label' => 'field.level',
                     'required' => true,
                 ]
             );

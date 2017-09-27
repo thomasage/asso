@@ -1,11 +1,12 @@
 <?php
+
 namespace AppBundle\Controller\Member;
 
 use AppBundle\Entity\Lesson;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Membership;
-use AppBundle\Form\MemberSearchType;
-use AppBundle\Form\MemberType;
+use AppBundle\Form\Type\MemberSearchType;
+use AppBundle\Form\Type\MemberType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;

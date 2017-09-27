@@ -2,7 +2,7 @@
 namespace AppBundle\Controller\Param;
 
 use AppBundle\Entity\Season;
-use AppBundle\Form\SeasonType;
+use AppBundle\Form\Type\SeasonType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

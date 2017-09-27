@@ -5,9 +5,10 @@ namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class StatAttendanceLessonType extends AbstractType
+class StatRankProgressType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -29,13 +30,14 @@ class StatAttendanceLessonType extends AbstractType
                 ChoiceLevelType::class,
                 [
                     'label' => 'field.level',
-                    'required' => true,
+                    'required' => false,
                 ]
             );
     }
 
     /**
      * @param OptionsResolver $resolver
+     * @throws AccessException
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

@@ -3,11 +3,14 @@ declare(strict_types=1);
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\ForecastBudgetItem;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class StatAttendanceLessonType extends AbstractType
+class ForecastBudgetItemType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,19 +20,20 @@ class StatAttendanceLessonType extends AbstractType
     {
         $builder
             ->add(
-                'season',
-                ChoiceSeasonType::class,
+                'category',
+                TextType::class,
                 [
-                    'label' => 'field.season',
                     'required' => true,
+                    'label' => 'field.category',
                 ]
             )
             ->add(
-                'level',
-                ChoiceLevelType::class,
+                'amount',
+                MoneyType::class,
                 [
-                    'label' => 'field.level',
                     'required' => true,
+                    'label' => 'field.amount',
+                    'grouping' => true,
                 ]
             );
     }
@@ -41,7 +45,8 @@ class StatAttendanceLessonType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'translation_domain' => 'stat',
+                'data_class' => ForecastBudgetItem::class,
+                'translation_domain' => 'accounting',
             ]
         );
     }

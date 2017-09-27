@@ -3,8 +3,8 @@ namespace AppBundle\Controller\Param;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Theme;
-use AppBundle\Form\ThemeDeleteType;
-use AppBundle\Form\ThemeType;
+use AppBundle\Form\Type\ThemeDeleteType;
+use AppBundle\Form\Type\ThemeType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

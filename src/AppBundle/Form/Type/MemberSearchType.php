@@ -4,10 +4,11 @@ declare(strict_types=1);
 namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class StatAttendanceLessonType extends AbstractType
+class MemberSearchType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,11 +18,27 @@ class StatAttendanceLessonType extends AbstractType
     {
         $builder
             ->add(
+                'firstname',
+                TextType::class,
+                [
+                    'label' => 'field.firstname',
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'lastname',
+                TextType::class,
+                [
+                    'label' => 'field.lastname',
+                    'required' => false,
+                ]
+            )
+            ->add(
                 'season',
                 ChoiceSeasonType::class,
                 [
                     'label' => 'field.season',
-                    'required' => true,
+                    'required' => false,
                 ]
             )
             ->add(
@@ -29,7 +46,7 @@ class StatAttendanceLessonType extends AbstractType
                 ChoiceLevelType::class,
                 [
                     'label' => 'field.level',
-                    'required' => true,
+                    'required' => false,
                 ]
             );
     }
@@ -41,7 +58,7 @@ class StatAttendanceLessonType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'translation_domain' => 'stat',
+                'translation_domain' => 'member',
             ]
         );
     }

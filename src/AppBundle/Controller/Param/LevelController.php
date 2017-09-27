@@ -3,8 +3,8 @@ namespace AppBundle\Controller\Param;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Level;
-use AppBundle\Form\LevelDeleteType;
-use AppBundle\Form\LevelType;
+use AppBundle\Form\Type\LevelDeleteType;
+use AppBundle\Form\Type\LevelType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

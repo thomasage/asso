@@ -5,9 +5,10 @@ namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\Exception\AccessException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class StatAttendanceLessonType extends AbstractType
+class StatForecastBudgetType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,18 +18,10 @@ class StatAttendanceLessonType extends AbstractType
     {
         $builder
             ->add(
-                'season',
-                ChoiceSeasonType::class,
+                'period',
+                ChoiceForecastBudgetPeriodType::class,
                 [
-                    'label' => 'field.season',
-                    'required' => true,
-                ]
-            )
-            ->add(
-                'level',
-                ChoiceLevelType::class,
-                [
-                    'label' => 'field.level',
+                    'label' => 'field.period',
                     'required' => true,
                 ]
             );
@@ -36,6 +29,7 @@ class StatAttendanceLessonType extends AbstractType
 
     /**
      * @param OptionsResolver $resolver
+     * @throws AccessException
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

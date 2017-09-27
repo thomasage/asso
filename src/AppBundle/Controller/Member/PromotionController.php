@@ -1,10 +1,11 @@
 <?php
+
 namespace AppBundle\Controller\Member;
 
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Promotion;
-use AppBundle\Form\PromotionDeleteType;
-use AppBundle\Form\PromotionType;
+use AppBundle\Form\Type\PromotionDeleteType;
+use AppBundle\Form\Type\PromotionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;

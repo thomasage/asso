@@ -13,19 +13,19 @@ services:
         tags:
             - { name:form.type }
     app.form.type.stat_member_origin:
-        class: AppBundle\Form\StatMemberOriginType
+        class: AppBundle\Form\Type\StatMemberOriginType
         arguments:
             - '@doctrine.orm.entity_manager'
         tags:
             - { name: form.type }
     app.form.type.stat_member_segment:
-        class: AppBundle\Form\StatMemberSegmentType
+        class: AppBundle\Form\Type\StatMemberSegmentType
         arguments:
             - '@doctrine.orm.entity_manager'
         tags:
             - { name: form.type }
     app.form.type.stat_member_signature:
-        class: AppBundle\Form\StatMemberSignatureType
+        class: AppBundle\Form\Type\StatMemberSignatureType
         arguments:
             - '@doctrine.orm.entity_manager'
         tags:

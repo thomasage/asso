@@ -1,12 +1,13 @@
 <?php
+
 namespace AppBundle\Controller\Member;
 
 use AppBundle\Entity\Document;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Membership;
-use AppBundle\Form\DocumentDeleteType;
-use AppBundle\Form\MembershipDeleteType;
-use AppBundle\Form\MembershipType;
+use AppBundle\Form\Type\DocumentDeleteType;
+use AppBundle\Form\Type\MembershipDeleteType;
+use AppBundle\Form\Type\MembershipType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;

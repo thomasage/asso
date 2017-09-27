@@ -3,9 +3,9 @@ namespace AppBundle\Controller\Accounting;
 
 use AppBundle\Entity\ForecastBudgetItem;
 use AppBundle\Entity\ForecastBudgetPeriod;
-use AppBundle\Form\ForecastBudgetItemCollectionType;
-use AppBundle\Form\ForecastBudgetPeriodType;
-use AppBundle\Form\ForecastBudgetSearchType;
+use AppBundle\Form\Type\ForecastBudgetItemCollectionType;
+use AppBundle\Form\Type\ForecastBudgetPeriodType;
+use AppBundle\Form\Type\ForecastBudgetSearchType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

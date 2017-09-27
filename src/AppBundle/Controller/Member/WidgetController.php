@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Controller\Member;
 
 use AppBundle\Entity\Membership;

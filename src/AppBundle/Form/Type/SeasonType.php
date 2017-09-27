@@ -3,11 +3,12 @@ declare(strict_types=1);
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Entity\Season;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class StatAttendanceLessonType extends AbstractType
+class SeasonType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -17,19 +18,21 @@ class StatAttendanceLessonType extends AbstractType
     {
         $builder
             ->add(
-                'season',
-                ChoiceSeasonType::class,
+                'start',
+                DatePickerType::class,
                 [
-                    'label' => 'field.season',
                     'required' => true,
+                    'label' => 'field.start',
+                    'widget' => 'single_text',
                 ]
             )
             ->add(
-                'level',
-                ChoiceLevelType::class,
+                'stop',
+                DatePickerType::class,
                 [
-                    'label' => 'field.level',
                     'required' => true,
+                    'label' => 'field.stop',
+                    'widget' => 'single_text',
                 ]
             );
     }
@@ -41,7 +44,8 @@ class StatAttendanceLessonType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'translation_domain' => 'stat',
+                'data_class' => Season::class,
+                'translation_domain' => 'param',
             ]
         );
     }

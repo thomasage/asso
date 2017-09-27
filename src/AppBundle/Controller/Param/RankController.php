@@ -2,7 +2,7 @@
 namespace AppBundle\Controller\Param;
 
 use AppBundle\Entity\Rank;
-use AppBundle\Form\RankType;
+use AppBundle\Form\Type\RankType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;

@@ -3,33 +3,43 @@ declare(strict_types=1);
 
 namespace AppBundle\Form\Type;
 
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class StatAttendanceLessonType extends AbstractType
+class StatMemberOriginType extends AbstractType
 {
+    /**
+     * @var EntityManager
+     */
+    private $em;
+
+    /**
+     * @param EntityManager $em
+     */
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $seasons = $this->em->getRepository('AppBundle:Season')->choicesList();
+
         $builder
             ->add(
                 'season',
-                ChoiceSeasonType::class,
+                ChoiceType::class,
                 [
                     'label' => 'field.season',
                     'required' => true,
-                ]
-            )
-            ->add(
-                'level',
-                ChoiceLevelType::class,
-                [
-                    'label' => 'field.level',
-                    'required' => true,
+                    'choices' => $seasons,
                 ]
             );
     }
