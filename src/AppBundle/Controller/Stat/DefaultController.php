@@ -662,7 +662,7 @@ class DefaultController extends Controller
      *
      * @Route("/stat/rankProgress",
      *        name="app_stat_rank_progress",
-     *        methods={"GET","POST"})
+     *        methods={"GET"})
      */
     public function rankProgressAction(Request $request): Response
     {
@@ -672,7 +672,8 @@ class DefaultController extends Controller
         // Search form
         $formSearch = $this->createForm(
             StatRankProgressType::class,
-            ['season' => $this->getUser()->getCurrentSeason()->getId()]
+            ['season' => $this->getUser()->getCurrentSeason()->getId()],
+            ['method' => 'GET']
         );
         $formSearch->handleRequest($request);
 
