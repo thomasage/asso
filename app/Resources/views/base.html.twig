@@ -15,40 +15,7 @@
     <link type="image/png" rel="icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body>
-{% if app.user %}
-    <div id="menu-primary">
-        <nav>
-            <a href="{{ path('app_index') }}"{% if menuActive=='dashboard' %} class="active"{% endif %}>
-                <span class="fi-home"></span>
-                {{ 'menu.dashboard'|trans }}
-            </a>
-            <a href="{{ path('app_member_index') }}"{% if menuActive=='member' %} class="active"{% endif %}>
-                <span class="fi-torsos"></span>
-                {{ 'menu.member'|trans }}
-            </a>
-            <a href="{{ path('app_lesson_index') }}"{% if menuActive=='lesson' %} class="active"{% endif %}>
-                <span class="fi-calendar"></span>
-                {{ 'menu.lesson'|trans }}
-            </a>
-            <a href="{{ path('app_accounting_homepage') }}"{% if menuActive=='accounting' %} class="active"{% endif %}>
-                <span class="fi-euro"></span>
-                {{ 'menu.accounting'|trans }}
-            </a>
-            <a href="{{ path('app_stat_index') }}"{% if menuActive=='stat' %} class="active"{% endif %}>
-                <span class="fi-graph-trend"></span>
-                {{ 'menu.stat'|trans }}
-            </a>
-            <a href="{{ path('app_param_index') }}"{% if menuActive=='param' %} class="active"{% endif %}>
-                <span class="fi-wrench"></span>
-                {{ 'menu.param'|trans }}
-            </a>
-            <a href="{{ path('fos_user_security_logout') }}">
-                <span class="fi-power"></span>
-                {{ 'menu.logout'|trans }}
-            </a>
-        </nav>
-    </div>
-{% endif %}
+{% include 'default/_menu_primary.html.twig' %}
 <div id="content">
     {% block body %}{% endblock %}
 </div>
@@ -62,7 +29,7 @@
     <script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script type="text/javascript" src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(function () {
             $('input.date').datepicker($.datepicker.regional['{{ app.request.locale }}']);
         });
     </script>
