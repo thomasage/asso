@@ -272,8 +272,8 @@ class DefaultController extends Controller
                 $this->get('translator')->trans(
                     'edit.warning.breakdown_amount',
                     [
-                        '%amount%' => number_format($transaction->getAmount(), 2, '.', ' '),
-                        '%breakdown%' => number_format($transaction->getDetailsAmount(), 2, '.', ' '),
+                        '%amount%' => number_format((float)$transaction->getAmount(), 2, '.', ' '),
+                        '%breakdown%' => number_format((float)$transaction->getDetailsAmount(), 2, '.', ' '),
                     ],
                     'accounting'
                 )
