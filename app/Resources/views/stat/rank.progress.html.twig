@@ -55,18 +55,7 @@
                         <small>{{ result.rank_name }}</small>
                     </td>
                     <td class="progress-lesson">
-                        {% if result.rank_lessons %}
-                            <meter min="0" max="{{ result.rank_lessons }}" value="{{ result.lessons }}">
-                                {{ result.lessons/result.rank_lessons*100 }} %
-                            </meter><br/>
-                            <small>
-                                {{ 'count_lessons_on'|transchoice(result.lessons,{'%total%':result.rank_lessons}) }}
-                            </small>
-                        {% else %}
-                            <small>
-                                {{ 'count_lessons'|transchoice(result.lessons) }}
-                            </small>
-                        {% endif %}
+                        {{ 'count_lessons'|transchoice(result.lessons) }}
                     </td>
                 </tr>
             {% else %}
