@@ -1,0 +1,82 @@
+{% extends 'stat/layout.html.twig' %}
+
+{% trans_default_domain 'stat' %}
+
+{% block body %}
+
+    <div id="page-stat-themes">
+
+        <div id="menu-secondary">
+            <h1>{{ 'themes.title'|trans }}</h1>
+            <nav>
+                <a href="{{ path('app_stat_index') }}" class="button">
+                    <span class="fi-arrow-left"></span>
+                    {{ 'action.back'|trans({},'messages') }}
+                </a>
+            </nav>
+        </div>
+
+        {{ include('default/_flash_messages.html.twig') }}
+
+        {{ form_start(formSearch) }}
+        <div class="search0">
+            {{ form_row(formSearch.season) }}
+            {{ form_row(formSearch.level) }}
+            <div>
+                <button type="submit" class="button primary">
+                    <span class="fi-filter"></span>
+                    {{ 'action.search'|trans({},'messages') }}
+                </button>
+            </div>
+        </div>
+        {{ form_end(formSearch) }}
+
+        <div id="graph"></div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/highcharts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/highcharts/modules/exporting.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            Highcharts.chart(
+                'graph',
+                {
+                    chart: {
+                        type: 'bar',
+                        height: {{ results.categories|length*20 }}
+                    },
+                    title: false,
+                    legend: {
+                        align: 'right',
+                        verticalAlign: 'top',
+                        layout: 'vertical',
+                        y: 30
+                    },
+                    xAxis: {
+                        categories: $.parseJSON('{{ results.categories|json_encode|raw }}')
+                    },
+                    yAxis: {
+                        title: false
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                        shared: true
+                    },
+                    plotOptions: {
+                        series: {
+                            stacking: 'percent'
+                        }
+                    },
+                    series: $.parseJSON('{{ results.series|json_encode|raw }}')
+                }
+            );
+        });
+    </script>
+
+{% endblock %}

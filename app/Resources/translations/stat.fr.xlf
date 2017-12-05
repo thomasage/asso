@@ -285,6 +285,10 @@
         <source>last_promotion.title</source>
         <target>Dernières promotions</target>
       </trans-unit>
+      <trans-unit id="12c28ae6cf035a0bc0f56b16b896bcbd" resname="themes.title">
+        <source>themes.title</source>
+        <target>Thèmes des cours</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

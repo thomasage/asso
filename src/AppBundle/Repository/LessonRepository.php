@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace AppBundle\Repository;
 
@@ -17,7 +18,7 @@ class LessonRepository extends EntityRepository
      * @param Season $season
      * @return Lesson[]
      */
-    public function findBySeason(Season $season)
+    public function findBySeason(Season $season): array
     {
         return $this
             ->createQueryBuilder('l')
@@ -33,7 +34,7 @@ class LessonRepository extends EntityRepository
      * @param \DateTime $date
      * @return Lesson[]
      */
-    public function findByDate(\DateTime $date)
+    public function findByDate(\DateTime $date): array
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.date = :date')
@@ -46,7 +47,6 @@ class LessonRepository extends EntityRepository
     /**
      * @param Level $level
      * @return mixed
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findOneByLevel(Level $level)
     {
@@ -79,7 +79,7 @@ class LessonRepository extends EntityRepository
      * @param Season $season
      * @return Lesson[]
      */
-    public function findByLevelAndSeason(Level $level, Season $season)
+    public function findByLevelAndSeason(Level $level, Season $season): array
     {
         return $this
             ->createQueryBuilder('lesson')
@@ -99,7 +99,7 @@ class LessonRepository extends EntityRepository
      * @param Membership $membership
      * @return Lesson[]
      */
-    public function findAttendanceByMembership(Membership $membership)
+    public function findAttendanceByMembership(Membership $membership): array
     {
         return $this
             ->createQueryBuilder('lesson')
@@ -126,9 +126,8 @@ class LessonRepository extends EntityRepository
     /**
      * @param \DateTime $date
      * @return \DateTime|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findPreviousDayWithLesson(\DateTime $date)
+    public function findPreviousDayWithLesson(\DateTime $date): ?\DateTime
     {
         try {
 
@@ -157,9 +156,8 @@ class LessonRepository extends EntityRepository
     /**
      * @param \DateTime $date
      * @return \DateTime|null
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findNextDayWithLesson(\DateTime $date)
+    public function findNextDayWithLesson(\DateTime $date): ?\DateTime
     {
         try {
 
@@ -189,7 +187,7 @@ class LessonRepository extends EntityRepository
      * @param Season $season
      * @return array
      */
-    public function statAttendance(Season $season)
+    public function statAttendance(Season $season): array
     {
         return $this
             ->createQueryBuilder('lesson')
@@ -214,7 +212,7 @@ class LessonRepository extends EntityRepository
      * @param Season $season
      * @return array
      */
-    public function findMissingAttendances(Season $season)
+    public function findMissingAttendances(Season $season): array
     {
         $start = max($season->getStart(), new \DateTime('-15 days'));
         $stop = date('Y-m-d H:i:s');
@@ -231,5 +229,62 @@ class LessonRepository extends EntityRepository
             ->setParameter('stop', $stop)
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @param Season $season
+     * @param Level $level
+     * @return \stdClass
+     */
+    public function statThemes(Season $season, Level $level): \stdClass
+    {
+        $themes = $this->_em->getRepository(Theme::class)->findBy([], ['name' => 'ASC']);
+
+        $builder = $this
+            ->createQueryBuilder('lesson')
+            ->innerJoin('lesson.themes', 'themes')
+            ->addSelect('themes')
+            ->innerJoin('lesson.levels', 'levels')
+            ->andWhere('lesson.date BETWEEN :start AND :stop')
+            ->andWhere('levels.id = :level')
+            ->setParameter(':level', $level)
+            ->setParameter(':start', $season->getStart()->format('Y-m-d'))
+            ->setParameter(':stop', $season->getStop()->format('Y-m-d'))
+            ->addOrderBy('lesson.date', 'DESC')
+            ->addOrderBy('lesson.start', 'DESC');
+
+        $data = (object)[
+            'categories' => [],
+            'series' => [],
+        ];
+        $seriesIndex = [];
+        foreach ($themes as $theme) {
+            $data->series[] = (object)['name' => $theme->getName(), 'data' => []];
+            $seriesIndex[] = $theme->getName();
+        }
+        foreach ($builder->getQuery()->getResult() as $lesson) {
+            if (!$lesson instanceof Lesson) {
+                continue;
+            }
+            $index = \count($data->categories);
+            $date = new \DateTime($lesson->getDate()->format('Y-m-d').' '.$lesson->getStart()->format('H:i:s'));
+            $data->categories[$index] = $date->format('d/m');
+            $themes = [];
+            foreach ($lesson->getThemes() as $theme) {
+                if (!$theme instanceof Theme) {
+                    continue;
+                }
+                $themes[] = $theme->getName();
+            }
+            foreach ($data->series as $s => $serie) {
+                if (\in_array($seriesIndex[$s], $themes, true)) {
+                    $data->series[$s]->data[] = 1;
+                } else {
+                    $data->series[$s]->data[] = 0;
+                }
+            }
+        }
+
+        return $data;
     }
 }

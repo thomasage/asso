@@ -21,6 +21,7 @@ use AppBundle\Form\Type\StatMemberOriginType;
 use AppBundle\Form\Type\StatMemberSegmentType;
 use AppBundle\Form\Type\StatMemberSignatureType;
 use AppBundle\Form\Type\StatRankProgressType;
+use AppBundle\Form\Type\StatThemeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -441,7 +442,6 @@ class DefaultController extends Controller
      */
     public function indexAction(): Response
     {
-        // Render
         return $this->render('stat/index.html.twig');
     }
 
@@ -688,6 +688,67 @@ class DefaultController extends Controller
         // Render
         return $this->render(
             'stat/rank.progress.html.twig',
+            [
+                'formSearch' => $formSearch->createView(),
+                'results' => $results,
+            ]
+        );
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     *
+     * @Route("/stat/themes",
+     *     name="app_stat_themes",
+     *     methods={"GET", "POST"})
+     */
+    public function themesAction(Request $request): Response
+    {
+        $route = 'app_stat_themes';
+
+        // Entity manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Search form
+        $formSearch = $this->createForm(StatThemeType::class);
+
+        // Search manager
+        $sm = $this->get('app.search_manager');
+        $search = $sm->get($route, $this->getUser());
+        $reload = $search->handleRequest($request, $formSearch);
+        if ($reload) {
+            $sm->update($search);
+
+            return $this->redirectToRoute($route);
+        }
+
+        // Default season
+        $season = $em->getRepository(Season::class)->find($search->getFilter('season') ?? 0);
+        if (!$season instanceof Season) {
+            $season = $em->getRepository(Season::class)->findOneBy([]);
+            if (!$season instanceof Season) {
+                return $this->redirectToRoute('app_stat_index');
+            }
+            $search->addFilter('season', $season->getId());
+            $sm->update($search);
+        }
+
+        // Default level
+        $level = $em->getRepository(Level::class)->find($search->getFilter('level') ?? 0);
+        if (!$level instanceof Level) {
+            $level = $em->getRepository(Level::class)->findOneBy([]);
+            if (!$level instanceof Level) {
+                return $this->redirectToRoute('app_stat_index');
+            }
+            $search->addFilter('level', $level->getId());
+            $sm->update($search);
+        }
+
+        $results = $em->getRepository(Lesson::class)->statThemes($season, $level);
+
+        return $this->render(
+            'stat/themes.html.twig',
             [
                 'formSearch' => $formSearch->createView(),
                 'results' => $results,
