@@ -19,7 +19,6 @@ use AppBundle\Form\Type\StatForecastBudgetType;
 use AppBundle\Form\Type\StatLastPromotionType;
 use AppBundle\Form\Type\StatMemberOriginType;
 use AppBundle\Form\Type\StatMemberSegmentType;
-use AppBundle\Form\Type\StatMemberSignatureType;
 use AppBundle\Form\Type\StatRankProgressType;
 use AppBundle\Form\Type\StatThemeType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -581,77 +580,6 @@ class DefaultController extends Controller
             [
                 'formSearch' => $formSearch->createView(),
                 'results' => $results,
-            ]
-        );
-    }
-
-    /**
-     * @param Request $request
-     * @return Response
-     *
-     * @Route("/stat/memberSignature",
-     *     name="app_stat_member_signature",
-     *     methods={"GET"})
-     */
-    public function memberSignatureAction(Request $request): Response
-    {
-        // Session
-        $session = $this->get('session');
-
-        // Default values
-        if (!$session->has('stat-member-signature')) {
-            $season = $this->getUser()->getCurrentSeason();
-            if ($season instanceof Season) {
-                $session->set('stat-member-signature', ['season' => $season->getId()]);
-            } else {
-                $session->set('stat-member-signature', ['season' => null]);
-            }
-        }
-
-        // Search form
-        $formSearch = $this->createForm(
-            StatMemberSignatureType::class,
-            ['season' => $session->get('stat-member-signature')['season']],
-            ['method' => 'GET']
-        );
-        $formSearch->handleRequest($request);
-
-        // Update filter
-        if ($formSearch->isSubmitted() && $formSearch->isValid()) {
-
-            $data = $formSearch->getData();
-            $session->set('stat-member-signature', ['season' => $data['season']]);
-
-            // Results
-            $em = $this->getDoctrine()->getManager();
-            $season = $em->getRepository(Season::class)->find($session->get('stat-member-signature')['season']);
-            $results = [];
-            if ($season instanceof Season) {
-                $results = $em->getRepository(Member::class)->statSignature($season);
-            }
-
-            // Render PDF
-            return new Response(
-                $this->renderView(
-                    'stat/member-signature.pdf.php',
-                    [
-                        'applicationName' => $this->getParameter('application_name'),
-                        'results' => $results,
-                        'documentTitle' => $formSearch->get('title')->getData(),
-                    ]
-                ),
-                Response::HTTP_OK,
-                [
-                    'Content-Type' => 'application/pdf',
-                ]
-            );
-        }
-
-        // Render
-        return $this->render(
-            'stat/member-signature.html.twig',
-            [
-                'formSearch' => $formSearch->createView(),
             ]
         );
     }
