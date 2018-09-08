@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Utils;
 
 use AppBundle\Entity\Lesson;
@@ -75,8 +76,8 @@ class LessonManager
 
                 $l = new Lesson();
                 $l->setDate($date)
+                    ->addLevel($p->getLevel())
                     ->setDuration($p->getDuration())
-                    ->setLevel($p->getLevel())
                     ->setStart($p->getStart());
                 $this->em->persist($l);
 
