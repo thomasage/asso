@@ -25,11 +25,16 @@
             <div class="information">
                 <div>{{ member }}</div>
                 <div>
-                    {{ ('gender.'~member.gender)|trans }},
-                    {{ member.age }} {{ 'age'|trans }}
-                    <small>{{ member.birthday|localizeddate('full','none') }}</small>
+                    {{ ('gender.'~member.gender)|trans }}
+                    {% if member.birthday is not null %}
+                        &ndash;
+                        {{ member.age }} {{ 'age'|trans }}
+                        <small>{{ member.birthday|localizeddate('full','none') }}</small>
+                    {% endif %}
                 </div>
-                <div>{{ member.address }} - {{ member.zip }} {{ member.city }}</div>
+                {% if member.address is not null %}
+                    <div>{{ member.address }} - {{ member.zip }} {{ member.city }}</div>
+                {% endif %}
                 <div class="action">
                     <a href="{{ path('app_member_edit',{member:member.id}) }}" class="button primary">
                         <span class="fi-pencil"></span>

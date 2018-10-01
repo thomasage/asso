@@ -24,8 +24,12 @@
             </div>
             <div class="information">
                 <div><strong>{{ member }}</strong></div>
-                <div>{{ member.age }} {{ 'age'|trans }}</div>
-                <div>{{ member.city }}</div>
+                {% if member.birthday is not null %}
+                    <div>{{ member.age }} {{ 'age'|trans }}</div>
+                {% endif %}
+                {% if member.city is not null %}
+                    <div>{{ member.city }}</div>
+                {% endif %}
             </div>
         </div>
 
