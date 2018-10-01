@@ -52,51 +52,46 @@ class Member
     private $gender;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      *
-     * @ORM\Column(name="birthday", type="date")
+     * @ORM\Column(name="birthday", type="date", nullable=true)
      *
-     * @Assert\NotBlank()
      * @Assert\Date()
      */
     private $birthday;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="birthplace", type="string", length=50)
+     * @ORM\Column(name="birthplace", type="string", length=50, nullable=true)
      *
-     * @Assert\NotBlank()
      * @Assert\Length(min=1,max=50)
      */
     private $birthplace;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="address", type="string", length=200)
+     * @ORM\Column(name="address", type="string", length=200, nullable=true)
      *
-     * @Assert\NotBlank()
      * @Assert\Length(min=1,max=200)
      */
     private $address;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="zip", type="string", length=10)
+     * @ORM\Column(name="zip", type="string", length=10, nullable=true)
      *
-     * @Assert\NotBlank()
      * @Assert\Length(min=1,max=10)
      */
     private $zip;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="city", type="string", length=50)
+     * @ORM\Column(name="city", type="string", length=50, nullable=true)
      *
-     * @Assert\NotBlank()
      * @Assert\Length(min=1,max=50)
      */
     private $city;
@@ -228,154 +223,17 @@ class Member
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId()
+    public function getAge(): ?int
     {
-        return $this->id;
-    }
+        if (!$this->birthday instanceof \DateTime) {
+            return null;
+        }
 
-    /**
-     * @return string
-     */
-    public function getFirstname()
-    {
-        return $this->firstname;
-    }
-
-    /**
-     * @param string $firstname
-     * @return Member
-     */
-    public function setFirstname($firstname)
-    {
-        $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastname()
-    {
-        return $this->lastname;
-    }
-
-    /**
-     * @param string $lastname
-     * @return Member
-     */
-    public function setLastname($lastname)
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getBirthday()
-    {
-        return $this->birthday;
-    }
-
-    /**
-     * @param \DateTime $birthday
-     * @return Member
-     */
-    public function setBirthday($birthday)
-    {
-        $this->birthday = $birthday;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBirthplace()
-    {
-        return $this->birthplace;
-    }
-
-    /**
-     * @param string $birthplace
-     * @return Member
-     */
-    public function setBirthplace($birthplace)
-    {
-        $this->birthplace = $birthplace;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getAge(): int
-    {
         $now = new \DateTime();
 
         return $now->diff($this->birthday)->y;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param string $address
-     * @return Member
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getZip()
-    {
-        return $this->zip;
-    }
-
-    /**
-     * @param string $zip
-     * @return Member
-     */
-    public function setZip($zip)
-    {
-        $this->zip = $zip;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param string $city
-     * @return Member
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-
-        return $this;
     }
 
     /**
@@ -417,10 +275,14 @@ class Member
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTime|null
      */
-    public function getNextBirthday()
+    public function getNextBirthday(): ?\DateTime
     {
+        if (!$this->birthday instanceof \DateTime) {
+            return null;
+        }
+
         $birthday = new \DateTime(date('Y').$this->birthday->format('-m-d'));
         if ($birthday < new \DateTime('00:00:00')) {
             $birthday->modify('+1 year');
@@ -679,5 +541,146 @@ class Member
     public function getAttendances()
     {
         return $this->attendances;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstname(): string
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param string $firstname
+     * @return Member
+     */
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastname(): string
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param string $lastname
+     * @return Member
+     */
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getBirthday(): ?\DateTime
+    {
+        return $this->birthday;
+    }
+
+    /**
+     * @param \DateTime|null $birthday
+     * @return Member
+     */
+    public function setBirthday(?\DateTime $birthday): self
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getBirthplace(): ?string
+    {
+        return $this->birthplace;
+    }
+
+    /**
+     * @param null|string $birthplace
+     * @return Member
+     */
+    public function setBirthplace(?string $birthplace): self
+    {
+        $this->birthplace = $birthplace;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param null|string $address
+     * @return Member
+     */
+    public function setAddress(?string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getZip(): ?string
+    {
+        return $this->zip;
+    }
+
+    /**
+     * @param null|string $zip
+     * @return Member
+     */
+    public function setZip(?string $zip): self
+    {
+        $this->zip = $zip;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param null|string $city
+     * @return Member
+     */
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
     }
 }

@@ -58,7 +58,7 @@ class MemberType extends AbstractType
                 DatePickerType::class,
                 [
                     'label' => 'field.birthday',
-                    'required' => true,
+                    'required' => false,
                 ]
             )
             ->add(
@@ -66,7 +66,7 @@ class MemberType extends AbstractType
                 TextType::class,
                 [
                     'label' => 'field.birthplace',
-                    'required' => true,
+                    'required' => false,
                 ]
             )
             ->add(
@@ -74,7 +74,7 @@ class MemberType extends AbstractType
                 TextType::class,
                 [
                     'label' => 'field.address',
-                    'required' => true,
+                    'required' => false,
                 ]
             )
             ->add(
@@ -82,7 +82,7 @@ class MemberType extends AbstractType
                 TextType::class,
                 [
                     'label' => 'field.zip',
-                    'required' => true,
+                    'required' => false,
                 ]
             )
             ->add(
@@ -90,7 +90,7 @@ class MemberType extends AbstractType
                 TextType::class,
                 [
                     'label' => 'field.city',
-                    'required' => true,
+                    'required' => false,
                 ]
             )
             ->add(
