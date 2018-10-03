@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -97,7 +98,7 @@ class Member
     private $city;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(name="photo_extension", type="string", length=10, nullable=true)
      */
@@ -119,7 +120,7 @@ class Member
     private $memberships;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(name="profession", type="string", length=255, nullable=true)
      *
@@ -128,7 +129,7 @@ class Member
     private $profession;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(name="nationality", type="string", length=255, nullable=true)
      *
@@ -137,7 +138,7 @@ class Member
     private $nationality;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(name="phone0", type="string", length=20, nullable=true)
      *
@@ -146,7 +147,7 @@ class Member
     private $phone0;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(name="phone1", type="string", length=20, nullable=true)
      *
@@ -155,7 +156,7 @@ class Member
     private $phone1;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(name="phone2", type="string", length=20, nullable=true)
      *
@@ -164,7 +165,7 @@ class Member
     private $phone2;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(name="phone3", type="string", length=20, nullable=true)
      *
@@ -173,7 +174,7 @@ class Member
     private $phone3;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(name="email0", type="string", length=255, nullable=true)
      *
@@ -182,7 +183,7 @@ class Member
     private $email0;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(name="email1", type="string", length=255, nullable=true)
      *
@@ -191,7 +192,7 @@ class Member
     private $email1;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(name="comment", type="text", length=255, nullable=true)
      */
@@ -237,28 +238,9 @@ class Member
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getPhotoExtension()
-    {
-        return $this->photoExtension;
-    }
-
-    /**
-     * @param string $photoExtension
-     * @return Member
-     */
-    public function setPhotoExtension($photoExtension)
-    {
-        $this->photoExtension = $photoExtension;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGender()
+    public function getGender(): ?string
     {
         return $this->gender;
     }
@@ -267,7 +249,7 @@ class Member
      * @param string $gender
      * @return Member
      */
-    public function setGender($gender)
+    public function setGender(string $gender): self
     {
         $this->gender = $gender;
 
@@ -311,9 +293,9 @@ class Member
     }
 
     /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getPromotions()
+    public function getPromotions(): Collection
     {
         return $this->promotions;
     }
@@ -322,7 +304,7 @@ class Member
      * @param Membership $membership
      * @return Member
      */
-    public function addMembership(Membership $membership)
+    public function addMembership(Membership $membership): self
     {
         $this->memberships[] = $membership;
 
@@ -331,196 +313,28 @@ class Member
 
     /**
      * @param Membership $membership
+     * @return Member
      */
-    public function removeMembership(Membership $membership)
+    public function removeMembership(Membership $membership): self
     {
         $this->memberships->removeElement($membership);
+
+        return $this;
     }
 
     /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getMemberships()
+    public function getMemberships(): Collection
     {
         return $this->memberships;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProfession()
-    {
-        return $this->profession;
-    }
-
-    /**
-     * @param string $profession
-     * @return Member
-     */
-    public function setProfession($profession)
-    {
-        $this->profession = $profession;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhone0()
-    {
-        return $this->phone0;
-    }
-
-    /**
-     * @param string $phone0
-     * @return Member
-     */
-    public function setPhone0($phone0)
-    {
-        $this->phone0 = $phone0;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhone1()
-    {
-        return $this->phone1;
-    }
-
-    /**
-     * @param string $phone1
-     * @return Member
-     */
-    public function setPhone1($phone1)
-    {
-        $this->phone1 = $phone1;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhone2()
-    {
-        return $this->phone2;
-    }
-
-    /**
-     * @param string $phone2
-     * @return Member
-     */
-    public function setPhone2($phone2)
-    {
-        $this->phone2 = $phone2;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhone3()
-    {
-        return $this->phone3;
-    }
-
-    /**
-     * @param string $phone3
-     * @return Member
-     */
-    public function setPhone3($phone3)
-    {
-        $this->phone3 = $phone3;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail0()
-    {
-        return $this->email0;
-    }
-
-    /**
-     * @param string $email0
-     * @return Member
-     */
-    public function setEmail0($email0)
-    {
-        $this->email0 = $email0;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail1()
-    {
-        return $this->email1;
-    }
-
-    /**
-     * @param string $email1
-     * @return Member
-     */
-    public function setEmail1($email1)
-    {
-        $this->email1 = $email1;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getComment()
-    {
-        return $this->comment;
-    }
-
-    /**
-     * @param string $comment
-     * @return Member
-     */
-    public function setComment($comment)
-    {
-        $this->comment = $comment;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNationality()
-    {
-        return $this->nationality;
-    }
-
-    /**
-     * @param string $nationality
-     * @return Member
-     */
-    public function setNationality($nationality)
-    {
-        $this->nationality = $nationality;
-
-        return $this;
     }
 
     /**
      * @param Attendance $attendance
      * @return Member
      */
-    public function addAttendance(Attendance $attendance)
+    public function addAttendance(Attendance $attendance): self
     {
         $this->attendances[] = $attendance;
 
@@ -529,16 +343,19 @@ class Member
 
     /**
      * @param Attendance $attendance
+     * @return Member
      */
-    public function removeAttendance(Attendance $attendance)
+    public function removeAttendance(Attendance $attendance): self
     {
         $this->attendances->removeElement($attendance);
+
+        return $this;
     }
 
     /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getAttendances()
+    public function getAttendances(): Collection
     {
         return $this->attendances;
     }
@@ -552,9 +369,9 @@ class Member
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getFirstname(): string
+    public function getFirstname(): ?string
     {
         return $this->firstname;
     }
@@ -571,9 +388,9 @@ class Member
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getLastname(): string
+    public function getLastname(): ?string
     {
         return $this->lastname;
     }
@@ -680,6 +497,196 @@ class Member
     public function setCity(?string $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPhotoExtension(): ?string
+    {
+        return $this->photoExtension;
+    }
+
+    /**
+     * @param null|string $photoExtension
+     * @return Member
+     */
+    public function setPhotoExtension(?string $photoExtension): Member
+    {
+        $this->photoExtension = $photoExtension;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getProfession(): ?string
+    {
+        return $this->profession;
+    }
+
+    /**
+     * @param null|string $profession
+     * @return Member
+     */
+    public function setProfession(?string $profession): Member
+    {
+        $this->profession = $profession;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getNationality(): ?string
+    {
+        return $this->nationality;
+    }
+
+    /**
+     * @param null|string $nationality
+     * @return Member
+     */
+    public function setNationality(?string $nationality): Member
+    {
+        $this->nationality = $nationality;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPhone0(): ?string
+    {
+        return $this->phone0;
+    }
+
+    /**
+     * @param null|string $phone0
+     * @return Member
+     */
+    public function setPhone0(?string $phone0): Member
+    {
+        $this->phone0 = $phone0;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPhone1(): ?string
+    {
+        return $this->phone1;
+    }
+
+    /**
+     * @param null|string $phone1
+     * @return Member
+     */
+    public function setPhone1(?string $phone1): Member
+    {
+        $this->phone1 = $phone1;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPhone2(): ?string
+    {
+        return $this->phone2;
+    }
+
+    /**
+     * @param null|string $phone2
+     * @return Member
+     */
+    public function setPhone2(?string $phone2): Member
+    {
+        $this->phone2 = $phone2;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getPhone3(): ?string
+    {
+        return $this->phone3;
+    }
+
+    /**
+     * @param null|string $phone3
+     * @return Member
+     */
+    public function setPhone3(?string $phone3): Member
+    {
+        $this->phone3 = $phone3;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getEmail0(): ?string
+    {
+        return $this->email0;
+    }
+
+    /**
+     * @param null|string $email0
+     * @return Member
+     */
+    public function setEmail0(?string $email0): Member
+    {
+        $this->email0 = $email0;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getEmail1(): ?string
+    {
+        return $this->email1;
+    }
+
+    /**
+     * @param null|string $email1
+     * @return Member
+     */
+    public function setEmail1(?string $email1): Member
+    {
+        $this->email1 = $email1;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param null|string $comment
+     * @return Member
+     */
+    public function setComment(?string $comment): Member
+    {
+        $this->comment = $comment;
 
         return $this;
     }
