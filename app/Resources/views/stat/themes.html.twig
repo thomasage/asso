@@ -49,7 +49,7 @@
                 {
                     chart: {
                         type: 'bar',
-                        height: {{ results.categories|length*40 }}
+                        height: {{ max(results.categories|length*30,300) }}
                     },
                     title: false,
                     legend: {
