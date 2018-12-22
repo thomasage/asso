@@ -304,7 +304,7 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         // Categories
-        $categories = $em->getRepository(TransactionDetail::class)->findAutocompleteCategory('');
+        $categories = $em->getRepository(TransactionDetail::class)->findAutocompleteCategory('', null);
 
         // Transactions
         $transactions = $em->getRepository(Transaction::class)->findBy([], ['date' => 'ASC', 'dateValue' => 'ASC']);

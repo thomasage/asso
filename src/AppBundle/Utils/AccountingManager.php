@@ -80,6 +80,7 @@ class AccountingManager
                     if (!$detail instanceof TransactionDetail) {
                         continue;
                     }
+
                     $index = array_search($detail->getCategory(), $categories, true) + 6;
                     $excel->setCellValue(PHPExcelExtended::colIndexToString($index).$rownum, $detail->getAmount());
                 }
