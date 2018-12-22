@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace AppBundle\Utils;
 
 use AppBundle\Entity\Transaction;
-use AppBundle\Entity\TransactionDetail;
 use AppBundle\Model\PHPExcelExtended;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -58,10 +57,6 @@ class AccountingManager
 
             foreach ($transactions as $t => $transaction) {
 
-                if (!$transaction instanceof Transaction) {
-                    continue;
-                }
-
                 $rownum++;
 
                 $excel->setCellValue('A'.$rownum, $intl->format($transaction->getDate()));
@@ -76,13 +71,9 @@ class AccountingManager
                 } else {
                     $excel->setCellValue('F'.$rownum, '=E'.$rownum);
                 }
-                foreach ($transaction->getDetails() as $detail) {
-                    if (!$detail instanceof TransactionDetail) {
-                        continue;
-                    }
-
-                    $index = array_search($detail->getCategory(), $categories, true) + 6;
-                    $excel->setCellValue(PHPExcelExtended::colIndexToString($index).$rownum, $detail->getAmount());
+                foreach ($transaction->getDetailsSumByCategory() as $category => $amount) {
+                    $index = array_search($category, $categories, true) + 6;
+                    $excel->setCellValue(PHPExcelExtended::colIndexToString($index).$rownum, $amount);
                 }
 
             }

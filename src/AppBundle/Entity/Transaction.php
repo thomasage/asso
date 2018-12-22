@@ -1,7 +1,9 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -288,11 +290,19 @@ class Transaction
     }
 
     /**
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection|TransactionDetail[]
      */
     public function getDetails()
     {
         return $this->details;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateValue()
+    {
+        return $this->dateValue;
     }
 
     /**
@@ -307,10 +317,18 @@ class Transaction
     }
 
     /**
-     * @return \DateTime
+     * @return array
      */
-    public function getDateValue()
+    public function getDetailsSumByCategory(): array
     {
-        return $this->dateValue;
+        $details = [];
+        foreach ($this->details as $d) {
+            if (!isset($details[$d->getCategory()])) {
+                $details[$d->getCategory()] = 0.0;
+            }
+            $details[$d->getCategory()] += (float)$d->getAmount();
+        }
+
+        return $details;
     }
 }
