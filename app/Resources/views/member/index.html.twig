@@ -46,7 +46,6 @@
         <table class="result0">
             <thead>
             <tr>
-                <th></th>
                 <th>
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'firstname',title:'field.firstname'|trans} only -%}
                 </th>
@@ -71,9 +70,6 @@
             <tbody>
             {% for member in members %}
                 <tr>
-                    <td class="photo">
-                        <img src="{{ path('app_member_photo',{member:member.id}) }}" alt="Photo"/>
-                    </td>
                     <td>{{ member.firstname }}</td>
                     <td>{{ member.lastname }}</td>
                     {% if member.gender=='m' %}
@@ -107,7 +103,7 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="8" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
+                    <td colspan="7" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
                 </tr>
             {% endfor %}
             </tbody>
