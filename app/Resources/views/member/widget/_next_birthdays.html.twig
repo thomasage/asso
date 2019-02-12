@@ -7,9 +7,6 @@
         <div>
             {% for member in members %}
                 <div>
-                    <div class="photo">
-                        <img src="{{ path('app_member_photo',{member:member.id}) }}" alt="Photo"/>
-                    </div>
                     <div class="info">
                         <strong>{{ member }}</strong><br/>
                         {{ member.birthday|localizeddate('long','none') }}<br/>
