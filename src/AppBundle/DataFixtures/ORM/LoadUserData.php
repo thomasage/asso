@@ -1,13 +1,20 @@
 <?php
+declare(strict_types=1);
+
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Factory;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * Class LoadUserData
+ * @package AppBundle\DataFixtures\ORM
+ */
 class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
@@ -30,12 +37,16 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     {
         $encoder = $this->container->get('security.password_encoder');
 
+        $faker = Factory::create();
+
         $user = new User();
-        $user->setUsername('admin');
-        $user->setPassword($encoder->encodePassword($user, 'admin'));
-        $user->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
-        $user->setRoles(array('ROLE_USER'));
-        $user->setCurrentSeason($this->getReference('season1'));
+        $user
+            ->setCurrentSeason($this->getReference('season1'))
+            ->setEmail($faker->email)
+            ->setPassword($encoder->encodePassword($user, 'admin'))
+            ->setUsername('admin')
+            ->setRoles(['ROLE_USER'])
+            ->setSalt(base_convert(sha1(uniqid((string)mt_rand(), true)), 16, 36));
 
         $manager->persist($user);
         $manager->flush();
@@ -44,7 +55,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface, C
     /**
      * @return int
      */
-    public function getOrder()
+    public function getOrder(): int
     {
         return 2;
     }
