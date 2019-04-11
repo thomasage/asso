@@ -24,12 +24,6 @@ services:
             - '@doctrine.orm.entity_manager'
         tags:
             - { name: form.type }
-    app.form.type.stat_member_signature:
-        class: AppBundle\Form\Type\StatMemberSignatureType
-        arguments:
-            - '@doctrine.orm.entity_manager'
-        tags:
-            - { name: form.type }
     app.form.type.choice_forecast_budget_period:
         class: AppBundle\Form\Type\ChoiceForecastBudgetPeriodType
         arguments:
@@ -74,7 +68,6 @@ services:
         class: AppBundle\Utils\MemberManager
         arguments:
             - "@doctrine.orm.entity_manager"
-            - "%member_photo_directory%"
             - "@app.document_manager"
     app.rank_manager:
         class: AppBundle\Utils\RankManager

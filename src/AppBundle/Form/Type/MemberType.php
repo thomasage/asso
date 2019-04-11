@@ -164,16 +164,6 @@ class MemberType extends AbstractType
                     'label' => 'field.comment',
                     'required' => false,
                 ]
-            )
-            ->add(
-                'photo',
-                FileType::class,
-                [
-                    'label' => 'field.photo',
-                    'required' => false,
-                    'mapped' => false,
-                    'attr' => ['accept' => 'image/jpeg'],
-                ]
             );
     }
 

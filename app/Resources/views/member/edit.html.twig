@@ -40,7 +40,6 @@
                 {{ form_row(formEdit.email0) }}
                 {{ form_row(formEdit.email1) }}
                 {{ form_row(formEdit.comment) }}
-                {{ form_row(formEdit.photo) }}
                 <div class="action">
                     <button type="submit" class="button success" name="update">
                         <span class="fi-check"></span>
@@ -57,16 +56,6 @@
                     </a>
                 </div>
             </div>
-
-            {% if member.photoExtension %}
-                <div class="photo">
-                    <img src="{{ path('app_member_photo',{member:member.id}) }}" alt="Photo"/><br/>
-                    <a href="#" class="button warning photo-delete">
-                        <span class="fi-trash"></span>
-                        {{ 'edit.action.delete_photo'|trans }}
-                    </a>
-                </div>
-            {% endif %}
 
         </div>
 

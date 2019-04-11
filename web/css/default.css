@@ -727,19 +727,17 @@ div.actions_full > span {
 .widget-next-birthdays > div > div {
     width: 15em;
     margin-bottom: 1em;
+    padding: 1em;
     border: 1px rgb(235, 235, 235) solid;
 }
 
-.widget-next-birthdays > div > div > div.info {
-    padding: 0 1em 1em 1em;
-    line-height: 1.5em;
+.widget-next-birthdays > div > div > p {
+    margin: 0;
+    padding: 0;
 }
 
-.widget-next-birthdays > div > div > div.photo > img {
-    display: block;
-    max-width: 90%;
-    max-height: 195px;
-    margin: 5% auto;
+.widget-next-birthdays > div > div > p:nth-of-type(n+2) {
+    margin-top: 0.5em;
 }
 
 /* Widget : missing attendances */

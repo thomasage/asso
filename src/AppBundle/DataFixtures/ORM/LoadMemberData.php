@@ -34,7 +34,10 @@ class LoadMemberData extends AbstractFixture implements OrderedFixtureInterface
                 ->setGender($faker->randomElement(['f', 'm']))
                 ->setLastname($faker->lastName)
                 ->setZip($faker->postcode);
+
             $manager->persist($member);
+
+            $this->setReference(sprintf('member%d', $i), $member);
 
         }
 

@@ -24,49 +24,13 @@ class MemberManager
     private $em;
 
     /**
-     * @var string
-     */
-    private $photoDirectory;
-
-    /**
      * @param EntityManager $em
-     * @param string $photoDirectory
      * @param DocumentManager $dm
      */
-    public function __construct(EntityManager $em, $photoDirectory, DocumentManager $dm)
+    public function __construct(EntityManager $em, DocumentManager $dm)
     {
         $this->dm = $dm;
         $this->em = $em;
-        $this->photoDirectory = $photoDirectory;
-    }
-
-    /**
-     * @param Member $member
-     * @param UploadedFile $photo
-     */
-    public function updatePhoto(Member $member, UploadedFile $photo)
-    {
-        $this->deletePhoto($member);
-        $extension = $photo->guessExtension();
-        if ($photo->move($this->photoDirectory, $member->getId().'.'.$extension)) {
-            $member->setPhotoExtension($extension);
-            $this->update($member);
-        }
-    }
-
-    /**
-     * @param Member $member
-     */
-    public function deletePhoto(Member $member)
-    {
-        $files = glob($this->photoDirectory.'/'.$member->getId().'.*');
-        if (is_array($files)) {
-            foreach ($files as $file) {
-                unlink($file);
-            }
-        }
-        $member->setPhotoExtension(null);
-        $this->update($member);
     }
 
     /**
@@ -76,20 +40,6 @@ class MemberManager
     {
         $this->em->persist($member);
         $this->em->flush();
-    }
-
-    /**
-     * @param Member $member
-     * @return null|string
-     */
-    public function getPhoto(Member $member)
-    {
-        $filename = $this->photoDirectory.'/'.$member->getId().'.'.$member->getPhotoExtension();
-        if (file_exists($filename) && is_readable($filename)) {
-            return $filename;
-        }
-
-        return null;
     }
 
     /**

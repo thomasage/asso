@@ -38,12 +38,6 @@ class DefaultController extends Controller
             // Save data
             $mm->update($member);
 
-            // Save photo
-            $photo = $formEdit->get('photo')->getData();
-            if ($photo instanceof UploadedFile) {
-                $mm->updatePhoto($member, $photo);
-            }
-
             // Flash message
             $this->addFlash('success', $this->get('translator')->trans('add.success.added', [], 'member'));
 
@@ -88,12 +82,6 @@ class DefaultController extends Controller
             // Save data
             $mm->update($member);
 
-            // Save photo
-            $photo = $formEdit->get('photo')->getData();
-            if ($photo instanceof UploadedFile) {
-                $mm->updatePhoto($member, $photo);
-            }
-
             // Flash message
             $this->addFlash('success', $this->get('translator')->trans('edit.success.updated', [], 'member'));
 
@@ -103,22 +91,6 @@ class DefaultController extends Controller
             } else {
                 return $this->redirectToRoute('app_member_edit', ['member' => $member->getId()]);
             }
-
-        }
-
-        if ($request->query->get('delete') == 'photo') {
-
-            // Remove photo
-            $mm->deletePhoto($member);
-
-            // Flash message
-            $this->addFlash(
-                'success',
-                $this->get('translator')->trans('edit.success.photo_deleted', [], 'member')
-            );
-
-            // Redirect
-            return $this->redirectToRoute('app_member_edit', ['member' => $member->getId()]);
 
         }
 
@@ -210,34 +182,6 @@ class DefaultController extends Controller
                 ]
             );
 
-        }
-    }
-
-    /**
-     * @param Member $member
-     * @return BinaryFileResponse
-     *
-     * @Route("/member/photo/{member}",
-     *     name="app_member_photo",
-     *     methods={"GET"},
-     *     requirements={"member"="\d+"})
-     */
-    public function photoAction(Member $member)
-    {
-        // Member manager
-        $mm = $this->get('app.member_manager');
-
-        // Photo
-        $photo = $mm->getPhoto($member);
-
-        if (!is_null($photo)) {
-            return new BinaryFileResponse($photo);
-        }
-
-        if ($member->getGender() == 'f') {
-            return new BinaryFileResponse($this->container->getParameter('member_photo_directory').'/female.png');
-        } else {
-            return new BinaryFileResponse($this->container->getParameter('member_photo_directory').'/male.png');
         }
     }
 
