@@ -35,13 +35,13 @@
     "box/spout": "^2.7",
     "symfony/web-server-bundle": "^3.3",
     "friendsofsymfony/user-bundle": "~2.0",
-    "phpoffice/phpexcel": "^1.8",
-    "fzaninotto/faker": "^1.8"
+    "phpoffice/phpexcel": "^1.8"
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.0",
     "symfony/phpunit-bridge": "^2.7",
-    "doctrine/doctrine-fixtures-bundle": "^2.3"
+    "doctrine/doctrine-fixtures-bundle": "^2.3",
+    "fzaninotto/faker": "^1.8"
   },
   "scripts": {
     "post-install-cmd": [
