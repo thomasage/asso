@@ -15,12 +15,12 @@
             {{ form_row(formEdit.start) }}
             {{ form_row(formEdit.stop) }}
             <div class="action">
-                <button type="submit" class="button success">
+                <button type="submit" class="btn btn-success">
                     <span class="fi-check"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </button>
                 <span>{{ 'or'|trans({},'messages') }}</span>
-                <a href="{{ path('app_param_season') }}" class="button">
+                <a href="{{ path('app_param_season') }}" class="btn btn-outline-secondary">
                     <span class="fi-x"></span>
                     {{ 'action.cancel'|trans({},'messages') }}
                 </a>

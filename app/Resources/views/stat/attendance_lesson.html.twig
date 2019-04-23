@@ -9,7 +9,7 @@
         <div id="menu-secondary">
             <h1>{{ 'attendance_lesson.title'|trans }}</h1>
             <nav>
-                <a href="{{ path('app_stat_index') }}" class="button">
+                <a href="{{ path('app_stat_index') }}" class="btn btn-outline-secondary">
                     <span class="fi-arrow-left"></span>
                     {{ 'action.back'|trans({},'messages') }}
                 </a>
@@ -21,7 +21,7 @@
             {{ form_row(formSearch.season) }}
             {{ form_row(formSearch.level) }}
             <div>
-                <button type="submit" class="button secondary">
+                <button type="submit" class="btn btn-secondary">
                     <span class="fi-filter"></span>
                     {{ 'action.search'|trans({},'messages') }}
                 </button>

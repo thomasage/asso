@@ -17,7 +17,7 @@
                 <th>{{ 'field.stop'|trans }}</th>
                 <th>{{ 'field.current'|trans }}</th>
                 <th class="action">
-                    <a href="{{ path('app_param_season_add') }}" class="button primary">
+                    <a href="{{ path('app_param_season_add') }}" class="btn btn-primary">
                         <span class="fi-plus"></span>
                         {{ 'action.add'|trans({},'messages') }}
                     </a>
@@ -39,7 +39,7 @@
                         <label for="season{{ season.id }}" class="no">{{ 'no'|trans({},'messages') }}</label>
                     </td>
                     <td class="action">
-                        <a href="{{ path('app_param_season_edit',{season:season.id}) }}" class="button primary">
+                        <a href="{{ path('app_param_season_edit',{season:season.id}) }}" class="btn btn-primary">
                             <span class="fi-pencil"></span>
                             {{ 'action.edit'|trans({},'messages') }}
                         </a>

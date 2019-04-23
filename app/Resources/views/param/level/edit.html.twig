@@ -17,23 +17,23 @@
             <div class="edit1">
                 {{ form_row(formEdit.name) }}
                 <div class="action">
-                    <button type="submit" class="button success" name="update">
+                    <button type="submit" class="btn btn-success" name="update">
                         <span class="fi-check"></span>
                         {{ 'action.update'|trans({},'messages') }}
                     </button>
-                    <button type="submit" class="button success" name="update_close">
+                    <button type="submit" class="btn btn-success" name="update_close">
                         <span class="fi-check"></span>
                         {{ 'action.update_and_close'|trans({},'messages') }}
                     </button>
                     {% if deletable %}
                         <span>{{ 'or'|trans({},'messages') }}</span>
-                        <a href="{{ path('app_param_level_delete',{level:level.id}) }}" class="button warning">
+                        <a href="{{ path('app_param_level_delete',{level:level.id}) }}" class="btn btn-danger">
                             <span class="fi-trash"></span>
                             {{ 'action.delete'|trans({},'messages') }}
                         </a>
                     {% endif %}
                     <span>{{ 'or'|trans({},'messages') }}</span>
-                    <a href="{{ path('app_param_level') }}" class="button">
+                    <a href="{{ path('app_param_level') }}" class="btn btn-outline-secondary">
                         <span class="fi-x"></span>
                         {{ 'action.cancel'|trans({},'messages') }}
                     </a>

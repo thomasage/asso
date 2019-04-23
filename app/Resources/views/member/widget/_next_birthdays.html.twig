@@ -2,24 +2,28 @@
 
 {% if members|length>0 %}
 
-    <div class="widget-next-birthdays">
+    <div class="widget-next-birthdays mb-5">
         <h2>{{ 'next_birthdays.title'|trans }}</h2>
-        <div>
+        <div class="row mt-3">
             {% for member in members %}
-                <div>
-                    <p><strong>{{ member }}</strong></p>
-                    <p>
-                        <span class="fi-calendar"></span>
-                        {{ member.birthday|localizeddate('long','none') }}
-                    </p>
-                    <p>
-                        <span class="fi-crown"></span>
-                        {% if member.nextBirthday>now %}
-                            {{ member.age }} {{ 'age'|trans }}
-                        {% else %}
-                            {{ member.age-1 }} {{ 'age'|trans }}
-                        {% endif %}
-                    </p>
+                <div class="col-12 col-md-4">
+                    <div class="card">
+                        <div class="card-header"><strong>{{ member }}</strong></div>
+                        <div class="card-body">
+                            <div>
+                                <span class="fi-calendar"></span>
+                                {{ member.birthday|localizeddate('long','none') }}
+                            </div>
+                            <div>
+                                <span class="fi-crown"></span>
+                                {% if member.nextBirthday>now %}
+                                    {{ member.age }} {{ 'age'|trans }}
+                                {% else %}
+                                    {{ member.age-1 }} {{ 'age'|trans }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
         </div>

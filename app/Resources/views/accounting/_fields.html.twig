@@ -14,13 +14,13 @@
         <td>{{ (form.vars.value.size/1024)|number_format(2,'.','') }} kb</td>
         <td>{{ form.vars.value.date|localizeddate('long','short') }}</td>
         <td class="action">
-            <a href="{{ path('app_accounting_copy_download',{copy:form.vars.value.id}) }}" class="button secondary">
+            <a href="{{ path('app_accounting_copy_download',{copy:form.vars.value.id}) }}" class="btn btn-secondary">
                 <span class="fi-download"></span>
                 {{ 'action.download'|trans({},'messages') }}
             </a>
         </td>
         <td class="action">
-            <a href="#" class="button warning copy-del">
+            <a href="#" class="btn btn-danger copy-del">
                 <span class="fi-trash"></span>
                 {{ 'action.delete'|trans({},'messages') }}
             </a>
@@ -41,7 +41,7 @@
         <td class="amount">{{ form_widget(form.amount) }}{{ form_errors(form.amount) }}</td>
         <td class="information">{{ form_widget(form.information) }}</td>
         <td class="action">
-            <a href="#" class="button warning transaction-del">
+            <a href="#" class="btn btn-danger transaction-del">
                 <span class="fi-trash"></span>
                 {{ 'action.delete'|trans({},'messages') }}
             </a>

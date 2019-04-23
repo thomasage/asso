@@ -1,5 +1,5 @@
 {% spaceless %}
-    <a href="{{ path(route,{orderby:orderby}) }}">
+    <a href="{{ path(route,{orderby:orderby}) }}" class="text-dark">
         {%- if sets|keys|first==orderby -%}
             {%- if sets[orderby] -%}
                 <span class="fi-arrow-down"></span>

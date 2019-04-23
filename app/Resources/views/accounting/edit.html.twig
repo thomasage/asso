@@ -9,7 +9,7 @@
     <div id="menu-secondary">
         <h1>{{ 'edit.title'|trans }}</h1>
         <nav>
-            <a href="{{ path('app_accounting_homepage') }}" class="button">
+            <a href="{{ path('app_accounting_homepage') }}" class="btn btn-outline-secondary">
                 <span class="fi-arrow-left"></span>
                 {{ 'action.back'|trans({},'messages') }}
             </a>
@@ -38,11 +38,11 @@
                 {{ form_row(formEdit.copy) }}
                 {% if copy is not null %}
                     <div class="nolabel">
-                        <a href="{{ path('app_accounting_copy_download',{copy:copy.id}) }}" class="button secondary">
+                        <a href="{{ path('app_accounting_copy_download',{copy:copy.id}) }}" class="btn btn-secondary">
                             <span class="fi-download"></span>
                             T&eacute;l&eacute;charger le document
                         </a>
-                        <a href="#" class="button warning copy-delete" data-copy="{{ copy.id }}">
+                        <a href="#" class="btn btn-danger copy-delete" data-copy="{{ copy.id }}">
                             <span class="fi-trash"></span>
                             Supprimer
                         </a>
@@ -66,29 +66,29 @@
                 </tbody>
             </table>
             <div class="action">
-                <a href="#" class="button secondary transaction-add">
+                <a href="#" class="btn btn-secondary transaction-add">
                     <span class="fi-plus"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </a>
             </div>
 
             <div class="actions_full">
-                <button type="submit" class="button success" name="update">
+                <button type="submit" class="btn btn-success" name="update">
                     <span class="fi-check"></span>
                     {{ 'action.update'|trans({},'messages') }}
                 </button>
                 <span>{{ 'or'|trans({},'messages') }}</span>
-                <button type="submit" class="button success" name="update_and_close">
+                <button type="submit" class="btn btn-success" name="update_and_close">
                     <span class="fi-check"></span>
                     {{ 'action.update_and_close'|trans({},'messages') }}
                 </button>
                 <span>{{ 'or'|trans({},'messages') }}</span>
-                <a href="{{ path('app_accounting_delete',{transaction:transaction.id}) }}" class="button warning">
+                <a href="{{ path('app_accounting_delete',{transaction:transaction.id}) }}" class="btn btn-danger">
                     <span class="fi-trash"></span>
                     {{ 'action.delete'|trans({},'messages') }}
                 </a>
                 <span>{{ 'or'|trans({},'messages') }}</span>
-                <a href="{{ path('app_accounting_homepage') }}" class="button">
+                <a href="{{ path('app_accounting_homepage') }}" class="btn btn-outline-secondary">
                     <span class="fi-x"></span>
                     {{ 'action.cancel'|trans({},'messages') }}
                 </a>

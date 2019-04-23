@@ -9,7 +9,7 @@
     <div id="menu-secondary">
         <h1>{{ 'add.title'|trans }}</h1>
         <nav>
-            <a href="{{ path('app_accounting_homepage') }}" class="button">
+            <a href="{{ path('app_accounting_homepage') }}" class="btn btn-outline-secondary">
                 <span class="fi-arrow-left"></span>
                 {{ 'action.back'|trans({},'messages') }}
             </a>
@@ -54,29 +54,29 @@
                 </tbody>
             </table>
             <div class="action">
-                <a href="#" class="button secondary transaction-add">
+                <a href="#" class="btn btn-secondary transaction-add">
                     <span class="fi-plus"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </a>
             </div>
 
             <div class="actions_full">
-                <button type="submit" class="button success" name="add">
+                <button type="submit" class="btn btn-success" name="add">
                     <span class="fi-check"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </button>
                 <span>{{ 'or'|trans({},'messages') }}</span>
-                <button type="submit" class="button success" name="add_and_new">
+                <button type="submit" class="btn btn-success" name="add_and_new">
                     <span class="fi-check"></span>
                     {{ 'action.add_and_new'|trans({},'messages') }}
                 </button>
                 <span>{{ 'or'|trans({},'messages') }}</span>
-                <button type="submit" class="button success" name="add_and_close">
+                <button type="submit" class="btn btn-success" name="add_and_close">
                     <span class="fi-check"></span>
                     {{ 'action.add_and_close'|trans({},'messages') }}
                 </button>
                 <span>{{ 'or'|trans({},'messages') }}</span>
-                <a href="{{ path('app_accounting_homepage') }}" class="button">
+                <a href="{{ path('app_accounting_homepage') }}" class="btn btn-outline-secondary">
                     <span class="fi-x"></span>
                     {{ 'action.cancel'|trans({},'messages') }}
                 </a>

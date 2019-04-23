@@ -19,12 +19,12 @@
             {{ form_row(formEdit.ageMax) }}
             {{ form_row(formEdit.image) }}
             <div class="action">
-                <button type="submit" class="button success" name="add">
+                <button type="submit" class="btn btn-success" name="add">
                     <span class="fi-check"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </button>
                 <span>{{ 'or'|trans({},'messages') }}</span>
-                <a href="{{ path('app_param_rank') }}" class="button">
+                <a href="{{ path('app_param_rank') }}" class="btn btn-outline-secondary">
                     <span class="fi-x"></span>
                     {{ 'action.cancel'|trans({},'messages') }}
                 </a>

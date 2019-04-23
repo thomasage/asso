@@ -9,11 +9,11 @@
         <div id="menu-secondary">
             <h1>{{ 'index.title'|trans }}</h1>
             <nav>
-                <a href="{{ path('app_accounting_add') }}" class="button secondary">
+                <a href="{{ path('app_accounting_add') }}" class="btn btn-secondary">
                     <span class="fi-plus"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </a>
-                <a href="{{ path('app_accounting_forecast_budget') }}" class="button secondary">
+                <a href="{{ path('app_accounting_forecast_budget') }}" class="btn btn-secondary">
                     <span class="fi-clock"></span>
                     {{ 'forecast_budget.title'|trans }}
                 </a>
@@ -28,11 +28,11 @@
             {{ form_row(formSearch.bankName) }}
             {{ form_row(formSearch.category) }}
             <div>
-                <button type="submit" class="button primary">
+                <button type="submit" class="btn btn-primary">
                     <span class="fi-filter"></span>
                     {{ 'action.search'|trans({},'messages') }}
                 </button>
-                <a href="{{ path('app_accounting_export') }}" class="button secondary">
+                <a href="{{ path('app_accounting_export') }}" class="btn btn-secondary">
                     <span class="fi-page-export-csv"></span>
                     {{ 'action.export_all'|trans({},'messages') }}
                 </a>
@@ -78,7 +78,7 @@
                         {% endif %}
                     </td>
                     <td class="action">
-                        <a href="{{ path('app_accounting_edit',{transaction:transaction.id}) }}" class="button primary">
+                        <a href="{{ path('app_accounting_edit',{transaction:transaction.id}) }}" class="btn btn-primary">
                             <span class="fi-magnifying-glass"></span>
                             {{ 'action.edit'|trans({},'messages') }}
                         </a>

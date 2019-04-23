@@ -79,11 +79,6 @@ div#menu-secondary > nav > a {
     margin-left: 0.5em;
 }
 
-#content {
-    width: 1000px;
-    margin: 2em auto;
-}
-
 h1 {
     margin: 0;
     padding: 0;
@@ -101,84 +96,6 @@ h2 {
     padding: 0;
     font-size: 1.4em;
     font-weight: normal;
-}
-
-.button {
-    display: inline-block;
-    margin: 0;
-    padding: 0.6em 0.7em 0.7em 0.7em;
-    color: white;
-    font-family: "Roboto", sans-serif;
-    font-size: 1em;
-    line-height: 1em;
-    text-align: center;
-    text-decoration: none;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    vertical-align: baseline;
-    white-space: nowrap;
-    background-color: rgb(170, 170, 170);
-    border: 0;
-    border-radius: 0.1em;
-    cursor: pointer;
-    zoom: 1;
-    user-select: none;
-    -webkit-transition: all 0.2s;
-    -moz-transition: all 0.2s;
-    -o-transition: all 0.2s;
-    transition: all 0.2s;
-}
-
-.button:focus {
-    outline: 0;
-}
-
-.button:hover {
-    background-color: rgb(160, 160, 160);
-}
-
-.button::-moz-focus-inner {
-    padding: 0;
-    border: 0;
-}
-
-.button.error {
-    background-color: rgb(202, 60, 60);
-}
-
-.button.primary {
-    background-color: rgb(0, 120, 231);
-}
-
-.button.secondary {
-    background-color: rgb(66, 184, 221);
-}
-
-.button.success {
-    background-color: rgb(28, 184, 65);
-}
-
-.button.warning {
-    background-color: rgb(223, 117, 20);
-}
-
-.button.error:hover {
-    background-color: rgb(192, 50, 50);
-}
-
-.button.primary:hover {
-    background-color: rgb(0, 110, 221);
-}
-
-.button.secondary:hover {
-    background-color: rgb(56, 174, 211);
-}
-
-.button.success:hover {
-    background-color: rgb(18, 174, 55);
-}
-
-.button.warning:hover {
-    background-color: rgb(213, 107, 10);
 }
 
 input[type=date],
@@ -341,30 +258,8 @@ table.result0 > thead > tr > th > a:hover {
 }
 
 .form-login {
-    width: 30em;
+    max-width: 25em;
     margin: 5em auto;
-    padding: 2em;
-}
-
-.form-login > div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 0.5em 0;
-}
-
-.form-login > div > input {
-    flex: 1;
-}
-
-.form-login > div > label {
-    width: 8em;
-}
-
-.form-login > div.action {
-    display: block;
-    margin-top: 2em;
-    text-align: right;
 }
 
 div.pagination {
@@ -712,32 +607,6 @@ div.actions_full {
 
 div.actions_full > span {
     margin: 0 1em;
-}
-
-/* Widget : next birthdays */
-
-.widget-next-birthdays > div {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-top: 1em;
-}
-
-.widget-next-birthdays > div > div {
-    width: 15em;
-    margin-bottom: 1em;
-    padding: 1em;
-    border: 1px rgb(235, 235, 235) solid;
-}
-
-.widget-next-birthdays > div > div > p {
-    margin: 0;
-    padding: 0;
-}
-
-.widget-next-birthdays > div > div > p:nth-of-type(n+2) {
-    margin-top: 0.5em;
 }
 
 /* Widget : missing attendances */

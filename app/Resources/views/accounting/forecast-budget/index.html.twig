@@ -11,7 +11,7 @@
         <div id="menu-secondary">
             <h1>{{ 'forecast_budget.title'|trans }}</h1>
             <nav>
-                <a href="{{ path('app_accounting_forecast_budget_period_add') }}" class="button secondary">
+                <a href="{{ path('app_accounting_forecast_budget_period_add') }}" class="btn btn-secondary">
                     <span class="fi-plus"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </a>
@@ -22,7 +22,7 @@
         <div class="search0">
             {{ form_row(formSearch.period) }}
             <div>
-                <button type="submit" class="button primary">
+                <button type="submit" class="btn btn-primary">
                     <span class="fi-filter"></span>
                     {{ 'action.search'|trans({},'messages') }}
                 </button>
@@ -38,18 +38,18 @@
         <div class="edit1">
             {{ form_row(formEdit.items) }}
             <div>
-                <a href="#" class="button secondary item_add">
+                <a href="#" class="btn btn-secondary item_add">
                     <span class="fi-plus"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </a>
             </div>
             <div class="action">
-                <button type="submit" class="button success">
+                <button type="submit" class="btn btn-success">
                     <span class="fi-check"></span>
                     {{ 'action.update'|trans({},'messages') }}
                 </button>
                 <span>{{ 'or'|trans({},'messages') }}</span>
-                <a href="#" class="button">
+                <a href="#" class="btn btn-outline-secondary">
                     <span class="fi-x"></span>
                     {{ 'action.cancel'|trans({},'messages') }}
                 </a>

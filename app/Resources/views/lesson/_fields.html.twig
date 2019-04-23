@@ -22,7 +22,7 @@
                 {{ form_widget(form.level) }}
             </div>
             <div>
-                <a href="#" class="button warning element-del">
+                <a href="#" class="btn btn-danger element-del">
                     <span class="fi-trash"></span> {{ 'action.delete'|trans({},'messages') -}}
                 </a>
             </div>
@@ -46,7 +46,7 @@
                 {{ form_widget(form.stop) }}
             </div>
             <div>
-                <a href="#" class="button warning ignore-del">
+                <a href="#" class="btn btn-danger ignore-del">
                     <span class="fi-trash"></span> {{ 'action.delete'|trans({},'messages') -}}
                 </a>
             </div>
@@ -93,7 +93,7 @@
     </div>
     <div class="comment">{{- form_widget(form.comment) -}}</div>
     <div class="action">
-        <a href="{{ path('app_lesson_edit',{lesson:form.vars.value.id}) }}" class="button secondary">
+        <a href="{{ path('app_lesson_edit',{lesson:form.vars.value.id}) }}" class="btn btn-secondary">
             <span class="fi-pencil"></span>
             {{ 'action.edit'|trans({},'messages') }}
         </a>

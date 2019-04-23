@@ -1,34 +1,42 @@
 {% if app.user %}
-    <div id="menu-primary">
-        <nav>
-            <a href="{{ path('app_index') }}"{% if menuActive=='dashboard' %} class="active"{% endif %}>
-                <span class="fi-home"></span>
-                {{ 'menu.dashboard'|trans }}
-            </a>
-            <a href="{{ path('app_member_index') }}"{% if menuActive=='member' %} class="active"{% endif %}>
-                <span class="fi-torsos"></span>
-                {{ 'menu.member'|trans }}
-            </a>
-            <a href="{{ path('app_lesson_index') }}"{% if menuActive=='lesson' %} class="active"{% endif %}>
-                <span class="fi-calendar"></span>
-                {{ 'menu.lesson'|trans }}
-            </a>
-            <a href="{{ path('app_accounting_homepage') }}"{% if menuActive=='accounting' %} class="active"{% endif %}>
-                <span class="fi-euro"></span>
-                {{ 'menu.accounting'|trans }}
-            </a>
-            <a href="{{ path('app_stat_index') }}"{% if menuActive=='stat' %} class="active"{% endif %}>
-                <span class="fi-graph-trend"></span>
-                {{ 'menu.stat'|trans }}
-            </a>
-            <a href="{{ path('app_param_index') }}"{% if menuActive=='param' %} class="active"{% endif %}>
-                <span class="fi-wrench"></span>
-                {{ 'menu.param'|trans }}
-            </a>
-            <a href="{{ path('fos_user_security_logout') }}">
-                <span class="fi-power"></span>
-                {{ 'menu.logout'|trans }}
-            </a>
-        </nav>
-    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a href="{{ path('app_index') }}" class="navbar-brand d-lg-none">{{ application_name }}</a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#menuPrimary"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuPrimary">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item{% if 'dashboard'==menuActive %} active{% endif %}">
+                        <a href="{{ path('app_index') }}" class="nav-link">{{ 'menu.dashboard'|trans }}</a>
+                    </li>
+                    <li class="nav-item{% if 'member'==menuActive %} active{% endif %}">
+                        <a href="{{ path('app_member_index') }}" class="nav-link">{{ 'menu.member'|trans }}</a>
+                    </li>
+                    <li class="nav-item{% if 'lesson'==menuActive %} active{% endif %}">
+                        <a href="{{ path('app_lesson_index') }}" class="nav-link">{{ 'menu.lesson'|trans }}</a>
+                    </li>
+                    <li class="nav-item{% if 'accounting'==menuActive %} active{% endif %}">
+                        <a href="{{ path('app_accounting_homepage') }}"
+                           class="nav-link">{{ 'menu.accounting'|trans }}</a>
+                    </li>
+                    <li class="nav-item{% if 'stat'==menuActive %} active{% endif %}">
+                        <a href="{{ path('app_stat_index') }}" class="nav-link">{{ 'menu.stat'|trans }}</a>
+                    </li>
+                    <li class="nav-item{% if 'param'==menuActive %} active{% endif %}">
+                        <a href="{{ path('app_param_index') }}" class="nav-link">{{ 'menu.param'|trans }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('fos_user_security_logout') }}" class="nav-link">{{ 'menu.logout'|trans }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 {% endif %}

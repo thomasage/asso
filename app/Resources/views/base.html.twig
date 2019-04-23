@@ -11,12 +11,15 @@
         <link type="text/css"
               rel="stylesheet"
               href="{{ asset('assets/vendor/jquery-ui/themes/smoothness/jquery-ui.min.css') }}"/>
+        <link type="text/css"
+              rel="stylesheet"
+              href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}"/>
     {% endblock %}
     <link type="image/png" rel="icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body>
 {% include 'default/_menu_primary.html.twig' %}
-<div id="content">
+<div class="container">
     {% block body %}{% endblock %}
 </div>
 {% block javascripts %}
@@ -32,6 +35,7 @@
             $('input.date').datepicker($.datepicker.regional['{{ app.request.locale }}']);
         });
     </script>
+    <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 {% endblock %}
 </body>
 </html>

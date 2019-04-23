@@ -7,7 +7,7 @@
     <div id="menu-secondary">
         <h1>{{ 'add_membership.title'|trans }}</h1>
         <nav>
-            <a href="{{ path('app_member_show',{member:member.id}) }}" class="button">
+            <a href="{{ path('app_member_show',{member:member.id}) }}" class="btn btn-outline-secondary">
                 <span class="fi-arrow-left"></span>
                 {{ 'action.back'|trans({},'messages') }}
             </a>
@@ -40,12 +40,12 @@
             {{ form_row(formEdit.medicalCertificate) }}
             {{ form_row(formEdit.registrationForm) }}
             <div class="action">
-                <button type="submit" class="button success" name="update">
+                <button type="submit" class="btn btn-success" name="update">
                     <span class="fi-check"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </button>
                 <span>or</span>
-                <a href="{{ path('app_member_show',{member:member.id}) }}" class="button">
+                <a href="{{ path('app_member_show',{member:member.id}) }}" class="btn btn-outline-secondary">
                     <span class="fi-x"></span>
                     {{ 'action.cancel'|trans({},'messages') }}
                 </a>

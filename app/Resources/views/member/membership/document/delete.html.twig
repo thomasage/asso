@@ -7,7 +7,7 @@
     <div id="menu-secondary">
         <h1>{{ 'delete_document.title'|trans }}</h1>
         <nav>
-            <a href="{{ path('app_member_membership_edit',{membership:membership.id}) }}" class="button">
+            <a href="{{ path('app_member_membership_edit',{membership:membership.id}) }}" class="btn btn-outline-secondary">
                 <span class="fi-arrow-left"></span>
                 {{ 'action.back'|trans({},'messages') }}
             </a>
@@ -30,12 +30,12 @@
                 {% endif %}
             </div>
             <div class="action">
-                <button type="submit" class="button error" name="delete">
+                <button type="submit" class="btn btn-danger" name="delete">
                     <span class="fi-trash"></span>
                     {{ 'action.delete'|trans({},'messages') }}
                 </button>
                 <span>or</span>
-                <a href="{{ path('app_member_membership_edit',{membership:membership.id}) }}" class="button">
+                <a href="{{ path('app_member_membership_edit',{membership:membership.id}) }}" class="btn btn-outline-secondary">
                     <span class="fi-x"></span>
                     {{ 'action.cancel'|trans({},'messages') }}
                 </a>

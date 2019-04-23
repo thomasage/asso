@@ -9,7 +9,7 @@
         <div id="menu-secondary">
             <h1>{{ 'amount_by_third.title'|trans }}</h1>
             <nav>
-                <a href="{{ path('app_stat_index') }}" class="button">
+                <a href="{{ path('app_stat_index') }}" class="btn btn-outline-secondary">
                     <span class="fi-arrow-left"></span>
                     {{ 'action.back'|trans({},'messages') }}
                 </a>
@@ -23,7 +23,7 @@
             {{ form_row(formSearch.start) }}
             {{ form_row(formSearch.stop) }}
             <div>
-                <button type="submit" class="button primary">
+                <button type="submit" class="btn btn-primary">
                     <span class="fi-filter"></span>
                     {{ 'action.search'|trans({},'messages') }}
                 </button>

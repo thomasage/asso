@@ -9,7 +9,7 @@
         <div id="menu-secondary">
             <h1>{{ 'last_promotion.title'|trans }}</h1>
             <nav>
-                <a href="{{ path('app_stat_index') }}" class="button">
+                <a href="{{ path('app_stat_index') }}" class="btn btn-outline-secondary">
                     <span class="fi-arrow-left"></span>
                     {{ 'action.back'|trans({},'messages') }}
                 </a>
@@ -20,7 +20,7 @@
         <div class="search0">
             {{ form_row(formSearch.season) }}
             <div>
-                <button type="submit" class="button secondary">
+                <button type="submit" class="btn btn-secondary">
                     <span class="fi-filter"></span>
                     {{ 'action.search'|trans({},'messages') }}
                 </button>

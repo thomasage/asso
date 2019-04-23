@@ -7,7 +7,7 @@
     <div id="menu-secondary">
         <h1>{{ member }}</h1>
         <nav>
-            <a href="{{ path('app_member_index') }}" class="button">
+            <a href="{{ path('app_member_index') }}" class="btn btn-outline-secondary">
                 <span class="fi-arrow-left"></span>
                 {{ 'action.back'|trans({},'messages') }}
             </a>
@@ -33,7 +33,7 @@
                     <div>{{ member.address }} - {{ member.zip }} {{ member.city }}</div>
                 {% endif %}
                 <div class="action">
-                    <a href="{{ path('app_member_edit',{member:member.id}) }}" class="button primary">
+                    <a href="{{ path('app_member_edit',{member:member.id}) }}" class="btn btn-primary">
                         <span class="fi-pencil"></span>
                         {{ 'action.edit'|trans({},'messages') }}
                     </a>
@@ -85,7 +85,7 @@
                     </td>
                     <td class="action">
                         <a href="{{ path('app_member_promotion_edit',{promotion:promotion.id}) }}"
-                           class="button secondary">
+                           class="btn btn-secondary">
                             <span class="fi-pencil"></span>
                             {{ 'action.edit'|trans({},'messages') }}
                         </a>
@@ -99,7 +99,7 @@
             </tbody>
         </table>
         <div class="actions">
-            <a href="{{ path('app_member_promotion_add',{member:member.id}) }}" class="button secondary">
+            <a href="{{ path('app_member_promotion_add',{member:member.id}) }}" class="btn btn-secondary">
                 <span class="fi-plus"></span>
                 {{ 'action.add'|trans({},'messages') }}
             </a>
@@ -127,7 +127,7 @@
                     <td>
                         {% if membership.medicalCertificate %}
                             <a href="{{ path('app_member_membership_document_download',{document:membership.medicalCertificate.id}) }}"
-                               class="button">
+                               class="btn btn-outline-secondary">
                                 <span class="fi-download"></span>
                                 T&eacute;l&eacute;charger
                             </a>
@@ -136,7 +136,7 @@
                     <td>
                         {% if membership.registrationForm %}
                             <a href="{{ path('app_member_membership_document_download',{document:membership.registrationForm.id}) }}"
-                               class="button">
+                               class="btn btn-outline-secondary">
                                 <span class="fi-download"></span>
                                 T&eacute;l&eacute;charger
                             </a>
@@ -144,7 +144,7 @@
                     </td>
                     <td class="action">
                         <a href="{{ path('app_member_membership_edit',{membership:membership.id}) }}"
-                           class="button secondary">
+                           class="btn btn-secondary">
                             <span class="fi-pencil"></span>
                             {{ 'action.edit'|trans({},'messages') }}
                         </a>
@@ -158,7 +158,7 @@
             </tbody>
         </table>
         <div class="actions">
-            <a href="{{ path('app_member_membership_add',{member:member.id}) }}" class="button secondary">
+            <a href="{{ path('app_member_membership_add',{member:member.id}) }}" class="btn btn-secondary">
                 <span class="fi-plus"></span>
                 {{ 'action.add'|trans({},'messages') }}
             </a>

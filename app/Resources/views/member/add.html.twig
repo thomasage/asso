@@ -7,7 +7,7 @@
     <div id="menu-secondary">
         <h1>{{ 'add.title'|trans }}</h1>
         <nav>
-            <a href="{{ path('app_member_index') }}" class="button">
+            <a href="{{ path('app_member_index') }}" class="btn btn-outline-secondary">
                 <span class="fi-arrow-left"></span>
                 {{ 'action.back'|trans({},'messages') }}
             </a>
@@ -41,17 +41,17 @@
                 {{ form_row(formEdit.email1) }}
                 {{ form_row(formEdit.comment) }}
                 <div class="action">
-                    <button type="submit" class="button success" name="add">
+                    <button type="submit" class="btn btn-success" name="add">
                         <span class="fi-check"></span>
                         {{ 'action.add'|trans({},'messages') }}
                     </button>
                     <span>or</span>
-                    <button type="submit" class="button success" name="add_and_new">
+                    <button type="submit" class="btn btn-success" name="add_and_new">
                         <span class="fi-check"></span>
                         {{ 'action.add_and_new'|trans({},'messages') }}
                     </button>
                     <span>or</span>
-                    <a href="{{ path('app_member_index') }}" class="button">
+                    <a href="{{ path('app_member_index') }}" class="btn btn-outline-secondary">
                         <span class="fi-x"></span>
                         {{ 'action.cancel'|trans({},'messages') }}
                     </a>

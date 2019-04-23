@@ -1,25 +1,38 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% if error %}
-    <div class="flash error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 
-<form method="post" action="{{ path("fos_user_security_check") }}">
-    <div class="form-login">
-        <div>
-            <label for="username">{{ 'security.login.username'|trans }}</label>
-            <input type="text" id="username" name="_username" value="{{ last_username }}" required autofocus/>
-        </div>
-        <div>
-            <label for="password">{{ 'security.login.password'|trans }}</label>
-            <input type="password" id="password" name="_password" required/>
-        </div>
-        <div class="action">
-            <button type="submit" name="_submit" class="button primary" id="_submit">
-                <span class="fi-lock"></span>
-                {{ 'security.login.submit'|trans }}
-            </button>
-        </div>
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+<form method="post" action="{{ path("fos_user_security_check") }}" class="form-login">
+
+    <div class="form-group">
+        <label class="col-form-label" for="username">{{ 'security.login.username'|trans }}</label>
+        <input type="text"
+               class="form-control"
+               id="username"
+               name="_username"
+               value="{{ last_username }}"
+               required
+               autofocus/>
     </div>
+
+    <div class="form-group">
+        <label class="col-form-label" for="password">{{ 'security.login.password'|trans }}</label>
+        <input type="password"
+               class="form-control"
+               id="password"
+               name="_password"
+               required/>
+    </div>
+
+    <div class="mt-5">
+        <button type="submit" name="_submit" class="btn btn-primary" id="_submit">
+            <span class="fi-lock"></span>
+            {{ 'security.login.submit'|trans }}
+        </button>
+    </div>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+
 </form>

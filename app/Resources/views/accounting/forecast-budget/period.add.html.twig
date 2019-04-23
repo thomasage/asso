@@ -7,7 +7,7 @@
     <div id="menu-secondary">
         <h1>{{ 'forecast_budget_period_add.title'|trans }}</h1>
         <nav>
-            <a href="{{ path('app_accounting_homepage') }}" class="button">
+            <a href="{{ path('app_accounting_homepage') }}" class="btn btn-outline-secondary">
                 <span class="fi-arrow-left"></span>
                 {{ 'action.back'|trans({},'messages') }}
             </a>
@@ -23,12 +23,12 @@
             {{ form_row(formEdit.start) }}
             {{ form_row(formEdit.stop) }}
             <div class="action">
-                <button type="submit" class="button success">
+                <button type="submit" class="btn btn-success">
                     <span class="fi-check"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </button>
                 <span>{{ 'or'|trans({},'messages') }}</span>
-                <a href="#" class="button">
+                <a href="#" class="btn btn-outline-secondary">
                     <span class="fi-x"></span>
                     {{ 'action.cancel'|trans({},'messages') }}
                 </a>

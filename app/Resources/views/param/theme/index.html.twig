@@ -15,7 +15,7 @@
             <tr>
                 <th>{{ 'field.name'|trans }}</th>
                 <th class="action">
-                    <a href="{{ path('app_param_theme_add') }}" class="button primary">
+                    <a href="{{ path('app_param_theme_add') }}" class="btn btn-primary">
                         <span class="fi-plus"></span>
                         {{ 'action.add'|trans({},'messages') }}
                     </a>
@@ -27,7 +27,7 @@
                 <tr>
                     <td>{{ theme.name }}</td>
                     <td class="action">
-                        <a href="{{ path('app_param_theme_edit',{theme:theme.id}) }}" class="button primary">
+                        <a href="{{ path('app_param_theme_edit',{theme:theme.id}) }}" class="btn btn-primary">
                             <span class="fi-pencil"></span>
                             {{ 'action.edit'|trans({},'messages') }}
                         </a>

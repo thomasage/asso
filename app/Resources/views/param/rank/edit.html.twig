@@ -22,16 +22,16 @@
                 {{ form_row(formEdit.ageMax) }}
                 {{ form_row(formEdit.image) }}
                 <div class="action">
-                    <button type="submit" class="button success" name="update">
+                    <button type="submit" class="btn btn-success" name="update">
                         <span class="fi-check"></span>
                         {{ 'action.update'|trans({},'messages') }}
                     </button>
-                    <button type="submit" class="button success" name="update_close">
+                    <button type="submit" class="btn btn-success" name="update_close">
                         <span class="fi-check"></span>
                         {{ 'action.update_and_close'|trans({},'messages') }}
                     </button>
                     <span>{{ 'or'|trans({},'messages') }}</span>
-                    <a href="{{ path('app_param_rank') }}" class="button">
+                    <a href="{{ path('app_param_rank') }}" class="btn btn-outline-secondary">
                         <span class="fi-x"></span>
                         {{ 'action.cancel'|trans({},'messages') }}
                     </a>
@@ -41,7 +41,7 @@
             {% if rank.imageExtension %}
                 <div class="image">
                     <img src="{{ path('app_param_rank_image',{rank:rank.id}) }}" alt="Image"/><br/>
-                    <a href="#" class="button warning image-delete">
+                    <a href="#" class="btn btn-danger image-delete">
                         <span class="fi-trash"></span>
                         {{ 'edit.action.delete_image'|trans }}
                     </a>

@@ -11,7 +11,7 @@
         <div id="menu-secondary">
             <h1>{{ 'planning.title'|trans({'%season%':app.user.currentSeason}) }}</h1>
             <nav>
-                <a href="{{ path('app_lesson_index') }}" class="button">
+                <a href="{{ path('app_lesson_index') }}" class="btn btn-outline-secondary">
                     <span class="fi-arrow-left"></span>
                     {{ 'action.back'|trans({},'messages') }}
                 </a>
@@ -27,7 +27,7 @@
         {{ form_row(formEdit.elements) }}
 
         <div class="action">
-            <a href="#" class="button secondary element-add">
+            <a href="#" class="btn btn-secondary element-add">
                 <span class="fi-plus"></span>
                 {{ 'action.add'|trans({},'messages') }}
             </a>
@@ -38,24 +38,24 @@
         {{ form_row(formEdit.ignore) }}
 
         <div class="action">
-            <a href="#" class="button secondary ignore-add">
+            <a href="#" class="btn btn-secondary ignore-add">
                 <span class="fi-plus"></span>
                 {{ 'action.add'|trans({},'messages') }}
             </a>
         </div>
 
         <div class="actions">
-            <button type="submit" class="button success" name="update">
+            <button type="submit" class="btn btn-success" name="update">
                 <span class="fi-check"></span>
                 {{ 'action.update'|trans({},'messages') }}
             </button>
             <span>{{ 'or'|trans({},'messages') }}</span>
-            <button type="submit" class="button primary" name="update_and_build">
+            <button type="submit" class="btn btn-primary" name="update_and_build">
                 <span class="fi-widget"></span>
                 {{ 'planning.action.save_and_build'|trans }}
             </button>
             <span>{{ 'or'|trans({},'messages') }}</span>
-            <a href="{{ path('app_lesson_index') }}" class="button">
+            <a href="{{ path('app_lesson_index') }}" class="btn btn-outline-secondary">
                 <span class="fi-x"></span>
                 {{ 'action.cancel'|trans({},'messages') }}
             </a>

@@ -11,11 +11,11 @@
         <div id="menu-secondary">
             <h1>{{ 'day.title'|trans({'%day%':day|localizeddate('full','none')}) }}</h1>
             <nav>
-                <a href="{{ path('app_lesson_index') }}" class="button">
+                <a href="{{ path('app_lesson_index') }}" class="btn btn-outline-secondary">
                     <span class="fi-arrow-left"></span>
                     {{ 'action.back'|trans({},'messages') }}
                 </a>
-                <a href="{{ path('app_lesson_add',{day:day|date('Y-m-d')}) }}" class="button secondary">
+                <a href="{{ path('app_lesson_add',{day:day|date('Y-m-d')}) }}" class="btn btn-primary">
                     <span class="fi-plus"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </a>
@@ -26,7 +26,7 @@
 
         <div class="navigation">
             {% if previous %}
-                <a href="{{ path('app_lesson_day',{day:previous|date('Y-m-d')}) }}" class="button secondary previous">
+                <a href="{{ path('app_lesson_day',{day:previous|date('Y-m-d')}) }}" class="btn btn-secondary previous">
                     <span class="fi-arrow-left"></span>
                     {{ 'previous_day'|trans }}
                 </a>
@@ -34,7 +34,7 @@
                 <span>{{ 'previous_day'|trans }}</span>
             {% endif %}
             {% if next %}
-                <a href="{{ path('app_lesson_day',{day:next|date('Y-m-d')}) }}" class="button secondary next">
+                <a href="{{ path('app_lesson_day',{day:next|date('Y-m-d')}) }}" class="btn btn-secondary next">
                     {{ 'next_day'|trans }}
                     <span class="fi-arrow-right"></span>
                 </a>
@@ -46,12 +46,12 @@
         {{ form_start(formCollection) }}
         {{ form_widget(formCollection.lessons) }}
         <div class="actions">
-            <button type="submit" class="button success">
+            <button type="submit" class="btn btn-success">
                 <span class="fi-check"></span>
                 {{ 'action.update_lessons'|trans }}
             </button>
             <span>ou</span>
-            <a href="{{ path('app_lesson_index') }}" class="button">
+            <a href="{{ path('app_lesson_index') }}" class="btn btn-outline-secondary">
                 <span class="fi-x"></span>
                 {{ 'action.cancel'|trans({},'messages') }}
             </a>

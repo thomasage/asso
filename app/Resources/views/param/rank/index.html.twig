@@ -19,7 +19,7 @@
                 <th>{{ 'field.lessons'|trans }}</th>
                 <th>{{ 'field.age'|trans }}</th>
                 <th class="action">
-                    <a href="{{ path('app_param_rank_add') }}" class="button primary">
+                    <a href="{{ path('app_param_rank_add') }}" class="btn btn-primary">
                         <span class="fi-plus"></span>
                         {{ 'action.add'|trans({},'messages') }}
                     </a>
@@ -56,7 +56,7 @@
                         {% endif %}
                     </td>
                     <td class="action">
-                        <a href="{{ path('app_param_rank_edit',{rank:rank.id}) }}" class="button primary">
+                        <a href="{{ path('app_param_rank_edit',{rank:rank.id}) }}" class="btn btn-primary">
                             <span class="fi-pencil"></span>
                             {{ 'action.edit'|trans({},'messages') }}
                         </a>

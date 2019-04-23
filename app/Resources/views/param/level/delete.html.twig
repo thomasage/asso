@@ -18,12 +18,12 @@
                 {{ 'delete_level.confirmation'|trans({'%level%':level}) }}
             </div>
             <div class="action">
-                <button type="submit" class="button error" name="delete">
+                <button type="submit" class="btn btn-danger" name="delete">
                     <span class="fi-trash"></span>
                     {{ 'action.delete'|trans({},'messages') }}
                 </button>
                 <span>or</span>
-                <a href="{{ path('app_param_level_edit',{level:level.id}) }}" class="button">
+                <a href="{{ path('app_param_level_edit',{level:level.id}) }}" class="btn btn-outline-secondary">
                     <span class="fi-x"></span>
                     {{ 'action.cancel'|trans({},'messages') }}
                 </a>

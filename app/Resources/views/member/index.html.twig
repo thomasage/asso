@@ -9,7 +9,7 @@
         <div id="menu-secondary">
             <h1>{{ 'index.title'|trans }}</h1>
             <nav>
-                <a href="{{ path('app_member_add') }}" class="button secondary">
+                <a href="{{ path('app_member_add') }}" class="btn btn-outline-primary">
                     <span class="fi-plus"></span>
                     {{ 'action.add'|trans({},'messages') }}
                 </a>
@@ -23,17 +23,17 @@
             {{ form_row(formSearch.season) }}
             {{ form_row(formSearch.level) }}
             <div>
-                <button type="submit" class="button secondary" name="search">
+                <button type="submit" class="btn btn-primary" name="search">
                     <span class="fi-filter"></span>
                     {{ 'action.search'|trans({},'messages') }}
                 </button>
             </div>
             <div>
-                <button type="submit" class="button secondary" name="ods">
+                <button type="submit" class="btn btn-info" name="ods">
                     <span class="fi-page-export-csv"></span>
                     {{ 'action.ods'|trans({},'messages') }}
                 </button>
-                <button type="submit" class="button secondary" name="pdf">
+                <button type="submit" class="btn btn-info" name="pdf">
                     <span class="fi-print"></span>
                     {{ 'action.pdf'|trans({},'messages') }}
                 </button>
@@ -43,7 +43,7 @@
 
         {{ include('default/_flash_messages.html.twig') }}
 
-        <table class="result0">
+        <table class="table mt-4">
             <thead>
             <tr>
                 <th>
@@ -95,7 +95,7 @@
                         {% endif %}
                     </td>
                     <td class="action">
-                        <a href="{{ path('app_member_show',{member:member.id}) }}" class="button primary">
+                        <a href="{{ path('app_member_show',{member:member.id}) }}" class="btn btn-outline-primary">
                             <span class="fi-magnifying-glass"></span>
                             {{ 'action.show'|trans({},'messages') }}
                         </a>

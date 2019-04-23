@@ -9,7 +9,7 @@
         <div id="menu-secondary">
             <h1>{{ 'edit.title'|trans }}</h1>
             <nav>
-                <a href="{{ path('app_lesson_day',{day:lesson.date|date('Y-m-d')}) }}" class="button">
+                <a href="{{ path('app_lesson_day',{day:lesson.date|date('Y-m-d')}) }}" class="btn btn-outline-secondary">
                     <span class="fi-arrow-left"></span>
                     {{ 'action.back'|trans({},'messages') }}
                 </a>
@@ -24,17 +24,17 @@
             {{ form_row(formEdit.levels) }}
             {{ form_row(formEdit.comment) }}
             <div class="action">
-                <button type="submit" class="button success">
+                <button type="submit" class="btn btn-success">
                     <span class="fi-check"></span>
                     {{ 'action.update'|trans({},'messages') }}
                 </button>
                 <span>{{ 'or'|trans({},'messages') }}</span>
-                <a href="{{ path('app_lesson_delete',{lesson:lesson.id}) }}" class="button warning">
+                <a href="{{ path('app_lesson_delete',{lesson:lesson.id}) }}" class="btn btn-danger">
                     <span class="fi-trash"></span>
                     {{ 'action.delete'|trans({},'messages') }}
                 </a>
                 <span>{{ 'or'|trans({},'messages') }}</span>
-                <a href="{{ path('app_lesson_day',{day:lesson.date|date('Y-m-d')}) }}" class="button">
+                <a href="{{ path('app_lesson_day',{day:lesson.date|date('Y-m-d')}) }}" class="btn btn-outline-secondary">
                     <span class="fi-x"></span>
                     {{ 'action.cancel'|trans({},'messages') }}
                 </a>
