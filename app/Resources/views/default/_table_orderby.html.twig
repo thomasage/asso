@@ -2,9 +2,9 @@
     <a href="{{ path(route,{orderby:orderby}) }}" class="text-dark">
         {%- if sets|keys|first==orderby -%}
             {%- if sets[orderby] -%}
-                <span class="fi-arrow-down"></span>
+                <span class="mr-1 fi-arrow-down"></span>
             {%- else -%}
-                <span class="fi-arrow-up"></span>
+                <span class="mr-1 fi-arrow-up"></span>
             {%- endif -%}
         {%- endif -%}
         {{- title -}}

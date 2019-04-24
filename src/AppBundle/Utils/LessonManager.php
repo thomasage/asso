@@ -40,12 +40,13 @@ class LessonManager
         // Existing lessons
         $lessons = new ArrayCollection();
         foreach ($this->em->getRepository('AppBundle:Lesson')->findBySeason($season) as $l) {
-            $lessons->add($l->getDate()->format('Y-m-d').'-'.$l->getStart()->format('H-i').'-'.$l->getLevel()->getId());
+            $lessons->add($l->getDate()->format('Y-m-d').'-'.$l->getStart()->format('H-i'));
         }
 
         // Periods to ignore
         $ignorePeriods = new ArrayCollection();
         foreach ($ignore as $i) {
+            /** @var \DateTime $d */
             foreach (new \DatePeriod($i['start'], new \DateInterval('P1D'), $i['stop']) as $d) {
                 $ignorePeriods->add($d->format('Y-m-d'));
             }
@@ -61,16 +62,14 @@ class LessonManager
             $start->modify('+'.($p->getWeekday() - $start->format('N')).' day');
             $stop = new \DateTime($season->getStop()->format('Y-m-d').' 23:59:59');
 
+            /** @var \DateTime $date */
             foreach (new \DatePeriod($start, new \DateInterval('P1W'), $stop) as $date) {
 
                 if ($ignorePeriods->contains($date->format('Y-m-d'))) {
                     continue;
                 }
 
-                if ($lessons->contains(
-                    $date->format('Y-m-d').'-'.$p->getStart()->format('H-i').'-'.$p->getLevel()->getId()
-                )
-                ) {
+                if ($lessons->contains($date->format('Y-m-d').'-'.$p->getStart()->format('H-i'))) {
                     continue;
                 }
 

@@ -52,16 +52,16 @@
                 <th>
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'lastname',title:'field.lastname'|trans} only -%}
                 </th>
-                <th>
+                <th class="d-none d-md-table-cell">
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'gender',title:'field.gender'|trans} only -%}
                 </th>
-                <th>
+                <th class="d-none d-md-table-cell">
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'age',title:'field.age'|trans} only -%}
                 </th>
-                <th>
+                <th class="d-none d-md-table-cell">
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'city',title:'field.city'|trans} only -%}
                 </th>
-                <th>
+                <th class="d-none d-md-table-cell">
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'rank',title:'field.rank'|trans} only -%}
                 </th>
                 <th></th>
@@ -73,21 +73,21 @@
                     <td>{{ member.firstname }}</td>
                     <td>{{ member.lastname }}</td>
                     {% if member.gender=='m' %}
-                        <td class="gender male">
+                        <td class="gender male d-none d-md-table-cell">
                             <span class="fi-male"></span>
                             {{ 'gender.m'|trans }}
                         </td>
                     {% elseif member.gender=='f' %}
-                        <td class="gender female">
+                        <td class="gender female d-none d-md-table-cell">
                             <span class="fi-female"></span>
                             {{ 'gender.f'|trans }}
                         </td>
                     {% else %}
-                        <td></td>
+                        <td class="d-none d-md-table-cell"></td>
                     {% endif %}
-                    <td>{{ member.age }}</td>
-                    <td>{{ member.city }}</td>
-                    <td class="rank">
+                    <td class="d-none d-md-table-cell">{{ member.age }}</td>
+                    <td class="d-none d-md-table-cell">{{ member.city }}</td>
+                    <td class="d-none d-md-table-cell rank">
                         {% if member.promotions.last %}
                             <img src="{{ path('app_param_rank_image',{rank:member.promotions.last.rank.id}) }}"
                                  alt="{{ member.promotions.last.rank.description }}"
