@@ -54,9 +54,11 @@
     {%- endspaceless -%}
 {% endblock %}
 
-{%- block _lesson_day_collection_lessons_entry_row -%}
-    <div class="lesson">
-        {{- form_widget(form) -}}
+{%- block _lesson_day_collection_lessons_widget -%}
+    <div class="row" id="{{ id }}">
+        {%- for child in form -%}
+            <div class="col-12 col-md-6 mt-3 lesson">{{ form_widget(child) }}</div>
+        {%- endfor -%}
     </div>
 {%- endblock -%}
 

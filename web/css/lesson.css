@@ -202,26 +202,21 @@
     background-color: rgb(18, 174, 55);
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson {
-    width: 47%;
-    margin-top: 2em;
-}
-
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.action {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.action {
     margin-top: 1em;
     font-size: 0.8em;
     text-align: right;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.comment {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.comment {
     margin-top: 1em;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.comment > textarea {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.comment > textarea {
     width: 100%;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.members {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -229,16 +224,16 @@
     margin-top: 1em;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.members > div {
     width: 49%;
     margin-bottom: 0.5em;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=radio] {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.members > div > input[type=radio] {
     display: none;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=radio] ~ label {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.members > div > input[type=radio] ~ label {
     display: block;
     overflow: hidden;
     padding: 0.5em;
@@ -248,21 +243,21 @@
     background-color: rgb(220, 220, 220);
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=radio] ~ label:hover {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.members > div > input[type=radio] ~ label:hover {
     background-color: rgb(200, 200, 200);
     cursor: pointer;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=radio][value="1"]:checked ~ label {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.members > div > input[type=radio][value="1"]:checked ~ label {
     background-color: rgb(255, 230, 0);
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.members > div > input[type=radio][value="2"]:checked ~ label {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.members > div > input[type=radio][value="2"]:checked ~ label {
     color: white;
     background-color: rgb(18, 174, 55);
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.themes {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -270,16 +265,16 @@
     margin-top: 1em;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.themes > div {
     width: 49%;
     margin-bottom: 0.5em;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div > input[type=checkbox] {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.themes > div > input[type=checkbox] {
     display: none;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div > input[type=checkbox] ~ label {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.themes > div > input[type=checkbox] ~ label {
     display: block;
     overflow: hidden;
     padding: 0.5em;
@@ -289,21 +284,21 @@
     background-color: rgb(220, 220, 220);
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div > input[type=checkbox] ~ label:hover {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.themes > div > input[type=checkbox] ~ label:hover {
     background-color: rgb(200, 200, 200);
     cursor: pointer;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div > input[type=checkbox]:checked ~ label {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.themes > div > input[type=checkbox]:checked ~ label {
     color: white;
     background-color: rgb(100, 100, 255);
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.themes > div > input[type=checkbox]:checked ~ label:hover {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.themes > div > input[type=checkbox]:checked ~ label:hover {
     background-color: rgb(60, 60, 255);
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.title {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.title {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -316,7 +311,7 @@
     background-color: darkviolet;
 }
 
-.app_lesson_day #lesson_day_collection_lessons > div.lesson > div.title > div.time {
+.app_lesson_day #lesson_day_collection_lessons div.lesson > div.title > div.time {
     font-size: 0.9em;
 }
 
