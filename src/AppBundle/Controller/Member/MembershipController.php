@@ -42,7 +42,7 @@ class MembershipController extends Controller
         if ($formEdit->isSubmitted() && $formEdit->isValid()) {
 
             // Save data
-            $mm->updateMembership($membership, $formEdit);
+            $mm->updateMembership($membership);
 
             // Flash message
             $this->addFlash(
@@ -207,7 +207,7 @@ class MembershipController extends Controller
         if ($formEdit->isSubmitted() && $formEdit->isValid()) {
 
             // Save data
-            $mm->updateMembership($membership, $formEdit);
+            $mm->updateMembership($membership);
 
             // Flash message
             $this->addFlash(

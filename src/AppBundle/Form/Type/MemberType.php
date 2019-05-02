@@ -6,8 +6,8 @@ namespace AppBundle\Form\Type;
 use AppBundle\Entity\Member;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,10 +15,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MemberType extends AbstractType
 {
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -55,10 +51,11 @@ class MemberType extends AbstractType
             )
             ->add(
                 'birthday',
-                DatePickerType::class,
+                DateType::class,
                 [
                     'label' => 'field.birthday',
                     'required' => false,
+                    'widget' => 'single_text',
                 ]
             )
             ->add(
@@ -167,9 +164,6 @@ class MemberType extends AbstractType
             );
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(

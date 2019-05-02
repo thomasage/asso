@@ -5,21 +5,18 @@ namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Season;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SeasonType extends AbstractType
 {
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
                 'start',
-                DatePickerType::class,
+                DateType::class,
                 [
                     'required' => true,
                     'label' => 'field.start',
@@ -28,7 +25,7 @@ class SeasonType extends AbstractType
             )
             ->add(
                 'stop',
-                DatePickerType::class,
+                DateType::class,
                 [
                     'required' => true,
                     'label' => 'field.stop',
@@ -37,9 +34,6 @@ class SeasonType extends AbstractType
             );
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(

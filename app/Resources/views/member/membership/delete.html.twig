@@ -4,12 +4,12 @@
 
 {% block body %}
 
-    <div id="menu-secondary">
-        <h1>{{ 'delete_membership.title'|trans }}</h1>
+    <div class="d-flex flex-row justify-content-between">
+        <h3>{{ 'delete_membership.title'|trans }}</h3>
         <nav>
             <a href="{{ path('app_member_show',{member:member.id}) }}" class="btn btn-outline-secondary">
                 <span class="fi-arrow-left"></span>
-                {{ 'action.back'|trans({},'messages') }}
+                <span class="d-none d-sm-inline">{{ 'action.back'|trans({},'messages') }}</span>
             </a>
         </nav>
     </div>

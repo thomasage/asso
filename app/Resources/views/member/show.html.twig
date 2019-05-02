@@ -4,12 +4,12 @@
 
 {% block body %}
 
-    <div id="menu-secondary">
-        <h1>{{ member }}</h1>
+    <div class="d-flex flex-row justify-content-between">
+        <h3>{{ member }}</h3>
         <nav>
             <a href="{{ path('app_member_index') }}" class="btn btn-outline-secondary">
-                <span class="fi-arrow-left"></span>
-                {{ 'action.back'|trans({},'messages') }}
+                <span class="fi-list"></span>
+                <span class="d-none d-sm-inline">{{ 'action.back'|trans({},'messages') }}</span>
             </a>
         </nav>
     </div>
@@ -33,7 +33,7 @@
                     <div>{{ member.address }} - {{ member.zip }} {{ member.city }}</div>
                 {% endif %}
                 <div class="action">
-                    <a href="{{ path('app_member_edit',{member:member.id}) }}" class="btn btn-primary">
+                    <a href="{{ path('app_member_edit',{member:member.id}) }}" class="btn btn-outline-primary">
                         <span class="fi-pencil"></span>
                         {{ 'action.edit'|trans({},'messages') }}
                     </a>
@@ -43,7 +43,7 @@
 
         {% if lessons|length>0 %}
 
-            <h2>{{ 'show.title.attendance'|trans }}</h2>
+            <h3 class="mt-5">{{ 'show.title.attendance'|trans }}</h3>
 
             <div class="attendance">
                 {% for k,lesson in lessons %}
@@ -62,32 +62,32 @@
 
         {% endif %}
 
-        <h2>{{ 'show.title.promotions'|trans }}</h2>
+        <h3 class="mt-5">{{ 'show.title.promotions'|trans }}</h3>
 
         <table class="result2 promotions">
             <thead>
             <tr>
                 <th>{{ 'field.date'|trans }}</th>
                 <th>{{ 'field.rank'|trans }}</th>
-                <th>{{ 'field.description'|trans }}</th>
+                <th class="d-none d-md-table-cell">{{ 'field.description'|trans }}</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             {% for promotion in promotions %}
                 <tr>
-                    <td>{{ promotion.date|localizeddate('full','none') }}</td>
+                    <td>{{ promotion.date|localizeddate('long','none') }}</td>
                     <td>{{ promotion.rank.name }}</td>
-                    <td class="description">
+                    <td class="description d-none d-md-table-cell">
                         <img src="{{ path('app_param_rank_image',{rank:promotion.rank.id}) }}"
                              alt="{{ promotion.rank.description }}"
                              title="{{ promotion.rank.description }}"/>
                     </td>
                     <td class="action">
                         <a href="{{ path('app_member_promotion_edit',{promotion:promotion.id}) }}"
-                           class="btn btn-secondary">
+                           class="btn btn-outline-primary text-nowrap">
                             <span class="fi-pencil"></span>
-                            {{ 'action.edit'|trans({},'messages') }}
+                            <span class="d-none d-md-inline">{{ 'action.edit'|trans({},'messages') }}</span>
                         </a>
                     </td>
                 </tr>
@@ -99,22 +99,20 @@
             </tbody>
         </table>
         <div class="actions">
-            <a href="{{ path('app_member_promotion_add',{member:member.id}) }}" class="btn btn-secondary">
+            <a href="{{ path('app_member_promotion_add',{member:member.id}) }}" class="btn btn-outline-primary">
                 <span class="fi-plus"></span>
                 {{ 'action.add'|trans({},'messages') }}
             </a>
         </div>
 
-        <h2>{{ 'show.title.memberships'|trans }}</h2>
+        <h3 class="mt-5">{{ 'show.title.memberships'|trans }}</h3>
 
         <table class="result2 memberships">
             <thead>
             <tr>
                 <th>{{ 'field.season'|trans }}</th>
                 <th>{{ 'field.number'|trans }}</th>
-                <th>{{ 'field.level'|trans }}</th>
-                <th>{{ 'field.medicalCertificate'|trans }}</th>
-                <th>{{ 'field.registrationForm'|trans }}</th>
+                <th class="d-none d-sm-table-cell">{{ 'field.level'|trans }}</th>
                 <th></th>
             </tr>
             </thead>
@@ -123,42 +121,24 @@
                 <tr>
                     <td>{{ membership.season }}</td>
                     <td>{{ membership.number }}</td>
-                    <td>{{ membership.level }}</td>
-                    <td>
-                        {% if membership.medicalCertificate %}
-                            <a href="{{ path('app_member_membership_document_download',{document:membership.medicalCertificate.id}) }}"
-                               class="btn btn-outline-secondary">
-                                <span class="fi-download"></span>
-                                T&eacute;l&eacute;charger
-                            </a>
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if membership.registrationForm %}
-                            <a href="{{ path('app_member_membership_document_download',{document:membership.registrationForm.id}) }}"
-                               class="btn btn-outline-secondary">
-                                <span class="fi-download"></span>
-                                T&eacute;l&eacute;charger
-                            </a>
-                        {% endif %}
-                    </td>
+                    <td class="d-none d-sm-table-cell">{{ membership.level }}</td>
                     <td class="action">
                         <a href="{{ path('app_member_membership_edit',{membership:membership.id}) }}"
-                           class="btn btn-secondary">
+                           class="btn btn-outline-primary text-nowrap">
                             <span class="fi-pencil"></span>
-                            {{ 'action.edit'|trans({},'messages') }}
+                            <span class="d-none d-sm-inline">{{ 'action.edit'|trans({},'messages') }}</span>
                         </a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="6" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
+                    <td colspan="4" class="noresult">{{ 'no_results'|trans({},'messages') }}</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
         <div class="actions">
-            <a href="{{ path('app_member_membership_add',{member:member.id}) }}" class="btn btn-secondary">
+            <a href="{{ path('app_member_membership_add',{member:member.id}) }}" class="btn btn-outline-primary">
                 <span class="fi-plus"></span>
                 {{ 'action.add'|trans({},'messages') }}
             </a>

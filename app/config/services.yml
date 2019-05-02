@@ -42,12 +42,6 @@ services:
             - "@doctrine.orm.entity_manager"
         tags:
             - { name: form.type }
-    app.form.type.date_picker:
-        class: AppBundle\Form\Type\DatePickerType
-        arguments:
-            - "@request_stack"
-        tags:
-            - { name: form.type }
     app.lesson_manager:
         class: AppBundle\Utils\LessonManager
         arguments:

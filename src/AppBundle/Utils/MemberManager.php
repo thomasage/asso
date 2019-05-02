@@ -1,42 +1,28 @@
 <?php
+
 namespace AppBundle\Utils;
 
-use AppBundle\Entity\Document;
 use AppBundle\Entity\Level;
 use AppBundle\Entity\Member;
 use AppBundle\Entity\Membership;
 use AppBundle\Entity\Promotion;
 use AppBundle\Entity\Season;
+use DateTime;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\Form\Form;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class MemberManager
 {
-    /**
-     * @var DocumentManager
-     */
-    private $dm;
-
     /**
      * @var EntityManager
      */
     private $em;
 
-    /**
-     * @param EntityManager $em
-     * @param DocumentManager $dm
-     */
-    public function __construct(EntityManager $em, DocumentManager $dm)
+    public function __construct(EntityManager $em)
     {
-        $this->dm = $dm;
         $this->em = $em;
     }
 
-    /**
-     * @param Member $member
-     */
-    public function update(Member $member)
+    public function update(Member $member): void
     {
         $this->em->persist($member);
         $this->em->flush();
@@ -44,28 +30,22 @@ class MemberManager
 
     /**
      * @param Member $member
-     * @return \AppBundle\Entity\Promotion[]
+     * @return Promotion[]
      */
-    public function getPromotions(Member $member)
+    public function getPromotions(Member $member): array
     {
         return $this->em
             ->getRepository(Promotion::class)
             ->findBy(array('member' => $member), array('date' => 'ASC'));
     }
 
-    /**
-     * @param Promotion $promotion
-     */
-    public function updatePromotion(Promotion $promotion)
+    public function updatePromotion(Promotion $promotion): void
     {
         $this->em->persist($promotion);
         $this->em->flush();
     }
 
-    /**
-     * @param Promotion $promotion
-     */
-    public function deletePromotion(Promotion $promotion)
+    public function deletePromotion(Promotion $promotion): void
     {
         $this->em->remove($promotion);
         $this->em->flush();
@@ -73,80 +53,41 @@ class MemberManager
 
     /**
      * @param Season $season
-     * @return \AppBundle\Entity\Member[]
+     * @return Member[]
      */
-    public function getNextBirthdays(Season $season)
+    public function getNextBirthdays(Season $season): array
     {
         return $this->em->getRepository(Member::class)->findNextBirthdays($season);
     }
 
     /**
      * @param Member $member
-     * @return \AppBundle\Entity\Membership[]
+     * @return Membership[]
      */
-    public function getMemberships(Member $member)
+    public function getMemberships(Member $member): array
     {
         return $this->em
             ->getRepository(Membership::class)
             ->findBy(array('member' => $member), array('season' => 'DESC'));
     }
 
-    /**
-     * @param Membership $membership
-     * @param Form $form
-     */
-    public function updateMembership(Membership $membership, Form $form)
+    public function updateMembership(Membership $membership): void
     {
         $this->em->persist($membership);
         $this->em->flush();
-
-        $medicalCertificate = $form->get('medicalCertificate')->getData();
-        if ($medicalCertificate instanceof UploadedFile) {
-
-            // Remove old document
-            if (($d = $membership->getMedicalCertificate()) instanceof Document) {
-                $membership->setMedicalCertificate(null);
-                $this->em->flush();
-                $this->dm->delete($d);
-            }
-
-            // Add new document
-            $document = $this->dm->add($medicalCertificate);
-            $membership->setMedicalCertificate($document);
-            $this->em->flush();
-        }
-
-        $registrationForm = $form->get('registrationForm')->getData();
-        if ($registrationForm instanceof UploadedFile) {
-
-            // Remove old document
-            if (($d = $membership->getRegistrationForm()) instanceof Document) {
-                $membership->setRegistrationForm(null);
-                $this->em->flush();
-                $this->dm->delete($d);
-            }
-
-            // Add new document
-            $document = $this->dm->add($registrationForm);
-            $membership->setRegistrationForm($document);
-            $this->em->flush();
-        }
     }
 
-    /**
-     * @param Membership $membership
-     */
-    public function deleteMembership(Membership $membership)
+    public function deleteMembership(Membership $membership): void
     {
         $this->em->remove($membership);
         $this->em->flush();
     }
 
     /**
-     * @param \DateTime $date
+     * @param DateTime $date
      * @return Member[]
      */
-    public function findByDateGroupByLevel(\DateTime $date)
+    public function findByDateGroupByLevel(DateTime $date): array
     {
         $season = $this->em->getRepository(Season::class)->findByDate($date);
 

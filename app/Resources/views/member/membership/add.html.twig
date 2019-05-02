@@ -4,12 +4,12 @@
 
 {% block body %}
 
-    <div id="menu-secondary">
-        <h1>{{ 'add_membership.title'|trans }}</h1>
+    <div class="d-flex flex-row justify-content-between">
+        <h3>{{ 'add_membership.title'|trans }}</h3>
         <nav>
             <a href="{{ path('app_member_show',{member:member.id}) }}" class="btn btn-outline-secondary">
                 <span class="fi-arrow-left"></span>
-                {{ 'action.back'|trans({},'messages') }}
+                <span class="d-none d-sm-inline">{{ 'action.back'|trans({},'messages') }}</span>
             </a>
         </nav>
     </div>
@@ -37,8 +37,6 @@
             {{ form_row(formEdit.season) }}
             {{ form_row(formEdit.number) }}
             {{ form_row(formEdit.level) }}
-            {{ form_row(formEdit.medicalCertificate) }}
-            {{ form_row(formEdit.registrationForm) }}
             <div class="action">
                 <button type="submit" class="btn btn-success" name="update">
                     <span class="fi-check"></span>

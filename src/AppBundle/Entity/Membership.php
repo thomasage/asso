@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -58,145 +59,56 @@ class Membership
      */
     private $level;
 
-    /**
-     * @var Document
-     *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Document")
-     * @ORM\JoinColumn(nullable=true)
-     *
-     * @Assert\Valid();
-     */
-    private $medicalCertificate;
-
-    /**
-     * @var Document
-     *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Document")
-     * @ORM\JoinColumn(nullable=true)
-     *
-     * @Assert\Valid();
-     */
-    private $registrationForm;
-
-    /**
-     * @return integer
-     */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
-    public function getNumber()
+    public function getNumber(): ?string
     {
         return $this->number;
     }
 
-    /**
-     * @param string $number
-     * @return Membership
-     */
-    public function setNumber($number)
+    public function setNumber(?string $number): self
     {
         $this->number = $number;
 
         return $this;
     }
 
-    /**
-     * @return Member
-     */
-    public function getMember()
+    public function getMember(): ?Member
     {
         return $this->member;
     }
 
-    /**
-     * @param Member $member
-     * @return Membership
-     */
-    public function setMember(Member $member)
+    public function setMember(Member $member): self
     {
         $this->member = $member;
 
         return $this;
     }
 
-    /**
-     * @return Season
-     */
-    public function getSeason()
+    public function getSeason(): ?Season
     {
         return $this->season;
     }
 
-    /**
-     * @param Season $season
-     * @return Membership
-     */
-    public function setSeason(Season $season)
+    public function setSeason(Season $season): self
     {
         $this->season = $season;
 
         return $this;
     }
 
-    /**
-     * @param Level $level
-     * @return Membership
-     */
-    public function setLevel(Level $level = null)
-    {
-        $this->level = $level;
-
-        return $this;
-    }
-
-    /**
-     * @return Level
-     */
-    public function getLevel()
+    public function getLevel(): ?Level
     {
         return $this->level;
     }
 
-    /**
-     * @param Document $medicalCertificate
-     * @return Membership
-     */
-    public function setMedicalCertificate(Document $medicalCertificate = null)
+    public function setLevel(Level $level = null): self
     {
-        $this->medicalCertificate = $medicalCertificate;
+        $this->level = $level;
 
         return $this;
-    }
-
-    /**
-     * @return Document
-     */
-    public function getMedicalCertificate()
-    {
-        return $this->medicalCertificate;
-    }
-
-    /**
-     * @param Document $registrationForm
-     * @return Membership
-     */
-    public function setRegistrationForm(Document $registrationForm = null)
-    {
-        $this->registrationForm = $registrationForm;
-
-        return $this;
-    }
-
-    /**
-     * @return Document
-     */
-    public function getRegistrationForm()
-    {
-        return $this->registrationForm;
     }
 }

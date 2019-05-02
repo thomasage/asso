@@ -541,8 +541,9 @@ div.edit1 > div {
     margin-top: 0.5em;
 }
 
-div.edit1 > div > input[type=text].full,
-div.edit1 > div > select.full {
+div.edit1 > div > input[type=text],
+div.edit1 > div > textarea,
+div.edit1 > div > select {
     flex: 1;
 }
 

@@ -4,12 +4,12 @@
 
 {% block body %}
 
-    <div id="menu-secondary">
-        <h1>{{ 'edit_promotion.title'|trans }}</h1>
+    <div class="d-flex flex-row justify-content-between">
+        <h3>{{ 'edit_promotion.title'|trans }}</h3>
         <nav>
             <a href="{{ path('app_member_show',{member:member.id}) }}" class="btn btn-outline-secondary">
                 <span class="fi-arrow-left"></span>
-                {{ 'action.back'|trans({},'messages') }}
+                <span class="d-none d-sm-inline">{{ 'action.back'|trans({},'messages') }}</span>
             </a>
         </nav>
     </div>
@@ -42,12 +42,12 @@
                     <span class="fi-check"></span>
                     {{ 'action.update'|trans({},'messages') }}
                 </button>
-                <span>or</span>
+                <span>{{ 'or'|trans({},'messages') }}</span>
                 <a href="{{ path('app_member_promotion_delete',{promotion:promotion.id}) }}" class="btn btn-danger">
                     <span class="fi-trash"></span>
                     {{ 'action.delete'|trans({},'messages') }}
                 </a>
-                <span>or</span>
+                <span>{{ 'or'|trans({},'messages') }}</span>
                 <a href="{{ path('app_member_show',{member:member.id}) }}" class="btn btn-outline-secondary">
                     <span class="fi-x"></span>
                     {{ 'action.cancel'|trans({},'messages') }}

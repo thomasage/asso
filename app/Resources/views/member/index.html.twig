@@ -6,12 +6,12 @@
 
     <div class="app_member_index">
 
-        <div id="menu-secondary">
-            <h1>{{ 'index.title'|trans }}</h1>
+        <div class="d-flex flex-row justify-content-between">
+            <h3>{{ 'index.title'|trans }}</h3>
             <nav>
                 <a href="{{ path('app_member_add') }}" class="btn btn-outline-primary">
                     <span class="fi-plus"></span>
-                    {{ 'action.add'|trans({},'messages') }}
+                    <span class="d-none d-sm-inline">{{ 'action.add'|trans({},'messages') }}</span>
                 </a>
             </nav>
         </div>
@@ -52,16 +52,16 @@
                 <th>
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'lastname',title:'field.lastname'|trans} only -%}
                 </th>
-                <th class="d-none d-md-table-cell">
+                <th class="d-none d-lg-table-cell">
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'gender',title:'field.gender'|trans} only -%}
                 </th>
-                <th class="d-none d-md-table-cell">
+                <th class="d-none d-sm-table-cell">
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'age',title:'field.age'|trans} only -%}
                 </th>
-                <th class="d-none d-md-table-cell">
+                <th class="d-none d-lg-table-cell">
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'city',title:'field.city'|trans} only -%}
                 </th>
-                <th class="d-none d-md-table-cell">
+                <th class="d-none d-sm-table-cell">
                     {%- include 'default/_table_orderby.html.twig' with {route:route,sets:members.orderby,orderby:'rank',title:'field.rank'|trans} only -%}
                 </th>
                 <th></th>
@@ -73,21 +73,21 @@
                     <td>{{ member.firstname }}</td>
                     <td>{{ member.lastname }}</td>
                     {% if member.gender=='m' %}
-                        <td class="gender male d-none d-md-table-cell">
+                        <td class="gender male d-none d-lg-table-cell">
                             <span class="fi-male"></span>
                             {{ 'gender.m'|trans }}
                         </td>
                     {% elseif member.gender=='f' %}
-                        <td class="gender female d-none d-md-table-cell">
+                        <td class="gender female d-none d-lg-table-cell">
                             <span class="fi-female"></span>
                             {{ 'gender.f'|trans }}
                         </td>
                     {% else %}
                         <td class="d-none d-md-table-cell"></td>
                     {% endif %}
-                    <td class="d-none d-md-table-cell">{{ member.age }}</td>
-                    <td class="d-none d-md-table-cell">{{ member.city }}</td>
-                    <td class="d-none d-md-table-cell rank">
+                    <td class="d-none d-sm-table-cell">{{ member.age }}</td>
+                    <td class="d-none d-lg-table-cell">{{ member.city }}</td>
+                    <td class="d-none d-sm-table-cell rank">
                         {% if member.promotions.last %}
                             <img src="{{ path('app_param_rank_image',{rank:member.promotions.last.rank.id}) }}"
                                  alt="{{ member.promotions.last.rank.description }}"
@@ -95,9 +95,9 @@
                         {% endif %}
                     </td>
                     <td class="action">
-                        <a href="{{ path('app_member_show',{member:member.id}) }}" class="btn btn-outline-primary">
+                        <a href="{{ path('app_member_show',{member:member.id}) }}" class="btn btn-outline-primary text-nowrap">
                             <span class="fi-magnifying-glass"></span>
-                            {{ 'action.show'|trans({},'messages') }}
+                            <span class="d-none d-md-inline">{{ 'action.show'|trans({},'messages') }}</span>
                         </a>
                     </td>
                 </tr>
