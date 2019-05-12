@@ -1,0 +1,6 @@
+# See https://deployer.org/docs/hosts.html#inventory-file
+
+myhostname:
+    hostname: myhostname
+    stage: prod
+    deploy_path: ~/
