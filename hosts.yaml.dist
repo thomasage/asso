@@ -4,3 +4,5 @@ myhostname:
     hostname: myhostname
     stage: prod
     deploy_path: ~/
+    http_user: my_user
+    writable_mode: chown

@@ -32,6 +32,8 @@ task(
     }
 );
 
+set('bin_dir', 'bin');
+
 // [Optional] Specific to OVH
 
 set('bin/php', '/usr/local/php7.3/bin/php');
@@ -39,8 +41,3 @@ set('bin/php', '/usr/local/php7.3/bin/php');
 // If deploy fails automatically unlock.
 
 after('deploy:failed', 'deploy:unlock');
-
-// Migrate database before symlink new release.
-
-before('deploy:symlink', 'database:migrate');
-
