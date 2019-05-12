@@ -70,31 +70,31 @@
             <tbody>
             {% for member in members %}
                 <tr>
-                    <td>{{ member.firstname }}</td>
-                    <td>{{ member.lastname }}</td>
+                    <td class="align-middle">{{ member.firstname }}</td>
+                    <td class="align-middle">{{ member.lastname }}</td>
                     {% if member.gender=='m' %}
-                        <td class="gender male d-none d-lg-table-cell">
+                        <td class="gender male d-none d-lg-table-cell align-middle">
                             <span class="fi-male"></span>
                             {{ 'gender.m'|trans }}
                         </td>
                     {% elseif member.gender=='f' %}
-                        <td class="gender female d-none d-lg-table-cell">
+                        <td class="gender female d-none d-lg-table-cell align-middle">
                             <span class="fi-female"></span>
                             {{ 'gender.f'|trans }}
                         </td>
                     {% else %}
                         <td class="d-none d-md-table-cell"></td>
                     {% endif %}
-                    <td class="d-none d-sm-table-cell">{{ member.age }}</td>
-                    <td class="d-none d-lg-table-cell">{{ member.city }}</td>
-                    <td class="d-none d-sm-table-cell rank">
+                    <td class="d-none d-sm-table-cell align-middle">{{ member.age }}</td>
+                    <td class="d-none d-lg-table-cell align-middle">{{ member.city }}</td>
+                    <td class="d-none d-sm-table-cell rank align-middle">
                         {% if member.promotions.last %}
                             <img src="{{ path('app_param_rank_image',{rank:member.promotions.last.rank.id}) }}"
                                  alt="{{ member.promotions.last.rank.description }}"
                                  title="{{ member.promotions.last.rank.description }}"/>
                         {% endif %}
                     </td>
-                    <td class="action">
+                    <td class="action align-middle">
                         <a href="{{ path('app_member_show',{member:member.id}) }}" class="btn btn-outline-primary text-nowrap">
                             <span class="fi-magnifying-glass"></span>
                             <span class="d-none d-md-inline">{{ 'action.show'|trans({},'messages') }}</span>
