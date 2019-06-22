@@ -46,6 +46,15 @@ class DefaultController extends Controller
         if (!$session->has('stat-account-summary-start')
             || !$session->has('stat-account-summary-stop')
         ) {
+            $period = $em->getRepository(ForecastBudgetPeriod::class)->findCurrent();
+            if($period instanceof ForecastBudgetPeriod) {
+                $session->set('stat-account-summary-start', $period->getStart());
+                $session->set('stat-account-summary-stop', $period->getStop());
+            }
+        }
+        if (!$session->has('stat-account-summary-start')
+            || !$session->has('stat-account-summary-stop')
+        ) {
             $season = $this->getUser()->getCurrentSeason();
             if ($season instanceof Season) {
                 $session->set('stat-account-summary-start', $season->getStart());
