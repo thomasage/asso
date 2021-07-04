@@ -74,8 +74,7 @@ class DefaultController extends Controller
      *
      * @Route("/accounting/autocompleteBankName",
      *     name="app_accounting_autocomplete_bankname",
-     *     methods={"GET"},
-     *     options={"expose"=true})
+     *     methods={"GET"})
      */
     public function autocompleteBankNameAction(Request $request): JsonResponse
     {
@@ -95,8 +94,7 @@ class DefaultController extends Controller
      *
      * @Route("/accounting/autocompleteCategory",
      *     name="app_accounting_autocomplete_category",
-     *     methods={"GET"},
-     *     options={"expose"=true})
+     *     methods={"GET"})
      */
     public function autocompleteCategoryAction(Request $request): JsonResponse
     {
@@ -116,8 +114,7 @@ class DefaultController extends Controller
      *
      * @Route("/accounting/autocompleteThirdName",
      *     name="app_accounting_autocomplete_thirdname",
-     *     methods={"GET"},
-     *     options={"expose"=true})
+     *     methods={"GET"})
      */
     public function autocompleteThirdNameAction(Request $request): JsonResponse
     {
