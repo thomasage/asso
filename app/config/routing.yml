@@ -1,9 +1,6 @@
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
