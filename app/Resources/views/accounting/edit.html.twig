@@ -110,6 +110,7 @@
       $(function () {
         $('.transaction-add').click(function (e) {
           e.preventDefault()
+          console.debug('click')
           TransactionAdd('{{ path('app_accounting_autocomplete_category') }}')
         })
         $('.transaction-del').click(function (e) {
