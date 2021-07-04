@@ -1,9 +1,9 @@
-function TransactionAdd() {
+function TransactionAdd(urlAutocomplete) {
 
     var list = $('#transaction_details');
     var element = $(list.data('prototype').replace(/__name__/g, count));
     element.find('input[id^=transaction_details_][id$=_category]').autocomplete({
-        source: Routing.generate('app_accounting_autocomplete_category')
+        source: urlAutocomplete
     });
     element.find('a.transaction-del').click(function (e) {
         e.preventDefault();
