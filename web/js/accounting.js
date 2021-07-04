@@ -1,6 +1,5 @@
 function TransactionAdd(urlAutocomplete) {
 
-    console.debug('TransactionAdd')
     var list = $('#transaction_details');
     var element = $(list.data('prototype').replace(/__name__/g, count));
     element.find('input[id^=transaction_details_][id$=_category]').autocomplete({

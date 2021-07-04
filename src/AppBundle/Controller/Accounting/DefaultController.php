@@ -135,8 +135,7 @@ class DefaultController extends Controller
      * @Route("/accounting/copy/delete/{copy}",
      *     name="app_accounting_copy_delete",
      *     methods={"GET"},
-     *     requirements={"copy"="\d+"},
-     *     options={"expose"=true})
+     *     requirements={"copy"="\d+"})
      */
     public function copyDeleteAction(TransactionCopy $copy): RedirectResponse
     {

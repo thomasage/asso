@@ -110,7 +110,6 @@
       $(function () {
         $('.transaction-add').click(function (e) {
           e.preventDefault()
-          console.debug('click')
           TransactionAdd('{{ path('app_accounting_autocomplete_category') }}')
         })
         $('.transaction-del').click(function (e) {
@@ -120,17 +119,17 @@
         $('.copy-delete').click(function (e) {
           e.preventDefault()
           if (window.confirm('{{ 'copy_delete.confirmation'|trans }}')) {
-            window.location.href = Routing.generate('app_accounting_copy_delete', { copy: $(this).data('copy') })
+            // TODO
           }
         })
         $('#transaction_thirdName').autocomplete({
-          source: {{ path('app_accounting_autocomplete_thirdname') }}
+          source: '{{ path('app_accounting_autocomplete_thirdname') }}'
         })
         $('#transaction_bankName').autocomplete({
-          source: {{ path('app_accounting_autocomplete_bankname') }}
+          source: '{{ path('app_accounting_autocomplete_bankname') }}'
         })
         $('.details input[id^=transaction_details_][id$=_category]').autocomplete({
-          source: {{ path('app_accounting_autocomplete_category') }}
+          source: '{{ path('app_accounting_autocomplete_category') }}'
         })
       })
     </script>
