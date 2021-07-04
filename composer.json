@@ -30,7 +30,6 @@
     "incenteev/composer-parameter-handler": "^2.0",
     "twig/extensions": "^1.3",
     "phpunit/php-code-coverage": "^3.0",
-    "friendsofsymfony/jsrouting-bundle": "^1.6",
     "itbz/fpdf": "^1.7",
     "box/spout": "^2.7",
     "friendsofsymfony/user-bundle": "~2.0",
